@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zpapi.other.dao.GtDiscountCardMapper" >
+  <resultMap id="BaseResultMap" type="com.zpapi.other.model.GtDiscountCard" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="card_num" property="cardNum" jdbcType="VARCHAR" />
+    <result column="category_id" property="categoryId" jdbcType="INTEGER" />
+    <result column="use_condition" property="useCondition" jdbcType="DECIMAL" />
+    <result column="money" property="money" jdbcType="DECIMAL" />
+    <result column="start_date" property="startDate" jdbcType="INTEGER" />
+    <result column="due_date" property="dueDate" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="BIT" />
+    <result column="card_status" property="cardStatus" jdbcType="BIT" />
+    <result column="active_date" property="activeDate" jdbcType="INTEGER" />
+    <result column="active_member_id" property="activeMemberId" jdbcType="BIGINT" />
+    <result column="task_id" property="taskId" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="INTEGER" />
+    <result column="is_sended" property="isSended" jdbcType="BIT" />
+    <result column="card_type" property="cardType" jdbcType="INTEGER" />
+    <result column="brand_id" property="brandId" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, card_num, category_id, use_condition, money, start_date, due_date, status, card_status, 
+    active_date, active_member_id, task_id, create_time, is_sended, card_type, brand_id
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zpapi.other.model.GtDiscountCardExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from gt_discount_card
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from gt_discount_card
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from gt_discount_card
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.zpapi.other.model.GtDiscountCardExample" >
+    delete from gt_discount_card
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zpapi.other.model.GtDiscountCard" >
+    insert into gt_discount_card (id, card_num, category_id, 
+      use_condition, money, start_date, 
+      due_date, status, card_status, 
+      active_date, active_member_id, task_id, 
+      create_time, is_sended, card_type, 
+      brand_id)
+    values (#{id,jdbcType=INTEGER}, #{cardNum,jdbcType=VARCHAR}, #{categoryId,jdbcType=INTEGER}, 
+      #{useCondition,jdbcType=DECIMAL}, #{money,jdbcType=DECIMAL}, #{startDate,jdbcType=INTEGER}, 
+      #{dueDate,jdbcType=INTEGER}, #{status,jdbcType=BIT}, #{cardStatus,jdbcType=BIT}, 
+      #{activeDate,jdbcType=INTEGER}, #{activeMemberId,jdbcType=BIGINT}, #{taskId,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=INTEGER}, #{isSended,jdbcType=BIT}, #{cardType,jdbcType=INTEGER}, 
+      #{brandId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zpapi.other.model.GtDiscountCard" >
+    insert into gt_discount_card
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="cardNum != null" >
+        card_num,
+      </if>
+      <if test="categoryId != null" >
+        category_id,
+      </if>
+      <if test="useCondition != null" >
+        use_condition,
+      </if>
+      <if test="money != null" >
+        money,
+      </if>
+      <if test="startDate != null" >
+        start_date,
+      </if>
+      <if test="dueDate != null" >
+        due_date,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="cardStatus != null" >
+        card_status,
+      </if>
+      <if test="activeDate != null" >
+        active_date,
+      </if>
+      <if test="activeMemberId != null" >
+        active_member_id,
+      </if>
+      <if test="taskId != null" >
+        task_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="isSended != null" >
+        is_sended,
+      </if>
+      <if test="cardType != null" >
+        card_type,
+      </if>
+      <if test="brandId != null" >
+        brand_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="cardNum != null" >
+        #{cardNum,jdbcType=VARCHAR},
+      </if>
+      <if test="categoryId != null" >
+        #{categoryId,jdbcType=INTEGER},
+      </if>
+      <if test="useCondition != null" >
+        #{useCondition,jdbcType=DECIMAL},
+      </if>
+      <if test="money != null" >
+        #{money,jdbcType=DECIMAL},
+      </if>
+      <if test="startDate != null" >
+        #{startDate,jdbcType=INTEGER},
+      </if>
+      <if test="dueDate != null" >
+        #{dueDate,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=BIT},
+      </if>
+      <if test="cardStatus != null" >
+        #{cardStatus,jdbcType=BIT},
+      </if>
+      <if test="activeDate != null" >
+        #{activeDate,jdbcType=INTEGER},
+      </if>
+      <if test="activeMemberId != null" >
+        #{activeMemberId,jdbcType=BIGINT},
+      </if>
+      <if test="taskId != null" >
+        #{taskId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=INTEGER},
+      </if>
+      <if test="isSended != null" >
+        #{isSended,jdbcType=BIT},
+      </if>
+      <if test="cardType != null" >
+        #{cardType,jdbcType=INTEGER},
+      </if>
+      <if test="brandId != null" >
+        #{brandId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zpapi.other.model.GtDiscountCardExample" resultType="java.lang.Integer" >
+    select count(*) from gt_discount_card
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update gt_discount_card
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.cardNum != null" >
+        card_num = #{record.cardNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.categoryId != null" >
+        category_id = #{record.categoryId,jdbcType=INTEGER},
+      </if>
+      <if test="record.useCondition != null" >
+        use_condition = #{record.useCondition,jdbcType=DECIMAL},
+      </if>
+      <if test="record.money != null" >
+        money = #{record.money,jdbcType=DECIMAL},
+      </if>
+      <if test="record.startDate != null" >
+        start_date = #{record.startDate,jdbcType=INTEGER},
+      </if>
+      <if test="record.dueDate != null" >
+        due_date = #{record.dueDate,jdbcType=INTEGER},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=BIT},
+      </if>
+      <if test="record.cardStatus != null" >
+        card_status = #{record.cardStatus,jdbcType=BIT},
+      </if>
+      <if test="record.activeDate != null" >
+        active_date = #{record.activeDate,jdbcType=INTEGER},
+      </if>
+      <if test="record.activeMemberId != null" >
+        active_member_id = #{record.activeMemberId,jdbcType=BIGINT},
+      </if>
+      <if test="record.taskId != null" >
+        task_id = #{record.taskId,jdbcType=INTEGER},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.isSended != null" >
+        is_sended = #{record.isSended,jdbcType=BIT},
+      </if>
+      <if test="record.cardType != null" >
+        card_type = #{record.cardType,jdbcType=INTEGER},
+      </if>
+      <if test="record.brandId != null" >
+        brand_id = #{record.brandId,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update gt_discount_card
+    set id = #{record.id,jdbcType=INTEGER},
+      card_num = #{record.cardNum,jdbcType=VARCHAR},
+      category_id = #{record.categoryId,jdbcType=INTEGER},
+      use_condition = #{record.useCondition,jdbcType=DECIMAL},
+      money = #{record.money,jdbcType=DECIMAL},
+      start_date = #{record.startDate,jdbcType=INTEGER},
+      due_date = #{record.dueDate,jdbcType=INTEGER},
+      status = #{record.status,jdbcType=BIT},
+      card_status = #{record.cardStatus,jdbcType=BIT},
+      active_date = #{record.activeDate,jdbcType=INTEGER},
+      active_member_id = #{record.activeMemberId,jdbcType=BIGINT},
+      task_id = #{record.taskId,jdbcType=INTEGER},
+      create_time = #{record.createTime,jdbcType=INTEGER},
+      is_sended = #{record.isSended,jdbcType=BIT},
+      card_type = #{record.cardType,jdbcType=INTEGER},
+      brand_id = #{record.brandId,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zpapi.other.model.GtDiscountCard" >
+    update gt_discount_card
+    <set >
+      <if test="cardNum != null" >
+        card_num = #{cardNum,jdbcType=VARCHAR},
+      </if>
+      <if test="categoryId != null" >
+        category_id = #{categoryId,jdbcType=INTEGER},
+      </if>
+      <if test="useCondition != null" >
+        use_condition = #{useCondition,jdbcType=DECIMAL},
+      </if>
+      <if test="money != null" >
+        money = #{money,jdbcType=DECIMAL},
+      </if>
+      <if test="startDate != null" >
+        start_date = #{startDate,jdbcType=INTEGER},
+      </if>
+      <if test="dueDate != null" >
+        due_date = #{dueDate,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=BIT},
+      </if>
+      <if test="cardStatus != null" >
+        card_status = #{cardStatus,jdbcType=BIT},
+      </if>
+      <if test="activeDate != null" >
+        active_date = #{activeDate,jdbcType=INTEGER},
+      </if>
+      <if test="activeMemberId != null" >
+        active_member_id = #{activeMemberId,jdbcType=BIGINT},
+      </if>
+      <if test="taskId != null" >
+        task_id = #{taskId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=INTEGER},
+      </if>
+      <if test="isSended != null" >
+        is_sended = #{isSended,jdbcType=BIT},
+      </if>
+      <if test="cardType != null" >
+        card_type = #{cardType,jdbcType=INTEGER},
+      </if>
+      <if test="brandId != null" >
+        brand_id = #{brandId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zpapi.other.model.GtDiscountCard" >
+    update gt_discount_card
+    set card_num = #{cardNum,jdbcType=VARCHAR},
+      category_id = #{categoryId,jdbcType=INTEGER},
+      use_condition = #{useCondition,jdbcType=DECIMAL},
+      money = #{money,jdbcType=DECIMAL},
+      start_date = #{startDate,jdbcType=INTEGER},
+      due_date = #{dueDate,jdbcType=INTEGER},
+      status = #{status,jdbcType=BIT},
+      card_status = #{cardStatus,jdbcType=BIT},
+      active_date = #{activeDate,jdbcType=INTEGER},
+      active_member_id = #{activeMemberId,jdbcType=BIGINT},
+      task_id = #{taskId,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=INTEGER},
+      is_sended = #{isSended,jdbcType=BIT},
+      card_type = #{cardType,jdbcType=INTEGER},
+      brand_id = #{brandId,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

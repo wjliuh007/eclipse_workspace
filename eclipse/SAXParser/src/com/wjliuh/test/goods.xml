@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<goods>
+	<good code="apple">
+		<name>灵宝苹果</name>
+		<weight>2.8</weight>
+		<price>5.6</price>
+		<brand>灵宝</brand>
+		<orign>河南灵宝</orign>
+	</good>
+	<good code="apple">
+		<name>红富士苹果</name>
+		<weight>4.0</weight>
+		<price>6.6</price>
+		<brand>红富士</brand>
+		<orign>日本</orign>
+	</good>
+	<good code="apple">
+		<name>大兴苹果</name>
+		<weight>2.5</weight>
+		<price>10.6</price>
+		<brand>大兴</brand>
+		<orign>北京大兴</orign>
+	</good>
+	<good code="floss">
+		<name>肉松</name>
+		<weight>12.5</weight>
+		<price>3.6</price>
+		<brand>正大</brand>
+		<orign>北京大兴</orign>
+	</good>
+	<good code="smallage">
+		<name>芹菜</name>
+		<weight>2.5</weight>
+		<price>0.99</price>
+		<brand>大兴</brand>
+		<orign>北京大兴</orign>
+	</good>
+	<good code="pear">
+		<name>梨</name>
+		<weight>2.5</weight>
+		<price>0.98</price>
+		<brand>大兴</brand>
+		<orign>北京大兴</orign>
+	</good>
+</goods>

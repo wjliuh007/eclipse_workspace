@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://web.spartacus.org.cn" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://web.spartacus.org.cn" xmlns:intf="http://web.spartacus.org.cn" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://web.spartacus.org.cn" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="getIp">
+    <complexType>
+     <sequence>
+      <element name="ip" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getIpResponse">
+    <complexType>
+     <sequence>
+      <element name="getIpReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="getIpResponse">
+
+      <wsdl:part element="impl:getIpResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getIpRequest">
+
+      <wsdl:part element="impl:getIp" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="WebServiceImpl">
+
+      <wsdl:operation name="getIp">
+
+         <wsdl:input message="impl:getIpRequest" name="getIpRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getIpResponse" name="getIpResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="WebServiceImplSoapBinding" type="impl:WebServiceImpl">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="getIp">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getIpRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getIpResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="WebServiceImplService">
+
+      <wsdl:port binding="impl:WebServiceImplSoapBinding" name="WebServiceImpl">
+
+         <wsdlsoap:address location="http://localhost:8080/SpringFramework/services/WebServiceImpl"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

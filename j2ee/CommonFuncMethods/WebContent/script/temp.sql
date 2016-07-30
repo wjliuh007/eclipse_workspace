@@ -1,0 +1,1 @@
+select * from CM_MAIN

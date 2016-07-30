@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="  
+            http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd  
+            http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<bean id="sessionFactory" class="com.taobao.metamorphosis.client.extension.spring.MetaqMessageSessionFactoryBean">
+        <property name="zkConnect" value="192.168.1.139:2181,192.168.1.138:2181,192.168.1.137:2181"/>
+<!--         <property name="zkConnect" value="${zk.connect}"/> -->
+        <property name="zkSessionTimeoutMs" value="5000"/>
+        <property name="zkConnectionTimeoutMs" value="5000"/>
+        <property name="zkSyncTimeMs" value="5000"/>
+<!--         <property name="zkSessionTimeoutMs" value="${zk.session.timeoutMs}"/> -->
+<!--         <property name="zkConnectionTimeoutMs" value="${zk.connection.timeoutMs}"/> -->
+<!--         <property name="zkSyncTimeMs" value="${zk.sync.timeMs}"/> -->
+    </bean>
+    
+    <bean id="messageBodyConverter"  
+    	class="com.taobao.metamorphosis.client.extension.spring.JavaSerializationMessageBodyConverter"/>
+	
+	<bean id ="metaqTemplate" class="com.taobao.metamorphosis.client.extension.spring.MetaqTemplate">    
+        <property name="messageSessionFactory" ref="sessionFactory"/>
+        <property name="messageBodyConverter" ref="messageBodyConverter"/>
+		<!--以共享一个MessageProducer来发送多个topic的消息 -->
+        <property name="shareProducer" value="true"/>
+<!--         <property name="shareProducer" value="${share.producer}"/> -->
+    </bean>
+    
+</beans>

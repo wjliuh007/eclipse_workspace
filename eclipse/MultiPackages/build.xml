@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project default="compilerefclass" basedir=".">
+	<property name="src" location="java" />
+	<property name="test" location="test" />
+	<property name="buildpath" location="build" />
+	<property name="antlibhome" location="F:\Java_jar\commons-logging-1.2" />
+	<property name="javahome" location="C:\Program Files\Java\jdk1.7.0_65" />
+	<property name="javacpath" location="${javahome}/bin/javac" />
+	<property name="modulepath" location="G:\ant\MultiPackages" />
+	<property name="testname" value="test"/>
+	<property name="modulename" value="multipackage"></property>
+	
+	<path id="Library">
+		<fileset dir="${antlibhome}">
+			<include name="*.jar" />
+		</fileset>
+	</path>
+	<path id="classsrcpath">
+		<fileset dir="${modulepath}/test">
+			<include name="**/*.jar" />
+		</fileset>
+	</path>
+	<target name="init">
+		<delete dir="${buildpath}"/>
+	    <mkdir dir="${buildpath}"/>
+		<mkdir dir="${buildpath}/src"/>
+		<mkdir dir="${buildpath}/classes"/>
+	    <mkdir dir="${buildpath}/dist"/>
+		<mkdir dir="${buildpath}/test"/>
+	</target>
+
+	<target name="compilerefclass" depends="init">
+		<delete dir="${modulepath}/test"/>
+		<mkdir dir="${modulepath}/test"/>
+		<mkdir dir="${modulepath}/classes/${testname}"/>
+		<javac target="1.7" fork="true" executable="${javacpath}" includeantruntime="false" nowarn="yes" 
+			destdir="${modulepath}/classes/${testname}" debug="on">
+			<src path="${test}" />
+			<classpath refid="Library" />
+		</javac>
+		
+		<delete file="${modulepath}/test/${testname}.jar" />
+		<jar jarfile="${modulepath}/test/${testname}.jar" basedir="${modulepath}/classes/${testname}"/>
+	</target>
+	<target name="compilesrc" depends="compilerefclass">
+		<delete dir="${modulepath}/java"/>
+		<mkdir dir="${modulepath}/java"/>
+		<delete dir="${modulepath}/classes/${modulename}"/>
+		<mkdir dir="${modulepath}/classes/${modulename}"/>
+		<javac target="1.7" fork="true" executable="${javacpath}" includeantruntime="false" nowarn="yes" 
+			destdir="${modulepath}/classes/${modulename}" debug="on">
+			<src path="${src}" />
+			<classpath refid="Library" />
+			<classpath refid="classsrcpath" />
+		</javac>
+		
+		<delete file="${modulepath}/java/${modulename}.jar" />
+		<jar jarfile="${modulepath}/java/${modulename}.jar" basedir="${modulepath}/classes/${modulename}"/>
+	</target>
+</project>

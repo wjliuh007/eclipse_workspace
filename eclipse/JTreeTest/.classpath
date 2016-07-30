@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/java"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry kind="lib" path="ojdbc6.jar"/>
+	<classpathentry kind="lib" path="spring-lib/spring-aop-3.2.4.RELEASE-sources.jar"/>
+	<classpathentry kind="lib" path="spring-lib/spring-aop-3.2.4.RELEASE.jar"/>
+	<classpathentry kind="lib" path="spring-lib/spring-aspects-3.2.4.RELEASE-sources.jar"/>
+	<classpathentry kind="lib" path="spring-lib/spring-aspects-3.2.4.RELEASE.jar"/>
+	<classpathentry kind="lib" path="spring-lib/spring-beans-3.2.4.RELEASE-sources.jar"/>
+	<classpathentry kind="lib" path="spring-lib/spring-beans-3.2.4.RELEASE.jar"/>
+	<classpathentry kind="lib" path="spring-lib/spring-build-src-3.2.4.RELEASE.jar"/>
+	<classpathentry kind="lib" path="spring-lib/spring-context-3.2.4.RELEASE-sources.jar"/>
+	<classpathentry kind="lib" path="spring-lib/spring-context-3.2.4.RELEASE.jar"/>
+	<classpathentry kind="lib" path="spring-lib/spring-context-support-3.2.4.RELEASE-sources.jar"/>
+	<classpathentry kind="lib" path="spring-lib/spring-context-support-3.2.4.RELEASE.jar"/>
+	<classpathentry kind="lib" path="spring-lib/spring-core-3.2.4.RELEASE-sources.jar"/>
+	<classpathentry kind="lib" path="spring-lib/spring-core-3.2.4.RELEASE.jar"/>
+	<classpathentry kind="lib" path="spring-lib/spring-expression-3.2.4.RELEASE-sources.jar"/>
+	<classpathentry kind="lib" path="spring-lib/spring-expression-3.2.4.RELEASE.jar"/>
+	<classpathentry kind="lib" path="spring-lib/spring-instrument-3.2.4.RELEASE-sources.jar"/>
+	<classpathentry kind="lib" path="spring-lib/spring-instrument-3.2.4.RELEASE.jar"/>
+	<classpathentry kind="lib" path="spring-lib/spring-instrument-tomcat-3.2.4.RELEASE-sources.jar"/>
+	<classpathentry kind="lib" path="spring-lib/spring-instrument-tomcat-3.2.4.RELEASE.jar"/>
+	<classpathentry kind="lib" path="spring-lib/spring-jdbc-3.2.4.RELEASE-sources.jar"/>
+	<classpathentry kind="lib" path="spring-lib/spring-jdbc-3.2.4.RELEASE.jar" sourcepath="spring-lib/spring-jdbc-3.2.4.RELEASE-sources.jar"/>
+	<classpathentry kind="lib" path="spring-lib/spring-jms-3.2.4.RELEASE-sources.jar"/>
+	<classpathentry kind="lib" path="spring-lib/spring-jms-3.2.4.RELEASE.jar"/>
+	<classpathentry kind="lib" path="spring-lib/spring-orm-3.2.4.RELEASE-sources.jar"/>
+	<classpathentry kind="lib" path="spring-lib/spring-orm-3.2.4.RELEASE.jar"/>
+	<classpathentry kind="lib" path="spring-lib/spring-oxm-3.2.4.RELEASE-sources.jar"/>
+	<classpathentry kind="lib" path="spring-lib/spring-oxm-3.2.4.RELEASE.jar"/>
+	<classpathentry kind="lib" path="spring-lib/spring-struts-3.2.4.RELEASE-sources.jar"/>
+	<classpathentry kind="lib" path="spring-lib/spring-struts-3.2.4.RELEASE.jar"/>
+	<classpathentry kind="lib" path="spring-lib/spring-test-3.2.4.RELEASE-sources.jar"/>
+	<classpathentry kind="lib" path="spring-lib/spring-test-3.2.4.RELEASE.jar"/>
+	<classpathentry kind="lib" path="spring-lib/spring-tx-3.2.4.RELEASE-sources.jar"/>
+	<classpathentry kind="lib" path="spring-lib/spring-tx-3.2.4.RELEASE.jar" sourcepath="spring-lib/spring-tx-3.2.4.RELEASE-sources.jar"/>
+	<classpathentry kind="lib" path="spring-lib/spring-web-3.2.4.RELEASE-sources.jar"/>
+	<classpathentry kind="lib" path="spring-lib/spring-web-3.2.4.RELEASE.jar"/>
+	<classpathentry kind="lib" path="spring-lib/spring-webmvc-3.2.4.RELEASE.jar"/>
+	<classpathentry kind="lib" path="spring-lib/spring-webmvc-portlet-3.2.4.RELEASE-sources.jar"/>
+	<classpathentry kind="lib" path="spring-lib/spring-webmvc-portlet-3.2.4.RELEASE.jar"/>
+	<classpathentry kind="lib" path="db-pool/druid-1.0.14-sources.jar"/>
+	<classpathentry kind="lib" path="db-pool/druid-1.0.14.jar" sourcepath="db-pool/druid-1.0.14-sources.jar"/>
+	<classpathentry kind="lib" path="mysql-connector-java-5.1.35.jar" sourcepath="mysql-connector-java-5.1.35-sources.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

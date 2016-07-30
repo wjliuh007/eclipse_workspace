@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wjliuh.dao.CommonMethodEntityMapper">
+	<resultMap id="BaseResultMap" type="com.wjliuh.model.CommonMethodEntity">
+		<id column="ID" property="id" jdbcType="VARCHAR" />
+		<result column="METHOD_CODE" property="methodCode" jdbcType="VARCHAR" />
+		<result column="METHOD_NAME" property="methodName" jdbcType="VARCHAR" />
+		<result column="DESCRIPTION" property="description" jdbcType="VARCHAR" />
+		<result column="APPENDIX" property="appendix" jdbcType="VARCHAR" />
+		<result column="APPENDIXPATH" property="appendixpath" jdbcType="VARCHAR" />
+		<result column="CREATETIME" property="createtime" jdbcType="VARCHAR" />
+		<result column="UPDATETIME" property="updatetime" jdbcType="VARCHAR" />
+		<result column="ISDELETE" property="isdelete" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		ID, METHOD_CODE, METHOD_NAME, DESCRIPTION, APPENDIX,
+		APPENDIXPATH,
+		CREATETIME, UPDATETIME,
+		ISDELETE
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from CM_MAIN
+		where ID = #{id,jdbcType=VARCHAR}
+	</select>
+	<select id="selectAll" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from CM_MAIN
+		order by to_date(CREATETIME,'yyyy-MM-dd HH24:mi:ss') desc
+	</select>
+
+	<!-- 按照条件查询 -->
+	<select id="selectByWhere" resultMap="BaseResultMap"
+		parameterType="com.wjliuh.model.CommonMethodEntity">
+		select
+		<include refid="Base_Column_List" />
+		from CM_MAIN
+		where
+		<if test="methodCode != null">
+			METHOD_CODE = #{methodCode,jdbcType=VARCHAR}
+		</if>
+
+		order by to_date(CREATETIME,'yyyy-MM-dd HH24:mi:ss') desc
+	</select>
+	<!-- 按照条件查询 -->
+	<select id="selectByOptions" resultMap="BaseResultMap"
+		parameterType="java.util.Map">
+		select
+		<include refid="Base_Column_List" />
+		from CM_MAIN
+		<trim prefix="where" prefixOverrides="and |or">
+			<if test="methodCode != null">
+				METHOD_CODE = #{methodCode,jdbcType=VARCHAR}
+			</if>
+			<if test="methodName != null">
+				and METHOD_NAME like '%' ||
+				#{methodName,jdbcType=VARCHAR} || '%'
+			</if>
+			<if test="description != null">
+				and DESCRIPTION like '%' ||
+				#{description,jdbcType=VARCHAR} || '%'
+			</if>
+			<if test="isdelete != null">
+				and isdelete = #{isdelete,jdbcType=VARCHAR}
+			</if>
+		</trim>
+		order by to_date(CREATETIME,'yyyy-MM-dd HH24:mi:ss') desc
+	</select>
+	<select id="fullTextSearcher" resultMap="BaseResultMap"	parameterType="java.util.Map">
+		select
+		<include refid="Base_Column_List" />
+		from CM_MAIN
+		<trim prefix="where" prefixOverrides="and |or">
+			METHOD_CODE like '%' ||
+			#{fts,jdbcType=VARCHAR} || '%'
+			or METHOD_NAME like '%' ||
+			#{fts,jdbcType=VARCHAR} || '%'
+			or DESCRIPTION like '%' ||
+			#{fts,jdbcType=VARCHAR} || '%'
+		</trim>
+		order by METHOD_CODE asc
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from
+		CM_MAIN
+		where ID = #{id,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.wjliuh.model.CommonMethodEntity">
+		insert into CM_MAIN (ID,
+		METHOD_CODE, METHOD_NAME,
+		DESCRIPTION, APPENDIX, APPENDIXPATH,
+		CREATETIME, UPDATETIME, ISDELETE
+		)
+		values (#{id,jdbcType=VARCHAR},
+		#{methodCode,jdbcType=VARCHAR},
+		#{methodName,jdbcType=VARCHAR},
+		#{description,jdbcType=VARCHAR}, #{appendix,jdbcType=VARCHAR},
+		#{appendixpath,jdbcType=VARCHAR},
+		#{createtime,jdbcType=VARCHAR},
+		#{updatetime,jdbcType=VARCHAR},
+		#{isdelete,jdbcType=VARCHAR}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="com.wjliuh.model.CommonMethodEntity">
+		insert into CM_MAIN
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				ID,
+			</if>
+			<if test="methodCode != null">
+				METHOD_CODE,
+			</if>
+			<if test="methodName != null">
+				METHOD_NAME,
+			</if>
+			<if test="description != null">
+				DESCRIPTION,
+			</if>
+			<if test="appendix != null">
+				APPENDIX,
+			</if>
+			<if test="appendixpath != null">
+				APPENDIXPATH,
+			</if>
+			<if test="createtime != null">
+				CREATETIME,
+			</if>
+			<if test="updatetime != null">
+				UPDATETIME,
+			</if>
+			<if test="isdelete != null">
+				ISDELETE,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=VARCHAR},
+			</if>
+			<if test="methodCode != null">
+				#{methodCode,jdbcType=VARCHAR},
+			</if>
+			<if test="methodName != null">
+				#{methodName,jdbcType=VARCHAR},
+			</if>
+			<if test="description != null">
+				#{description,jdbcType=VARCHAR},
+			</if>
+			<if test="appendix != null">
+				#{appendix,jdbcType=VARCHAR},
+			</if>
+			<if test="appendixpath != null">
+				#{appendixpath,jdbcType=VARCHAR},
+			</if>
+			<if test="createtime != null">
+				#{createtime,jdbcType=VARCHAR},
+			</if>
+			<if test="updatetime != null">
+				#{updatetime,jdbcType=VARCHAR},
+			</if>
+			<if test="isdelete != null">
+				#{isdelete,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.wjliuh.model.CommonMethodEntity">
+		update CM_MAIN
+		<set>
+			<if test="methodCode != null">
+				METHOD_CODE = #{methodCode,jdbcType=VARCHAR},
+			</if>
+			<if test="methodName != null">
+				METHOD_NAME = #{methodName,jdbcType=VARCHAR},
+			</if>
+			<if test="description != null">
+				DESCRIPTION = #{description,jdbcType=VARCHAR},
+			</if>
+			<if test="appendix != null">
+				APPENDIX = #{appendix,jdbcType=VARCHAR},
+			</if>
+			<if test="appendixpath != null">
+				APPENDIXPATH = #{appendixpath,jdbcType=VARCHAR},
+			</if>
+			<if test="createtime != null">
+				CREATETIME = #{createtime,jdbcType=VARCHAR},
+			</if>
+			<if test="updatetime != null">
+				UPDATETIME = #{updatetime,jdbcType=VARCHAR},
+			</if>
+			<if test="isdelete != null">
+				ISDELETE = #{isdelete,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where ID = #{id,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.wjliuh.model.CommonMethodEntity">
+		update CM_MAIN
+		set
+		METHOD_CODE = #{methodCode,jdbcType=VARCHAR},
+		METHOD_NAME =
+		#{methodName,jdbcType=VARCHAR},
+		DESCRIPTION =
+		#{description,jdbcType=VARCHAR},
+		APPENDIX =
+		#{appendix,jdbcType=VARCHAR},
+		APPENDIXPATH =
+		#{appendixpath,jdbcType=VARCHAR},
+		CREATETIME =
+		#{createtime,jdbcType=VARCHAR},
+		UPDATETIME =
+		#{updatetime,jdbcType=VARCHAR},
+		ISDELETE = #{isdelete,jdbcType=VARCHAR}
+		where ID = #{id,jdbcType=VARCHAR}
+	</update>
+	<insert id="batchInsert" parameterType="java.util.ArrayList">
+
+		insert into tb_active_code(code, create_user_id, create_time) values
+		<foreach collection="list" item="item" index="index"
+			separator="union all">
+			select #{item.code,jdbcType=VARCHAR},
+			#{item.create_user_id,jdbcType=VARCHAR},
+			#{item.create_time,jdbcType=VARCHAR}} from dual
+		</foreach>
+	</insert>
+	<insert id="insertbatch" parameterType="java.util.ArrayList">
+		<selectKey keyProperty="fetchTime" order="BEFORE" resultType="java.lang.String">
+			SELECT CURRENT_TIMESTAMP()
+		</selectKey>
+		insert into test_tab ( depart1, depart2, product_name) values
+		<foreach collection="list" item="item" index="index" separator=",">
+			( #{item.depart1}, #{item.depart2}, #{item.productName})
+		</foreach>
+	</insert>
+</mapper>

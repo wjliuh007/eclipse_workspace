@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project default="init" >
+	<property name="src" location="java" />
+	<fileset dir="java" id="src.path">
+   	 	<include name="**/*.java"/>
+	</fileset>
+
+	<target name="init">
+		<delete dir="build"></delete>
+		<mkdir dir="build"/>
+		<mkdir dir="build/src"/>
+		<mkdir dir="build/classes"/>
+	    <mkdir dir="build/dist"/>
+			
+	</target>
+	
+	<target name="copySrc" depends="init" >
+		<copy todir="build/src">
+			<fileset refid="src.path"></fileset>
+		</copy>
+	</target>
+	
+	<target name="compile" depends="init">
+		<javac srcdir="${src}" destdir="build/classes" includeantruntime="false"/>
+	</target>
+	<target name="jar" depends="compile,copySrc">
+		<jar jarfile="build/dist/Teat.jar" basedir="build/classes"/>
+	</target>
+</project>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
+http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd">
+	<!-- 默认扫描的包路径 -->
+	<!-- <context:component-scan base-package="cn.org.spartacus.spring" /> 添加注解驱动 
+		<mvc:annotation-driven /> -->    <!-- 定义跳转的文件的前后缀 -->
+
+	<bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="mappings">
+			<props>
+				<!-- 匹配地址控制转向 -->
+				<prop key="start.do">controller</prop>
+			</props>
+		</property>
+	</bean>
+	
+	
+	<!-- 用SimpleUandlerMapping实现映射 -->
+	<bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="mappings">
+			<value>
+				cfgmaping.action=cfgcontroller
+			</value>
+		</property>
+	</bean>
+	
+	<bean id="cfgcontroller" class="com.wjliuh.mvc.mapping.ConfigMappingFormController"/>
+	
+	<!-- 控制器 -->
+ 	<bean id="controller" class="cn.org.spartacus.spring.IndexController" />
+ 	
+ 	<!-- 返回视图 -->
+	<bean class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView"></property>
+		<property name="prefix" value="/WEB-INF/jsp/" />
+		<property name="suffix" value=".jsp" />
+	</bean> 
+	
+	
+</beans>

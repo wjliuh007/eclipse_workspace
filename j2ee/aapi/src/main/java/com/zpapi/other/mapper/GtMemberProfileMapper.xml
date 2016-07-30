@@ -1,0 +1,1315 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zpapi.other.dao.GtMemberProfileMapper" >
+  <resultMap id="BaseResultMap" type="com.zpapi.other.model.GtMemberProfile" >
+    <id column="member_id" property="memberId" jdbcType="BIGINT" />
+    <result column="username" property="username" jdbcType="VARCHAR" />
+    <result column="realname" property="realname" jdbcType="VARCHAR" />
+    <result column="cur_level" property="curLevel" jdbcType="INTEGER" />
+    <result column="top_level" property="topLevel" jdbcType="INTEGER" />
+    <result column="total_consumption" property="totalConsumption" jdbcType="INTEGER" />
+    <result column="active_consumption" property="activeConsumption" jdbcType="INTEGER" />
+    <result column="active_order_num" property="activeOrderNum" jdbcType="INTEGER" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="email_is_noneffective" property="emailIsNoneffective" jdbcType="BIT" />
+    <result column="email_check" property="emailCheck" jdbcType="BIT" />
+    <result column="check_salt" property="checkSalt" jdbcType="VARCHAR" />
+    <result column="salt_create_time" property="saltCreateTime" jdbcType="INTEGER" />
+    <result column="receive_email" property="receiveEmail" jdbcType="BIT" />
+    <result column="gender" property="gender" jdbcType="INTEGER" />
+    <result column="avater" property="avater" jdbcType="VARCHAR" />
+    <result column="age" property="age" jdbcType="VARCHAR" />
+    <result column="birthday" property="birthday" jdbcType="INTEGER" />
+    <result column="advis_id" property="advisId" jdbcType="INTEGER" />
+    <result column="mobile" property="mobile" jdbcType="VARCHAR" />
+    <result column="idcard" property="idcard" jdbcType="VARCHAR" />
+    <result column="vip_level" property="vipLevel" jdbcType="INTEGER" />
+    <result column="vip_type" property="vipType" jdbcType="CHAR" />
+    <result column="fix_balance" property="fixBalance" jdbcType="DECIMAL" />
+    <result column="balance" property="balance" jdbcType="DECIMAL" />
+    <result column="score" property="score" jdbcType="DECIMAL" />
+    <result column="points" property="points" jdbcType="DECIMAL" />
+    <result column="gifts" property="gifts" jdbcType="DECIMAL" />
+    <result column="consume_times" property="consumeTimes" jdbcType="INTEGER" />
+    <result column="is_recharge" property="isRecharge" jdbcType="INTEGER" />
+    <result column="company" property="company" jdbcType="VARCHAR" />
+    <result column="industry" property="industry" jdbcType="VARCHAR" />
+    <result column="position" property="position" jdbcType="VARCHAR" />
+    <result column="income" property="income" jdbcType="VARCHAR" />
+    <result column="telephone" property="telephone" jdbcType="CHAR" />
+    <result column="qq" property="qq" jdbcType="CHAR" />
+    <result column="msn" property="msn" jdbcType="CHAR" />
+    <result column="height" property="height" jdbcType="INTEGER" />
+    <result column="weight" property="weight" jdbcType="INTEGER" />
+    <result column="chest" property="chest" jdbcType="TINYINT" />
+    <result column="waist" property="waist" jdbcType="TINYINT" />
+    <result column="hip" property="hip" jdbcType="TINYINT" />
+    <result column="shoe_size" property="shoeSize" jdbcType="TINYINT" />
+    <result column="live_province_region_id" property="liveProvinceRegionId" jdbcType="INTEGER" />
+    <result column="live_city_region_id" property="liveCityRegionId" jdbcType="INTEGER" />
+    <result column="live_town_region_id" property="liveTownRegionId" jdbcType="INTEGER" />
+    <result column="live_detail" property="liveDetail" jdbcType="VARCHAR" />
+    <result column="hometown_region_id" property="hometownRegionId" jdbcType="INTEGER" />
+    <result column="is_married" property="isMarried" jdbcType="BIT" />
+    <result column="has_child" property="hasChild" jdbcType="BIT" />
+    <result column="has_parent" property="hasParent" jdbcType="BIT" />
+    <result column="has_card" property="hasCard" jdbcType="BIT" />
+    <result column="has_pet" property="hasPet" jdbcType="BIT" />
+    <result column="reg_time" property="regTime" jdbcType="INTEGER" />
+    <result column="email_subscribe" property="emailSubscribe" jdbcType="BIT" />
+    <result column="short_message_subscribe" property="shortMessageSubscribe" jdbcType="BIT" />
+    <result column="is_bond" property="isBond" jdbcType="BIT" />
+    <result column="last_order_addr" property="lastOrderAddr" jdbcType="INTEGER" />
+    <result column="last_order_shippingtime" property="lastOrderShippingtime" jdbcType="TINYINT" />
+    <result column="source" property="source" jdbcType="VARCHAR" />
+    <result column="channel" property="channel" jdbcType="CHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.zpapi.other.model.GtMemberProfileWithBLOBs" extends="BaseResultMap" >
+    <result column="hobby" property="hobby" jdbcType="LONGVARCHAR" />
+    <result column="add_score_log" property="addScoreLog" jdbcType="LONGVARCHAR" />
+    <result column="last_order_payment" property="lastOrderPayment" jdbcType="LONGVARCHAR" />
+    <result column="last_order_invoice_info" property="lastOrderInvoiceInfo" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    member_id, username, realname, cur_level, top_level, total_consumption, active_consumption, 
+    active_order_num, email, email_is_noneffective, email_check, check_salt, salt_create_time, 
+    receive_email, gender, avater, age, birthday, advis_id, mobile, idcard, vip_level, 
+    vip_type, fix_balance, balance, score, points, gifts, consume_times, is_recharge, 
+    company, industry, position, income, telephone, qq, msn, height, weight, chest, waist, 
+    hip, shoe_size, live_province_region_id, live_city_region_id, live_town_region_id, 
+    live_detail, hometown_region_id, is_married, has_child, has_parent, has_card, has_pet, 
+    reg_time, email_subscribe, short_message_subscribe, is_bond, last_order_addr, last_order_shippingtime, 
+    source, channel
+  </sql>
+  <sql id="Blob_Column_List" >
+    hobby, add_score_log, last_order_payment, last_order_invoice_info
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.zpapi.other.model.GtMemberProfileExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from gt_member_profile
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zpapi.other.model.GtMemberProfileExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from gt_member_profile
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from gt_member_profile
+    where member_id = #{memberId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from gt_member_profile
+    where member_id = #{memberId,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.zpapi.other.model.GtMemberProfileExample" >
+    delete from gt_member_profile
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zpapi.other.model.GtMemberProfileWithBLOBs" >
+    insert into gt_member_profile (member_id, username, realname, 
+      cur_level, top_level, total_consumption, 
+      active_consumption, active_order_num, email, 
+      email_is_noneffective, email_check, check_salt, 
+      salt_create_time, receive_email, gender, 
+      avater, age, birthday, 
+      advis_id, mobile, idcard, 
+      vip_level, vip_type, fix_balance, 
+      balance, score, points, 
+      gifts, consume_times, is_recharge, 
+      company, industry, position, 
+      income, telephone, qq, msn, 
+      height, weight, chest, 
+      waist, hip, shoe_size, 
+      live_province_region_id, live_city_region_id, 
+      live_town_region_id, live_detail, hometown_region_id, 
+      is_married, has_child, has_parent, 
+      has_card, has_pet, reg_time, email_subscribe, 
+      short_message_subscribe, is_bond, last_order_addr, 
+      last_order_shippingtime, source, channel, 
+      hobby, add_score_log, last_order_payment, 
+      last_order_invoice_info)
+    values (#{memberId,jdbcType=BIGINT}, #{username,jdbcType=VARCHAR}, #{realname,jdbcType=VARCHAR}, 
+      #{curLevel,jdbcType=INTEGER}, #{topLevel,jdbcType=INTEGER}, #{totalConsumption,jdbcType=INTEGER}, 
+      #{activeConsumption,jdbcType=INTEGER}, #{activeOrderNum,jdbcType=INTEGER}, #{email,jdbcType=VARCHAR}, 
+      #{emailIsNoneffective,jdbcType=BIT}, #{emailCheck,jdbcType=BIT}, #{checkSalt,jdbcType=VARCHAR}, 
+      #{saltCreateTime,jdbcType=INTEGER}, #{receiveEmail,jdbcType=BIT}, #{gender,jdbcType=INTEGER}, 
+      #{avater,jdbcType=VARCHAR}, #{age,jdbcType=VARCHAR}, #{birthday,jdbcType=INTEGER}, 
+      #{advisId,jdbcType=INTEGER}, #{mobile,jdbcType=VARCHAR}, #{idcard,jdbcType=VARCHAR}, 
+      #{vipLevel,jdbcType=INTEGER}, #{vipType,jdbcType=CHAR}, #{fixBalance,jdbcType=DECIMAL}, 
+      #{balance,jdbcType=DECIMAL}, #{score,jdbcType=DECIMAL}, #{points,jdbcType=DECIMAL}, 
+      #{gifts,jdbcType=DECIMAL}, #{consumeTimes,jdbcType=INTEGER}, #{isRecharge,jdbcType=INTEGER}, 
+      #{company,jdbcType=VARCHAR}, #{industry,jdbcType=VARCHAR}, #{position,jdbcType=VARCHAR}, 
+      #{income,jdbcType=VARCHAR}, #{telephone,jdbcType=CHAR}, #{qq,jdbcType=CHAR}, #{msn,jdbcType=CHAR}, 
+      #{height,jdbcType=INTEGER}, #{weight,jdbcType=INTEGER}, #{chest,jdbcType=TINYINT}, 
+      #{waist,jdbcType=TINYINT}, #{hip,jdbcType=TINYINT}, #{shoeSize,jdbcType=TINYINT}, 
+      #{liveProvinceRegionId,jdbcType=INTEGER}, #{liveCityRegionId,jdbcType=INTEGER}, 
+      #{liveTownRegionId,jdbcType=INTEGER}, #{liveDetail,jdbcType=VARCHAR}, #{hometownRegionId,jdbcType=INTEGER}, 
+      #{isMarried,jdbcType=BIT}, #{hasChild,jdbcType=BIT}, #{hasParent,jdbcType=BIT}, 
+      #{hasCard,jdbcType=BIT}, #{hasPet,jdbcType=BIT}, #{regTime,jdbcType=INTEGER}, #{emailSubscribe,jdbcType=BIT}, 
+      #{shortMessageSubscribe,jdbcType=BIT}, #{isBond,jdbcType=BIT}, #{lastOrderAddr,jdbcType=INTEGER}, 
+      #{lastOrderShippingtime,jdbcType=TINYINT}, #{source,jdbcType=VARCHAR}, #{channel,jdbcType=CHAR}, 
+      #{hobby,jdbcType=LONGVARCHAR}, #{addScoreLog,jdbcType=LONGVARCHAR}, #{lastOrderPayment,jdbcType=LONGVARCHAR}, 
+      #{lastOrderInvoiceInfo,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zpapi.other.model.GtMemberProfileWithBLOBs" >
+    insert into gt_member_profile
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="memberId != null" >
+        member_id,
+      </if>
+      <if test="username != null" >
+        username,
+      </if>
+      <if test="realname != null" >
+        realname,
+      </if>
+      <if test="curLevel != null" >
+        cur_level,
+      </if>
+      <if test="topLevel != null" >
+        top_level,
+      </if>
+      <if test="totalConsumption != null" >
+        total_consumption,
+      </if>
+      <if test="activeConsumption != null" >
+        active_consumption,
+      </if>
+      <if test="activeOrderNum != null" >
+        active_order_num,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="emailIsNoneffective != null" >
+        email_is_noneffective,
+      </if>
+      <if test="emailCheck != null" >
+        email_check,
+      </if>
+      <if test="checkSalt != null" >
+        check_salt,
+      </if>
+      <if test="saltCreateTime != null" >
+        salt_create_time,
+      </if>
+      <if test="receiveEmail != null" >
+        receive_email,
+      </if>
+      <if test="gender != null" >
+        gender,
+      </if>
+      <if test="avater != null" >
+        avater,
+      </if>
+      <if test="age != null" >
+        age,
+      </if>
+      <if test="birthday != null" >
+        birthday,
+      </if>
+      <if test="advisId != null" >
+        advis_id,
+      </if>
+      <if test="mobile != null" >
+        mobile,
+      </if>
+      <if test="idcard != null" >
+        idcard,
+      </if>
+      <if test="vipLevel != null" >
+        vip_level,
+      </if>
+      <if test="vipType != null" >
+        vip_type,
+      </if>
+      <if test="fixBalance != null" >
+        fix_balance,
+      </if>
+      <if test="balance != null" >
+        balance,
+      </if>
+      <if test="score != null" >
+        score,
+      </if>
+      <if test="points != null" >
+        points,
+      </if>
+      <if test="gifts != null" >
+        gifts,
+      </if>
+      <if test="consumeTimes != null" >
+        consume_times,
+      </if>
+      <if test="isRecharge != null" >
+        is_recharge,
+      </if>
+      <if test="company != null" >
+        company,
+      </if>
+      <if test="industry != null" >
+        industry,
+      </if>
+      <if test="position != null" >
+        position,
+      </if>
+      <if test="income != null" >
+        income,
+      </if>
+      <if test="telephone != null" >
+        telephone,
+      </if>
+      <if test="qq != null" >
+        qq,
+      </if>
+      <if test="msn != null" >
+        msn,
+      </if>
+      <if test="height != null" >
+        height,
+      </if>
+      <if test="weight != null" >
+        weight,
+      </if>
+      <if test="chest != null" >
+        chest,
+      </if>
+      <if test="waist != null" >
+        waist,
+      </if>
+      <if test="hip != null" >
+        hip,
+      </if>
+      <if test="shoeSize != null" >
+        shoe_size,
+      </if>
+      <if test="liveProvinceRegionId != null" >
+        live_province_region_id,
+      </if>
+      <if test="liveCityRegionId != null" >
+        live_city_region_id,
+      </if>
+      <if test="liveTownRegionId != null" >
+        live_town_region_id,
+      </if>
+      <if test="liveDetail != null" >
+        live_detail,
+      </if>
+      <if test="hometownRegionId != null" >
+        hometown_region_id,
+      </if>
+      <if test="isMarried != null" >
+        is_married,
+      </if>
+      <if test="hasChild != null" >
+        has_child,
+      </if>
+      <if test="hasParent != null" >
+        has_parent,
+      </if>
+      <if test="hasCard != null" >
+        has_card,
+      </if>
+      <if test="hasPet != null" >
+        has_pet,
+      </if>
+      <if test="regTime != null" >
+        reg_time,
+      </if>
+      <if test="emailSubscribe != null" >
+        email_subscribe,
+      </if>
+      <if test="shortMessageSubscribe != null" >
+        short_message_subscribe,
+      </if>
+      <if test="isBond != null" >
+        is_bond,
+      </if>
+      <if test="lastOrderAddr != null" >
+        last_order_addr,
+      </if>
+      <if test="lastOrderShippingtime != null" >
+        last_order_shippingtime,
+      </if>
+      <if test="source != null" >
+        source,
+      </if>
+      <if test="channel != null" >
+        channel,
+      </if>
+      <if test="hobby != null" >
+        hobby,
+      </if>
+      <if test="addScoreLog != null" >
+        add_score_log,
+      </if>
+      <if test="lastOrderPayment != null" >
+        last_order_payment,
+      </if>
+      <if test="lastOrderInvoiceInfo != null" >
+        last_order_invoice_info,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="memberId != null" >
+        #{memberId,jdbcType=BIGINT},
+      </if>
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="realname != null" >
+        #{realname,jdbcType=VARCHAR},
+      </if>
+      <if test="curLevel != null" >
+        #{curLevel,jdbcType=INTEGER},
+      </if>
+      <if test="topLevel != null" >
+        #{topLevel,jdbcType=INTEGER},
+      </if>
+      <if test="totalConsumption != null" >
+        #{totalConsumption,jdbcType=INTEGER},
+      </if>
+      <if test="activeConsumption != null" >
+        #{activeConsumption,jdbcType=INTEGER},
+      </if>
+      <if test="activeOrderNum != null" >
+        #{activeOrderNum,jdbcType=INTEGER},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="emailIsNoneffective != null" >
+        #{emailIsNoneffective,jdbcType=BIT},
+      </if>
+      <if test="emailCheck != null" >
+        #{emailCheck,jdbcType=BIT},
+      </if>
+      <if test="checkSalt != null" >
+        #{checkSalt,jdbcType=VARCHAR},
+      </if>
+      <if test="saltCreateTime != null" >
+        #{saltCreateTime,jdbcType=INTEGER},
+      </if>
+      <if test="receiveEmail != null" >
+        #{receiveEmail,jdbcType=BIT},
+      </if>
+      <if test="gender != null" >
+        #{gender,jdbcType=INTEGER},
+      </if>
+      <if test="avater != null" >
+        #{avater,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null" >
+        #{age,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null" >
+        #{birthday,jdbcType=INTEGER},
+      </if>
+      <if test="advisId != null" >
+        #{advisId,jdbcType=INTEGER},
+      </if>
+      <if test="mobile != null" >
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="idcard != null" >
+        #{idcard,jdbcType=VARCHAR},
+      </if>
+      <if test="vipLevel != null" >
+        #{vipLevel,jdbcType=INTEGER},
+      </if>
+      <if test="vipType != null" >
+        #{vipType,jdbcType=CHAR},
+      </if>
+      <if test="fixBalance != null" >
+        #{fixBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="balance != null" >
+        #{balance,jdbcType=DECIMAL},
+      </if>
+      <if test="score != null" >
+        #{score,jdbcType=DECIMAL},
+      </if>
+      <if test="points != null" >
+        #{points,jdbcType=DECIMAL},
+      </if>
+      <if test="gifts != null" >
+        #{gifts,jdbcType=DECIMAL},
+      </if>
+      <if test="consumeTimes != null" >
+        #{consumeTimes,jdbcType=INTEGER},
+      </if>
+      <if test="isRecharge != null" >
+        #{isRecharge,jdbcType=INTEGER},
+      </if>
+      <if test="company != null" >
+        #{company,jdbcType=VARCHAR},
+      </if>
+      <if test="industry != null" >
+        #{industry,jdbcType=VARCHAR},
+      </if>
+      <if test="position != null" >
+        #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="income != null" >
+        #{income,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null" >
+        #{telephone,jdbcType=CHAR},
+      </if>
+      <if test="qq != null" >
+        #{qq,jdbcType=CHAR},
+      </if>
+      <if test="msn != null" >
+        #{msn,jdbcType=CHAR},
+      </if>
+      <if test="height != null" >
+        #{height,jdbcType=INTEGER},
+      </if>
+      <if test="weight != null" >
+        #{weight,jdbcType=INTEGER},
+      </if>
+      <if test="chest != null" >
+        #{chest,jdbcType=TINYINT},
+      </if>
+      <if test="waist != null" >
+        #{waist,jdbcType=TINYINT},
+      </if>
+      <if test="hip != null" >
+        #{hip,jdbcType=TINYINT},
+      </if>
+      <if test="shoeSize != null" >
+        #{shoeSize,jdbcType=TINYINT},
+      </if>
+      <if test="liveProvinceRegionId != null" >
+        #{liveProvinceRegionId,jdbcType=INTEGER},
+      </if>
+      <if test="liveCityRegionId != null" >
+        #{liveCityRegionId,jdbcType=INTEGER},
+      </if>
+      <if test="liveTownRegionId != null" >
+        #{liveTownRegionId,jdbcType=INTEGER},
+      </if>
+      <if test="liveDetail != null" >
+        #{liveDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="hometownRegionId != null" >
+        #{hometownRegionId,jdbcType=INTEGER},
+      </if>
+      <if test="isMarried != null" >
+        #{isMarried,jdbcType=BIT},
+      </if>
+      <if test="hasChild != null" >
+        #{hasChild,jdbcType=BIT},
+      </if>
+      <if test="hasParent != null" >
+        #{hasParent,jdbcType=BIT},
+      </if>
+      <if test="hasCard != null" >
+        #{hasCard,jdbcType=BIT},
+      </if>
+      <if test="hasPet != null" >
+        #{hasPet,jdbcType=BIT},
+      </if>
+      <if test="regTime != null" >
+        #{regTime,jdbcType=INTEGER},
+      </if>
+      <if test="emailSubscribe != null" >
+        #{emailSubscribe,jdbcType=BIT},
+      </if>
+      <if test="shortMessageSubscribe != null" >
+        #{shortMessageSubscribe,jdbcType=BIT},
+      </if>
+      <if test="isBond != null" >
+        #{isBond,jdbcType=BIT},
+      </if>
+      <if test="lastOrderAddr != null" >
+        #{lastOrderAddr,jdbcType=INTEGER},
+      </if>
+      <if test="lastOrderShippingtime != null" >
+        #{lastOrderShippingtime,jdbcType=TINYINT},
+      </if>
+      <if test="source != null" >
+        #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="channel != null" >
+        #{channel,jdbcType=CHAR},
+      </if>
+      <if test="hobby != null" >
+        #{hobby,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="addScoreLog != null" >
+        #{addScoreLog,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="lastOrderPayment != null" >
+        #{lastOrderPayment,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="lastOrderInvoiceInfo != null" >
+        #{lastOrderInvoiceInfo,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zpapi.other.model.GtMemberProfileExample" resultType="java.lang.Integer" >
+    select count(*) from gt_member_profile
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update gt_member_profile
+    <set >
+      <if test="record.memberId != null" >
+        member_id = #{record.memberId,jdbcType=BIGINT},
+      </if>
+      <if test="record.username != null" >
+        username = #{record.username,jdbcType=VARCHAR},
+      </if>
+      <if test="record.realname != null" >
+        realname = #{record.realname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.curLevel != null" >
+        cur_level = #{record.curLevel,jdbcType=INTEGER},
+      </if>
+      <if test="record.topLevel != null" >
+        top_level = #{record.topLevel,jdbcType=INTEGER},
+      </if>
+      <if test="record.totalConsumption != null" >
+        total_consumption = #{record.totalConsumption,jdbcType=INTEGER},
+      </if>
+      <if test="record.activeConsumption != null" >
+        active_consumption = #{record.activeConsumption,jdbcType=INTEGER},
+      </if>
+      <if test="record.activeOrderNum != null" >
+        active_order_num = #{record.activeOrderNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.email != null" >
+        email = #{record.email,jdbcType=VARCHAR},
+      </if>
+      <if test="record.emailIsNoneffective != null" >
+        email_is_noneffective = #{record.emailIsNoneffective,jdbcType=BIT},
+      </if>
+      <if test="record.emailCheck != null" >
+        email_check = #{record.emailCheck,jdbcType=BIT},
+      </if>
+      <if test="record.checkSalt != null" >
+        check_salt = #{record.checkSalt,jdbcType=VARCHAR},
+      </if>
+      <if test="record.saltCreateTime != null" >
+        salt_create_time = #{record.saltCreateTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.receiveEmail != null" >
+        receive_email = #{record.receiveEmail,jdbcType=BIT},
+      </if>
+      <if test="record.gender != null" >
+        gender = #{record.gender,jdbcType=INTEGER},
+      </if>
+      <if test="record.avater != null" >
+        avater = #{record.avater,jdbcType=VARCHAR},
+      </if>
+      <if test="record.age != null" >
+        age = #{record.age,jdbcType=VARCHAR},
+      </if>
+      <if test="record.birthday != null" >
+        birthday = #{record.birthday,jdbcType=INTEGER},
+      </if>
+      <if test="record.advisId != null" >
+        advis_id = #{record.advisId,jdbcType=INTEGER},
+      </if>
+      <if test="record.mobile != null" >
+        mobile = #{record.mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.idcard != null" >
+        idcard = #{record.idcard,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vipLevel != null" >
+        vip_level = #{record.vipLevel,jdbcType=INTEGER},
+      </if>
+      <if test="record.vipType != null" >
+        vip_type = #{record.vipType,jdbcType=CHAR},
+      </if>
+      <if test="record.fixBalance != null" >
+        fix_balance = #{record.fixBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="record.balance != null" >
+        balance = #{record.balance,jdbcType=DECIMAL},
+      </if>
+      <if test="record.score != null" >
+        score = #{record.score,jdbcType=DECIMAL},
+      </if>
+      <if test="record.points != null" >
+        points = #{record.points,jdbcType=DECIMAL},
+      </if>
+      <if test="record.gifts != null" >
+        gifts = #{record.gifts,jdbcType=DECIMAL},
+      </if>
+      <if test="record.consumeTimes != null" >
+        consume_times = #{record.consumeTimes,jdbcType=INTEGER},
+      </if>
+      <if test="record.isRecharge != null" >
+        is_recharge = #{record.isRecharge,jdbcType=INTEGER},
+      </if>
+      <if test="record.company != null" >
+        company = #{record.company,jdbcType=VARCHAR},
+      </if>
+      <if test="record.industry != null" >
+        industry = #{record.industry,jdbcType=VARCHAR},
+      </if>
+      <if test="record.position != null" >
+        position = #{record.position,jdbcType=VARCHAR},
+      </if>
+      <if test="record.income != null" >
+        income = #{record.income,jdbcType=VARCHAR},
+      </if>
+      <if test="record.telephone != null" >
+        telephone = #{record.telephone,jdbcType=CHAR},
+      </if>
+      <if test="record.qq != null" >
+        qq = #{record.qq,jdbcType=CHAR},
+      </if>
+      <if test="record.msn != null" >
+        msn = #{record.msn,jdbcType=CHAR},
+      </if>
+      <if test="record.height != null" >
+        height = #{record.height,jdbcType=INTEGER},
+      </if>
+      <if test="record.weight != null" >
+        weight = #{record.weight,jdbcType=INTEGER},
+      </if>
+      <if test="record.chest != null" >
+        chest = #{record.chest,jdbcType=TINYINT},
+      </if>
+      <if test="record.waist != null" >
+        waist = #{record.waist,jdbcType=TINYINT},
+      </if>
+      <if test="record.hip != null" >
+        hip = #{record.hip,jdbcType=TINYINT},
+      </if>
+      <if test="record.shoeSize != null" >
+        shoe_size = #{record.shoeSize,jdbcType=TINYINT},
+      </if>
+      <if test="record.liveProvinceRegionId != null" >
+        live_province_region_id = #{record.liveProvinceRegionId,jdbcType=INTEGER},
+      </if>
+      <if test="record.liveCityRegionId != null" >
+        live_city_region_id = #{record.liveCityRegionId,jdbcType=INTEGER},
+      </if>
+      <if test="record.liveTownRegionId != null" >
+        live_town_region_id = #{record.liveTownRegionId,jdbcType=INTEGER},
+      </if>
+      <if test="record.liveDetail != null" >
+        live_detail = #{record.liveDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hometownRegionId != null" >
+        hometown_region_id = #{record.hometownRegionId,jdbcType=INTEGER},
+      </if>
+      <if test="record.isMarried != null" >
+        is_married = #{record.isMarried,jdbcType=BIT},
+      </if>
+      <if test="record.hasChild != null" >
+        has_child = #{record.hasChild,jdbcType=BIT},
+      </if>
+      <if test="record.hasParent != null" >
+        has_parent = #{record.hasParent,jdbcType=BIT},
+      </if>
+      <if test="record.hasCard != null" >
+        has_card = #{record.hasCard,jdbcType=BIT},
+      </if>
+      <if test="record.hasPet != null" >
+        has_pet = #{record.hasPet,jdbcType=BIT},
+      </if>
+      <if test="record.regTime != null" >
+        reg_time = #{record.regTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.emailSubscribe != null" >
+        email_subscribe = #{record.emailSubscribe,jdbcType=BIT},
+      </if>
+      <if test="record.shortMessageSubscribe != null" >
+        short_message_subscribe = #{record.shortMessageSubscribe,jdbcType=BIT},
+      </if>
+      <if test="record.isBond != null" >
+        is_bond = #{record.isBond,jdbcType=BIT},
+      </if>
+      <if test="record.lastOrderAddr != null" >
+        last_order_addr = #{record.lastOrderAddr,jdbcType=INTEGER},
+      </if>
+      <if test="record.lastOrderShippingtime != null" >
+        last_order_shippingtime = #{record.lastOrderShippingtime,jdbcType=TINYINT},
+      </if>
+      <if test="record.source != null" >
+        source = #{record.source,jdbcType=VARCHAR},
+      </if>
+      <if test="record.channel != null" >
+        channel = #{record.channel,jdbcType=CHAR},
+      </if>
+      <if test="record.hobby != null" >
+        hobby = #{record.hobby,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.addScoreLog != null" >
+        add_score_log = #{record.addScoreLog,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.lastOrderPayment != null" >
+        last_order_payment = #{record.lastOrderPayment,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.lastOrderInvoiceInfo != null" >
+        last_order_invoice_info = #{record.lastOrderInvoiceInfo,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update gt_member_profile
+    set member_id = #{record.memberId,jdbcType=BIGINT},
+      username = #{record.username,jdbcType=VARCHAR},
+      realname = #{record.realname,jdbcType=VARCHAR},
+      cur_level = #{record.curLevel,jdbcType=INTEGER},
+      top_level = #{record.topLevel,jdbcType=INTEGER},
+      total_consumption = #{record.totalConsumption,jdbcType=INTEGER},
+      active_consumption = #{record.activeConsumption,jdbcType=INTEGER},
+      active_order_num = #{record.activeOrderNum,jdbcType=INTEGER},
+      email = #{record.email,jdbcType=VARCHAR},
+      email_is_noneffective = #{record.emailIsNoneffective,jdbcType=BIT},
+      email_check = #{record.emailCheck,jdbcType=BIT},
+      check_salt = #{record.checkSalt,jdbcType=VARCHAR},
+      salt_create_time = #{record.saltCreateTime,jdbcType=INTEGER},
+      receive_email = #{record.receiveEmail,jdbcType=BIT},
+      gender = #{record.gender,jdbcType=INTEGER},
+      avater = #{record.avater,jdbcType=VARCHAR},
+      age = #{record.age,jdbcType=VARCHAR},
+      birthday = #{record.birthday,jdbcType=INTEGER},
+      advis_id = #{record.advisId,jdbcType=INTEGER},
+      mobile = #{record.mobile,jdbcType=VARCHAR},
+      idcard = #{record.idcard,jdbcType=VARCHAR},
+      vip_level = #{record.vipLevel,jdbcType=INTEGER},
+      vip_type = #{record.vipType,jdbcType=CHAR},
+      fix_balance = #{record.fixBalance,jdbcType=DECIMAL},
+      balance = #{record.balance,jdbcType=DECIMAL},
+      score = #{record.score,jdbcType=DECIMAL},
+      points = #{record.points,jdbcType=DECIMAL},
+      gifts = #{record.gifts,jdbcType=DECIMAL},
+      consume_times = #{record.consumeTimes,jdbcType=INTEGER},
+      is_recharge = #{record.isRecharge,jdbcType=INTEGER},
+      company = #{record.company,jdbcType=VARCHAR},
+      industry = #{record.industry,jdbcType=VARCHAR},
+      position = #{record.position,jdbcType=VARCHAR},
+      income = #{record.income,jdbcType=VARCHAR},
+      telephone = #{record.telephone,jdbcType=CHAR},
+      qq = #{record.qq,jdbcType=CHAR},
+      msn = #{record.msn,jdbcType=CHAR},
+      height = #{record.height,jdbcType=INTEGER},
+      weight = #{record.weight,jdbcType=INTEGER},
+      chest = #{record.chest,jdbcType=TINYINT},
+      waist = #{record.waist,jdbcType=TINYINT},
+      hip = #{record.hip,jdbcType=TINYINT},
+      shoe_size = #{record.shoeSize,jdbcType=TINYINT},
+      live_province_region_id = #{record.liveProvinceRegionId,jdbcType=INTEGER},
+      live_city_region_id = #{record.liveCityRegionId,jdbcType=INTEGER},
+      live_town_region_id = #{record.liveTownRegionId,jdbcType=INTEGER},
+      live_detail = #{record.liveDetail,jdbcType=VARCHAR},
+      hometown_region_id = #{record.hometownRegionId,jdbcType=INTEGER},
+      is_married = #{record.isMarried,jdbcType=BIT},
+      has_child = #{record.hasChild,jdbcType=BIT},
+      has_parent = #{record.hasParent,jdbcType=BIT},
+      has_card = #{record.hasCard,jdbcType=BIT},
+      has_pet = #{record.hasPet,jdbcType=BIT},
+      reg_time = #{record.regTime,jdbcType=INTEGER},
+      email_subscribe = #{record.emailSubscribe,jdbcType=BIT},
+      short_message_subscribe = #{record.shortMessageSubscribe,jdbcType=BIT},
+      is_bond = #{record.isBond,jdbcType=BIT},
+      last_order_addr = #{record.lastOrderAddr,jdbcType=INTEGER},
+      last_order_shippingtime = #{record.lastOrderShippingtime,jdbcType=TINYINT},
+      source = #{record.source,jdbcType=VARCHAR},
+      channel = #{record.channel,jdbcType=CHAR},
+      hobby = #{record.hobby,jdbcType=LONGVARCHAR},
+      add_score_log = #{record.addScoreLog,jdbcType=LONGVARCHAR},
+      last_order_payment = #{record.lastOrderPayment,jdbcType=LONGVARCHAR},
+      last_order_invoice_info = #{record.lastOrderInvoiceInfo,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update gt_member_profile
+    set member_id = #{record.memberId,jdbcType=BIGINT},
+      username = #{record.username,jdbcType=VARCHAR},
+      realname = #{record.realname,jdbcType=VARCHAR},
+      cur_level = #{record.curLevel,jdbcType=INTEGER},
+      top_level = #{record.topLevel,jdbcType=INTEGER},
+      total_consumption = #{record.totalConsumption,jdbcType=INTEGER},
+      active_consumption = #{record.activeConsumption,jdbcType=INTEGER},
+      active_order_num = #{record.activeOrderNum,jdbcType=INTEGER},
+      email = #{record.email,jdbcType=VARCHAR},
+      email_is_noneffective = #{record.emailIsNoneffective,jdbcType=BIT},
+      email_check = #{record.emailCheck,jdbcType=BIT},
+      check_salt = #{record.checkSalt,jdbcType=VARCHAR},
+      salt_create_time = #{record.saltCreateTime,jdbcType=INTEGER},
+      receive_email = #{record.receiveEmail,jdbcType=BIT},
+      gender = #{record.gender,jdbcType=INTEGER},
+      avater = #{record.avater,jdbcType=VARCHAR},
+      age = #{record.age,jdbcType=VARCHAR},
+      birthday = #{record.birthday,jdbcType=INTEGER},
+      advis_id = #{record.advisId,jdbcType=INTEGER},
+      mobile = #{record.mobile,jdbcType=VARCHAR},
+      idcard = #{record.idcard,jdbcType=VARCHAR},
+      vip_level = #{record.vipLevel,jdbcType=INTEGER},
+      vip_type = #{record.vipType,jdbcType=CHAR},
+      fix_balance = #{record.fixBalance,jdbcType=DECIMAL},
+      balance = #{record.balance,jdbcType=DECIMAL},
+      score = #{record.score,jdbcType=DECIMAL},
+      points = #{record.points,jdbcType=DECIMAL},
+      gifts = #{record.gifts,jdbcType=DECIMAL},
+      consume_times = #{record.consumeTimes,jdbcType=INTEGER},
+      is_recharge = #{record.isRecharge,jdbcType=INTEGER},
+      company = #{record.company,jdbcType=VARCHAR},
+      industry = #{record.industry,jdbcType=VARCHAR},
+      position = #{record.position,jdbcType=VARCHAR},
+      income = #{record.income,jdbcType=VARCHAR},
+      telephone = #{record.telephone,jdbcType=CHAR},
+      qq = #{record.qq,jdbcType=CHAR},
+      msn = #{record.msn,jdbcType=CHAR},
+      height = #{record.height,jdbcType=INTEGER},
+      weight = #{record.weight,jdbcType=INTEGER},
+      chest = #{record.chest,jdbcType=TINYINT},
+      waist = #{record.waist,jdbcType=TINYINT},
+      hip = #{record.hip,jdbcType=TINYINT},
+      shoe_size = #{record.shoeSize,jdbcType=TINYINT},
+      live_province_region_id = #{record.liveProvinceRegionId,jdbcType=INTEGER},
+      live_city_region_id = #{record.liveCityRegionId,jdbcType=INTEGER},
+      live_town_region_id = #{record.liveTownRegionId,jdbcType=INTEGER},
+      live_detail = #{record.liveDetail,jdbcType=VARCHAR},
+      hometown_region_id = #{record.hometownRegionId,jdbcType=INTEGER},
+      is_married = #{record.isMarried,jdbcType=BIT},
+      has_child = #{record.hasChild,jdbcType=BIT},
+      has_parent = #{record.hasParent,jdbcType=BIT},
+      has_card = #{record.hasCard,jdbcType=BIT},
+      has_pet = #{record.hasPet,jdbcType=BIT},
+      reg_time = #{record.regTime,jdbcType=INTEGER},
+      email_subscribe = #{record.emailSubscribe,jdbcType=BIT},
+      short_message_subscribe = #{record.shortMessageSubscribe,jdbcType=BIT},
+      is_bond = #{record.isBond,jdbcType=BIT},
+      last_order_addr = #{record.lastOrderAddr,jdbcType=INTEGER},
+      last_order_shippingtime = #{record.lastOrderShippingtime,jdbcType=TINYINT},
+      source = #{record.source,jdbcType=VARCHAR},
+      channel = #{record.channel,jdbcType=CHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zpapi.other.model.GtMemberProfileWithBLOBs" >
+    update gt_member_profile
+    <set >
+      <if test="username != null" >
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="realname != null" >
+        realname = #{realname,jdbcType=VARCHAR},
+      </if>
+      <if test="curLevel != null" >
+        cur_level = #{curLevel,jdbcType=INTEGER},
+      </if>
+      <if test="topLevel != null" >
+        top_level = #{topLevel,jdbcType=INTEGER},
+      </if>
+      <if test="totalConsumption != null" >
+        total_consumption = #{totalConsumption,jdbcType=INTEGER},
+      </if>
+      <if test="activeConsumption != null" >
+        active_consumption = #{activeConsumption,jdbcType=INTEGER},
+      </if>
+      <if test="activeOrderNum != null" >
+        active_order_num = #{activeOrderNum,jdbcType=INTEGER},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="emailIsNoneffective != null" >
+        email_is_noneffective = #{emailIsNoneffective,jdbcType=BIT},
+      </if>
+      <if test="emailCheck != null" >
+        email_check = #{emailCheck,jdbcType=BIT},
+      </if>
+      <if test="checkSalt != null" >
+        check_salt = #{checkSalt,jdbcType=VARCHAR},
+      </if>
+      <if test="saltCreateTime != null" >
+        salt_create_time = #{saltCreateTime,jdbcType=INTEGER},
+      </if>
+      <if test="receiveEmail != null" >
+        receive_email = #{receiveEmail,jdbcType=BIT},
+      </if>
+      <if test="gender != null" >
+        gender = #{gender,jdbcType=INTEGER},
+      </if>
+      <if test="avater != null" >
+        avater = #{avater,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null" >
+        age = #{age,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null" >
+        birthday = #{birthday,jdbcType=INTEGER},
+      </if>
+      <if test="advisId != null" >
+        advis_id = #{advisId,jdbcType=INTEGER},
+      </if>
+      <if test="mobile != null" >
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="idcard != null" >
+        idcard = #{idcard,jdbcType=VARCHAR},
+      </if>
+      <if test="vipLevel != null" >
+        vip_level = #{vipLevel,jdbcType=INTEGER},
+      </if>
+      <if test="vipType != null" >
+        vip_type = #{vipType,jdbcType=CHAR},
+      </if>
+      <if test="fixBalance != null" >
+        fix_balance = #{fixBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="balance != null" >
+        balance = #{balance,jdbcType=DECIMAL},
+      </if>
+      <if test="score != null" >
+        score = #{score,jdbcType=DECIMAL},
+      </if>
+      <if test="points != null" >
+        points = #{points,jdbcType=DECIMAL},
+      </if>
+      <if test="gifts != null" >
+        gifts = #{gifts,jdbcType=DECIMAL},
+      </if>
+      <if test="consumeTimes != null" >
+        consume_times = #{consumeTimes,jdbcType=INTEGER},
+      </if>
+      <if test="isRecharge != null" >
+        is_recharge = #{isRecharge,jdbcType=INTEGER},
+      </if>
+      <if test="company != null" >
+        company = #{company,jdbcType=VARCHAR},
+      </if>
+      <if test="industry != null" >
+        industry = #{industry,jdbcType=VARCHAR},
+      </if>
+      <if test="position != null" >
+        position = #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="income != null" >
+        income = #{income,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null" >
+        telephone = #{telephone,jdbcType=CHAR},
+      </if>
+      <if test="qq != null" >
+        qq = #{qq,jdbcType=CHAR},
+      </if>
+      <if test="msn != null" >
+        msn = #{msn,jdbcType=CHAR},
+      </if>
+      <if test="height != null" >
+        height = #{height,jdbcType=INTEGER},
+      </if>
+      <if test="weight != null" >
+        weight = #{weight,jdbcType=INTEGER},
+      </if>
+      <if test="chest != null" >
+        chest = #{chest,jdbcType=TINYINT},
+      </if>
+      <if test="waist != null" >
+        waist = #{waist,jdbcType=TINYINT},
+      </if>
+      <if test="hip != null" >
+        hip = #{hip,jdbcType=TINYINT},
+      </if>
+      <if test="shoeSize != null" >
+        shoe_size = #{shoeSize,jdbcType=TINYINT},
+      </if>
+      <if test="liveProvinceRegionId != null" >
+        live_province_region_id = #{liveProvinceRegionId,jdbcType=INTEGER},
+      </if>
+      <if test="liveCityRegionId != null" >
+        live_city_region_id = #{liveCityRegionId,jdbcType=INTEGER},
+      </if>
+      <if test="liveTownRegionId != null" >
+        live_town_region_id = #{liveTownRegionId,jdbcType=INTEGER},
+      </if>
+      <if test="liveDetail != null" >
+        live_detail = #{liveDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="hometownRegionId != null" >
+        hometown_region_id = #{hometownRegionId,jdbcType=INTEGER},
+      </if>
+      <if test="isMarried != null" >
+        is_married = #{isMarried,jdbcType=BIT},
+      </if>
+      <if test="hasChild != null" >
+        has_child = #{hasChild,jdbcType=BIT},
+      </if>
+      <if test="hasParent != null" >
+        has_parent = #{hasParent,jdbcType=BIT},
+      </if>
+      <if test="hasCard != null" >
+        has_card = #{hasCard,jdbcType=BIT},
+      </if>
+      <if test="hasPet != null" >
+        has_pet = #{hasPet,jdbcType=BIT},
+      </if>
+      <if test="regTime != null" >
+        reg_time = #{regTime,jdbcType=INTEGER},
+      </if>
+      <if test="emailSubscribe != null" >
+        email_subscribe = #{emailSubscribe,jdbcType=BIT},
+      </if>
+      <if test="shortMessageSubscribe != null" >
+        short_message_subscribe = #{shortMessageSubscribe,jdbcType=BIT},
+      </if>
+      <if test="isBond != null" >
+        is_bond = #{isBond,jdbcType=BIT},
+      </if>
+      <if test="lastOrderAddr != null" >
+        last_order_addr = #{lastOrderAddr,jdbcType=INTEGER},
+      </if>
+      <if test="lastOrderShippingtime != null" >
+        last_order_shippingtime = #{lastOrderShippingtime,jdbcType=TINYINT},
+      </if>
+      <if test="source != null" >
+        source = #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="channel != null" >
+        channel = #{channel,jdbcType=CHAR},
+      </if>
+      <if test="hobby != null" >
+        hobby = #{hobby,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="addScoreLog != null" >
+        add_score_log = #{addScoreLog,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="lastOrderPayment != null" >
+        last_order_payment = #{lastOrderPayment,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="lastOrderInvoiceInfo != null" >
+        last_order_invoice_info = #{lastOrderInvoiceInfo,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where member_id = #{memberId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.zpapi.other.model.GtMemberProfileWithBLOBs" >
+    update gt_member_profile
+    set username = #{username,jdbcType=VARCHAR},
+      realname = #{realname,jdbcType=VARCHAR},
+      cur_level = #{curLevel,jdbcType=INTEGER},
+      top_level = #{topLevel,jdbcType=INTEGER},
+      total_consumption = #{totalConsumption,jdbcType=INTEGER},
+      active_consumption = #{activeConsumption,jdbcType=INTEGER},
+      active_order_num = #{activeOrderNum,jdbcType=INTEGER},
+      email = #{email,jdbcType=VARCHAR},
+      email_is_noneffective = #{emailIsNoneffective,jdbcType=BIT},
+      email_check = #{emailCheck,jdbcType=BIT},
+      check_salt = #{checkSalt,jdbcType=VARCHAR},
+      salt_create_time = #{saltCreateTime,jdbcType=INTEGER},
+      receive_email = #{receiveEmail,jdbcType=BIT},
+      gender = #{gender,jdbcType=INTEGER},
+      avater = #{avater,jdbcType=VARCHAR},
+      age = #{age,jdbcType=VARCHAR},
+      birthday = #{birthday,jdbcType=INTEGER},
+      advis_id = #{advisId,jdbcType=INTEGER},
+      mobile = #{mobile,jdbcType=VARCHAR},
+      idcard = #{idcard,jdbcType=VARCHAR},
+      vip_level = #{vipLevel,jdbcType=INTEGER},
+      vip_type = #{vipType,jdbcType=CHAR},
+      fix_balance = #{fixBalance,jdbcType=DECIMAL},
+      balance = #{balance,jdbcType=DECIMAL},
+      score = #{score,jdbcType=DECIMAL},
+      points = #{points,jdbcType=DECIMAL},
+      gifts = #{gifts,jdbcType=DECIMAL},
+      consume_times = #{consumeTimes,jdbcType=INTEGER},
+      is_recharge = #{isRecharge,jdbcType=INTEGER},
+      company = #{company,jdbcType=VARCHAR},
+      industry = #{industry,jdbcType=VARCHAR},
+      position = #{position,jdbcType=VARCHAR},
+      income = #{income,jdbcType=VARCHAR},
+      telephone = #{telephone,jdbcType=CHAR},
+      qq = #{qq,jdbcType=CHAR},
+      msn = #{msn,jdbcType=CHAR},
+      height = #{height,jdbcType=INTEGER},
+      weight = #{weight,jdbcType=INTEGER},
+      chest = #{chest,jdbcType=TINYINT},
+      waist = #{waist,jdbcType=TINYINT},
+      hip = #{hip,jdbcType=TINYINT},
+      shoe_size = #{shoeSize,jdbcType=TINYINT},
+      live_province_region_id = #{liveProvinceRegionId,jdbcType=INTEGER},
+      live_city_region_id = #{liveCityRegionId,jdbcType=INTEGER},
+      live_town_region_id = #{liveTownRegionId,jdbcType=INTEGER},
+      live_detail = #{liveDetail,jdbcType=VARCHAR},
+      hometown_region_id = #{hometownRegionId,jdbcType=INTEGER},
+      is_married = #{isMarried,jdbcType=BIT},
+      has_child = #{hasChild,jdbcType=BIT},
+      has_parent = #{hasParent,jdbcType=BIT},
+      has_card = #{hasCard,jdbcType=BIT},
+      has_pet = #{hasPet,jdbcType=BIT},
+      reg_time = #{regTime,jdbcType=INTEGER},
+      email_subscribe = #{emailSubscribe,jdbcType=BIT},
+      short_message_subscribe = #{shortMessageSubscribe,jdbcType=BIT},
+      is_bond = #{isBond,jdbcType=BIT},
+      last_order_addr = #{lastOrderAddr,jdbcType=INTEGER},
+      last_order_shippingtime = #{lastOrderShippingtime,jdbcType=TINYINT},
+      source = #{source,jdbcType=VARCHAR},
+      channel = #{channel,jdbcType=CHAR},
+      hobby = #{hobby,jdbcType=LONGVARCHAR},
+      add_score_log = #{addScoreLog,jdbcType=LONGVARCHAR},
+      last_order_payment = #{lastOrderPayment,jdbcType=LONGVARCHAR},
+      last_order_invoice_info = #{lastOrderInvoiceInfo,jdbcType=LONGVARCHAR}
+    where member_id = #{memberId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zpapi.other.model.GtMemberProfile" >
+    update gt_member_profile
+    set username = #{username,jdbcType=VARCHAR},
+      realname = #{realname,jdbcType=VARCHAR},
+      cur_level = #{curLevel,jdbcType=INTEGER},
+      top_level = #{topLevel,jdbcType=INTEGER},
+      total_consumption = #{totalConsumption,jdbcType=INTEGER},
+      active_consumption = #{activeConsumption,jdbcType=INTEGER},
+      active_order_num = #{activeOrderNum,jdbcType=INTEGER},
+      email = #{email,jdbcType=VARCHAR},
+      email_is_noneffective = #{emailIsNoneffective,jdbcType=BIT},
+      email_check = #{emailCheck,jdbcType=BIT},
+      check_salt = #{checkSalt,jdbcType=VARCHAR},
+      salt_create_time = #{saltCreateTime,jdbcType=INTEGER},
+      receive_email = #{receiveEmail,jdbcType=BIT},
+      gender = #{gender,jdbcType=INTEGER},
+      avater = #{avater,jdbcType=VARCHAR},
+      age = #{age,jdbcType=VARCHAR},
+      birthday = #{birthday,jdbcType=INTEGER},
+      advis_id = #{advisId,jdbcType=INTEGER},
+      mobile = #{mobile,jdbcType=VARCHAR},
+      idcard = #{idcard,jdbcType=VARCHAR},
+      vip_level = #{vipLevel,jdbcType=INTEGER},
+      vip_type = #{vipType,jdbcType=CHAR},
+      fix_balance = #{fixBalance,jdbcType=DECIMAL},
+      balance = #{balance,jdbcType=DECIMAL},
+      score = #{score,jdbcType=DECIMAL},
+      points = #{points,jdbcType=DECIMAL},
+      gifts = #{gifts,jdbcType=DECIMAL},
+      consume_times = #{consumeTimes,jdbcType=INTEGER},
+      is_recharge = #{isRecharge,jdbcType=INTEGER},
+      company = #{company,jdbcType=VARCHAR},
+      industry = #{industry,jdbcType=VARCHAR},
+      position = #{position,jdbcType=VARCHAR},
+      income = #{income,jdbcType=VARCHAR},
+      telephone = #{telephone,jdbcType=CHAR},
+      qq = #{qq,jdbcType=CHAR},
+      msn = #{msn,jdbcType=CHAR},
+      height = #{height,jdbcType=INTEGER},
+      weight = #{weight,jdbcType=INTEGER},
+      chest = #{chest,jdbcType=TINYINT},
+      waist = #{waist,jdbcType=TINYINT},
+      hip = #{hip,jdbcType=TINYINT},
+      shoe_size = #{shoeSize,jdbcType=TINYINT},
+      live_province_region_id = #{liveProvinceRegionId,jdbcType=INTEGER},
+      live_city_region_id = #{liveCityRegionId,jdbcType=INTEGER},
+      live_town_region_id = #{liveTownRegionId,jdbcType=INTEGER},
+      live_detail = #{liveDetail,jdbcType=VARCHAR},
+      hometown_region_id = #{hometownRegionId,jdbcType=INTEGER},
+      is_married = #{isMarried,jdbcType=BIT},
+      has_child = #{hasChild,jdbcType=BIT},
+      has_parent = #{hasParent,jdbcType=BIT},
+      has_card = #{hasCard,jdbcType=BIT},
+      has_pet = #{hasPet,jdbcType=BIT},
+      reg_time = #{regTime,jdbcType=INTEGER},
+      email_subscribe = #{emailSubscribe,jdbcType=BIT},
+      short_message_subscribe = #{shortMessageSubscribe,jdbcType=BIT},
+      is_bond = #{isBond,jdbcType=BIT},
+      last_order_addr = #{lastOrderAddr,jdbcType=INTEGER},
+      last_order_shippingtime = #{lastOrderShippingtime,jdbcType=TINYINT},
+      source = #{source,jdbcType=VARCHAR},
+      channel = #{channel,jdbcType=CHAR}
+    where member_id = #{memberId,jdbcType=BIGINT}
+  </update>
+</mapper>

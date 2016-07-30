@@ -1,0 +1,398 @@
+<!--
+ * Copyright (c) 2010 Andreas Kalender
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    Andreas Kalender - initial API and implementation
+-->
+
+<f:view
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ice="http://www.icesoft.com/icefaces/component"
+>
+	<f:loadBundle
+		basename="lang/Resource"
+		var="msg"
+	/>
+
+	<ice:outputDeclaration
+		doctypeRoot="HTML"
+		doctypePublic="-//W3C//DTD XHTML 1.0 Transitional//EN"
+		doctypeSystem="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"
+	/>
+
+	<html>
+	<head>
+	<title>DocFetcher Web Interface</title>
+	<link
+		rel="shortcut icon"
+		href="../resources/images/docfetcher16.png"
+	/>
+	<link
+		rel="stylesheet"
+		type="text/css"
+		href="webinterface.css"
+	/>
+	</head>
+	<body>
+	<h:form id="docfetcher">
+		<ice:panelGroup
+			id="pnlLeft"
+			styleClass="pnlLeft"
+		>
+			<ice:panelGroup
+				id="pnlFilter"
+				styleClass="borderedElement groupElement pnlFilter"
+			>
+				<ice:panelGroup
+					id="pnlFilterCaption"
+					styleClass="pnlFilterCaption"
+				>
+					<h:outputLabel styleClass="fontCaption" value="#{msg.filesize_group_label}" />
+				</ice:panelGroup>
+				<ice:panelGroup
+					id="pnlFilterSelection"
+					styleClass="pnlFilterSelection"
+				>
+					<ice:panelGrid columns="2" style="width:100%">
+						<ice:panelGroup> 
+							<ice:inputText
+								partialSubmit="false"
+								required="false"
+								size="4"
+								styleClass="fontSmallInputField"
+								value="#{searchRequest.minFileSize}"
+							/>
+							<ice:selectOneMenu
+								partialSubmit="false"
+								styleClass="fontSmallInputField"
+								value="#{searchRequest.minFileSizeUnit}"
+							>
+								<f:selectItems value="#{searchRequest.selectableItems}" />
+							</ice:selectOneMenu>
+						</ice:panelGroup>
+						<ice:panelGroup> 							
+							<ice:inputText
+								partialSubmit="false"
+								required="false"
+								size="4"
+								styleClass="fontSmallInputField"
+								value="#{searchRequest.maxFileSize}"
+							/>
+							<ice:selectOneMenu
+								partialSubmit="false"
+								styleClass="fontSmallInputField"
+								value="#{searchRequest.maxFileSizeUnit}"
+							>
+								<f:selectItems value="#{searchRequest.selectableItems}" />
+							</ice:selectOneMenu>
+						</ice:panelGroup>
+					</ice:panelGrid>					
+				</ice:panelGroup>
+			</ice:panelGroup>
+
+			<ice:panelGroup
+				id="pnlTypes"
+				styleClass="borderedElement groupElement pnlTypes"
+			>
+				<ice:panelSeries id="fileType" value="#{searchRequest.parser}" var="parser">
+					<ice:panelGroup>
+						<ice:selectBooleanCheckbox value="#{parser.checked}" />
+						<ice:outputText styleClass="fontCaption" value="#{parser.value}" />
+					</ice:panelGroup>						
+				</ice:panelSeries>
+			</ice:panelGroup>
+
+			<ice:panelGroup
+				id="pnlSearchScope"
+				styleClass="pnlSearchScope borderedElement groupElement"
+			>
+				<ice:panelSeries id="searchScopes" value="#{scopesBean.registeredScopes}" var="scope">
+					<ice:panelGroup>
+						<ice:selectBooleanCheckbox value="#{scope.selected}" />
+						<ice:outputText styleClass="fontCaption" value="#{scope.id}" />
+					</ice:panelGroup>						
+				</ice:panelSeries>							
+			</ice:panelGroup>
+		</ice:panelGroup>
+
+		<ice:panelGroup
+			id="pnlMain"
+			styleClass="pnlMain"
+		>
+			<ice:panelGroup
+				id="pnlSearchString"
+				styleClass="borderedElement groupElement pnlSearchBar"
+			>
+				<ice:panelGrid columns="2" style="width:100%;">
+					<ice:panelGrid columns="2">
+						<ice:inputText
+							id="SearchTerm"
+							partialSubmit="false"
+							required="false"
+							size="45"
+							styleClass="searchTerm fontCaption"
+							value="#{searchRequest.searchString}"
+						/>
+						<ice:commandButton
+							action="#{searchRequest.startSearch}"
+							id="btnStartSearch"
+							styleClass="btnStartSearch fontCaption"
+							type="submit"
+							value="#{msg.search}"
+						/>
+					</ice:panelGrid>
+					<ice:panelGroup id="pnlBranding" styleClass="pnlBranding">
+						<ice:graphicImage
+							id="imgBranding"
+							styleClass="imgBranding"
+							title="Docfetcher branding"
+							url="../resources/images/logo.png"
+						/>
+					</ice:panelGroup>
+				</ice:panelGrid>
+			</ice:panelGroup>
+
+			<ice:panelGroup
+				id="pnlSearchResults"
+				styleClass="pnlSearchResults groupElement borderedElement"
+			>
+				<ice:dataTable
+					id="searchResults"
+					resizable="true"
+					rows="#{resultTablePrefs.maxResultsPerPage}"
+					sortAscending="#{searchRequest.sortOrderDescending}"
+					sortColumn="#{searchRequest.sortColumnName}"
+					styleClass="tableSearchResults"
+					value="#{searchRequest.result}"
+					var="item"
+				>
+					<h:column>
+						<ice:rowSelector
+							mouseOverClass="tableRowMouseOver"
+							selectedClass="tableRowSelected"
+							value="#{item.selected}"
+						/>
+						<f:facet name="header">
+							<ice:commandSortHeader columnName="#{headers.headerTitle}">
+								<ice:outputText styleClass="fontCaption" value="#{msg.property_title}" />
+							</ice:commandSortHeader>
+						</f:facet>
+						<ice:outputLink
+							styleClass="fontResultEntry"
+							value="file://#{item.url}"
+						>
+							<ice:outputText
+								styleClass="tableSearchResultEntry fontResultEntry"
+								value="#{item.title}"
+							/>
+						</ice:outputLink>
+					</h:column>
+
+					<h:column>
+						<f:facet name="header">
+							<ice:commandSortHeader columnName="#{headers.headerScore}">
+								<ice:outputText styleClass="fontCaption" value="#{msg.property_score}" />
+							</ice:commandSortHeader>
+						</f:facet>
+						<ice:outputLink
+							styleClass="fontResultEntry"
+							value="file://#{item.url}"
+						>
+							<ice:outputText
+								styleClass="tableSearchResultEntry fontResultEntry"
+								value="#{item.score}"
+							/>
+						</ice:outputLink>
+					</h:column>
+
+					<h:column>
+						<f:facet name="header">
+							<ice:commandSortHeader columnName="#{headers.headerSize}">
+								<ice:outputText styleClass="fontCaption" value="#{msg.property_size} [KB]" />
+							</ice:commandSortHeader>
+						</f:facet>
+						<ice:outputLink
+							styleClass="fontResultEntry"
+							value="file://#{item.url}"
+						>
+							<ice:outputText
+								styleClass="tableSearchResultEntry fontResultEntry"
+								value="#{item.size}"
+							/>
+						</ice:outputLink>
+					</h:column>
+
+					<h:column>
+						<f:facet name="header">
+							<ice:commandSortHeader columnName="#{headers.headerName}">
+								<ice:outputText
+									styleClass="tableSearchResultEntry fontCaption"
+									value="#{msg.property_name}"
+								/>
+							</ice:commandSortHeader>
+						</f:facet>
+						<ice:outputLink
+							styleClass="fontResultEntry"
+							value="file://#{item.url}"
+						>
+							<ice:outputText
+								styleClass="tableSearchResultEntry fontCaption fontLink"
+								value="#{item.fileName}"
+							/>
+						</ice:outputLink>
+					</h:column>
+
+					<h:column>
+						<f:facet name="header">
+							<ice:commandSortHeader columnName="#{headers.headerType}">
+								<ice:outputText styleClass="fontCaption" value="#{msg.property_type}" />
+							</ice:commandSortHeader>
+						</f:facet>
+						<ice:outputLink
+							styleClass="fontResultEntry"
+							value="file://#{item.url}"
+						>
+							<ice:outputText
+								styleClass="tableSearchResultEntry fontResultEntry"
+								value="#{item.fileType}"
+							/>
+						</ice:outputLink>
+					</h:column>
+
+					<h:column>
+						<f:facet name="header">
+							<ice:commandSortHeader columnName="#{headers.headerPath}">
+								<ice:outputText styleClass="fontCaption" value="#{msg.property_path}" />
+							</ice:commandSortHeader>
+						</f:facet>
+						<ice:outputLink
+							styleClass="fontResultEntry"
+							value="file://#{item.url}"
+						>
+							<ice:outputText
+								styleClass="tableSearchResultEntry fontResultEntry"
+								value="#{item.path}"
+							/>
+						</ice:outputLink>
+					</h:column>
+
+					<h:column>
+						<f:facet name="header">
+							<ice:commandSortHeader columnName="#{headers.headerAuthor}">
+								<ice:outputText styleClass="fontCaption" value="#{msg.property_author}" />
+							</ice:commandSortHeader>
+						</f:facet>
+						<ice:outputLink
+							styleClass="fontResultEntry"
+							value="file://#{item.url}"
+						>
+							<ice:outputText
+								styleClass="tableSearchResultEntry fontResultEntry"
+								value="#{item.author}"
+							/>
+						</ice:outputLink>
+					</h:column>
+
+					<h:column>
+						<f:facet name="header">
+							<ice:commandSortHeader columnName="#{headers.headerLastModified}">
+								<ice:outputText styleClass="fontCaption" value="#{msg.property_lastModified}" />
+							</ice:commandSortHeader>
+						</f:facet>
+						<ice:outputLink
+							styleClass="fontResultEntry"
+							value="file://#{item.url}"
+						>
+							<ice:outputText
+								styleClass="tableSearchResultEntry fontResultEntry"
+								value="#{item.lastModified}"
+							/>
+						</ice:outputLink>
+					</h:column>
+				</ice:dataTable>
+
+				<ice:panelGroup
+					id="paginator"
+					styleClass="paginator"
+				>
+					<ice:dataPaginator
+						displayedRowsCountVar="displayedRowsCountVar"
+						fastStep="3"
+						for="searchResults"
+						id="dataScroll_3"
+						paginator="true"
+						paginatorMaxPages="8"
+						rowsCountVar="rowsCount"
+					>
+
+						<f:facet name="first">
+							<ice:graphicImage
+								styleClass="borderFreeElement"
+								title="#{msg.first_page}"
+								url="../resources/images/Arrow-First.png"
+							/>
+						</f:facet>
+
+						<f:facet name="previous">
+							<ice:graphicImage
+								styleClass="borderFreeElement"
+								title="#{msg.previous_page}"
+								url="../resources/images/Arrow-Left.png"
+							/>
+						</f:facet>
+
+						<f:facet name="next">
+							<ice:graphicImage
+								styleClass="borderFreeElement"
+								title="#{msg.next_page}"
+								url="../resources/images/Arrow-Right.png"
+							/>
+						</f:facet>
+
+						<f:facet name="last">
+							<ice:graphicImage
+								styleClass="borderFreeElement"
+								title="#{msg.last_page}"
+								url="../resources/images/Arrow-Last.png"
+							/>
+						</f:facet>
+					</ice:dataPaginator>
+					<ice:dataPaginator
+						for="searchResults"
+						displayedRowsCountVar="displayedRowsCountVar"
+						firstRowIndexVar="firstRowIndex"
+						lastRowIndexVar="lastRowIndex"
+						rowsCountVar="rowsCount"
+					>
+						<f:facet name="paginator">
+							<ice:outputFormat value="#{msg.current_result_page }">
+								<f:param value="#{rowsCount}" />
+								<f:param value="#{firstRowIndex}" />
+								<f:param value="#{lastRowIndex}" />
+							</ice:outputFormat>
+						</f:facet>
+					</ice:dataPaginator>
+				</ice:panelGroup>
+
+			</ice:panelGroup>
+
+			<ice:panelGroup
+				id="pnlResultPreview"
+				styleClass="pnlResultPreview"
+			>
+				<iframe
+					id="notrefresh"
+					src="#{resultSelector.preview}"
+					class="borderedElement preview"
+				> </iframe>
+			</ice:panelGroup>
+		</ice:panelGroup>
+	</h:form>
+	</body>
+	</html>
+</f:view>

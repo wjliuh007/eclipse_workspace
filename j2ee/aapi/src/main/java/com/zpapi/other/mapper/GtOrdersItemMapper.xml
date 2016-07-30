@@ -1,0 +1,734 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zpapi.other.dao.GtOrdersItemMapper" >
+  <resultMap id="BaseResultMap" type="com.zpapi.other.model.GtOrdersItem" >
+    <id column="order_item_id" property="orderItemId" jdbcType="INTEGER" />
+    <result column="order_id" property="orderId" jdbcType="INTEGER" />
+    <result column="act_id" property="actId" jdbcType="INTEGER" />
+    <result column="order_sn" property="orderSn" jdbcType="BIGINT" />
+    <result column="product_spec_id" property="productSpecId" jdbcType="INTEGER" />
+    <result column="is_special" property="isSpecial" jdbcType="BIT" />
+    <result column="product_id" property="productId" jdbcType="INTEGER" />
+    <result column="sku" property="sku" jdbcType="VARCHAR" />
+    <result column="color_text" property="colorText" jdbcType="VARCHAR" />
+    <result column="spec_value" property="specValue" jdbcType="VARCHAR" />
+    <result column="price" property="price" jdbcType="DECIMAL" />
+    <result column="zp_price" property="zpPrice" jdbcType="DECIMAL" />
+    <result column="security_code" property="securityCode" jdbcType="VARCHAR" />
+    <result column="sell_code" property="sellCode" jdbcType="VARCHAR" />
+    <result column="discount_rate" property="discountRate" jdbcType="TINYINT" />
+    <result column="product_name" property="productName" jdbcType="VARCHAR" />
+    <result column="quantity" property="quantity" jdbcType="INTEGER" />
+    <result column="refund_quantity" property="refundQuantity" jdbcType="INTEGER" />
+    <result column="rejection_quantity" property="rejectionQuantity" jdbcType="INTEGER" />
+    <result column="is_showorder" property="isShoworder" jdbcType="BIT" />
+    <result column="is_evaluate" property="isEvaluate" jdbcType="BIT" />
+    <result column="dishonour_num" property="dishonourNum" jdbcType="TINYINT" />
+    <result column="channel" property="channel" jdbcType="BIT" />
+    <result column="item_status" property="itemStatus" jdbcType="BIT" />
+    <result column="exchange_quantity" property="exchangeQuantity" jdbcType="INTEGER" />
+    <result column="cancel_quantity" property="cancelQuantity" jdbcType="INTEGER" />
+    <result column="delivery_quantity" property="deliveryQuantity" jdbcType="INTEGER" />
+    <result column="delivery_money" property="deliveryMoney" jdbcType="DECIMAL" />
+    <result column="refund_money" property="refundMoney" jdbcType="DECIMAL" />
+    <result column="exchange_money" property="exchangeMoney" jdbcType="DECIMAL" />
+    <result column="last_sub_status" property="lastSubStatus" jdbcType="BIT" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.zpapi.other.model.GtOrdersItem" extends="BaseResultMap" >
+    <result column="attachment" property="attachment" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    order_item_id, order_id, act_id, order_sn, product_spec_id, is_special, product_id, 
+    sku, color_text, spec_value, price, zp_price, security_code, sell_code, discount_rate, 
+    product_name, quantity, refund_quantity, rejection_quantity, is_showorder, is_evaluate, 
+    dishonour_num, channel, item_status, exchange_quantity, cancel_quantity, delivery_quantity, 
+    delivery_money, refund_money, exchange_money, last_sub_status
+  </sql>
+  <sql id="Blob_Column_List" >
+    attachment
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.zpapi.other.model.GtOrdersItemExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from gt_orders_item
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zpapi.other.model.GtOrdersItemExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from gt_orders_item
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from gt_orders_item
+    where order_item_id = #{orderItemId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from gt_orders_item
+    where order_item_id = #{orderItemId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.zpapi.other.model.GtOrdersItemExample" >
+    delete from gt_orders_item
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zpapi.other.model.GtOrdersItem" >
+    insert into gt_orders_item (order_item_id, order_id, act_id, 
+      order_sn, product_spec_id, is_special, 
+      product_id, sku, color_text, 
+      spec_value, price, zp_price, 
+      security_code, sell_code, discount_rate, 
+      product_name, quantity, refund_quantity, 
+      rejection_quantity, is_showorder, is_evaluate, 
+      dishonour_num, channel, item_status, 
+      exchange_quantity, cancel_quantity, delivery_quantity, 
+      delivery_money, refund_money, exchange_money, 
+      last_sub_status, attachment)
+    values (#{orderItemId,jdbcType=INTEGER}, #{orderId,jdbcType=INTEGER}, #{actId,jdbcType=INTEGER}, 
+      #{orderSn,jdbcType=BIGINT}, #{productSpecId,jdbcType=INTEGER}, #{isSpecial,jdbcType=BIT}, 
+      #{productId,jdbcType=INTEGER}, #{sku,jdbcType=VARCHAR}, #{colorText,jdbcType=VARCHAR}, 
+      #{specValue,jdbcType=VARCHAR}, #{price,jdbcType=DECIMAL}, #{zpPrice,jdbcType=DECIMAL}, 
+      #{securityCode,jdbcType=VARCHAR}, #{sellCode,jdbcType=VARCHAR}, #{discountRate,jdbcType=TINYINT}, 
+      #{productName,jdbcType=VARCHAR}, #{quantity,jdbcType=INTEGER}, #{refundQuantity,jdbcType=INTEGER}, 
+      #{rejectionQuantity,jdbcType=INTEGER}, #{isShoworder,jdbcType=BIT}, #{isEvaluate,jdbcType=BIT}, 
+      #{dishonourNum,jdbcType=TINYINT}, #{channel,jdbcType=BIT}, #{itemStatus,jdbcType=BIT}, 
+      #{exchangeQuantity,jdbcType=INTEGER}, #{cancelQuantity,jdbcType=INTEGER}, #{deliveryQuantity,jdbcType=INTEGER}, 
+      #{deliveryMoney,jdbcType=DECIMAL}, #{refundMoney,jdbcType=DECIMAL}, #{exchangeMoney,jdbcType=DECIMAL}, 
+      #{lastSubStatus,jdbcType=BIT}, #{attachment,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zpapi.other.model.GtOrdersItem" >
+    insert into gt_orders_item
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="orderItemId != null" >
+        order_item_id,
+      </if>
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="actId != null" >
+        act_id,
+      </if>
+      <if test="orderSn != null" >
+        order_sn,
+      </if>
+      <if test="productSpecId != null" >
+        product_spec_id,
+      </if>
+      <if test="isSpecial != null" >
+        is_special,
+      </if>
+      <if test="productId != null" >
+        product_id,
+      </if>
+      <if test="sku != null" >
+        sku,
+      </if>
+      <if test="colorText != null" >
+        color_text,
+      </if>
+      <if test="specValue != null" >
+        spec_value,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="zpPrice != null" >
+        zp_price,
+      </if>
+      <if test="securityCode != null" >
+        security_code,
+      </if>
+      <if test="sellCode != null" >
+        sell_code,
+      </if>
+      <if test="discountRate != null" >
+        discount_rate,
+      </if>
+      <if test="productName != null" >
+        product_name,
+      </if>
+      <if test="quantity != null" >
+        quantity,
+      </if>
+      <if test="refundQuantity != null" >
+        refund_quantity,
+      </if>
+      <if test="rejectionQuantity != null" >
+        rejection_quantity,
+      </if>
+      <if test="isShoworder != null" >
+        is_showorder,
+      </if>
+      <if test="isEvaluate != null" >
+        is_evaluate,
+      </if>
+      <if test="dishonourNum != null" >
+        dishonour_num,
+      </if>
+      <if test="channel != null" >
+        channel,
+      </if>
+      <if test="itemStatus != null" >
+        item_status,
+      </if>
+      <if test="exchangeQuantity != null" >
+        exchange_quantity,
+      </if>
+      <if test="cancelQuantity != null" >
+        cancel_quantity,
+      </if>
+      <if test="deliveryQuantity != null" >
+        delivery_quantity,
+      </if>
+      <if test="deliveryMoney != null" >
+        delivery_money,
+      </if>
+      <if test="refundMoney != null" >
+        refund_money,
+      </if>
+      <if test="exchangeMoney != null" >
+        exchange_money,
+      </if>
+      <if test="lastSubStatus != null" >
+        last_sub_status,
+      </if>
+      <if test="attachment != null" >
+        attachment,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="orderItemId != null" >
+        #{orderItemId,jdbcType=INTEGER},
+      </if>
+      <if test="orderId != null" >
+        #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="actId != null" >
+        #{actId,jdbcType=INTEGER},
+      </if>
+      <if test="orderSn != null" >
+        #{orderSn,jdbcType=BIGINT},
+      </if>
+      <if test="productSpecId != null" >
+        #{productSpecId,jdbcType=INTEGER},
+      </if>
+      <if test="isSpecial != null" >
+        #{isSpecial,jdbcType=BIT},
+      </if>
+      <if test="productId != null" >
+        #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="sku != null" >
+        #{sku,jdbcType=VARCHAR},
+      </if>
+      <if test="colorText != null" >
+        #{colorText,jdbcType=VARCHAR},
+      </if>
+      <if test="specValue != null" >
+        #{specValue,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="zpPrice != null" >
+        #{zpPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="securityCode != null" >
+        #{securityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="sellCode != null" >
+        #{sellCode,jdbcType=VARCHAR},
+      </if>
+      <if test="discountRate != null" >
+        #{discountRate,jdbcType=TINYINT},
+      </if>
+      <if test="productName != null" >
+        #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="quantity != null" >
+        #{quantity,jdbcType=INTEGER},
+      </if>
+      <if test="refundQuantity != null" >
+        #{refundQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="rejectionQuantity != null" >
+        #{rejectionQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="isShoworder != null" >
+        #{isShoworder,jdbcType=BIT},
+      </if>
+      <if test="isEvaluate != null" >
+        #{isEvaluate,jdbcType=BIT},
+      </if>
+      <if test="dishonourNum != null" >
+        #{dishonourNum,jdbcType=TINYINT},
+      </if>
+      <if test="channel != null" >
+        #{channel,jdbcType=BIT},
+      </if>
+      <if test="itemStatus != null" >
+        #{itemStatus,jdbcType=BIT},
+      </if>
+      <if test="exchangeQuantity != null" >
+        #{exchangeQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="cancelQuantity != null" >
+        #{cancelQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="deliveryQuantity != null" >
+        #{deliveryQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="deliveryMoney != null" >
+        #{deliveryMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="refundMoney != null" >
+        #{refundMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="exchangeMoney != null" >
+        #{exchangeMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="lastSubStatus != null" >
+        #{lastSubStatus,jdbcType=BIT},
+      </if>
+      <if test="attachment != null" >
+        #{attachment,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zpapi.other.model.GtOrdersItemExample" resultType="java.lang.Integer" >
+    select count(*) from gt_orders_item
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update gt_orders_item
+    <set >
+      <if test="record.orderItemId != null" >
+        order_item_id = #{record.orderItemId,jdbcType=INTEGER},
+      </if>
+      <if test="record.orderId != null" >
+        order_id = #{record.orderId,jdbcType=INTEGER},
+      </if>
+      <if test="record.actId != null" >
+        act_id = #{record.actId,jdbcType=INTEGER},
+      </if>
+      <if test="record.orderSn != null" >
+        order_sn = #{record.orderSn,jdbcType=BIGINT},
+      </if>
+      <if test="record.productSpecId != null" >
+        product_spec_id = #{record.productSpecId,jdbcType=INTEGER},
+      </if>
+      <if test="record.isSpecial != null" >
+        is_special = #{record.isSpecial,jdbcType=BIT},
+      </if>
+      <if test="record.productId != null" >
+        product_id = #{record.productId,jdbcType=INTEGER},
+      </if>
+      <if test="record.sku != null" >
+        sku = #{record.sku,jdbcType=VARCHAR},
+      </if>
+      <if test="record.colorText != null" >
+        color_text = #{record.colorText,jdbcType=VARCHAR},
+      </if>
+      <if test="record.specValue != null" >
+        spec_value = #{record.specValue,jdbcType=VARCHAR},
+      </if>
+      <if test="record.price != null" >
+        price = #{record.price,jdbcType=DECIMAL},
+      </if>
+      <if test="record.zpPrice != null" >
+        zp_price = #{record.zpPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.securityCode != null" >
+        security_code = #{record.securityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sellCode != null" >
+        sell_code = #{record.sellCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.discountRate != null" >
+        discount_rate = #{record.discountRate,jdbcType=TINYINT},
+      </if>
+      <if test="record.productName != null" >
+        product_name = #{record.productName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.quantity != null" >
+        quantity = #{record.quantity,jdbcType=INTEGER},
+      </if>
+      <if test="record.refundQuantity != null" >
+        refund_quantity = #{record.refundQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="record.rejectionQuantity != null" >
+        rejection_quantity = #{record.rejectionQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="record.isShoworder != null" >
+        is_showorder = #{record.isShoworder,jdbcType=BIT},
+      </if>
+      <if test="record.isEvaluate != null" >
+        is_evaluate = #{record.isEvaluate,jdbcType=BIT},
+      </if>
+      <if test="record.dishonourNum != null" >
+        dishonour_num = #{record.dishonourNum,jdbcType=TINYINT},
+      </if>
+      <if test="record.channel != null" >
+        channel = #{record.channel,jdbcType=BIT},
+      </if>
+      <if test="record.itemStatus != null" >
+        item_status = #{record.itemStatus,jdbcType=BIT},
+      </if>
+      <if test="record.exchangeQuantity != null" >
+        exchange_quantity = #{record.exchangeQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="record.cancelQuantity != null" >
+        cancel_quantity = #{record.cancelQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="record.deliveryQuantity != null" >
+        delivery_quantity = #{record.deliveryQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="record.deliveryMoney != null" >
+        delivery_money = #{record.deliveryMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="record.refundMoney != null" >
+        refund_money = #{record.refundMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="record.exchangeMoney != null" >
+        exchange_money = #{record.exchangeMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="record.lastSubStatus != null" >
+        last_sub_status = #{record.lastSubStatus,jdbcType=BIT},
+      </if>
+      <if test="record.attachment != null" >
+        attachment = #{record.attachment,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update gt_orders_item
+    set order_item_id = #{record.orderItemId,jdbcType=INTEGER},
+      order_id = #{record.orderId,jdbcType=INTEGER},
+      act_id = #{record.actId,jdbcType=INTEGER},
+      order_sn = #{record.orderSn,jdbcType=BIGINT},
+      product_spec_id = #{record.productSpecId,jdbcType=INTEGER},
+      is_special = #{record.isSpecial,jdbcType=BIT},
+      product_id = #{record.productId,jdbcType=INTEGER},
+      sku = #{record.sku,jdbcType=VARCHAR},
+      color_text = #{record.colorText,jdbcType=VARCHAR},
+      spec_value = #{record.specValue,jdbcType=VARCHAR},
+      price = #{record.price,jdbcType=DECIMAL},
+      zp_price = #{record.zpPrice,jdbcType=DECIMAL},
+      security_code = #{record.securityCode,jdbcType=VARCHAR},
+      sell_code = #{record.sellCode,jdbcType=VARCHAR},
+      discount_rate = #{record.discountRate,jdbcType=TINYINT},
+      product_name = #{record.productName,jdbcType=VARCHAR},
+      quantity = #{record.quantity,jdbcType=INTEGER},
+      refund_quantity = #{record.refundQuantity,jdbcType=INTEGER},
+      rejection_quantity = #{record.rejectionQuantity,jdbcType=INTEGER},
+      is_showorder = #{record.isShoworder,jdbcType=BIT},
+      is_evaluate = #{record.isEvaluate,jdbcType=BIT},
+      dishonour_num = #{record.dishonourNum,jdbcType=TINYINT},
+      channel = #{record.channel,jdbcType=BIT},
+      item_status = #{record.itemStatus,jdbcType=BIT},
+      exchange_quantity = #{record.exchangeQuantity,jdbcType=INTEGER},
+      cancel_quantity = #{record.cancelQuantity,jdbcType=INTEGER},
+      delivery_quantity = #{record.deliveryQuantity,jdbcType=INTEGER},
+      delivery_money = #{record.deliveryMoney,jdbcType=DECIMAL},
+      refund_money = #{record.refundMoney,jdbcType=DECIMAL},
+      exchange_money = #{record.exchangeMoney,jdbcType=DECIMAL},
+      last_sub_status = #{record.lastSubStatus,jdbcType=BIT},
+      attachment = #{record.attachment,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update gt_orders_item
+    set order_item_id = #{record.orderItemId,jdbcType=INTEGER},
+      order_id = #{record.orderId,jdbcType=INTEGER},
+      act_id = #{record.actId,jdbcType=INTEGER},
+      order_sn = #{record.orderSn,jdbcType=BIGINT},
+      product_spec_id = #{record.productSpecId,jdbcType=INTEGER},
+      is_special = #{record.isSpecial,jdbcType=BIT},
+      product_id = #{record.productId,jdbcType=INTEGER},
+      sku = #{record.sku,jdbcType=VARCHAR},
+      color_text = #{record.colorText,jdbcType=VARCHAR},
+      spec_value = #{record.specValue,jdbcType=VARCHAR},
+      price = #{record.price,jdbcType=DECIMAL},
+      zp_price = #{record.zpPrice,jdbcType=DECIMAL},
+      security_code = #{record.securityCode,jdbcType=VARCHAR},
+      sell_code = #{record.sellCode,jdbcType=VARCHAR},
+      discount_rate = #{record.discountRate,jdbcType=TINYINT},
+      product_name = #{record.productName,jdbcType=VARCHAR},
+      quantity = #{record.quantity,jdbcType=INTEGER},
+      refund_quantity = #{record.refundQuantity,jdbcType=INTEGER},
+      rejection_quantity = #{record.rejectionQuantity,jdbcType=INTEGER},
+      is_showorder = #{record.isShoworder,jdbcType=BIT},
+      is_evaluate = #{record.isEvaluate,jdbcType=BIT},
+      dishonour_num = #{record.dishonourNum,jdbcType=TINYINT},
+      channel = #{record.channel,jdbcType=BIT},
+      item_status = #{record.itemStatus,jdbcType=BIT},
+      exchange_quantity = #{record.exchangeQuantity,jdbcType=INTEGER},
+      cancel_quantity = #{record.cancelQuantity,jdbcType=INTEGER},
+      delivery_quantity = #{record.deliveryQuantity,jdbcType=INTEGER},
+      delivery_money = #{record.deliveryMoney,jdbcType=DECIMAL},
+      refund_money = #{record.refundMoney,jdbcType=DECIMAL},
+      exchange_money = #{record.exchangeMoney,jdbcType=DECIMAL},
+      last_sub_status = #{record.lastSubStatus,jdbcType=BIT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zpapi.other.model.GtOrdersItem" >
+    update gt_orders_item
+    <set >
+      <if test="orderId != null" >
+        order_id = #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="actId != null" >
+        act_id = #{actId,jdbcType=INTEGER},
+      </if>
+      <if test="orderSn != null" >
+        order_sn = #{orderSn,jdbcType=BIGINT},
+      </if>
+      <if test="productSpecId != null" >
+        product_spec_id = #{productSpecId,jdbcType=INTEGER},
+      </if>
+      <if test="isSpecial != null" >
+        is_special = #{isSpecial,jdbcType=BIT},
+      </if>
+      <if test="productId != null" >
+        product_id = #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="sku != null" >
+        sku = #{sku,jdbcType=VARCHAR},
+      </if>
+      <if test="colorText != null" >
+        color_text = #{colorText,jdbcType=VARCHAR},
+      </if>
+      <if test="specValue != null" >
+        spec_value = #{specValue,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="zpPrice != null" >
+        zp_price = #{zpPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="securityCode != null" >
+        security_code = #{securityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="sellCode != null" >
+        sell_code = #{sellCode,jdbcType=VARCHAR},
+      </if>
+      <if test="discountRate != null" >
+        discount_rate = #{discountRate,jdbcType=TINYINT},
+      </if>
+      <if test="productName != null" >
+        product_name = #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="quantity != null" >
+        quantity = #{quantity,jdbcType=INTEGER},
+      </if>
+      <if test="refundQuantity != null" >
+        refund_quantity = #{refundQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="rejectionQuantity != null" >
+        rejection_quantity = #{rejectionQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="isShoworder != null" >
+        is_showorder = #{isShoworder,jdbcType=BIT},
+      </if>
+      <if test="isEvaluate != null" >
+        is_evaluate = #{isEvaluate,jdbcType=BIT},
+      </if>
+      <if test="dishonourNum != null" >
+        dishonour_num = #{dishonourNum,jdbcType=TINYINT},
+      </if>
+      <if test="channel != null" >
+        channel = #{channel,jdbcType=BIT},
+      </if>
+      <if test="itemStatus != null" >
+        item_status = #{itemStatus,jdbcType=BIT},
+      </if>
+      <if test="exchangeQuantity != null" >
+        exchange_quantity = #{exchangeQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="cancelQuantity != null" >
+        cancel_quantity = #{cancelQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="deliveryQuantity != null" >
+        delivery_quantity = #{deliveryQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="deliveryMoney != null" >
+        delivery_money = #{deliveryMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="refundMoney != null" >
+        refund_money = #{refundMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="exchangeMoney != null" >
+        exchange_money = #{exchangeMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="lastSubStatus != null" >
+        last_sub_status = #{lastSubStatus,jdbcType=BIT},
+      </if>
+      <if test="attachment != null" >
+        attachment = #{attachment,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where order_item_id = #{orderItemId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.zpapi.other.model.GtOrdersItem" >
+    update gt_orders_item
+    set order_id = #{orderId,jdbcType=INTEGER},
+      act_id = #{actId,jdbcType=INTEGER},
+      order_sn = #{orderSn,jdbcType=BIGINT},
+      product_spec_id = #{productSpecId,jdbcType=INTEGER},
+      is_special = #{isSpecial,jdbcType=BIT},
+      product_id = #{productId,jdbcType=INTEGER},
+      sku = #{sku,jdbcType=VARCHAR},
+      color_text = #{colorText,jdbcType=VARCHAR},
+      spec_value = #{specValue,jdbcType=VARCHAR},
+      price = #{price,jdbcType=DECIMAL},
+      zp_price = #{zpPrice,jdbcType=DECIMAL},
+      security_code = #{securityCode,jdbcType=VARCHAR},
+      sell_code = #{sellCode,jdbcType=VARCHAR},
+      discount_rate = #{discountRate,jdbcType=TINYINT},
+      product_name = #{productName,jdbcType=VARCHAR},
+      quantity = #{quantity,jdbcType=INTEGER},
+      refund_quantity = #{refundQuantity,jdbcType=INTEGER},
+      rejection_quantity = #{rejectionQuantity,jdbcType=INTEGER},
+      is_showorder = #{isShoworder,jdbcType=BIT},
+      is_evaluate = #{isEvaluate,jdbcType=BIT},
+      dishonour_num = #{dishonourNum,jdbcType=TINYINT},
+      channel = #{channel,jdbcType=BIT},
+      item_status = #{itemStatus,jdbcType=BIT},
+      exchange_quantity = #{exchangeQuantity,jdbcType=INTEGER},
+      cancel_quantity = #{cancelQuantity,jdbcType=INTEGER},
+      delivery_quantity = #{deliveryQuantity,jdbcType=INTEGER},
+      delivery_money = #{deliveryMoney,jdbcType=DECIMAL},
+      refund_money = #{refundMoney,jdbcType=DECIMAL},
+      exchange_money = #{exchangeMoney,jdbcType=DECIMAL},
+      last_sub_status = #{lastSubStatus,jdbcType=BIT},
+      attachment = #{attachment,jdbcType=LONGVARCHAR}
+    where order_item_id = #{orderItemId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zpapi.other.model.GtOrdersItem" >
+    update gt_orders_item
+    set order_id = #{orderId,jdbcType=INTEGER},
+      act_id = #{actId,jdbcType=INTEGER},
+      order_sn = #{orderSn,jdbcType=BIGINT},
+      product_spec_id = #{productSpecId,jdbcType=INTEGER},
+      is_special = #{isSpecial,jdbcType=BIT},
+      product_id = #{productId,jdbcType=INTEGER},
+      sku = #{sku,jdbcType=VARCHAR},
+      color_text = #{colorText,jdbcType=VARCHAR},
+      spec_value = #{specValue,jdbcType=VARCHAR},
+      price = #{price,jdbcType=DECIMAL},
+      zp_price = #{zpPrice,jdbcType=DECIMAL},
+      security_code = #{securityCode,jdbcType=VARCHAR},
+      sell_code = #{sellCode,jdbcType=VARCHAR},
+      discount_rate = #{discountRate,jdbcType=TINYINT},
+      product_name = #{productName,jdbcType=VARCHAR},
+      quantity = #{quantity,jdbcType=INTEGER},
+      refund_quantity = #{refundQuantity,jdbcType=INTEGER},
+      rejection_quantity = #{rejectionQuantity,jdbcType=INTEGER},
+      is_showorder = #{isShoworder,jdbcType=BIT},
+      is_evaluate = #{isEvaluate,jdbcType=BIT},
+      dishonour_num = #{dishonourNum,jdbcType=TINYINT},
+      channel = #{channel,jdbcType=BIT},
+      item_status = #{itemStatus,jdbcType=BIT},
+      exchange_quantity = #{exchangeQuantity,jdbcType=INTEGER},
+      cancel_quantity = #{cancelQuantity,jdbcType=INTEGER},
+      delivery_quantity = #{deliveryQuantity,jdbcType=INTEGER},
+      delivery_money = #{deliveryMoney,jdbcType=DECIMAL},
+      refund_money = #{refundMoney,jdbcType=DECIMAL},
+      exchange_money = #{exchangeMoney,jdbcType=DECIMAL},
+      last_sub_status = #{lastSubStatus,jdbcType=BIT}
+    where order_item_id = #{orderItemId,jdbcType=INTEGER}
+  </update>
+</mapper>

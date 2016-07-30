@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+  
+<!DOCTYPE struts PUBLIC  
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"  
+    "http://struts.apache.org/dtds/struts-2.3.dtd">  
+  
+<struts>  
+    <constant name="struts.objectFactory" value="spring" />  
+    <constant name="struts.i18n.encoding" value="UTF-8" />  
+    <constant name="struts.i18n.reload" value="false" />  
+    <constant name="struts.configuration.xml.reload" value="false" />  
+    <constant name="struts.custom.i18n.resources" value="globalMessages" />  
+    <constant name="struts.action.extension" value="action,," />  
+  
+    <constant name="struts.convention.package.locators.basePackage"  
+              value="com.wjliuh.ssi.action" />  
+    <constant name="struts.convention.result.path" value="/" />  
+    <constant name="struts.serve.static" value="true" />  
+    <constant name="struts.serve.static.browserCache" value="false" />  
+      
+      
+    <package name="com.wjliuh.ssi.action.test" extends="struts-default">  
+        <action name="login" class="com.wjliuh.ssi.action.LoginAction">  
+            <result name="success">/jsp/welcome.jsp</result>  
+        </action> 
+        <action name="mylogin" class="com.wjliuh.ssi.action.LoginAction">   
+            <result name="success">/jsp/welcome.jsp</result>  
+            <result name="error">/jsp/error.jsp</result>  
+        </action>   
+        <action name="reg" class="com.wjliuh.ssi.action.RegisterAction">   
+            <result name="success">/jsp/welcome.jsp</result>  
+            <result name="error">/jsp/error.jsp</result>  
+        </action>   
+    </package>  
+      
+</struts>

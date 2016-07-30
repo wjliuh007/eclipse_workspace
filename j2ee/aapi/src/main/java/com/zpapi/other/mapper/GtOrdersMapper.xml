@@ -1,0 +1,4428 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zpapi.other.dao.GtOrdersMapper">
+  <resultMap id="BaseResultMap" type="com.zpapi.other.model.GtOrders">
+    <id column="order_id" jdbcType="INTEGER" property="orderId" />
+    <result column="is_hidden" jdbcType="BIT" property="isHidden" />
+    <result column="order_sn" jdbcType="BIGINT" property="orderSn" />
+    <result column="belong_to" jdbcType="INTEGER" property="belongTo" />
+    <result column="first_warehouse_id" jdbcType="TINYINT" property="firstWarehouseId" />
+    <result column="warehouse_id" jdbcType="INTEGER" property="warehouseId" />
+    <result column="original_warehouse_id" jdbcType="TINYINT" property="originalWarehouseId" />
+    <result column="final_warehouse_id" jdbcType="TINYINT" property="finalWarehouseId" />
+    <result column="is_our_send" jdbcType="TINYINT" property="isOurSend" />
+    <result column="is_all_send" jdbcType="TINYINT" property="isAllSend" />
+    <result column="sina_order_id" jdbcType="VARCHAR" property="sinaOrderId" />
+    <result column="member_id" jdbcType="BIGINT" property="memberId" />
+    <result column="edit_status" jdbcType="BIT" property="editStatus" />
+    <result column="sendhouse_id" jdbcType="INTEGER" property="sendhouseId" />
+    <result column="sendhouse_person_id" jdbcType="INTEGER" property="sendhousePersonId" />
+    <result column="advis" jdbcType="VARCHAR" property="advis" />
+    <result column="express_id" jdbcType="INTEGER" property="expressId" />
+    <result column="sec_express_id" jdbcType="INTEGER" property="secExpressId" />
+    <result column="sec_express_sn" jdbcType="VARCHAR" property="secExpressSn" />
+    <result column="express_sn" jdbcType="VARCHAR" property="expressSn" />
+    <result column="change_house_id" jdbcType="INTEGER" property="changeHouseId" />
+    <result column="packet_num" jdbcType="INTEGER" property="packetNum" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="sub_status" jdbcType="TINYINT" property="subStatus" />
+    <result column="add_status" jdbcType="TINYINT" property="addStatus" />
+    <result column="pay_status" jdbcType="TINYINT" property="payStatus" />
+    <result column="pay_type_id" jdbcType="TINYINT" property="payTypeId" />
+    <result column="offline_payment_name" jdbcType="VARCHAR" property="offlinePaymentName" />
+    <result column="total_amount" jdbcType="DECIMAL" property="totalAmount" />
+    <result column="discount_card_num" jdbcType="VARCHAR" property="discountCardNum" />
+    <result column="discount_card_condition" jdbcType="DECIMAL" property="discountCardCondition" />
+    <result column="discount_card_money" jdbcType="DECIMAL" property="discountCardMoney" />
+    <result column="category_card_num" jdbcType="VARCHAR" property="categoryCardNum" />
+    <result column="category_card_money" jdbcType="DECIMAL" property="categoryCardMoney" />
+    <result column="act_id" jdbcType="INTEGER" property="actId" />
+    <result column="fill_reduce_money" jdbcType="DECIMAL" property="fillReduceMoney" />
+    <result column="real_discount_card_num" jdbcType="VARCHAR" property="realDiscountCardNum" />
+    <result column="real_discount_rate" jdbcType="DECIMAL" property="realDiscountRate" />
+    <result column="real_discount_money" jdbcType="DECIMAL" property="realDiscountMoney" />
+    <result column="gift_money" jdbcType="DECIMAL" property="giftMoney" />
+    <result column="vip_rate" jdbcType="DECIMAL" property="vipRate" />
+    <result column="vip_reduced" jdbcType="DECIMAL" property="vipReduced" />
+    <result column="is_installment" jdbcType="BIT" property="isInstallment" />
+    <result column="installment_paycode" jdbcType="VARCHAR" property="installmentPaycode" />
+    <result column="voucherFee" jdbcType="DECIMAL" property="voucherfee" />
+    <result column="installment_per_money" jdbcType="DECIMAL" property="installmentPerMoney" />
+    <result column="installment_times" jdbcType="INTEGER" property="installmentTimes" />
+    <result column="installment_fee_rate" jdbcType="DECIMAL" property="installmentFeeRate" />
+    <result column="installment_fee_by_seller" jdbcType="DECIMAL" property="installmentFeeBySeller" />
+    <result column="installment_fee_by_customer" jdbcType="DECIMAL" property="installmentFeeByCustomer" />
+    <result column="give_point_online_pay" jdbcType="DECIMAL" property="givePointOnlinePay" />
+    <result column="give_point_rate_online_pay" jdbcType="REAL" property="givePointRateOnlinePay" />
+    <result column="give_point" jdbcType="DECIMAL" property="givePoint" />
+    <result column="give_point_rate" jdbcType="REAL" property="givePointRate" />
+    <result column="give_score" jdbcType="INTEGER" property="giveScore" />
+    <result column="used_point" jdbcType="DECIMAL" property="usedPoint" />
+    <result column="use_online_payed" jdbcType="DECIMAL" property="useOnlinePayed" />
+    <result column="use_cash_payed" jdbcType="DECIMAL" property="useCashPayed" />
+    <result column="use_pos_payed" jdbcType="DECIMAL" property="usePosPayed" />
+    <result column="used_balance" jdbcType="DECIMAL" property="usedBalance" />
+    <result column="use_offline_payed" jdbcType="DECIMAL" property="useOfflinePayed" />
+    <result column="use_offline_reduced" jdbcType="DECIMAL" property="useOfflineReduced" />
+    <result column="need_pay" jdbcType="DECIMAL" property="needPay" />
+    <result column="create_time" jdbcType="INTEGER" property="createTime" />
+    <result column="consignee" jdbcType="VARCHAR" property="consignee" />
+    <result column="consignee_mobile" jdbcType="VARCHAR" property="consigneeMobile" />
+    <result column="order_phone" jdbcType="VARCHAR" property="orderPhone" />
+    <result column="consignee_email" jdbcType="VARCHAR" property="consigneeEmail" />
+    <result column="consignee_tel" jdbcType="VARCHAR" property="consigneeTel" />
+    <result column="zipcode" jdbcType="VARCHAR" property="zipcode" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="shipping_area_id" jdbcType="INTEGER" property="shippingAreaId" />
+    <result column="shipping_city_id" jdbcType="INTEGER" property="shippingCityId" />
+    <result column="shipping_district_id" jdbcType="INTEGER" property="shippingDistrictId" />
+    <result column="shipping_price" jdbcType="DECIMAL" property="shippingPrice" />
+    <result column="shipping_time" jdbcType="VARCHAR" property="shippingTime" />
+    <result column="invoice_type" jdbcType="VARCHAR" property="invoiceType" />
+    <result column="invoice_number" jdbcType="VARCHAR" property="invoiceNumber" />
+    <result column="invoice_title" jdbcType="VARCHAR" property="invoiceTitle" />
+    <result column="invoice_item" jdbcType="VARCHAR" property="invoiceItem" />
+    <result column="print_invoice" jdbcType="BIT" property="printInvoice" />
+    <result column="order_memo" jdbcType="VARCHAR" property="orderMemo" />
+    <result column="manage_memo" jdbcType="VARCHAR" property="manageMemo" />
+    <result column="type" jdbcType="BIT" property="type" />
+    <result column="refund_order_id" jdbcType="INTEGER" property="refundOrderId" />
+    <result column="parent_order_sn" jdbcType="BIGINT" property="parentOrderSn" />
+    <result column="cancel_reason" jdbcType="VARCHAR" property="cancelReason" />
+    <result column="sign_order_time" jdbcType="INTEGER" property="signOrderTime" />
+    <result column="yiqifa_flag" jdbcType="BIT" property="yiqifaFlag" />
+    <result column="yiqifa_cid" jdbcType="VARCHAR" property="yiqifaCid" />
+    <result column="yiqifa_wi" jdbcType="VARCHAR" property="yiqifaWi" />
+    <result column="yiqifa_note_flag" jdbcType="BIT" property="yiqifaNoteFlag" />
+    <result column="last_op_time" jdbcType="INTEGER" property="lastOpTime" />
+    <result column="auto_check" jdbcType="TINYINT" property="autoCheck" />
+    <result column="check_time" jdbcType="INTEGER" property="checkTime" />
+    <result column="360_flag" jdbcType="BIT" property="360Flag" />
+    <result column="360_bid" jdbcType="VARCHAR" property="360Bid" />
+    <result column="360_qid" jdbcType="VARCHAR" property="360Qid" />
+    <result column="360_qihoo_id" jdbcType="VARCHAR" property="360QihooId" />
+    <result column="360_ext" jdbcType="VARCHAR" property="360Ext" />
+    <result column="360_note_flag" jdbcType="TINYINT" property="360NoteFlag" />
+    <result column="is_send" jdbcType="TINYINT" property="isSend" />
+    <result column="source" jdbcType="BIT" property="source" />
+    <result column="rejection_status" jdbcType="BIT" property="rejectionStatus" />
+    <result column="reserve_order" jdbcType="BIT" property="reserveOrder" />
+    <result column="cancel_reason_id" jdbcType="INTEGER" property="cancelReasonId" />
+    <result column="cancel_type" jdbcType="TINYINT" property="cancelType" />
+    <result column="refund_money" jdbcType="DECIMAL" property="refundMoney" />
+    <result column="oversea_express_id" jdbcType="BIT" property="overseaExpressId" />
+    <result column="is_thesea" jdbcType="BIT" property="isThesea" />
+    <result column="airway_billnumber" jdbcType="VARCHAR" property="airwayBillnumber" />
+    <result column="currency" jdbcType="VARCHAR" property="currency" />
+    <result column="foreign_money" jdbcType="DECIMAL" property="foreignMoney" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.zpapi.other.model.GtOrdersWithBLOBs">
+    <result column="fill_reduce_rule" jdbcType="LONGVARCHAR" property="fillReduceRule" />
+    <result column="give_point_rule" jdbcType="LONGVARCHAR" property="givePointRule" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    order_id, is_hidden, order_sn, belong_to, first_warehouse_id, warehouse_id, original_warehouse_id, 
+    final_warehouse_id, is_our_send, is_all_send, sina_order_id, member_id, edit_status, 
+    sendhouse_id, sendhouse_person_id, advis, express_id, sec_express_id, sec_express_sn, 
+    express_sn, change_house_id, packet_num, status, sub_status, add_status, pay_status, 
+    pay_type_id, offline_payment_name, total_amount, discount_card_num, discount_card_condition, 
+    discount_card_money, category_card_num, category_card_money, act_id, fill_reduce_money, 
+    real_discount_card_num, real_discount_rate, real_discount_money, gift_money, vip_rate, 
+    vip_reduced, is_installment, installment_paycode, voucherFee, installment_per_money, 
+    installment_times, installment_fee_rate, installment_fee_by_seller, installment_fee_by_customer, 
+    give_point_online_pay, give_point_rate_online_pay, give_point, give_point_rate, give_score, 
+    used_point, use_online_payed, use_cash_payed, use_pos_payed, used_balance, use_offline_payed, 
+    use_offline_reduced, need_pay, create_time, consignee, consignee_mobile, order_phone, 
+    consignee_email, consignee_tel, zipcode, address, shipping_area_id, shipping_city_id, 
+    shipping_district_id, shipping_price, shipping_time, invoice_type, invoice_number, 
+    invoice_title, invoice_item, print_invoice, order_memo, manage_memo, type, refund_order_id, 
+    parent_order_sn, cancel_reason, sign_order_time, yiqifa_flag, yiqifa_cid, yiqifa_wi, 
+    yiqifa_note_flag, last_op_time, auto_check, check_time, 360_flag, 360_bid, 360_qid, 
+    360_qihoo_id, 360_ext, 360_note_flag, is_send, source, rejection_status, reserve_order, 
+    cancel_reason_id, cancel_type, refund_money, oversea_express_id, is_thesea, airway_billnumber, 
+    currency, foreign_money
+  </sql>
+  <sql id="Blob_Column_List">
+    fill_reduce_rule, give_point_rule
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="com.zpapi.other.model.GtOrdersExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from gt_orders
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="com.zpapi.other.model.GtOrdersExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from gt_orders
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from gt_orders
+    where order_id = #{orderId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from gt_orders
+    where order_id = #{orderId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.zpapi.other.model.GtOrdersExample">
+    delete from gt_orders
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zpapi.other.model.GtOrdersWithBLOBs">
+    insert into gt_orders (order_id, is_hidden, order_sn, 
+      belong_to, first_warehouse_id, warehouse_id, 
+      original_warehouse_id, final_warehouse_id, 
+      is_our_send, is_all_send, sina_order_id, 
+      member_id, edit_status, sendhouse_id, 
+      sendhouse_person_id, advis, express_id, 
+      sec_express_id, sec_express_sn, express_sn, 
+      change_house_id, packet_num, status, 
+      sub_status, add_status, pay_status, 
+      pay_type_id, offline_payment_name, total_amount, 
+      discount_card_num, discount_card_condition, 
+      discount_card_money, category_card_num, category_card_money, 
+      act_id, fill_reduce_money, real_discount_card_num, 
+      real_discount_rate, real_discount_money, gift_money, 
+      vip_rate, vip_reduced, is_installment, 
+      installment_paycode, voucherFee, installment_per_money, 
+      installment_times, installment_fee_rate, installment_fee_by_seller, 
+      installment_fee_by_customer, give_point_online_pay, 
+      give_point_rate_online_pay, give_point, give_point_rate, 
+      give_score, used_point, use_online_payed, 
+      use_cash_payed, use_pos_payed, used_balance, 
+      use_offline_payed, use_offline_reduced, need_pay, 
+      create_time, consignee, consignee_mobile, 
+      order_phone, consignee_email, consignee_tel, 
+      zipcode, address, shipping_area_id, 
+      shipping_city_id, shipping_district_id, shipping_price, 
+      shipping_time, invoice_type, invoice_number, 
+      invoice_title, invoice_item, print_invoice, 
+      order_memo, manage_memo, type, 
+      refund_order_id, parent_order_sn, cancel_reason, 
+      sign_order_time, yiqifa_flag, yiqifa_cid, 
+      yiqifa_wi, yiqifa_note_flag, last_op_time, 
+      auto_check, check_time, 360_flag, 
+      360_bid, 360_qid, 360_qihoo_id, 
+      360_ext, 360_note_flag, is_send, 
+      source, rejection_status, reserve_order, 
+      cancel_reason_id, cancel_type, refund_money, 
+      oversea_express_id, is_thesea, airway_billnumber, 
+      currency, foreign_money, fill_reduce_rule, 
+      give_point_rule)
+    values (#{orderId,jdbcType=INTEGER}, #{isHidden,jdbcType=BIT}, #{orderSn,jdbcType=BIGINT}, 
+      #{belongTo,jdbcType=INTEGER}, #{firstWarehouseId,jdbcType=TINYINT}, #{warehouseId,jdbcType=INTEGER}, 
+      #{originalWarehouseId,jdbcType=TINYINT}, #{finalWarehouseId,jdbcType=TINYINT}, 
+      #{isOurSend,jdbcType=TINYINT}, #{isAllSend,jdbcType=TINYINT}, #{sinaOrderId,jdbcType=VARCHAR}, 
+      #{memberId,jdbcType=BIGINT}, #{editStatus,jdbcType=BIT}, #{sendhouseId,jdbcType=INTEGER}, 
+      #{sendhousePersonId,jdbcType=INTEGER}, #{advis,jdbcType=VARCHAR}, #{expressId,jdbcType=INTEGER}, 
+      #{secExpressId,jdbcType=INTEGER}, #{secExpressSn,jdbcType=VARCHAR}, #{expressSn,jdbcType=VARCHAR}, 
+      #{changeHouseId,jdbcType=INTEGER}, #{packetNum,jdbcType=INTEGER}, #{status,jdbcType=TINYINT}, 
+      #{subStatus,jdbcType=TINYINT}, #{addStatus,jdbcType=TINYINT}, #{payStatus,jdbcType=TINYINT}, 
+      #{payTypeId,jdbcType=TINYINT}, #{offlinePaymentName,jdbcType=VARCHAR}, #{totalAmount,jdbcType=DECIMAL}, 
+      #{discountCardNum,jdbcType=VARCHAR}, #{discountCardCondition,jdbcType=DECIMAL}, 
+      #{discountCardMoney,jdbcType=DECIMAL}, #{categoryCardNum,jdbcType=VARCHAR}, #{categoryCardMoney,jdbcType=DECIMAL}, 
+      #{actId,jdbcType=INTEGER}, #{fillReduceMoney,jdbcType=DECIMAL}, #{realDiscountCardNum,jdbcType=VARCHAR}, 
+      #{realDiscountRate,jdbcType=DECIMAL}, #{realDiscountMoney,jdbcType=DECIMAL}, #{giftMoney,jdbcType=DECIMAL}, 
+      #{vipRate,jdbcType=DECIMAL}, #{vipReduced,jdbcType=DECIMAL}, #{isInstallment,jdbcType=BIT}, 
+      #{installmentPaycode,jdbcType=VARCHAR}, #{voucherfee,jdbcType=DECIMAL}, #{installmentPerMoney,jdbcType=DECIMAL}, 
+      #{installmentTimes,jdbcType=INTEGER}, #{installmentFeeRate,jdbcType=DECIMAL}, #{installmentFeeBySeller,jdbcType=DECIMAL}, 
+      #{installmentFeeByCustomer,jdbcType=DECIMAL}, #{givePointOnlinePay,jdbcType=DECIMAL}, 
+      #{givePointRateOnlinePay,jdbcType=REAL}, #{givePoint,jdbcType=DECIMAL}, #{givePointRate,jdbcType=REAL}, 
+      #{giveScore,jdbcType=INTEGER}, #{usedPoint,jdbcType=DECIMAL}, #{useOnlinePayed,jdbcType=DECIMAL}, 
+      #{useCashPayed,jdbcType=DECIMAL}, #{usePosPayed,jdbcType=DECIMAL}, #{usedBalance,jdbcType=DECIMAL}, 
+      #{useOfflinePayed,jdbcType=DECIMAL}, #{useOfflineReduced,jdbcType=DECIMAL}, #{needPay,jdbcType=DECIMAL}, 
+      #{createTime,jdbcType=INTEGER}, #{consignee,jdbcType=VARCHAR}, #{consigneeMobile,jdbcType=VARCHAR}, 
+      #{orderPhone,jdbcType=VARCHAR}, #{consigneeEmail,jdbcType=VARCHAR}, #{consigneeTel,jdbcType=VARCHAR}, 
+      #{zipcode,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{shippingAreaId,jdbcType=INTEGER}, 
+      #{shippingCityId,jdbcType=INTEGER}, #{shippingDistrictId,jdbcType=INTEGER}, #{shippingPrice,jdbcType=DECIMAL}, 
+      #{shippingTime,jdbcType=VARCHAR}, #{invoiceType,jdbcType=VARCHAR}, #{invoiceNumber,jdbcType=VARCHAR}, 
+      #{invoiceTitle,jdbcType=VARCHAR}, #{invoiceItem,jdbcType=VARCHAR}, #{printInvoice,jdbcType=BIT}, 
+      #{orderMemo,jdbcType=VARCHAR}, #{manageMemo,jdbcType=VARCHAR}, #{type,jdbcType=BIT}, 
+      #{refundOrderId,jdbcType=INTEGER}, #{parentOrderSn,jdbcType=BIGINT}, #{cancelReason,jdbcType=VARCHAR}, 
+      #{signOrderTime,jdbcType=INTEGER}, #{yiqifaFlag,jdbcType=BIT}, #{yiqifaCid,jdbcType=VARCHAR}, 
+      #{yiqifaWi,jdbcType=VARCHAR}, #{yiqifaNoteFlag,jdbcType=BIT}, #{lastOpTime,jdbcType=INTEGER}, 
+      #{autoCheck,jdbcType=TINYINT}, #{checkTime,jdbcType=INTEGER}, #{360Flag,jdbcType=BIT}, 
+      #{360Bid,jdbcType=VARCHAR}, #{360Qid,jdbcType=VARCHAR}, #{360QihooId,jdbcType=VARCHAR}, 
+      #{360Ext,jdbcType=VARCHAR}, #{360NoteFlag,jdbcType=TINYINT}, #{isSend,jdbcType=TINYINT}, 
+      #{source,jdbcType=BIT}, #{rejectionStatus,jdbcType=BIT}, #{reserveOrder,jdbcType=BIT}, 
+      #{cancelReasonId,jdbcType=INTEGER}, #{cancelType,jdbcType=TINYINT}, #{refundMoney,jdbcType=DECIMAL}, 
+      #{overseaExpressId,jdbcType=BIT}, #{isThesea,jdbcType=BIT}, #{airwayBillnumber,jdbcType=VARCHAR}, 
+      #{currency,jdbcType=VARCHAR}, #{foreignMoney,jdbcType=DECIMAL}, #{fillReduceRule,jdbcType=LONGVARCHAR}, 
+      #{givePointRule,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zpapi.other.model.GtOrdersWithBLOBs">
+    insert into gt_orders
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="orderId != null">
+        order_id,
+      </if>
+      <if test="isHidden != null">
+        is_hidden,
+      </if>
+      <if test="orderSn != null">
+        order_sn,
+      </if>
+      <if test="belongTo != null">
+        belong_to,
+      </if>
+      <if test="firstWarehouseId != null">
+        first_warehouse_id,
+      </if>
+      <if test="warehouseId != null">
+        warehouse_id,
+      </if>
+      <if test="originalWarehouseId != null">
+        original_warehouse_id,
+      </if>
+      <if test="finalWarehouseId != null">
+        final_warehouse_id,
+      </if>
+      <if test="isOurSend != null">
+        is_our_send,
+      </if>
+      <if test="isAllSend != null">
+        is_all_send,
+      </if>
+      <if test="sinaOrderId != null">
+        sina_order_id,
+      </if>
+      <if test="memberId != null">
+        member_id,
+      </if>
+      <if test="editStatus != null">
+        edit_status,
+      </if>
+      <if test="sendhouseId != null">
+        sendhouse_id,
+      </if>
+      <if test="sendhousePersonId != null">
+        sendhouse_person_id,
+      </if>
+      <if test="advis != null">
+        advis,
+      </if>
+      <if test="expressId != null">
+        express_id,
+      </if>
+      <if test="secExpressId != null">
+        sec_express_id,
+      </if>
+      <if test="secExpressSn != null">
+        sec_express_sn,
+      </if>
+      <if test="expressSn != null">
+        express_sn,
+      </if>
+      <if test="changeHouseId != null">
+        change_house_id,
+      </if>
+      <if test="packetNum != null">
+        packet_num,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="subStatus != null">
+        sub_status,
+      </if>
+      <if test="addStatus != null">
+        add_status,
+      </if>
+      <if test="payStatus != null">
+        pay_status,
+      </if>
+      <if test="payTypeId != null">
+        pay_type_id,
+      </if>
+      <if test="offlinePaymentName != null">
+        offline_payment_name,
+      </if>
+      <if test="totalAmount != null">
+        total_amount,
+      </if>
+      <if test="discountCardNum != null">
+        discount_card_num,
+      </if>
+      <if test="discountCardCondition != null">
+        discount_card_condition,
+      </if>
+      <if test="discountCardMoney != null">
+        discount_card_money,
+      </if>
+      <if test="categoryCardNum != null">
+        category_card_num,
+      </if>
+      <if test="categoryCardMoney != null">
+        category_card_money,
+      </if>
+      <if test="actId != null">
+        act_id,
+      </if>
+      <if test="fillReduceMoney != null">
+        fill_reduce_money,
+      </if>
+      <if test="realDiscountCardNum != null">
+        real_discount_card_num,
+      </if>
+      <if test="realDiscountRate != null">
+        real_discount_rate,
+      </if>
+      <if test="realDiscountMoney != null">
+        real_discount_money,
+      </if>
+      <if test="giftMoney != null">
+        gift_money,
+      </if>
+      <if test="vipRate != null">
+        vip_rate,
+      </if>
+      <if test="vipReduced != null">
+        vip_reduced,
+      </if>
+      <if test="isInstallment != null">
+        is_installment,
+      </if>
+      <if test="installmentPaycode != null">
+        installment_paycode,
+      </if>
+      <if test="voucherfee != null">
+        voucherFee,
+      </if>
+      <if test="installmentPerMoney != null">
+        installment_per_money,
+      </if>
+      <if test="installmentTimes != null">
+        installment_times,
+      </if>
+      <if test="installmentFeeRate != null">
+        installment_fee_rate,
+      </if>
+      <if test="installmentFeeBySeller != null">
+        installment_fee_by_seller,
+      </if>
+      <if test="installmentFeeByCustomer != null">
+        installment_fee_by_customer,
+      </if>
+      <if test="givePointOnlinePay != null">
+        give_point_online_pay,
+      </if>
+      <if test="givePointRateOnlinePay != null">
+        give_point_rate_online_pay,
+      </if>
+      <if test="givePoint != null">
+        give_point,
+      </if>
+      <if test="givePointRate != null">
+        give_point_rate,
+      </if>
+      <if test="giveScore != null">
+        give_score,
+      </if>
+      <if test="usedPoint != null">
+        used_point,
+      </if>
+      <if test="useOnlinePayed != null">
+        use_online_payed,
+      </if>
+      <if test="useCashPayed != null">
+        use_cash_payed,
+      </if>
+      <if test="usePosPayed != null">
+        use_pos_payed,
+      </if>
+      <if test="usedBalance != null">
+        used_balance,
+      </if>
+      <if test="useOfflinePayed != null">
+        use_offline_payed,
+      </if>
+      <if test="useOfflineReduced != null">
+        use_offline_reduced,
+      </if>
+      <if test="needPay != null">
+        need_pay,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="consignee != null">
+        consignee,
+      </if>
+      <if test="consigneeMobile != null">
+        consignee_mobile,
+      </if>
+      <if test="orderPhone != null">
+        order_phone,
+      </if>
+      <if test="consigneeEmail != null">
+        consignee_email,
+      </if>
+      <if test="consigneeTel != null">
+        consignee_tel,
+      </if>
+      <if test="zipcode != null">
+        zipcode,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="shippingAreaId != null">
+        shipping_area_id,
+      </if>
+      <if test="shippingCityId != null">
+        shipping_city_id,
+      </if>
+      <if test="shippingDistrictId != null">
+        shipping_district_id,
+      </if>
+      <if test="shippingPrice != null">
+        shipping_price,
+      </if>
+      <if test="shippingTime != null">
+        shipping_time,
+      </if>
+      <if test="invoiceType != null">
+        invoice_type,
+      </if>
+      <if test="invoiceNumber != null">
+        invoice_number,
+      </if>
+      <if test="invoiceTitle != null">
+        invoice_title,
+      </if>
+      <if test="invoiceItem != null">
+        invoice_item,
+      </if>
+      <if test="printInvoice != null">
+        print_invoice,
+      </if>
+      <if test="orderMemo != null">
+        order_memo,
+      </if>
+      <if test="manageMemo != null">
+        manage_memo,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="refundOrderId != null">
+        refund_order_id,
+      </if>
+      <if test="parentOrderSn != null">
+        parent_order_sn,
+      </if>
+      <if test="cancelReason != null">
+        cancel_reason,
+      </if>
+      <if test="signOrderTime != null">
+        sign_order_time,
+      </if>
+      <if test="yiqifaFlag != null">
+        yiqifa_flag,
+      </if>
+      <if test="yiqifaCid != null">
+        yiqifa_cid,
+      </if>
+      <if test="yiqifaWi != null">
+        yiqifa_wi,
+      </if>
+      <if test="yiqifaNoteFlag != null">
+        yiqifa_note_flag,
+      </if>
+      <if test="lastOpTime != null">
+        last_op_time,
+      </if>
+      <if test="autoCheck != null">
+        auto_check,
+      </if>
+      <if test="checkTime != null">
+        check_time,
+      </if>
+      <if test="360Flag != null">
+        360_flag,
+      </if>
+      <if test="360Bid != null">
+        360_bid,
+      </if>
+      <if test="360Qid != null">
+        360_qid,
+      </if>
+      <if test="360QihooId != null">
+        360_qihoo_id,
+      </if>
+      <if test="360Ext != null">
+        360_ext,
+      </if>
+      <if test="360NoteFlag != null">
+        360_note_flag,
+      </if>
+      <if test="isSend != null">
+        is_send,
+      </if>
+      <if test="source != null">
+        source,
+      </if>
+      <if test="rejectionStatus != null">
+        rejection_status,
+      </if>
+      <if test="reserveOrder != null">
+        reserve_order,
+      </if>
+      <if test="cancelReasonId != null">
+        cancel_reason_id,
+      </if>
+      <if test="cancelType != null">
+        cancel_type,
+      </if>
+      <if test="refundMoney != null">
+        refund_money,
+      </if>
+      <if test="overseaExpressId != null">
+        oversea_express_id,
+      </if>
+      <if test="isThesea != null">
+        is_thesea,
+      </if>
+      <if test="airwayBillnumber != null">
+        airway_billnumber,
+      </if>
+      <if test="currency != null">
+        currency,
+      </if>
+      <if test="foreignMoney != null">
+        foreign_money,
+      </if>
+      <if test="fillReduceRule != null">
+        fill_reduce_rule,
+      </if>
+      <if test="givePointRule != null">
+        give_point_rule,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="orderId != null">
+        #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="isHidden != null">
+        #{isHidden,jdbcType=BIT},
+      </if>
+      <if test="orderSn != null">
+        #{orderSn,jdbcType=BIGINT},
+      </if>
+      <if test="belongTo != null">
+        #{belongTo,jdbcType=INTEGER},
+      </if>
+      <if test="firstWarehouseId != null">
+        #{firstWarehouseId,jdbcType=TINYINT},
+      </if>
+      <if test="warehouseId != null">
+        #{warehouseId,jdbcType=INTEGER},
+      </if>
+      <if test="originalWarehouseId != null">
+        #{originalWarehouseId,jdbcType=TINYINT},
+      </if>
+      <if test="finalWarehouseId != null">
+        #{finalWarehouseId,jdbcType=TINYINT},
+      </if>
+      <if test="isOurSend != null">
+        #{isOurSend,jdbcType=TINYINT},
+      </if>
+      <if test="isAllSend != null">
+        #{isAllSend,jdbcType=TINYINT},
+      </if>
+      <if test="sinaOrderId != null">
+        #{sinaOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="memberId != null">
+        #{memberId,jdbcType=BIGINT},
+      </if>
+      <if test="editStatus != null">
+        #{editStatus,jdbcType=BIT},
+      </if>
+      <if test="sendhouseId != null">
+        #{sendhouseId,jdbcType=INTEGER},
+      </if>
+      <if test="sendhousePersonId != null">
+        #{sendhousePersonId,jdbcType=INTEGER},
+      </if>
+      <if test="advis != null">
+        #{advis,jdbcType=VARCHAR},
+      </if>
+      <if test="expressId != null">
+        #{expressId,jdbcType=INTEGER},
+      </if>
+      <if test="secExpressId != null">
+        #{secExpressId,jdbcType=INTEGER},
+      </if>
+      <if test="secExpressSn != null">
+        #{secExpressSn,jdbcType=VARCHAR},
+      </if>
+      <if test="expressSn != null">
+        #{expressSn,jdbcType=VARCHAR},
+      </if>
+      <if test="changeHouseId != null">
+        #{changeHouseId,jdbcType=INTEGER},
+      </if>
+      <if test="packetNum != null">
+        #{packetNum,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="subStatus != null">
+        #{subStatus,jdbcType=TINYINT},
+      </if>
+      <if test="addStatus != null">
+        #{addStatus,jdbcType=TINYINT},
+      </if>
+      <if test="payStatus != null">
+        #{payStatus,jdbcType=TINYINT},
+      </if>
+      <if test="payTypeId != null">
+        #{payTypeId,jdbcType=TINYINT},
+      </if>
+      <if test="offlinePaymentName != null">
+        #{offlinePaymentName,jdbcType=VARCHAR},
+      </if>
+      <if test="totalAmount != null">
+        #{totalAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="discountCardNum != null">
+        #{discountCardNum,jdbcType=VARCHAR},
+      </if>
+      <if test="discountCardCondition != null">
+        #{discountCardCondition,jdbcType=DECIMAL},
+      </if>
+      <if test="discountCardMoney != null">
+        #{discountCardMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="categoryCardNum != null">
+        #{categoryCardNum,jdbcType=VARCHAR},
+      </if>
+      <if test="categoryCardMoney != null">
+        #{categoryCardMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="actId != null">
+        #{actId,jdbcType=INTEGER},
+      </if>
+      <if test="fillReduceMoney != null">
+        #{fillReduceMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="realDiscountCardNum != null">
+        #{realDiscountCardNum,jdbcType=VARCHAR},
+      </if>
+      <if test="realDiscountRate != null">
+        #{realDiscountRate,jdbcType=DECIMAL},
+      </if>
+      <if test="realDiscountMoney != null">
+        #{realDiscountMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="giftMoney != null">
+        #{giftMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="vipRate != null">
+        #{vipRate,jdbcType=DECIMAL},
+      </if>
+      <if test="vipReduced != null">
+        #{vipReduced,jdbcType=DECIMAL},
+      </if>
+      <if test="isInstallment != null">
+        #{isInstallment,jdbcType=BIT},
+      </if>
+      <if test="installmentPaycode != null">
+        #{installmentPaycode,jdbcType=VARCHAR},
+      </if>
+      <if test="voucherfee != null">
+        #{voucherfee,jdbcType=DECIMAL},
+      </if>
+      <if test="installmentPerMoney != null">
+        #{installmentPerMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="installmentTimes != null">
+        #{installmentTimes,jdbcType=INTEGER},
+      </if>
+      <if test="installmentFeeRate != null">
+        #{installmentFeeRate,jdbcType=DECIMAL},
+      </if>
+      <if test="installmentFeeBySeller != null">
+        #{installmentFeeBySeller,jdbcType=DECIMAL},
+      </if>
+      <if test="installmentFeeByCustomer != null">
+        #{installmentFeeByCustomer,jdbcType=DECIMAL},
+      </if>
+      <if test="givePointOnlinePay != null">
+        #{givePointOnlinePay,jdbcType=DECIMAL},
+      </if>
+      <if test="givePointRateOnlinePay != null">
+        #{givePointRateOnlinePay,jdbcType=REAL},
+      </if>
+      <if test="givePoint != null">
+        #{givePoint,jdbcType=DECIMAL},
+      </if>
+      <if test="givePointRate != null">
+        #{givePointRate,jdbcType=REAL},
+      </if>
+      <if test="giveScore != null">
+        #{giveScore,jdbcType=INTEGER},
+      </if>
+      <if test="usedPoint != null">
+        #{usedPoint,jdbcType=DECIMAL},
+      </if>
+      <if test="useOnlinePayed != null">
+        #{useOnlinePayed,jdbcType=DECIMAL},
+      </if>
+      <if test="useCashPayed != null">
+        #{useCashPayed,jdbcType=DECIMAL},
+      </if>
+      <if test="usePosPayed != null">
+        #{usePosPayed,jdbcType=DECIMAL},
+      </if>
+      <if test="usedBalance != null">
+        #{usedBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="useOfflinePayed != null">
+        #{useOfflinePayed,jdbcType=DECIMAL},
+      </if>
+      <if test="useOfflineReduced != null">
+        #{useOfflineReduced,jdbcType=DECIMAL},
+      </if>
+      <if test="needPay != null">
+        #{needPay,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=INTEGER},
+      </if>
+      <if test="consignee != null">
+        #{consignee,jdbcType=VARCHAR},
+      </if>
+      <if test="consigneeMobile != null">
+        #{consigneeMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="orderPhone != null">
+        #{orderPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="consigneeEmail != null">
+        #{consigneeEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="consigneeTel != null">
+        #{consigneeTel,jdbcType=VARCHAR},
+      </if>
+      <if test="zipcode != null">
+        #{zipcode,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="shippingAreaId != null">
+        #{shippingAreaId,jdbcType=INTEGER},
+      </if>
+      <if test="shippingCityId != null">
+        #{shippingCityId,jdbcType=INTEGER},
+      </if>
+      <if test="shippingDistrictId != null">
+        #{shippingDistrictId,jdbcType=INTEGER},
+      </if>
+      <if test="shippingPrice != null">
+        #{shippingPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="shippingTime != null">
+        #{shippingTime,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceType != null">
+        #{invoiceType,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceNumber != null">
+        #{invoiceNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceTitle != null">
+        #{invoiceTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceItem != null">
+        #{invoiceItem,jdbcType=VARCHAR},
+      </if>
+      <if test="printInvoice != null">
+        #{printInvoice,jdbcType=BIT},
+      </if>
+      <if test="orderMemo != null">
+        #{orderMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="manageMemo != null">
+        #{manageMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=BIT},
+      </if>
+      <if test="refundOrderId != null">
+        #{refundOrderId,jdbcType=INTEGER},
+      </if>
+      <if test="parentOrderSn != null">
+        #{parentOrderSn,jdbcType=BIGINT},
+      </if>
+      <if test="cancelReason != null">
+        #{cancelReason,jdbcType=VARCHAR},
+      </if>
+      <if test="signOrderTime != null">
+        #{signOrderTime,jdbcType=INTEGER},
+      </if>
+      <if test="yiqifaFlag != null">
+        #{yiqifaFlag,jdbcType=BIT},
+      </if>
+      <if test="yiqifaCid != null">
+        #{yiqifaCid,jdbcType=VARCHAR},
+      </if>
+      <if test="yiqifaWi != null">
+        #{yiqifaWi,jdbcType=VARCHAR},
+      </if>
+      <if test="yiqifaNoteFlag != null">
+        #{yiqifaNoteFlag,jdbcType=BIT},
+      </if>
+      <if test="lastOpTime != null">
+        #{lastOpTime,jdbcType=INTEGER},
+      </if>
+      <if test="autoCheck != null">
+        #{autoCheck,jdbcType=TINYINT},
+      </if>
+      <if test="checkTime != null">
+        #{checkTime,jdbcType=INTEGER},
+      </if>
+      <if test="360Flag != null">
+        #{360Flag,jdbcType=BIT},
+      </if>
+      <if test="360Bid != null">
+        #{360Bid,jdbcType=VARCHAR},
+      </if>
+      <if test="360Qid != null">
+        #{360Qid,jdbcType=VARCHAR},
+      </if>
+      <if test="360QihooId != null">
+        #{360QihooId,jdbcType=VARCHAR},
+      </if>
+      <if test="360Ext != null">
+        #{360Ext,jdbcType=VARCHAR},
+      </if>
+      <if test="360NoteFlag != null">
+        #{360NoteFlag,jdbcType=TINYINT},
+      </if>
+      <if test="isSend != null">
+        #{isSend,jdbcType=TINYINT},
+      </if>
+      <if test="source != null">
+        #{source,jdbcType=BIT},
+      </if>
+      <if test="rejectionStatus != null">
+        #{rejectionStatus,jdbcType=BIT},
+      </if>
+      <if test="reserveOrder != null">
+        #{reserveOrder,jdbcType=BIT},
+      </if>
+      <if test="cancelReasonId != null">
+        #{cancelReasonId,jdbcType=INTEGER},
+      </if>
+      <if test="cancelType != null">
+        #{cancelType,jdbcType=TINYINT},
+      </if>
+      <if test="refundMoney != null">
+        #{refundMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="overseaExpressId != null">
+        #{overseaExpressId,jdbcType=BIT},
+      </if>
+      <if test="isThesea != null">
+        #{isThesea,jdbcType=BIT},
+      </if>
+      <if test="airwayBillnumber != null">
+        #{airwayBillnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="currency != null">
+        #{currency,jdbcType=VARCHAR},
+      </if>
+      <if test="foreignMoney != null">
+        #{foreignMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="fillReduceRule != null">
+        #{fillReduceRule,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="givePointRule != null">
+        #{givePointRule,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zpapi.other.model.GtOrdersExample" resultType="java.lang.Integer">
+    select count(*) from gt_orders
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update gt_orders
+    <set>
+      <if test="record.orderId != null">
+        order_id = #{record.orderId,jdbcType=INTEGER},
+      </if>
+      <if test="record.isHidden != null">
+        is_hidden = #{record.isHidden,jdbcType=BIT},
+      </if>
+      <if test="record.orderSn != null">
+        order_sn = #{record.orderSn,jdbcType=BIGINT},
+      </if>
+      <if test="record.belongTo != null">
+        belong_to = #{record.belongTo,jdbcType=INTEGER},
+      </if>
+      <if test="record.firstWarehouseId != null">
+        first_warehouse_id = #{record.firstWarehouseId,jdbcType=TINYINT},
+      </if>
+      <if test="record.warehouseId != null">
+        warehouse_id = #{record.warehouseId,jdbcType=INTEGER},
+      </if>
+      <if test="record.originalWarehouseId != null">
+        original_warehouse_id = #{record.originalWarehouseId,jdbcType=TINYINT},
+      </if>
+      <if test="record.finalWarehouseId != null">
+        final_warehouse_id = #{record.finalWarehouseId,jdbcType=TINYINT},
+      </if>
+      <if test="record.isOurSend != null">
+        is_our_send = #{record.isOurSend,jdbcType=TINYINT},
+      </if>
+      <if test="record.isAllSend != null">
+        is_all_send = #{record.isAllSend,jdbcType=TINYINT},
+      </if>
+      <if test="record.sinaOrderId != null">
+        sina_order_id = #{record.sinaOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.memberId != null">
+        member_id = #{record.memberId,jdbcType=BIGINT},
+      </if>
+      <if test="record.editStatus != null">
+        edit_status = #{record.editStatus,jdbcType=BIT},
+      </if>
+      <if test="record.sendhouseId != null">
+        sendhouse_id = #{record.sendhouseId,jdbcType=INTEGER},
+      </if>
+      <if test="record.sendhousePersonId != null">
+        sendhouse_person_id = #{record.sendhousePersonId,jdbcType=INTEGER},
+      </if>
+      <if test="record.advis != null">
+        advis = #{record.advis,jdbcType=VARCHAR},
+      </if>
+      <if test="record.expressId != null">
+        express_id = #{record.expressId,jdbcType=INTEGER},
+      </if>
+      <if test="record.secExpressId != null">
+        sec_express_id = #{record.secExpressId,jdbcType=INTEGER},
+      </if>
+      <if test="record.secExpressSn != null">
+        sec_express_sn = #{record.secExpressSn,jdbcType=VARCHAR},
+      </if>
+      <if test="record.expressSn != null">
+        express_sn = #{record.expressSn,jdbcType=VARCHAR},
+      </if>
+      <if test="record.changeHouseId != null">
+        change_house_id = #{record.changeHouseId,jdbcType=INTEGER},
+      </if>
+      <if test="record.packetNum != null">
+        packet_num = #{record.packetNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.status != null">
+        status = #{record.status,jdbcType=TINYINT},
+      </if>
+      <if test="record.subStatus != null">
+        sub_status = #{record.subStatus,jdbcType=TINYINT},
+      </if>
+      <if test="record.addStatus != null">
+        add_status = #{record.addStatus,jdbcType=TINYINT},
+      </if>
+      <if test="record.payStatus != null">
+        pay_status = #{record.payStatus,jdbcType=TINYINT},
+      </if>
+      <if test="record.payTypeId != null">
+        pay_type_id = #{record.payTypeId,jdbcType=TINYINT},
+      </if>
+      <if test="record.offlinePaymentName != null">
+        offline_payment_name = #{record.offlinePaymentName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.totalAmount != null">
+        total_amount = #{record.totalAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.discountCardNum != null">
+        discount_card_num = #{record.discountCardNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.discountCardCondition != null">
+        discount_card_condition = #{record.discountCardCondition,jdbcType=DECIMAL},
+      </if>
+      <if test="record.discountCardMoney != null">
+        discount_card_money = #{record.discountCardMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="record.categoryCardNum != null">
+        category_card_num = #{record.categoryCardNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.categoryCardMoney != null">
+        category_card_money = #{record.categoryCardMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="record.actId != null">
+        act_id = #{record.actId,jdbcType=INTEGER},
+      </if>
+      <if test="record.fillReduceMoney != null">
+        fill_reduce_money = #{record.fillReduceMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="record.realDiscountCardNum != null">
+        real_discount_card_num = #{record.realDiscountCardNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.realDiscountRate != null">
+        real_discount_rate = #{record.realDiscountRate,jdbcType=DECIMAL},
+      </if>
+      <if test="record.realDiscountMoney != null">
+        real_discount_money = #{record.realDiscountMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="record.giftMoney != null">
+        gift_money = #{record.giftMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="record.vipRate != null">
+        vip_rate = #{record.vipRate,jdbcType=DECIMAL},
+      </if>
+      <if test="record.vipReduced != null">
+        vip_reduced = #{record.vipReduced,jdbcType=DECIMAL},
+      </if>
+      <if test="record.isInstallment != null">
+        is_installment = #{record.isInstallment,jdbcType=BIT},
+      </if>
+      <if test="record.installmentPaycode != null">
+        installment_paycode = #{record.installmentPaycode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.voucherfee != null">
+        voucherFee = #{record.voucherfee,jdbcType=DECIMAL},
+      </if>
+      <if test="record.installmentPerMoney != null">
+        installment_per_money = #{record.installmentPerMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="record.installmentTimes != null">
+        installment_times = #{record.installmentTimes,jdbcType=INTEGER},
+      </if>
+      <if test="record.installmentFeeRate != null">
+        installment_fee_rate = #{record.installmentFeeRate,jdbcType=DECIMAL},
+      </if>
+      <if test="record.installmentFeeBySeller != null">
+        installment_fee_by_seller = #{record.installmentFeeBySeller,jdbcType=DECIMAL},
+      </if>
+      <if test="record.installmentFeeByCustomer != null">
+        installment_fee_by_customer = #{record.installmentFeeByCustomer,jdbcType=DECIMAL},
+      </if>
+      <if test="record.givePointOnlinePay != null">
+        give_point_online_pay = #{record.givePointOnlinePay,jdbcType=DECIMAL},
+      </if>
+      <if test="record.givePointRateOnlinePay != null">
+        give_point_rate_online_pay = #{record.givePointRateOnlinePay,jdbcType=REAL},
+      </if>
+      <if test="record.givePoint != null">
+        give_point = #{record.givePoint,jdbcType=DECIMAL},
+      </if>
+      <if test="record.givePointRate != null">
+        give_point_rate = #{record.givePointRate,jdbcType=REAL},
+      </if>
+      <if test="record.giveScore != null">
+        give_score = #{record.giveScore,jdbcType=INTEGER},
+      </if>
+      <if test="record.usedPoint != null">
+        used_point = #{record.usedPoint,jdbcType=DECIMAL},
+      </if>
+      <if test="record.useOnlinePayed != null">
+        use_online_payed = #{record.useOnlinePayed,jdbcType=DECIMAL},
+      </if>
+      <if test="record.useCashPayed != null">
+        use_cash_payed = #{record.useCashPayed,jdbcType=DECIMAL},
+      </if>
+      <if test="record.usePosPayed != null">
+        use_pos_payed = #{record.usePosPayed,jdbcType=DECIMAL},
+      </if>
+      <if test="record.usedBalance != null">
+        used_balance = #{record.usedBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="record.useOfflinePayed != null">
+        use_offline_payed = #{record.useOfflinePayed,jdbcType=DECIMAL},
+      </if>
+      <if test="record.useOfflineReduced != null">
+        use_offline_reduced = #{record.useOfflineReduced,jdbcType=DECIMAL},
+      </if>
+      <if test="record.needPay != null">
+        need_pay = #{record.needPay,jdbcType=DECIMAL},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.consignee != null">
+        consignee = #{record.consignee,jdbcType=VARCHAR},
+      </if>
+      <if test="record.consigneeMobile != null">
+        consignee_mobile = #{record.consigneeMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderPhone != null">
+        order_phone = #{record.orderPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.consigneeEmail != null">
+        consignee_email = #{record.consigneeEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.consigneeTel != null">
+        consignee_tel = #{record.consigneeTel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zipcode != null">
+        zipcode = #{record.zipcode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.address != null">
+        address = #{record.address,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shippingAreaId != null">
+        shipping_area_id = #{record.shippingAreaId,jdbcType=INTEGER},
+      </if>
+      <if test="record.shippingCityId != null">
+        shipping_city_id = #{record.shippingCityId,jdbcType=INTEGER},
+      </if>
+      <if test="record.shippingDistrictId != null">
+        shipping_district_id = #{record.shippingDistrictId,jdbcType=INTEGER},
+      </if>
+      <if test="record.shippingPrice != null">
+        shipping_price = #{record.shippingPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.shippingTime != null">
+        shipping_time = #{record.shippingTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.invoiceType != null">
+        invoice_type = #{record.invoiceType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.invoiceNumber != null">
+        invoice_number = #{record.invoiceNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.invoiceTitle != null">
+        invoice_title = #{record.invoiceTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.invoiceItem != null">
+        invoice_item = #{record.invoiceItem,jdbcType=VARCHAR},
+      </if>
+      <if test="record.printInvoice != null">
+        print_invoice = #{record.printInvoice,jdbcType=BIT},
+      </if>
+      <if test="record.orderMemo != null">
+        order_memo = #{record.orderMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.manageMemo != null">
+        manage_memo = #{record.manageMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.type != null">
+        type = #{record.type,jdbcType=BIT},
+      </if>
+      <if test="record.refundOrderId != null">
+        refund_order_id = #{record.refundOrderId,jdbcType=INTEGER},
+      </if>
+      <if test="record.parentOrderSn != null">
+        parent_order_sn = #{record.parentOrderSn,jdbcType=BIGINT},
+      </if>
+      <if test="record.cancelReason != null">
+        cancel_reason = #{record.cancelReason,jdbcType=VARCHAR},
+      </if>
+      <if test="record.signOrderTime != null">
+        sign_order_time = #{record.signOrderTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.yiqifaFlag != null">
+        yiqifa_flag = #{record.yiqifaFlag,jdbcType=BIT},
+      </if>
+      <if test="record.yiqifaCid != null">
+        yiqifa_cid = #{record.yiqifaCid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.yiqifaWi != null">
+        yiqifa_wi = #{record.yiqifaWi,jdbcType=VARCHAR},
+      </if>
+      <if test="record.yiqifaNoteFlag != null">
+        yiqifa_note_flag = #{record.yiqifaNoteFlag,jdbcType=BIT},
+      </if>
+      <if test="record.lastOpTime != null">
+        last_op_time = #{record.lastOpTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.autoCheck != null">
+        auto_check = #{record.autoCheck,jdbcType=TINYINT},
+      </if>
+      <if test="record.checkTime != null">
+        check_time = #{record.checkTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.360Flag != null">
+        360_flag = #{record.360Flag,jdbcType=BIT},
+      </if>
+      <if test="record.360Bid != null">
+        360_bid = #{record.360Bid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.360Qid != null">
+        360_qid = #{record.360Qid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.360QihooId != null">
+        360_qihoo_id = #{record.360QihooId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.360Ext != null">
+        360_ext = #{record.360Ext,jdbcType=VARCHAR},
+      </if>
+      <if test="record.360NoteFlag != null">
+        360_note_flag = #{record.360NoteFlag,jdbcType=TINYINT},
+      </if>
+      <if test="record.isSend != null">
+        is_send = #{record.isSend,jdbcType=TINYINT},
+      </if>
+      <if test="record.source != null">
+        source = #{record.source,jdbcType=BIT},
+      </if>
+      <if test="record.rejectionStatus != null">
+        rejection_status = #{record.rejectionStatus,jdbcType=BIT},
+      </if>
+      <if test="record.reserveOrder != null">
+        reserve_order = #{record.reserveOrder,jdbcType=BIT},
+      </if>
+      <if test="record.cancelReasonId != null">
+        cancel_reason_id = #{record.cancelReasonId,jdbcType=INTEGER},
+      </if>
+      <if test="record.cancelType != null">
+        cancel_type = #{record.cancelType,jdbcType=TINYINT},
+      </if>
+      <if test="record.refundMoney != null">
+        refund_money = #{record.refundMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="record.overseaExpressId != null">
+        oversea_express_id = #{record.overseaExpressId,jdbcType=BIT},
+      </if>
+      <if test="record.isThesea != null">
+        is_thesea = #{record.isThesea,jdbcType=BIT},
+      </if>
+      <if test="record.airwayBillnumber != null">
+        airway_billnumber = #{record.airwayBillnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.currency != null">
+        currency = #{record.currency,jdbcType=VARCHAR},
+      </if>
+      <if test="record.foreignMoney != null">
+        foreign_money = #{record.foreignMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="record.fillReduceRule != null">
+        fill_reduce_rule = #{record.fillReduceRule,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.givePointRule != null">
+        give_point_rule = #{record.givePointRule,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update gt_orders
+    set order_id = #{record.orderId,jdbcType=INTEGER},
+      is_hidden = #{record.isHidden,jdbcType=BIT},
+      order_sn = #{record.orderSn,jdbcType=BIGINT},
+      belong_to = #{record.belongTo,jdbcType=INTEGER},
+      first_warehouse_id = #{record.firstWarehouseId,jdbcType=TINYINT},
+      warehouse_id = #{record.warehouseId,jdbcType=INTEGER},
+      original_warehouse_id = #{record.originalWarehouseId,jdbcType=TINYINT},
+      final_warehouse_id = #{record.finalWarehouseId,jdbcType=TINYINT},
+      is_our_send = #{record.isOurSend,jdbcType=TINYINT},
+      is_all_send = #{record.isAllSend,jdbcType=TINYINT},
+      sina_order_id = #{record.sinaOrderId,jdbcType=VARCHAR},
+      member_id = #{record.memberId,jdbcType=BIGINT},
+      edit_status = #{record.editStatus,jdbcType=BIT},
+      sendhouse_id = #{record.sendhouseId,jdbcType=INTEGER},
+      sendhouse_person_id = #{record.sendhousePersonId,jdbcType=INTEGER},
+      advis = #{record.advis,jdbcType=VARCHAR},
+      express_id = #{record.expressId,jdbcType=INTEGER},
+      sec_express_id = #{record.secExpressId,jdbcType=INTEGER},
+      sec_express_sn = #{record.secExpressSn,jdbcType=VARCHAR},
+      express_sn = #{record.expressSn,jdbcType=VARCHAR},
+      change_house_id = #{record.changeHouseId,jdbcType=INTEGER},
+      packet_num = #{record.packetNum,jdbcType=INTEGER},
+      status = #{record.status,jdbcType=TINYINT},
+      sub_status = #{record.subStatus,jdbcType=TINYINT},
+      add_status = #{record.addStatus,jdbcType=TINYINT},
+      pay_status = #{record.payStatus,jdbcType=TINYINT},
+      pay_type_id = #{record.payTypeId,jdbcType=TINYINT},
+      offline_payment_name = #{record.offlinePaymentName,jdbcType=VARCHAR},
+      total_amount = #{record.totalAmount,jdbcType=DECIMAL},
+      discount_card_num = #{record.discountCardNum,jdbcType=VARCHAR},
+      discount_card_condition = #{record.discountCardCondition,jdbcType=DECIMAL},
+      discount_card_money = #{record.discountCardMoney,jdbcType=DECIMAL},
+      category_card_num = #{record.categoryCardNum,jdbcType=VARCHAR},
+      category_card_money = #{record.categoryCardMoney,jdbcType=DECIMAL},
+      act_id = #{record.actId,jdbcType=INTEGER},
+      fill_reduce_money = #{record.fillReduceMoney,jdbcType=DECIMAL},
+      real_discount_card_num = #{record.realDiscountCardNum,jdbcType=VARCHAR},
+      real_discount_rate = #{record.realDiscountRate,jdbcType=DECIMAL},
+      real_discount_money = #{record.realDiscountMoney,jdbcType=DECIMAL},
+      gift_money = #{record.giftMoney,jdbcType=DECIMAL},
+      vip_rate = #{record.vipRate,jdbcType=DECIMAL},
+      vip_reduced = #{record.vipReduced,jdbcType=DECIMAL},
+      is_installment = #{record.isInstallment,jdbcType=BIT},
+      installment_paycode = #{record.installmentPaycode,jdbcType=VARCHAR},
+      voucherFee = #{record.voucherfee,jdbcType=DECIMAL},
+      installment_per_money = #{record.installmentPerMoney,jdbcType=DECIMAL},
+      installment_times = #{record.installmentTimes,jdbcType=INTEGER},
+      installment_fee_rate = #{record.installmentFeeRate,jdbcType=DECIMAL},
+      installment_fee_by_seller = #{record.installmentFeeBySeller,jdbcType=DECIMAL},
+      installment_fee_by_customer = #{record.installmentFeeByCustomer,jdbcType=DECIMAL},
+      give_point_online_pay = #{record.givePointOnlinePay,jdbcType=DECIMAL},
+      give_point_rate_online_pay = #{record.givePointRateOnlinePay,jdbcType=REAL},
+      give_point = #{record.givePoint,jdbcType=DECIMAL},
+      give_point_rate = #{record.givePointRate,jdbcType=REAL},
+      give_score = #{record.giveScore,jdbcType=INTEGER},
+      used_point = #{record.usedPoint,jdbcType=DECIMAL},
+      use_online_payed = #{record.useOnlinePayed,jdbcType=DECIMAL},
+      use_cash_payed = #{record.useCashPayed,jdbcType=DECIMAL},
+      use_pos_payed = #{record.usePosPayed,jdbcType=DECIMAL},
+      used_balance = #{record.usedBalance,jdbcType=DECIMAL},
+      use_offline_payed = #{record.useOfflinePayed,jdbcType=DECIMAL},
+      use_offline_reduced = #{record.useOfflineReduced,jdbcType=DECIMAL},
+      need_pay = #{record.needPay,jdbcType=DECIMAL},
+      create_time = #{record.createTime,jdbcType=INTEGER},
+      consignee = #{record.consignee,jdbcType=VARCHAR},
+      consignee_mobile = #{record.consigneeMobile,jdbcType=VARCHAR},
+      order_phone = #{record.orderPhone,jdbcType=VARCHAR},
+      consignee_email = #{record.consigneeEmail,jdbcType=VARCHAR},
+      consignee_tel = #{record.consigneeTel,jdbcType=VARCHAR},
+      zipcode = #{record.zipcode,jdbcType=VARCHAR},
+      address = #{record.address,jdbcType=VARCHAR},
+      shipping_area_id = #{record.shippingAreaId,jdbcType=INTEGER},
+      shipping_city_id = #{record.shippingCityId,jdbcType=INTEGER},
+      shipping_district_id = #{record.shippingDistrictId,jdbcType=INTEGER},
+      shipping_price = #{record.shippingPrice,jdbcType=DECIMAL},
+      shipping_time = #{record.shippingTime,jdbcType=VARCHAR},
+      invoice_type = #{record.invoiceType,jdbcType=VARCHAR},
+      invoice_number = #{record.invoiceNumber,jdbcType=VARCHAR},
+      invoice_title = #{record.invoiceTitle,jdbcType=VARCHAR},
+      invoice_item = #{record.invoiceItem,jdbcType=VARCHAR},
+      print_invoice = #{record.printInvoice,jdbcType=BIT},
+      order_memo = #{record.orderMemo,jdbcType=VARCHAR},
+      manage_memo = #{record.manageMemo,jdbcType=VARCHAR},
+      type = #{record.type,jdbcType=BIT},
+      refund_order_id = #{record.refundOrderId,jdbcType=INTEGER},
+      parent_order_sn = #{record.parentOrderSn,jdbcType=BIGINT},
+      cancel_reason = #{record.cancelReason,jdbcType=VARCHAR},
+      sign_order_time = #{record.signOrderTime,jdbcType=INTEGER},
+      yiqifa_flag = #{record.yiqifaFlag,jdbcType=BIT},
+      yiqifa_cid = #{record.yiqifaCid,jdbcType=VARCHAR},
+      yiqifa_wi = #{record.yiqifaWi,jdbcType=VARCHAR},
+      yiqifa_note_flag = #{record.yiqifaNoteFlag,jdbcType=BIT},
+      last_op_time = #{record.lastOpTime,jdbcType=INTEGER},
+      auto_check = #{record.autoCheck,jdbcType=TINYINT},
+      check_time = #{record.checkTime,jdbcType=INTEGER},
+      360_flag = #{record.360Flag,jdbcType=BIT},
+      360_bid = #{record.360Bid,jdbcType=VARCHAR},
+      360_qid = #{record.360Qid,jdbcType=VARCHAR},
+      360_qihoo_id = #{record.360QihooId,jdbcType=VARCHAR},
+      360_ext = #{record.360Ext,jdbcType=VARCHAR},
+      360_note_flag = #{record.360NoteFlag,jdbcType=TINYINT},
+      is_send = #{record.isSend,jdbcType=TINYINT},
+      source = #{record.source,jdbcType=BIT},
+      rejection_status = #{record.rejectionStatus,jdbcType=BIT},
+      reserve_order = #{record.reserveOrder,jdbcType=BIT},
+      cancel_reason_id = #{record.cancelReasonId,jdbcType=INTEGER},
+      cancel_type = #{record.cancelType,jdbcType=TINYINT},
+      refund_money = #{record.refundMoney,jdbcType=DECIMAL},
+      oversea_express_id = #{record.overseaExpressId,jdbcType=BIT},
+      is_thesea = #{record.isThesea,jdbcType=BIT},
+      airway_billnumber = #{record.airwayBillnumber,jdbcType=VARCHAR},
+      currency = #{record.currency,jdbcType=VARCHAR},
+      foreign_money = #{record.foreignMoney,jdbcType=DECIMAL},
+      fill_reduce_rule = #{record.fillReduceRule,jdbcType=LONGVARCHAR},
+      give_point_rule = #{record.givePointRule,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update gt_orders
+    set order_id = #{record.orderId,jdbcType=INTEGER},
+      is_hidden = #{record.isHidden,jdbcType=BIT},
+      order_sn = #{record.orderSn,jdbcType=BIGINT},
+      belong_to = #{record.belongTo,jdbcType=INTEGER},
+      first_warehouse_id = #{record.firstWarehouseId,jdbcType=TINYINT},
+      warehouse_id = #{record.warehouseId,jdbcType=INTEGER},
+      original_warehouse_id = #{record.originalWarehouseId,jdbcType=TINYINT},
+      final_warehouse_id = #{record.finalWarehouseId,jdbcType=TINYINT},
+      is_our_send = #{record.isOurSend,jdbcType=TINYINT},
+      is_all_send = #{record.isAllSend,jdbcType=TINYINT},
+      sina_order_id = #{record.sinaOrderId,jdbcType=VARCHAR},
+      member_id = #{record.memberId,jdbcType=BIGINT},
+      edit_status = #{record.editStatus,jdbcType=BIT},
+      sendhouse_id = #{record.sendhouseId,jdbcType=INTEGER},
+      sendhouse_person_id = #{record.sendhousePersonId,jdbcType=INTEGER},
+      advis = #{record.advis,jdbcType=VARCHAR},
+      express_id = #{record.expressId,jdbcType=INTEGER},
+      sec_express_id = #{record.secExpressId,jdbcType=INTEGER},
+      sec_express_sn = #{record.secExpressSn,jdbcType=VARCHAR},
+      express_sn = #{record.expressSn,jdbcType=VARCHAR},
+      change_house_id = #{record.changeHouseId,jdbcType=INTEGER},
+      packet_num = #{record.packetNum,jdbcType=INTEGER},
+      status = #{record.status,jdbcType=TINYINT},
+      sub_status = #{record.subStatus,jdbcType=TINYINT},
+      add_status = #{record.addStatus,jdbcType=TINYINT},
+      pay_status = #{record.payStatus,jdbcType=TINYINT},
+      pay_type_id = #{record.payTypeId,jdbcType=TINYINT},
+      offline_payment_name = #{record.offlinePaymentName,jdbcType=VARCHAR},
+      total_amount = #{record.totalAmount,jdbcType=DECIMAL},
+      discount_card_num = #{record.discountCardNum,jdbcType=VARCHAR},
+      discount_card_condition = #{record.discountCardCondition,jdbcType=DECIMAL},
+      discount_card_money = #{record.discountCardMoney,jdbcType=DECIMAL},
+      category_card_num = #{record.categoryCardNum,jdbcType=VARCHAR},
+      category_card_money = #{record.categoryCardMoney,jdbcType=DECIMAL},
+      act_id = #{record.actId,jdbcType=INTEGER},
+      fill_reduce_money = #{record.fillReduceMoney,jdbcType=DECIMAL},
+      real_discount_card_num = #{record.realDiscountCardNum,jdbcType=VARCHAR},
+      real_discount_rate = #{record.realDiscountRate,jdbcType=DECIMAL},
+      real_discount_money = #{record.realDiscountMoney,jdbcType=DECIMAL},
+      gift_money = #{record.giftMoney,jdbcType=DECIMAL},
+      vip_rate = #{record.vipRate,jdbcType=DECIMAL},
+      vip_reduced = #{record.vipReduced,jdbcType=DECIMAL},
+      is_installment = #{record.isInstallment,jdbcType=BIT},
+      installment_paycode = #{record.installmentPaycode,jdbcType=VARCHAR},
+      voucherFee = #{record.voucherfee,jdbcType=DECIMAL},
+      installment_per_money = #{record.installmentPerMoney,jdbcType=DECIMAL},
+      installment_times = #{record.installmentTimes,jdbcType=INTEGER},
+      installment_fee_rate = #{record.installmentFeeRate,jdbcType=DECIMAL},
+      installment_fee_by_seller = #{record.installmentFeeBySeller,jdbcType=DECIMAL},
+      installment_fee_by_customer = #{record.installmentFeeByCustomer,jdbcType=DECIMAL},
+      give_point_online_pay = #{record.givePointOnlinePay,jdbcType=DECIMAL},
+      give_point_rate_online_pay = #{record.givePointRateOnlinePay,jdbcType=REAL},
+      give_point = #{record.givePoint,jdbcType=DECIMAL},
+      give_point_rate = #{record.givePointRate,jdbcType=REAL},
+      give_score = #{record.giveScore,jdbcType=INTEGER},
+      used_point = #{record.usedPoint,jdbcType=DECIMAL},
+      use_online_payed = #{record.useOnlinePayed,jdbcType=DECIMAL},
+      use_cash_payed = #{record.useCashPayed,jdbcType=DECIMAL},
+      use_pos_payed = #{record.usePosPayed,jdbcType=DECIMAL},
+      used_balance = #{record.usedBalance,jdbcType=DECIMAL},
+      use_offline_payed = #{record.useOfflinePayed,jdbcType=DECIMAL},
+      use_offline_reduced = #{record.useOfflineReduced,jdbcType=DECIMAL},
+      need_pay = #{record.needPay,jdbcType=DECIMAL},
+      create_time = #{record.createTime,jdbcType=INTEGER},
+      consignee = #{record.consignee,jdbcType=VARCHAR},
+      consignee_mobile = #{record.consigneeMobile,jdbcType=VARCHAR},
+      order_phone = #{record.orderPhone,jdbcType=VARCHAR},
+      consignee_email = #{record.consigneeEmail,jdbcType=VARCHAR},
+      consignee_tel = #{record.consigneeTel,jdbcType=VARCHAR},
+      zipcode = #{record.zipcode,jdbcType=VARCHAR},
+      address = #{record.address,jdbcType=VARCHAR},
+      shipping_area_id = #{record.shippingAreaId,jdbcType=INTEGER},
+      shipping_city_id = #{record.shippingCityId,jdbcType=INTEGER},
+      shipping_district_id = #{record.shippingDistrictId,jdbcType=INTEGER},
+      shipping_price = #{record.shippingPrice,jdbcType=DECIMAL},
+      shipping_time = #{record.shippingTime,jdbcType=VARCHAR},
+      invoice_type = #{record.invoiceType,jdbcType=VARCHAR},
+      invoice_number = #{record.invoiceNumber,jdbcType=VARCHAR},
+      invoice_title = #{record.invoiceTitle,jdbcType=VARCHAR},
+      invoice_item = #{record.invoiceItem,jdbcType=VARCHAR},
+      print_invoice = #{record.printInvoice,jdbcType=BIT},
+      order_memo = #{record.orderMemo,jdbcType=VARCHAR},
+      manage_memo = #{record.manageMemo,jdbcType=VARCHAR},
+      type = #{record.type,jdbcType=BIT},
+      refund_order_id = #{record.refundOrderId,jdbcType=INTEGER},
+      parent_order_sn = #{record.parentOrderSn,jdbcType=BIGINT},
+      cancel_reason = #{record.cancelReason,jdbcType=VARCHAR},
+      sign_order_time = #{record.signOrderTime,jdbcType=INTEGER},
+      yiqifa_flag = #{record.yiqifaFlag,jdbcType=BIT},
+      yiqifa_cid = #{record.yiqifaCid,jdbcType=VARCHAR},
+      yiqifa_wi = #{record.yiqifaWi,jdbcType=VARCHAR},
+      yiqifa_note_flag = #{record.yiqifaNoteFlag,jdbcType=BIT},
+      last_op_time = #{record.lastOpTime,jdbcType=INTEGER},
+      auto_check = #{record.autoCheck,jdbcType=TINYINT},
+      check_time = #{record.checkTime,jdbcType=INTEGER},
+      360_flag = #{record.360Flag,jdbcType=BIT},
+      360_bid = #{record.360Bid,jdbcType=VARCHAR},
+      360_qid = #{record.360Qid,jdbcType=VARCHAR},
+      360_qihoo_id = #{record.360QihooId,jdbcType=VARCHAR},
+      360_ext = #{record.360Ext,jdbcType=VARCHAR},
+      360_note_flag = #{record.360NoteFlag,jdbcType=TINYINT},
+      is_send = #{record.isSend,jdbcType=TINYINT},
+      source = #{record.source,jdbcType=BIT},
+      rejection_status = #{record.rejectionStatus,jdbcType=BIT},
+      reserve_order = #{record.reserveOrder,jdbcType=BIT},
+      cancel_reason_id = #{record.cancelReasonId,jdbcType=INTEGER},
+      cancel_type = #{record.cancelType,jdbcType=TINYINT},
+      refund_money = #{record.refundMoney,jdbcType=DECIMAL},
+      oversea_express_id = #{record.overseaExpressId,jdbcType=BIT},
+      is_thesea = #{record.isThesea,jdbcType=BIT},
+      airway_billnumber = #{record.airwayBillnumber,jdbcType=VARCHAR},
+      currency = #{record.currency,jdbcType=VARCHAR},
+      foreign_money = #{record.foreignMoney,jdbcType=DECIMAL}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zpapi.other.model.GtOrdersWithBLOBs">
+    update gt_orders
+    <set>
+      <if test="isHidden != null">
+        is_hidden = #{isHidden,jdbcType=BIT},
+      </if>
+      <if test="orderSn != null">
+        order_sn = #{orderSn,jdbcType=BIGINT},
+      </if>
+      <if test="belongTo != null">
+        belong_to = #{belongTo,jdbcType=INTEGER},
+      </if>
+      <if test="firstWarehouseId != null">
+        first_warehouse_id = #{firstWarehouseId,jdbcType=TINYINT},
+      </if>
+      <if test="warehouseId != null">
+        warehouse_id = #{warehouseId,jdbcType=INTEGER},
+      </if>
+      <if test="originalWarehouseId != null">
+        original_warehouse_id = #{originalWarehouseId,jdbcType=TINYINT},
+      </if>
+      <if test="finalWarehouseId != null">
+        final_warehouse_id = #{finalWarehouseId,jdbcType=TINYINT},
+      </if>
+      <if test="isOurSend != null">
+        is_our_send = #{isOurSend,jdbcType=TINYINT},
+      </if>
+      <if test="isAllSend != null">
+        is_all_send = #{isAllSend,jdbcType=TINYINT},
+      </if>
+      <if test="sinaOrderId != null">
+        sina_order_id = #{sinaOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="memberId != null">
+        member_id = #{memberId,jdbcType=BIGINT},
+      </if>
+      <if test="editStatus != null">
+        edit_status = #{editStatus,jdbcType=BIT},
+      </if>
+      <if test="sendhouseId != null">
+        sendhouse_id = #{sendhouseId,jdbcType=INTEGER},
+      </if>
+      <if test="sendhousePersonId != null">
+        sendhouse_person_id = #{sendhousePersonId,jdbcType=INTEGER},
+      </if>
+      <if test="advis != null">
+        advis = #{advis,jdbcType=VARCHAR},
+      </if>
+      <if test="expressId != null">
+        express_id = #{expressId,jdbcType=INTEGER},
+      </if>
+      <if test="secExpressId != null">
+        sec_express_id = #{secExpressId,jdbcType=INTEGER},
+      </if>
+      <if test="secExpressSn != null">
+        sec_express_sn = #{secExpressSn,jdbcType=VARCHAR},
+      </if>
+      <if test="expressSn != null">
+        express_sn = #{expressSn,jdbcType=VARCHAR},
+      </if>
+      <if test="changeHouseId != null">
+        change_house_id = #{changeHouseId,jdbcType=INTEGER},
+      </if>
+      <if test="packetNum != null">
+        packet_num = #{packetNum,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="subStatus != null">
+        sub_status = #{subStatus,jdbcType=TINYINT},
+      </if>
+      <if test="addStatus != null">
+        add_status = #{addStatus,jdbcType=TINYINT},
+      </if>
+      <if test="payStatus != null">
+        pay_status = #{payStatus,jdbcType=TINYINT},
+      </if>
+      <if test="payTypeId != null">
+        pay_type_id = #{payTypeId,jdbcType=TINYINT},
+      </if>
+      <if test="offlinePaymentName != null">
+        offline_payment_name = #{offlinePaymentName,jdbcType=VARCHAR},
+      </if>
+      <if test="totalAmount != null">
+        total_amount = #{totalAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="discountCardNum != null">
+        discount_card_num = #{discountCardNum,jdbcType=VARCHAR},
+      </if>
+      <if test="discountCardCondition != null">
+        discount_card_condition = #{discountCardCondition,jdbcType=DECIMAL},
+      </if>
+      <if test="discountCardMoney != null">
+        discount_card_money = #{discountCardMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="categoryCardNum != null">
+        category_card_num = #{categoryCardNum,jdbcType=VARCHAR},
+      </if>
+      <if test="categoryCardMoney != null">
+        category_card_money = #{categoryCardMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="actId != null">
+        act_id = #{actId,jdbcType=INTEGER},
+      </if>
+      <if test="fillReduceMoney != null">
+        fill_reduce_money = #{fillReduceMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="realDiscountCardNum != null">
+        real_discount_card_num = #{realDiscountCardNum,jdbcType=VARCHAR},
+      </if>
+      <if test="realDiscountRate != null">
+        real_discount_rate = #{realDiscountRate,jdbcType=DECIMAL},
+      </if>
+      <if test="realDiscountMoney != null">
+        real_discount_money = #{realDiscountMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="giftMoney != null">
+        gift_money = #{giftMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="vipRate != null">
+        vip_rate = #{vipRate,jdbcType=DECIMAL},
+      </if>
+      <if test="vipReduced != null">
+        vip_reduced = #{vipReduced,jdbcType=DECIMAL},
+      </if>
+      <if test="isInstallment != null">
+        is_installment = #{isInstallment,jdbcType=BIT},
+      </if>
+      <if test="installmentPaycode != null">
+        installment_paycode = #{installmentPaycode,jdbcType=VARCHAR},
+      </if>
+      <if test="voucherfee != null">
+        voucherFee = #{voucherfee,jdbcType=DECIMAL},
+      </if>
+      <if test="installmentPerMoney != null">
+        installment_per_money = #{installmentPerMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="installmentTimes != null">
+        installment_times = #{installmentTimes,jdbcType=INTEGER},
+      </if>
+      <if test="installmentFeeRate != null">
+        installment_fee_rate = #{installmentFeeRate,jdbcType=DECIMAL},
+      </if>
+      <if test="installmentFeeBySeller != null">
+        installment_fee_by_seller = #{installmentFeeBySeller,jdbcType=DECIMAL},
+      </if>
+      <if test="installmentFeeByCustomer != null">
+        installment_fee_by_customer = #{installmentFeeByCustomer,jdbcType=DECIMAL},
+      </if>
+      <if test="givePointOnlinePay != null">
+        give_point_online_pay = #{givePointOnlinePay,jdbcType=DECIMAL},
+      </if>
+      <if test="givePointRateOnlinePay != null">
+        give_point_rate_online_pay = #{givePointRateOnlinePay,jdbcType=REAL},
+      </if>
+      <if test="givePoint != null">
+        give_point = #{givePoint,jdbcType=DECIMAL},
+      </if>
+      <if test="givePointRate != null">
+        give_point_rate = #{givePointRate,jdbcType=REAL},
+      </if>
+      <if test="giveScore != null">
+        give_score = #{giveScore,jdbcType=INTEGER},
+      </if>
+      <if test="usedPoint != null">
+        used_point = #{usedPoint,jdbcType=DECIMAL},
+      </if>
+      <if test="useOnlinePayed != null">
+        use_online_payed = #{useOnlinePayed,jdbcType=DECIMAL},
+      </if>
+      <if test="useCashPayed != null">
+        use_cash_payed = #{useCashPayed,jdbcType=DECIMAL},
+      </if>
+      <if test="usePosPayed != null">
+        use_pos_payed = #{usePosPayed,jdbcType=DECIMAL},
+      </if>
+      <if test="usedBalance != null">
+        used_balance = #{usedBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="useOfflinePayed != null">
+        use_offline_payed = #{useOfflinePayed,jdbcType=DECIMAL},
+      </if>
+      <if test="useOfflineReduced != null">
+        use_offline_reduced = #{useOfflineReduced,jdbcType=DECIMAL},
+      </if>
+      <if test="needPay != null">
+        need_pay = #{needPay,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=INTEGER},
+      </if>
+      <if test="consignee != null">
+        consignee = #{consignee,jdbcType=VARCHAR},
+      </if>
+      <if test="consigneeMobile != null">
+        consignee_mobile = #{consigneeMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="orderPhone != null">
+        order_phone = #{orderPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="consigneeEmail != null">
+        consignee_email = #{consigneeEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="consigneeTel != null">
+        consignee_tel = #{consigneeTel,jdbcType=VARCHAR},
+      </if>
+      <if test="zipcode != null">
+        zipcode = #{zipcode,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="shippingAreaId != null">
+        shipping_area_id = #{shippingAreaId,jdbcType=INTEGER},
+      </if>
+      <if test="shippingCityId != null">
+        shipping_city_id = #{shippingCityId,jdbcType=INTEGER},
+      </if>
+      <if test="shippingDistrictId != null">
+        shipping_district_id = #{shippingDistrictId,jdbcType=INTEGER},
+      </if>
+      <if test="shippingPrice != null">
+        shipping_price = #{shippingPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="shippingTime != null">
+        shipping_time = #{shippingTime,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceType != null">
+        invoice_type = #{invoiceType,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceNumber != null">
+        invoice_number = #{invoiceNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceTitle != null">
+        invoice_title = #{invoiceTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceItem != null">
+        invoice_item = #{invoiceItem,jdbcType=VARCHAR},
+      </if>
+      <if test="printInvoice != null">
+        print_invoice = #{printInvoice,jdbcType=BIT},
+      </if>
+      <if test="orderMemo != null">
+        order_memo = #{orderMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="manageMemo != null">
+        manage_memo = #{manageMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=BIT},
+      </if>
+      <if test="refundOrderId != null">
+        refund_order_id = #{refundOrderId,jdbcType=INTEGER},
+      </if>
+      <if test="parentOrderSn != null">
+        parent_order_sn = #{parentOrderSn,jdbcType=BIGINT},
+      </if>
+      <if test="cancelReason != null">
+        cancel_reason = #{cancelReason,jdbcType=VARCHAR},
+      </if>
+      <if test="signOrderTime != null">
+        sign_order_time = #{signOrderTime,jdbcType=INTEGER},
+      </if>
+      <if test="yiqifaFlag != null">
+        yiqifa_flag = #{yiqifaFlag,jdbcType=BIT},
+      </if>
+      <if test="yiqifaCid != null">
+        yiqifa_cid = #{yiqifaCid,jdbcType=VARCHAR},
+      </if>
+      <if test="yiqifaWi != null">
+        yiqifa_wi = #{yiqifaWi,jdbcType=VARCHAR},
+      </if>
+      <if test="yiqifaNoteFlag != null">
+        yiqifa_note_flag = #{yiqifaNoteFlag,jdbcType=BIT},
+      </if>
+      <if test="lastOpTime != null">
+        last_op_time = #{lastOpTime,jdbcType=INTEGER},
+      </if>
+      <if test="autoCheck != null">
+        auto_check = #{autoCheck,jdbcType=TINYINT},
+      </if>
+      <if test="checkTime != null">
+        check_time = #{checkTime,jdbcType=INTEGER},
+      </if>
+      <if test="360Flag != null">
+        360_flag = #{360Flag,jdbcType=BIT},
+      </if>
+      <if test="360Bid != null">
+        360_bid = #{360Bid,jdbcType=VARCHAR},
+      </if>
+      <if test="360Qid != null">
+        360_qid = #{360Qid,jdbcType=VARCHAR},
+      </if>
+      <if test="360QihooId != null">
+        360_qihoo_id = #{360QihooId,jdbcType=VARCHAR},
+      </if>
+      <if test="360Ext != null">
+        360_ext = #{360Ext,jdbcType=VARCHAR},
+      </if>
+      <if test="360NoteFlag != null">
+        360_note_flag = #{360NoteFlag,jdbcType=TINYINT},
+      </if>
+      <if test="isSend != null">
+        is_send = #{isSend,jdbcType=TINYINT},
+      </if>
+      <if test="source != null">
+        source = #{source,jdbcType=BIT},
+      </if>
+      <if test="rejectionStatus != null">
+        rejection_status = #{rejectionStatus,jdbcType=BIT},
+      </if>
+      <if test="reserveOrder != null">
+        reserve_order = #{reserveOrder,jdbcType=BIT},
+      </if>
+      <if test="cancelReasonId != null">
+        cancel_reason_id = #{cancelReasonId,jdbcType=INTEGER},
+      </if>
+      <if test="cancelType != null">
+        cancel_type = #{cancelType,jdbcType=TINYINT},
+      </if>
+      <if test="refundMoney != null">
+        refund_money = #{refundMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="overseaExpressId != null">
+        oversea_express_id = #{overseaExpressId,jdbcType=BIT},
+      </if>
+      <if test="isThesea != null">
+        is_thesea = #{isThesea,jdbcType=BIT},
+      </if>
+      <if test="airwayBillnumber != null">
+        airway_billnumber = #{airwayBillnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="currency != null">
+        currency = #{currency,jdbcType=VARCHAR},
+      </if>
+      <if test="foreignMoney != null">
+        foreign_money = #{foreignMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="fillReduceRule != null">
+        fill_reduce_rule = #{fillReduceRule,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="givePointRule != null">
+        give_point_rule = #{givePointRule,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where order_id = #{orderId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.zpapi.other.model.GtOrdersWithBLOBs">
+    update gt_orders
+    set is_hidden = #{isHidden,jdbcType=BIT},
+      order_sn = #{orderSn,jdbcType=BIGINT},
+      belong_to = #{belongTo,jdbcType=INTEGER},
+      first_warehouse_id = #{firstWarehouseId,jdbcType=TINYINT},
+      warehouse_id = #{warehouseId,jdbcType=INTEGER},
+      original_warehouse_id = #{originalWarehouseId,jdbcType=TINYINT},
+      final_warehouse_id = #{finalWarehouseId,jdbcType=TINYINT},
+      is_our_send = #{isOurSend,jdbcType=TINYINT},
+      is_all_send = #{isAllSend,jdbcType=TINYINT},
+      sina_order_id = #{sinaOrderId,jdbcType=VARCHAR},
+      member_id = #{memberId,jdbcType=BIGINT},
+      edit_status = #{editStatus,jdbcType=BIT},
+      sendhouse_id = #{sendhouseId,jdbcType=INTEGER},
+      sendhouse_person_id = #{sendhousePersonId,jdbcType=INTEGER},
+      advis = #{advis,jdbcType=VARCHAR},
+      express_id = #{expressId,jdbcType=INTEGER},
+      sec_express_id = #{secExpressId,jdbcType=INTEGER},
+      sec_express_sn = #{secExpressSn,jdbcType=VARCHAR},
+      express_sn = #{expressSn,jdbcType=VARCHAR},
+      change_house_id = #{changeHouseId,jdbcType=INTEGER},
+      packet_num = #{packetNum,jdbcType=INTEGER},
+      status = #{status,jdbcType=TINYINT},
+      sub_status = #{subStatus,jdbcType=TINYINT},
+      add_status = #{addStatus,jdbcType=TINYINT},
+      pay_status = #{payStatus,jdbcType=TINYINT},
+      pay_type_id = #{payTypeId,jdbcType=TINYINT},
+      offline_payment_name = #{offlinePaymentName,jdbcType=VARCHAR},
+      total_amount = #{totalAmount,jdbcType=DECIMAL},
+      discount_card_num = #{discountCardNum,jdbcType=VARCHAR},
+      discount_card_condition = #{discountCardCondition,jdbcType=DECIMAL},
+      discount_card_money = #{discountCardMoney,jdbcType=DECIMAL},
+      category_card_num = #{categoryCardNum,jdbcType=VARCHAR},
+      category_card_money = #{categoryCardMoney,jdbcType=DECIMAL},
+      act_id = #{actId,jdbcType=INTEGER},
+      fill_reduce_money = #{fillReduceMoney,jdbcType=DECIMAL},
+      real_discount_card_num = #{realDiscountCardNum,jdbcType=VARCHAR},
+      real_discount_rate = #{realDiscountRate,jdbcType=DECIMAL},
+      real_discount_money = #{realDiscountMoney,jdbcType=DECIMAL},
+      gift_money = #{giftMoney,jdbcType=DECIMAL},
+      vip_rate = #{vipRate,jdbcType=DECIMAL},
+      vip_reduced = #{vipReduced,jdbcType=DECIMAL},
+      is_installment = #{isInstallment,jdbcType=BIT},
+      installment_paycode = #{installmentPaycode,jdbcType=VARCHAR},
+      voucherFee = #{voucherfee,jdbcType=DECIMAL},
+      installment_per_money = #{installmentPerMoney,jdbcType=DECIMAL},
+      installment_times = #{installmentTimes,jdbcType=INTEGER},
+      installment_fee_rate = #{installmentFeeRate,jdbcType=DECIMAL},
+      installment_fee_by_seller = #{installmentFeeBySeller,jdbcType=DECIMAL},
+      installment_fee_by_customer = #{installmentFeeByCustomer,jdbcType=DECIMAL},
+      give_point_online_pay = #{givePointOnlinePay,jdbcType=DECIMAL},
+      give_point_rate_online_pay = #{givePointRateOnlinePay,jdbcType=REAL},
+      give_point = #{givePoint,jdbcType=DECIMAL},
+      give_point_rate = #{givePointRate,jdbcType=REAL},
+      give_score = #{giveScore,jdbcType=INTEGER},
+      used_point = #{usedPoint,jdbcType=DECIMAL},
+      use_online_payed = #{useOnlinePayed,jdbcType=DECIMAL},
+      use_cash_payed = #{useCashPayed,jdbcType=DECIMAL},
+      use_pos_payed = #{usePosPayed,jdbcType=DECIMAL},
+      used_balance = #{usedBalance,jdbcType=DECIMAL},
+      use_offline_payed = #{useOfflinePayed,jdbcType=DECIMAL},
+      use_offline_reduced = #{useOfflineReduced,jdbcType=DECIMAL},
+      need_pay = #{needPay,jdbcType=DECIMAL},
+      create_time = #{createTime,jdbcType=INTEGER},
+      consignee = #{consignee,jdbcType=VARCHAR},
+      consignee_mobile = #{consigneeMobile,jdbcType=VARCHAR},
+      order_phone = #{orderPhone,jdbcType=VARCHAR},
+      consignee_email = #{consigneeEmail,jdbcType=VARCHAR},
+      consignee_tel = #{consigneeTel,jdbcType=VARCHAR},
+      zipcode = #{zipcode,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      shipping_area_id = #{shippingAreaId,jdbcType=INTEGER},
+      shipping_city_id = #{shippingCityId,jdbcType=INTEGER},
+      shipping_district_id = #{shippingDistrictId,jdbcType=INTEGER},
+      shipping_price = #{shippingPrice,jdbcType=DECIMAL},
+      shipping_time = #{shippingTime,jdbcType=VARCHAR},
+      invoice_type = #{invoiceType,jdbcType=VARCHAR},
+      invoice_number = #{invoiceNumber,jdbcType=VARCHAR},
+      invoice_title = #{invoiceTitle,jdbcType=VARCHAR},
+      invoice_item = #{invoiceItem,jdbcType=VARCHAR},
+      print_invoice = #{printInvoice,jdbcType=BIT},
+      order_memo = #{orderMemo,jdbcType=VARCHAR},
+      manage_memo = #{manageMemo,jdbcType=VARCHAR},
+      type = #{type,jdbcType=BIT},
+      refund_order_id = #{refundOrderId,jdbcType=INTEGER},
+      parent_order_sn = #{parentOrderSn,jdbcType=BIGINT},
+      cancel_reason = #{cancelReason,jdbcType=VARCHAR},
+      sign_order_time = #{signOrderTime,jdbcType=INTEGER},
+      yiqifa_flag = #{yiqifaFlag,jdbcType=BIT},
+      yiqifa_cid = #{yiqifaCid,jdbcType=VARCHAR},
+      yiqifa_wi = #{yiqifaWi,jdbcType=VARCHAR},
+      yiqifa_note_flag = #{yiqifaNoteFlag,jdbcType=BIT},
+      last_op_time = #{lastOpTime,jdbcType=INTEGER},
+      auto_check = #{autoCheck,jdbcType=TINYINT},
+      check_time = #{checkTime,jdbcType=INTEGER},
+      360_flag = #{360Flag,jdbcType=BIT},
+      360_bid = #{360Bid,jdbcType=VARCHAR},
+      360_qid = #{360Qid,jdbcType=VARCHAR},
+      360_qihoo_id = #{360QihooId,jdbcType=VARCHAR},
+      360_ext = #{360Ext,jdbcType=VARCHAR},
+      360_note_flag = #{360NoteFlag,jdbcType=TINYINT},
+      is_send = #{isSend,jdbcType=TINYINT},
+      source = #{source,jdbcType=BIT},
+      rejection_status = #{rejectionStatus,jdbcType=BIT},
+      reserve_order = #{reserveOrder,jdbcType=BIT},
+      cancel_reason_id = #{cancelReasonId,jdbcType=INTEGER},
+      cancel_type = #{cancelType,jdbcType=TINYINT},
+      refund_money = #{refundMoney,jdbcType=DECIMAL},
+      oversea_express_id = #{overseaExpressId,jdbcType=BIT},
+      is_thesea = #{isThesea,jdbcType=BIT},
+      airway_billnumber = #{airwayBillnumber,jdbcType=VARCHAR},
+      currency = #{currency,jdbcType=VARCHAR},
+      foreign_money = #{foreignMoney,jdbcType=DECIMAL},
+      fill_reduce_rule = #{fillReduceRule,jdbcType=LONGVARCHAR},
+      give_point_rule = #{givePointRule,jdbcType=LONGVARCHAR}
+    where order_id = #{orderId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zpapi.other.model.GtOrders">
+    update gt_orders
+    set is_hidden = #{isHidden,jdbcType=BIT},
+      order_sn = #{orderSn,jdbcType=BIGINT},
+      belong_to = #{belongTo,jdbcType=INTEGER},
+      first_warehouse_id = #{firstWarehouseId,jdbcType=TINYINT},
+      warehouse_id = #{warehouseId,jdbcType=INTEGER},
+      original_warehouse_id = #{originalWarehouseId,jdbcType=TINYINT},
+      final_warehouse_id = #{finalWarehouseId,jdbcType=TINYINT},
+      is_our_send = #{isOurSend,jdbcType=TINYINT},
+      is_all_send = #{isAllSend,jdbcType=TINYINT},
+      sina_order_id = #{sinaOrderId,jdbcType=VARCHAR},
+      member_id = #{memberId,jdbcType=BIGINT},
+      edit_status = #{editStatus,jdbcType=BIT},
+      sendhouse_id = #{sendhouseId,jdbcType=INTEGER},
+      sendhouse_person_id = #{sendhousePersonId,jdbcType=INTEGER},
+      advis = #{advis,jdbcType=VARCHAR},
+      express_id = #{expressId,jdbcType=INTEGER},
+      sec_express_id = #{secExpressId,jdbcType=INTEGER},
+      sec_express_sn = #{secExpressSn,jdbcType=VARCHAR},
+      express_sn = #{expressSn,jdbcType=VARCHAR},
+      change_house_id = #{changeHouseId,jdbcType=INTEGER},
+      packet_num = #{packetNum,jdbcType=INTEGER},
+      status = #{status,jdbcType=TINYINT},
+      sub_status = #{subStatus,jdbcType=TINYINT},
+      add_status = #{addStatus,jdbcType=TINYINT},
+      pay_status = #{payStatus,jdbcType=TINYINT},
+      pay_type_id = #{payTypeId,jdbcType=TINYINT},
+      offline_payment_name = #{offlinePaymentName,jdbcType=VARCHAR},
+      total_amount = #{totalAmount,jdbcType=DECIMAL},
+      discount_card_num = #{discountCardNum,jdbcType=VARCHAR},
+      discount_card_condition = #{discountCardCondition,jdbcType=DECIMAL},
+      discount_card_money = #{discountCardMoney,jdbcType=DECIMAL},
+      category_card_num = #{categoryCardNum,jdbcType=VARCHAR},
+      category_card_money = #{categoryCardMoney,jdbcType=DECIMAL},
+      act_id = #{actId,jdbcType=INTEGER},
+      fill_reduce_money = #{fillReduceMoney,jdbcType=DECIMAL},
+      real_discount_card_num = #{realDiscountCardNum,jdbcType=VARCHAR},
+      real_discount_rate = #{realDiscountRate,jdbcType=DECIMAL},
+      real_discount_money = #{realDiscountMoney,jdbcType=DECIMAL},
+      gift_money = #{giftMoney,jdbcType=DECIMAL},
+      vip_rate = #{vipRate,jdbcType=DECIMAL},
+      vip_reduced = #{vipReduced,jdbcType=DECIMAL},
+      is_installment = #{isInstallment,jdbcType=BIT},
+      installment_paycode = #{installmentPaycode,jdbcType=VARCHAR},
+      voucherFee = #{voucherfee,jdbcType=DECIMAL},
+      installment_per_money = #{installmentPerMoney,jdbcType=DECIMAL},
+      installment_times = #{installmentTimes,jdbcType=INTEGER},
+      installment_fee_rate = #{installmentFeeRate,jdbcType=DECIMAL},
+      installment_fee_by_seller = #{installmentFeeBySeller,jdbcType=DECIMAL},
+      installment_fee_by_customer = #{installmentFeeByCustomer,jdbcType=DECIMAL},
+      give_point_online_pay = #{givePointOnlinePay,jdbcType=DECIMAL},
+      give_point_rate_online_pay = #{givePointRateOnlinePay,jdbcType=REAL},
+      give_point = #{givePoint,jdbcType=DECIMAL},
+      give_point_rate = #{givePointRate,jdbcType=REAL},
+      give_score = #{giveScore,jdbcType=INTEGER},
+      used_point = #{usedPoint,jdbcType=DECIMAL},
+      use_online_payed = #{useOnlinePayed,jdbcType=DECIMAL},
+      use_cash_payed = #{useCashPayed,jdbcType=DECIMAL},
+      use_pos_payed = #{usePosPayed,jdbcType=DECIMAL},
+      used_balance = #{usedBalance,jdbcType=DECIMAL},
+      use_offline_payed = #{useOfflinePayed,jdbcType=DECIMAL},
+      use_offline_reduced = #{useOfflineReduced,jdbcType=DECIMAL},
+      need_pay = #{needPay,jdbcType=DECIMAL},
+      create_time = #{createTime,jdbcType=INTEGER},
+      consignee = #{consignee,jdbcType=VARCHAR},
+      consignee_mobile = #{consigneeMobile,jdbcType=VARCHAR},
+      order_phone = #{orderPhone,jdbcType=VARCHAR},
+      consignee_email = #{consigneeEmail,jdbcType=VARCHAR},
+      consignee_tel = #{consigneeTel,jdbcType=VARCHAR},
+      zipcode = #{zipcode,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      shipping_area_id = #{shippingAreaId,jdbcType=INTEGER},
+      shipping_city_id = #{shippingCityId,jdbcType=INTEGER},
+      shipping_district_id = #{shippingDistrictId,jdbcType=INTEGER},
+      shipping_price = #{shippingPrice,jdbcType=DECIMAL},
+      shipping_time = #{shippingTime,jdbcType=VARCHAR},
+      invoice_type = #{invoiceType,jdbcType=VARCHAR},
+      invoice_number = #{invoiceNumber,jdbcType=VARCHAR},
+      invoice_title = #{invoiceTitle,jdbcType=VARCHAR},
+      invoice_item = #{invoiceItem,jdbcType=VARCHAR},
+      print_invoice = #{printInvoice,jdbcType=BIT},
+      order_memo = #{orderMemo,jdbcType=VARCHAR},
+      manage_memo = #{manageMemo,jdbcType=VARCHAR},
+      type = #{type,jdbcType=BIT},
+      refund_order_id = #{refundOrderId,jdbcType=INTEGER},
+      parent_order_sn = #{parentOrderSn,jdbcType=BIGINT},
+      cancel_reason = #{cancelReason,jdbcType=VARCHAR},
+      sign_order_time = #{signOrderTime,jdbcType=INTEGER},
+      yiqifa_flag = #{yiqifaFlag,jdbcType=BIT},
+      yiqifa_cid = #{yiqifaCid,jdbcType=VARCHAR},
+      yiqifa_wi = #{yiqifaWi,jdbcType=VARCHAR},
+      yiqifa_note_flag = #{yiqifaNoteFlag,jdbcType=BIT},
+      last_op_time = #{lastOpTime,jdbcType=INTEGER},
+      auto_check = #{autoCheck,jdbcType=TINYINT},
+      check_time = #{checkTime,jdbcType=INTEGER},
+      360_flag = #{360Flag,jdbcType=BIT},
+      360_bid = #{360Bid,jdbcType=VARCHAR},
+      360_qid = #{360Qid,jdbcType=VARCHAR},
+      360_qihoo_id = #{360QihooId,jdbcType=VARCHAR},
+      360_ext = #{360Ext,jdbcType=VARCHAR},
+      360_note_flag = #{360NoteFlag,jdbcType=TINYINT},
+      is_send = #{isSend,jdbcType=TINYINT},
+      source = #{source,jdbcType=BIT},
+      rejection_status = #{rejectionStatus,jdbcType=BIT},
+      reserve_order = #{reserveOrder,jdbcType=BIT},
+      cancel_reason_id = #{cancelReasonId,jdbcType=INTEGER},
+      cancel_type = #{cancelType,jdbcType=TINYINT},
+      refund_money = #{refundMoney,jdbcType=DECIMAL},
+      oversea_express_id = #{overseaExpressId,jdbcType=BIT},
+      is_thesea = #{isThesea,jdbcType=BIT},
+      airway_billnumber = #{airwayBillnumber,jdbcType=VARCHAR},
+      currency = #{currency,jdbcType=VARCHAR},
+      foreign_money = #{foreignMoney,jdbcType=DECIMAL}
+    where order_id = #{orderId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.zpapi.other.model.GtOrders">
+    <id column="order_id" jdbcType="INTEGER" property="orderId" />
+    <result column="is_hidden" jdbcType="BIT" property="isHidden" />
+    <result column="order_sn" jdbcType="BIGINT" property="orderSn" />
+    <result column="belong_to" jdbcType="INTEGER" property="belongTo" />
+    <result column="first_warehouse_id" jdbcType="TINYINT" property="firstWarehouseId" />
+    <result column="warehouse_id" jdbcType="INTEGER" property="warehouseId" />
+    <result column="original_warehouse_id" jdbcType="TINYINT" property="originalWarehouseId" />
+    <result column="final_warehouse_id" jdbcType="TINYINT" property="finalWarehouseId" />
+    <result column="is_our_send" jdbcType="TINYINT" property="isOurSend" />
+    <result column="is_all_send" jdbcType="TINYINT" property="isAllSend" />
+    <result column="sina_order_id" jdbcType="VARCHAR" property="sinaOrderId" />
+    <result column="member_id" jdbcType="BIGINT" property="memberId" />
+    <result column="edit_status" jdbcType="BIT" property="editStatus" />
+    <result column="sendhouse_id" jdbcType="INTEGER" property="sendhouseId" />
+    <result column="sendhouse_person_id" jdbcType="INTEGER" property="sendhousePersonId" />
+    <result column="advis" jdbcType="VARCHAR" property="advis" />
+    <result column="express_id" jdbcType="INTEGER" property="expressId" />
+    <result column="sec_express_id" jdbcType="INTEGER" property="secExpressId" />
+    <result column="sec_express_sn" jdbcType="VARCHAR" property="secExpressSn" />
+    <result column="express_sn" jdbcType="VARCHAR" property="expressSn" />
+    <result column="change_house_id" jdbcType="INTEGER" property="changeHouseId" />
+    <result column="packet_num" jdbcType="INTEGER" property="packetNum" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="sub_status" jdbcType="TINYINT" property="subStatus" />
+    <result column="add_status" jdbcType="TINYINT" property="addStatus" />
+    <result column="pay_status" jdbcType="TINYINT" property="payStatus" />
+    <result column="pay_type_id" jdbcType="TINYINT" property="payTypeId" />
+    <result column="offline_payment_name" jdbcType="VARCHAR" property="offlinePaymentName" />
+    <result column="total_amount" jdbcType="DECIMAL" property="totalAmount" />
+    <result column="discount_card_num" jdbcType="VARCHAR" property="discountCardNum" />
+    <result column="discount_card_condition" jdbcType="DECIMAL" property="discountCardCondition" />
+    <result column="discount_card_money" jdbcType="DECIMAL" property="discountCardMoney" />
+    <result column="category_card_num" jdbcType="VARCHAR" property="categoryCardNum" />
+    <result column="category_card_money" jdbcType="DECIMAL" property="categoryCardMoney" />
+    <result column="act_id" jdbcType="INTEGER" property="actId" />
+    <result column="fill_reduce_money" jdbcType="DECIMAL" property="fillReduceMoney" />
+    <result column="real_discount_card_num" jdbcType="VARCHAR" property="realDiscountCardNum" />
+    <result column="real_discount_rate" jdbcType="DECIMAL" property="realDiscountRate" />
+    <result column="real_discount_money" jdbcType="DECIMAL" property="realDiscountMoney" />
+    <result column="gift_money" jdbcType="DECIMAL" property="giftMoney" />
+    <result column="vip_rate" jdbcType="DECIMAL" property="vipRate" />
+    <result column="vip_reduced" jdbcType="DECIMAL" property="vipReduced" />
+    <result column="is_installment" jdbcType="BIT" property="isInstallment" />
+    <result column="installment_paycode" jdbcType="VARCHAR" property="installmentPaycode" />
+    <result column="voucherFee" jdbcType="DECIMAL" property="voucherfee" />
+    <result column="installment_per_money" jdbcType="DECIMAL" property="installmentPerMoney" />
+    <result column="installment_times" jdbcType="INTEGER" property="installmentTimes" />
+    <result column="installment_fee_rate" jdbcType="DECIMAL" property="installmentFeeRate" />
+    <result column="installment_fee_by_seller" jdbcType="DECIMAL" property="installmentFeeBySeller" />
+    <result column="installment_fee_by_customer" jdbcType="DECIMAL" property="installmentFeeByCustomer" />
+    <result column="give_point_online_pay" jdbcType="DECIMAL" property="givePointOnlinePay" />
+    <result column="give_point_rate_online_pay" jdbcType="REAL" property="givePointRateOnlinePay" />
+    <result column="give_point" jdbcType="DECIMAL" property="givePoint" />
+    <result column="give_point_rate" jdbcType="REAL" property="givePointRate" />
+    <result column="give_score" jdbcType="INTEGER" property="giveScore" />
+    <result column="used_point" jdbcType="DECIMAL" property="usedPoint" />
+    <result column="use_online_payed" jdbcType="DECIMAL" property="useOnlinePayed" />
+    <result column="use_cash_payed" jdbcType="DECIMAL" property="useCashPayed" />
+    <result column="use_pos_payed" jdbcType="DECIMAL" property="usePosPayed" />
+    <result column="used_balance" jdbcType="DECIMAL" property="usedBalance" />
+    <result column="use_offline_payed" jdbcType="DECIMAL" property="useOfflinePayed" />
+    <result column="use_offline_reduced" jdbcType="DECIMAL" property="useOfflineReduced" />
+    <result column="need_pay" jdbcType="DECIMAL" property="needPay" />
+    <result column="create_time" jdbcType="INTEGER" property="createTime" />
+    <result column="consignee" jdbcType="VARCHAR" property="consignee" />
+    <result column="consignee_mobile" jdbcType="VARCHAR" property="consigneeMobile" />
+    <result column="order_phone" jdbcType="VARCHAR" property="orderPhone" />
+    <result column="consignee_email" jdbcType="VARCHAR" property="consigneeEmail" />
+    <result column="consignee_tel" jdbcType="VARCHAR" property="consigneeTel" />
+    <result column="zipcode" jdbcType="VARCHAR" property="zipcode" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="shipping_area_id" jdbcType="INTEGER" property="shippingAreaId" />
+    <result column="shipping_city_id" jdbcType="INTEGER" property="shippingCityId" />
+    <result column="shipping_district_id" jdbcType="INTEGER" property="shippingDistrictId" />
+    <result column="shipping_price" jdbcType="DECIMAL" property="shippingPrice" />
+    <result column="shipping_time" jdbcType="VARCHAR" property="shippingTime" />
+    <result column="invoice_type" jdbcType="VARCHAR" property="invoiceType" />
+    <result column="invoice_number" jdbcType="VARCHAR" property="invoiceNumber" />
+    <result column="invoice_title" jdbcType="VARCHAR" property="invoiceTitle" />
+    <result column="invoice_item" jdbcType="VARCHAR" property="invoiceItem" />
+    <result column="print_invoice" jdbcType="BIT" property="printInvoice" />
+    <result column="order_memo" jdbcType="VARCHAR" property="orderMemo" />
+    <result column="manage_memo" jdbcType="VARCHAR" property="manageMemo" />
+    <result column="type" jdbcType="BIT" property="type" />
+    <result column="refund_order_id" jdbcType="INTEGER" property="refundOrderId" />
+    <result column="parent_order_sn" jdbcType="BIGINT" property="parentOrderSn" />
+    <result column="cancel_reason" jdbcType="VARCHAR" property="cancelReason" />
+    <result column="sign_order_time" jdbcType="INTEGER" property="signOrderTime" />
+    <result column="yiqifa_flag" jdbcType="BIT" property="yiqifaFlag" />
+    <result column="yiqifa_cid" jdbcType="VARCHAR" property="yiqifaCid" />
+    <result column="yiqifa_wi" jdbcType="VARCHAR" property="yiqifaWi" />
+    <result column="yiqifa_note_flag" jdbcType="BIT" property="yiqifaNoteFlag" />
+    <result column="last_op_time" jdbcType="INTEGER" property="lastOpTime" />
+    <result column="auto_check" jdbcType="TINYINT" property="autoCheck" />
+    <result column="check_time" jdbcType="INTEGER" property="checkTime" />
+    <result column="360_flag" jdbcType="BIT" property="360Flag" />
+    <result column="360_bid" jdbcType="VARCHAR" property="360Bid" />
+    <result column="360_qid" jdbcType="VARCHAR" property="360Qid" />
+    <result column="360_qihoo_id" jdbcType="VARCHAR" property="360QihooId" />
+    <result column="360_ext" jdbcType="VARCHAR" property="360Ext" />
+    <result column="360_note_flag" jdbcType="TINYINT" property="360NoteFlag" />
+    <result column="is_send" jdbcType="TINYINT" property="isSend" />
+    <result column="source" jdbcType="BIT" property="source" />
+    <result column="rejection_status" jdbcType="BIT" property="rejectionStatus" />
+    <result column="reserve_order" jdbcType="BIT" property="reserveOrder" />
+    <result column="cancel_reason_id" jdbcType="INTEGER" property="cancelReasonId" />
+    <result column="cancel_type" jdbcType="TINYINT" property="cancelType" />
+    <result column="refund_money" jdbcType="DECIMAL" property="refundMoney" />
+    <result column="oversea_express_id" jdbcType="BIT" property="overseaExpressId" />
+    <result column="is_thesea" jdbcType="BIT" property="isThesea" />
+    <result column="airway_billnumber" jdbcType="VARCHAR" property="airwayBillnumber" />
+    <result column="currency" jdbcType="VARCHAR" property="currency" />
+    <result column="foreign_money" jdbcType="DECIMAL" property="foreignMoney" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.zpapi.other.model.GtOrdersWithBLOBs">
+    <result column="fill_reduce_rule" jdbcType="LONGVARCHAR" property="fillReduceRule" />
+    <result column="give_point_rule" jdbcType="LONGVARCHAR" property="givePointRule" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    order_id, is_hidden, order_sn, belong_to, first_warehouse_id, warehouse_id, original_warehouse_id, 
+    final_warehouse_id, is_our_send, is_all_send, sina_order_id, member_id, edit_status, 
+    sendhouse_id, sendhouse_person_id, advis, express_id, sec_express_id, sec_express_sn, 
+    express_sn, change_house_id, packet_num, status, sub_status, add_status, pay_status, 
+    pay_type_id, offline_payment_name, total_amount, discount_card_num, discount_card_condition, 
+    discount_card_money, category_card_num, category_card_money, act_id, fill_reduce_money, 
+    real_discount_card_num, real_discount_rate, real_discount_money, gift_money, vip_rate, 
+    vip_reduced, is_installment, installment_paycode, voucherFee, installment_per_money, 
+    installment_times, installment_fee_rate, installment_fee_by_seller, installment_fee_by_customer, 
+    give_point_online_pay, give_point_rate_online_pay, give_point, give_point_rate, give_score, 
+    used_point, use_online_payed, use_cash_payed, use_pos_payed, used_balance, use_offline_payed, 
+    use_offline_reduced, need_pay, create_time, consignee, consignee_mobile, order_phone, 
+    consignee_email, consignee_tel, zipcode, address, shipping_area_id, shipping_city_id, 
+    shipping_district_id, shipping_price, shipping_time, invoice_type, invoice_number, 
+    invoice_title, invoice_item, print_invoice, order_memo, manage_memo, type, refund_order_id, 
+    parent_order_sn, cancel_reason, sign_order_time, yiqifa_flag, yiqifa_cid, yiqifa_wi, 
+    yiqifa_note_flag, last_op_time, auto_check, check_time, 360_flag, 360_bid, 360_qid, 
+    360_qihoo_id, 360_ext, 360_note_flag, is_send, source, rejection_status, reserve_order, 
+    cancel_reason_id, cancel_type, refund_money, oversea_express_id, is_thesea, airway_billnumber, 
+    currency, foreign_money
+  </sql>
+  <sql id="Blob_Column_List">
+    fill_reduce_rule, give_point_rule
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="com.zpapi.other.model.GtOrdersExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from gt_orders
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="com.zpapi.other.model.GtOrdersExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from gt_orders
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from gt_orders
+    where order_id = #{orderId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from gt_orders
+    where order_id = #{orderId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.zpapi.other.model.GtOrdersExample">
+    delete from gt_orders
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zpapi.other.model.GtOrdersWithBLOBs">
+    insert into gt_orders (order_id, is_hidden, order_sn, 
+      belong_to, first_warehouse_id, warehouse_id, 
+      original_warehouse_id, final_warehouse_id, 
+      is_our_send, is_all_send, sina_order_id, 
+      member_id, edit_status, sendhouse_id, 
+      sendhouse_person_id, advis, express_id, 
+      sec_express_id, sec_express_sn, express_sn, 
+      change_house_id, packet_num, status, 
+      sub_status, add_status, pay_status, 
+      pay_type_id, offline_payment_name, total_amount, 
+      discount_card_num, discount_card_condition, 
+      discount_card_money, category_card_num, category_card_money, 
+      act_id, fill_reduce_money, real_discount_card_num, 
+      real_discount_rate, real_discount_money, gift_money, 
+      vip_rate, vip_reduced, is_installment, 
+      installment_paycode, voucherFee, installment_per_money, 
+      installment_times, installment_fee_rate, installment_fee_by_seller, 
+      installment_fee_by_customer, give_point_online_pay, 
+      give_point_rate_online_pay, give_point, give_point_rate, 
+      give_score, used_point, use_online_payed, 
+      use_cash_payed, use_pos_payed, used_balance, 
+      use_offline_payed, use_offline_reduced, need_pay, 
+      create_time, consignee, consignee_mobile, 
+      order_phone, consignee_email, consignee_tel, 
+      zipcode, address, shipping_area_id, 
+      shipping_city_id, shipping_district_id, shipping_price, 
+      shipping_time, invoice_type, invoice_number, 
+      invoice_title, invoice_item, print_invoice, 
+      order_memo, manage_memo, type, 
+      refund_order_id, parent_order_sn, cancel_reason, 
+      sign_order_time, yiqifa_flag, yiqifa_cid, 
+      yiqifa_wi, yiqifa_note_flag, last_op_time, 
+      auto_check, check_time, 360_flag, 
+      360_bid, 360_qid, 360_qihoo_id, 
+      360_ext, 360_note_flag, is_send, 
+      source, rejection_status, reserve_order, 
+      cancel_reason_id, cancel_type, refund_money, 
+      oversea_express_id, is_thesea, airway_billnumber, 
+      currency, foreign_money, fill_reduce_rule, 
+      give_point_rule)
+    values (#{orderId,jdbcType=INTEGER}, #{isHidden,jdbcType=BIT}, #{orderSn,jdbcType=BIGINT}, 
+      #{belongTo,jdbcType=INTEGER}, #{firstWarehouseId,jdbcType=TINYINT}, #{warehouseId,jdbcType=INTEGER}, 
+      #{originalWarehouseId,jdbcType=TINYINT}, #{finalWarehouseId,jdbcType=TINYINT}, 
+      #{isOurSend,jdbcType=TINYINT}, #{isAllSend,jdbcType=TINYINT}, #{sinaOrderId,jdbcType=VARCHAR}, 
+      #{memberId,jdbcType=BIGINT}, #{editStatus,jdbcType=BIT}, #{sendhouseId,jdbcType=INTEGER}, 
+      #{sendhousePersonId,jdbcType=INTEGER}, #{advis,jdbcType=VARCHAR}, #{expressId,jdbcType=INTEGER}, 
+      #{secExpressId,jdbcType=INTEGER}, #{secExpressSn,jdbcType=VARCHAR}, #{expressSn,jdbcType=VARCHAR}, 
+      #{changeHouseId,jdbcType=INTEGER}, #{packetNum,jdbcType=INTEGER}, #{status,jdbcType=TINYINT}, 
+      #{subStatus,jdbcType=TINYINT}, #{addStatus,jdbcType=TINYINT}, #{payStatus,jdbcType=TINYINT}, 
+      #{payTypeId,jdbcType=TINYINT}, #{offlinePaymentName,jdbcType=VARCHAR}, #{totalAmount,jdbcType=DECIMAL}, 
+      #{discountCardNum,jdbcType=VARCHAR}, #{discountCardCondition,jdbcType=DECIMAL}, 
+      #{discountCardMoney,jdbcType=DECIMAL}, #{categoryCardNum,jdbcType=VARCHAR}, #{categoryCardMoney,jdbcType=DECIMAL}, 
+      #{actId,jdbcType=INTEGER}, #{fillReduceMoney,jdbcType=DECIMAL}, #{realDiscountCardNum,jdbcType=VARCHAR}, 
+      #{realDiscountRate,jdbcType=DECIMAL}, #{realDiscountMoney,jdbcType=DECIMAL}, #{giftMoney,jdbcType=DECIMAL}, 
+      #{vipRate,jdbcType=DECIMAL}, #{vipReduced,jdbcType=DECIMAL}, #{isInstallment,jdbcType=BIT}, 
+      #{installmentPaycode,jdbcType=VARCHAR}, #{voucherfee,jdbcType=DECIMAL}, #{installmentPerMoney,jdbcType=DECIMAL}, 
+      #{installmentTimes,jdbcType=INTEGER}, #{installmentFeeRate,jdbcType=DECIMAL}, #{installmentFeeBySeller,jdbcType=DECIMAL}, 
+      #{installmentFeeByCustomer,jdbcType=DECIMAL}, #{givePointOnlinePay,jdbcType=DECIMAL}, 
+      #{givePointRateOnlinePay,jdbcType=REAL}, #{givePoint,jdbcType=DECIMAL}, #{givePointRate,jdbcType=REAL}, 
+      #{giveScore,jdbcType=INTEGER}, #{usedPoint,jdbcType=DECIMAL}, #{useOnlinePayed,jdbcType=DECIMAL}, 
+      #{useCashPayed,jdbcType=DECIMAL}, #{usePosPayed,jdbcType=DECIMAL}, #{usedBalance,jdbcType=DECIMAL}, 
+      #{useOfflinePayed,jdbcType=DECIMAL}, #{useOfflineReduced,jdbcType=DECIMAL}, #{needPay,jdbcType=DECIMAL}, 
+      #{createTime,jdbcType=INTEGER}, #{consignee,jdbcType=VARCHAR}, #{consigneeMobile,jdbcType=VARCHAR}, 
+      #{orderPhone,jdbcType=VARCHAR}, #{consigneeEmail,jdbcType=VARCHAR}, #{consigneeTel,jdbcType=VARCHAR}, 
+      #{zipcode,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{shippingAreaId,jdbcType=INTEGER}, 
+      #{shippingCityId,jdbcType=INTEGER}, #{shippingDistrictId,jdbcType=INTEGER}, #{shippingPrice,jdbcType=DECIMAL}, 
+      #{shippingTime,jdbcType=VARCHAR}, #{invoiceType,jdbcType=VARCHAR}, #{invoiceNumber,jdbcType=VARCHAR}, 
+      #{invoiceTitle,jdbcType=VARCHAR}, #{invoiceItem,jdbcType=VARCHAR}, #{printInvoice,jdbcType=BIT}, 
+      #{orderMemo,jdbcType=VARCHAR}, #{manageMemo,jdbcType=VARCHAR}, #{type,jdbcType=BIT}, 
+      #{refundOrderId,jdbcType=INTEGER}, #{parentOrderSn,jdbcType=BIGINT}, #{cancelReason,jdbcType=VARCHAR}, 
+      #{signOrderTime,jdbcType=INTEGER}, #{yiqifaFlag,jdbcType=BIT}, #{yiqifaCid,jdbcType=VARCHAR}, 
+      #{yiqifaWi,jdbcType=VARCHAR}, #{yiqifaNoteFlag,jdbcType=BIT}, #{lastOpTime,jdbcType=INTEGER}, 
+      #{autoCheck,jdbcType=TINYINT}, #{checkTime,jdbcType=INTEGER}, #{360Flag,jdbcType=BIT}, 
+      #{360Bid,jdbcType=VARCHAR}, #{360Qid,jdbcType=VARCHAR}, #{360QihooId,jdbcType=VARCHAR}, 
+      #{360Ext,jdbcType=VARCHAR}, #{360NoteFlag,jdbcType=TINYINT}, #{isSend,jdbcType=TINYINT}, 
+      #{source,jdbcType=BIT}, #{rejectionStatus,jdbcType=BIT}, #{reserveOrder,jdbcType=BIT}, 
+      #{cancelReasonId,jdbcType=INTEGER}, #{cancelType,jdbcType=TINYINT}, #{refundMoney,jdbcType=DECIMAL}, 
+      #{overseaExpressId,jdbcType=BIT}, #{isThesea,jdbcType=BIT}, #{airwayBillnumber,jdbcType=VARCHAR}, 
+      #{currency,jdbcType=VARCHAR}, #{foreignMoney,jdbcType=DECIMAL}, #{fillReduceRule,jdbcType=LONGVARCHAR}, 
+      #{givePointRule,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zpapi.other.model.GtOrdersWithBLOBs">
+    insert into gt_orders
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="orderId != null">
+        order_id,
+      </if>
+      <if test="isHidden != null">
+        is_hidden,
+      </if>
+      <if test="orderSn != null">
+        order_sn,
+      </if>
+      <if test="belongTo != null">
+        belong_to,
+      </if>
+      <if test="firstWarehouseId != null">
+        first_warehouse_id,
+      </if>
+      <if test="warehouseId != null">
+        warehouse_id,
+      </if>
+      <if test="originalWarehouseId != null">
+        original_warehouse_id,
+      </if>
+      <if test="finalWarehouseId != null">
+        final_warehouse_id,
+      </if>
+      <if test="isOurSend != null">
+        is_our_send,
+      </if>
+      <if test="isAllSend != null">
+        is_all_send,
+      </if>
+      <if test="sinaOrderId != null">
+        sina_order_id,
+      </if>
+      <if test="memberId != null">
+        member_id,
+      </if>
+      <if test="editStatus != null">
+        edit_status,
+      </if>
+      <if test="sendhouseId != null">
+        sendhouse_id,
+      </if>
+      <if test="sendhousePersonId != null">
+        sendhouse_person_id,
+      </if>
+      <if test="advis != null">
+        advis,
+      </if>
+      <if test="expressId != null">
+        express_id,
+      </if>
+      <if test="secExpressId != null">
+        sec_express_id,
+      </if>
+      <if test="secExpressSn != null">
+        sec_express_sn,
+      </if>
+      <if test="expressSn != null">
+        express_sn,
+      </if>
+      <if test="changeHouseId != null">
+        change_house_id,
+      </if>
+      <if test="packetNum != null">
+        packet_num,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="subStatus != null">
+        sub_status,
+      </if>
+      <if test="addStatus != null">
+        add_status,
+      </if>
+      <if test="payStatus != null">
+        pay_status,
+      </if>
+      <if test="payTypeId != null">
+        pay_type_id,
+      </if>
+      <if test="offlinePaymentName != null">
+        offline_payment_name,
+      </if>
+      <if test="totalAmount != null">
+        total_amount,
+      </if>
+      <if test="discountCardNum != null">
+        discount_card_num,
+      </if>
+      <if test="discountCardCondition != null">
+        discount_card_condition,
+      </if>
+      <if test="discountCardMoney != null">
+        discount_card_money,
+      </if>
+      <if test="categoryCardNum != null">
+        category_card_num,
+      </if>
+      <if test="categoryCardMoney != null">
+        category_card_money,
+      </if>
+      <if test="actId != null">
+        act_id,
+      </if>
+      <if test="fillReduceMoney != null">
+        fill_reduce_money,
+      </if>
+      <if test="realDiscountCardNum != null">
+        real_discount_card_num,
+      </if>
+      <if test="realDiscountRate != null">
+        real_discount_rate,
+      </if>
+      <if test="realDiscountMoney != null">
+        real_discount_money,
+      </if>
+      <if test="giftMoney != null">
+        gift_money,
+      </if>
+      <if test="vipRate != null">
+        vip_rate,
+      </if>
+      <if test="vipReduced != null">
+        vip_reduced,
+      </if>
+      <if test="isInstallment != null">
+        is_installment,
+      </if>
+      <if test="installmentPaycode != null">
+        installment_paycode,
+      </if>
+      <if test="voucherfee != null">
+        voucherFee,
+      </if>
+      <if test="installmentPerMoney != null">
+        installment_per_money,
+      </if>
+      <if test="installmentTimes != null">
+        installment_times,
+      </if>
+      <if test="installmentFeeRate != null">
+        installment_fee_rate,
+      </if>
+      <if test="installmentFeeBySeller != null">
+        installment_fee_by_seller,
+      </if>
+      <if test="installmentFeeByCustomer != null">
+        installment_fee_by_customer,
+      </if>
+      <if test="givePointOnlinePay != null">
+        give_point_online_pay,
+      </if>
+      <if test="givePointRateOnlinePay != null">
+        give_point_rate_online_pay,
+      </if>
+      <if test="givePoint != null">
+        give_point,
+      </if>
+      <if test="givePointRate != null">
+        give_point_rate,
+      </if>
+      <if test="giveScore != null">
+        give_score,
+      </if>
+      <if test="usedPoint != null">
+        used_point,
+      </if>
+      <if test="useOnlinePayed != null">
+        use_online_payed,
+      </if>
+      <if test="useCashPayed != null">
+        use_cash_payed,
+      </if>
+      <if test="usePosPayed != null">
+        use_pos_payed,
+      </if>
+      <if test="usedBalance != null">
+        used_balance,
+      </if>
+      <if test="useOfflinePayed != null">
+        use_offline_payed,
+      </if>
+      <if test="useOfflineReduced != null">
+        use_offline_reduced,
+      </if>
+      <if test="needPay != null">
+        need_pay,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="consignee != null">
+        consignee,
+      </if>
+      <if test="consigneeMobile != null">
+        consignee_mobile,
+      </if>
+      <if test="orderPhone != null">
+        order_phone,
+      </if>
+      <if test="consigneeEmail != null">
+        consignee_email,
+      </if>
+      <if test="consigneeTel != null">
+        consignee_tel,
+      </if>
+      <if test="zipcode != null">
+        zipcode,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="shippingAreaId != null">
+        shipping_area_id,
+      </if>
+      <if test="shippingCityId != null">
+        shipping_city_id,
+      </if>
+      <if test="shippingDistrictId != null">
+        shipping_district_id,
+      </if>
+      <if test="shippingPrice != null">
+        shipping_price,
+      </if>
+      <if test="shippingTime != null">
+        shipping_time,
+      </if>
+      <if test="invoiceType != null">
+        invoice_type,
+      </if>
+      <if test="invoiceNumber != null">
+        invoice_number,
+      </if>
+      <if test="invoiceTitle != null">
+        invoice_title,
+      </if>
+      <if test="invoiceItem != null">
+        invoice_item,
+      </if>
+      <if test="printInvoice != null">
+        print_invoice,
+      </if>
+      <if test="orderMemo != null">
+        order_memo,
+      </if>
+      <if test="manageMemo != null">
+        manage_memo,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="refundOrderId != null">
+        refund_order_id,
+      </if>
+      <if test="parentOrderSn != null">
+        parent_order_sn,
+      </if>
+      <if test="cancelReason != null">
+        cancel_reason,
+      </if>
+      <if test="signOrderTime != null">
+        sign_order_time,
+      </if>
+      <if test="yiqifaFlag != null">
+        yiqifa_flag,
+      </if>
+      <if test="yiqifaCid != null">
+        yiqifa_cid,
+      </if>
+      <if test="yiqifaWi != null">
+        yiqifa_wi,
+      </if>
+      <if test="yiqifaNoteFlag != null">
+        yiqifa_note_flag,
+      </if>
+      <if test="lastOpTime != null">
+        last_op_time,
+      </if>
+      <if test="autoCheck != null">
+        auto_check,
+      </if>
+      <if test="checkTime != null">
+        check_time,
+      </if>
+      <if test="360Flag != null">
+        360_flag,
+      </if>
+      <if test="360Bid != null">
+        360_bid,
+      </if>
+      <if test="360Qid != null">
+        360_qid,
+      </if>
+      <if test="360QihooId != null">
+        360_qihoo_id,
+      </if>
+      <if test="360Ext != null">
+        360_ext,
+      </if>
+      <if test="360NoteFlag != null">
+        360_note_flag,
+      </if>
+      <if test="isSend != null">
+        is_send,
+      </if>
+      <if test="source != null">
+        source,
+      </if>
+      <if test="rejectionStatus != null">
+        rejection_status,
+      </if>
+      <if test="reserveOrder != null">
+        reserve_order,
+      </if>
+      <if test="cancelReasonId != null">
+        cancel_reason_id,
+      </if>
+      <if test="cancelType != null">
+        cancel_type,
+      </if>
+      <if test="refundMoney != null">
+        refund_money,
+      </if>
+      <if test="overseaExpressId != null">
+        oversea_express_id,
+      </if>
+      <if test="isThesea != null">
+        is_thesea,
+      </if>
+      <if test="airwayBillnumber != null">
+        airway_billnumber,
+      </if>
+      <if test="currency != null">
+        currency,
+      </if>
+      <if test="foreignMoney != null">
+        foreign_money,
+      </if>
+      <if test="fillReduceRule != null">
+        fill_reduce_rule,
+      </if>
+      <if test="givePointRule != null">
+        give_point_rule,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="orderId != null">
+        #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="isHidden != null">
+        #{isHidden,jdbcType=BIT},
+      </if>
+      <if test="orderSn != null">
+        #{orderSn,jdbcType=BIGINT},
+      </if>
+      <if test="belongTo != null">
+        #{belongTo,jdbcType=INTEGER},
+      </if>
+      <if test="firstWarehouseId != null">
+        #{firstWarehouseId,jdbcType=TINYINT},
+      </if>
+      <if test="warehouseId != null">
+        #{warehouseId,jdbcType=INTEGER},
+      </if>
+      <if test="originalWarehouseId != null">
+        #{originalWarehouseId,jdbcType=TINYINT},
+      </if>
+      <if test="finalWarehouseId != null">
+        #{finalWarehouseId,jdbcType=TINYINT},
+      </if>
+      <if test="isOurSend != null">
+        #{isOurSend,jdbcType=TINYINT},
+      </if>
+      <if test="isAllSend != null">
+        #{isAllSend,jdbcType=TINYINT},
+      </if>
+      <if test="sinaOrderId != null">
+        #{sinaOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="memberId != null">
+        #{memberId,jdbcType=BIGINT},
+      </if>
+      <if test="editStatus != null">
+        #{editStatus,jdbcType=BIT},
+      </if>
+      <if test="sendhouseId != null">
+        #{sendhouseId,jdbcType=INTEGER},
+      </if>
+      <if test="sendhousePersonId != null">
+        #{sendhousePersonId,jdbcType=INTEGER},
+      </if>
+      <if test="advis != null">
+        #{advis,jdbcType=VARCHAR},
+      </if>
+      <if test="expressId != null">
+        #{expressId,jdbcType=INTEGER},
+      </if>
+      <if test="secExpressId != null">
+        #{secExpressId,jdbcType=INTEGER},
+      </if>
+      <if test="secExpressSn != null">
+        #{secExpressSn,jdbcType=VARCHAR},
+      </if>
+      <if test="expressSn != null">
+        #{expressSn,jdbcType=VARCHAR},
+      </if>
+      <if test="changeHouseId != null">
+        #{changeHouseId,jdbcType=INTEGER},
+      </if>
+      <if test="packetNum != null">
+        #{packetNum,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="subStatus != null">
+        #{subStatus,jdbcType=TINYINT},
+      </if>
+      <if test="addStatus != null">
+        #{addStatus,jdbcType=TINYINT},
+      </if>
+      <if test="payStatus != null">
+        #{payStatus,jdbcType=TINYINT},
+      </if>
+      <if test="payTypeId != null">
+        #{payTypeId,jdbcType=TINYINT},
+      </if>
+      <if test="offlinePaymentName != null">
+        #{offlinePaymentName,jdbcType=VARCHAR},
+      </if>
+      <if test="totalAmount != null">
+        #{totalAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="discountCardNum != null">
+        #{discountCardNum,jdbcType=VARCHAR},
+      </if>
+      <if test="discountCardCondition != null">
+        #{discountCardCondition,jdbcType=DECIMAL},
+      </if>
+      <if test="discountCardMoney != null">
+        #{discountCardMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="categoryCardNum != null">
+        #{categoryCardNum,jdbcType=VARCHAR},
+      </if>
+      <if test="categoryCardMoney != null">
+        #{categoryCardMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="actId != null">
+        #{actId,jdbcType=INTEGER},
+      </if>
+      <if test="fillReduceMoney != null">
+        #{fillReduceMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="realDiscountCardNum != null">
+        #{realDiscountCardNum,jdbcType=VARCHAR},
+      </if>
+      <if test="realDiscountRate != null">
+        #{realDiscountRate,jdbcType=DECIMAL},
+      </if>
+      <if test="realDiscountMoney != null">
+        #{realDiscountMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="giftMoney != null">
+        #{giftMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="vipRate != null">
+        #{vipRate,jdbcType=DECIMAL},
+      </if>
+      <if test="vipReduced != null">
+        #{vipReduced,jdbcType=DECIMAL},
+      </if>
+      <if test="isInstallment != null">
+        #{isInstallment,jdbcType=BIT},
+      </if>
+      <if test="installmentPaycode != null">
+        #{installmentPaycode,jdbcType=VARCHAR},
+      </if>
+      <if test="voucherfee != null">
+        #{voucherfee,jdbcType=DECIMAL},
+      </if>
+      <if test="installmentPerMoney != null">
+        #{installmentPerMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="installmentTimes != null">
+        #{installmentTimes,jdbcType=INTEGER},
+      </if>
+      <if test="installmentFeeRate != null">
+        #{installmentFeeRate,jdbcType=DECIMAL},
+      </if>
+      <if test="installmentFeeBySeller != null">
+        #{installmentFeeBySeller,jdbcType=DECIMAL},
+      </if>
+      <if test="installmentFeeByCustomer != null">
+        #{installmentFeeByCustomer,jdbcType=DECIMAL},
+      </if>
+      <if test="givePointOnlinePay != null">
+        #{givePointOnlinePay,jdbcType=DECIMAL},
+      </if>
+      <if test="givePointRateOnlinePay != null">
+        #{givePointRateOnlinePay,jdbcType=REAL},
+      </if>
+      <if test="givePoint != null">
+        #{givePoint,jdbcType=DECIMAL},
+      </if>
+      <if test="givePointRate != null">
+        #{givePointRate,jdbcType=REAL},
+      </if>
+      <if test="giveScore != null">
+        #{giveScore,jdbcType=INTEGER},
+      </if>
+      <if test="usedPoint != null">
+        #{usedPoint,jdbcType=DECIMAL},
+      </if>
+      <if test="useOnlinePayed != null">
+        #{useOnlinePayed,jdbcType=DECIMAL},
+      </if>
+      <if test="useCashPayed != null">
+        #{useCashPayed,jdbcType=DECIMAL},
+      </if>
+      <if test="usePosPayed != null">
+        #{usePosPayed,jdbcType=DECIMAL},
+      </if>
+      <if test="usedBalance != null">
+        #{usedBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="useOfflinePayed != null">
+        #{useOfflinePayed,jdbcType=DECIMAL},
+      </if>
+      <if test="useOfflineReduced != null">
+        #{useOfflineReduced,jdbcType=DECIMAL},
+      </if>
+      <if test="needPay != null">
+        #{needPay,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=INTEGER},
+      </if>
+      <if test="consignee != null">
+        #{consignee,jdbcType=VARCHAR},
+      </if>
+      <if test="consigneeMobile != null">
+        #{consigneeMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="orderPhone != null">
+        #{orderPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="consigneeEmail != null">
+        #{consigneeEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="consigneeTel != null">
+        #{consigneeTel,jdbcType=VARCHAR},
+      </if>
+      <if test="zipcode != null">
+        #{zipcode,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="shippingAreaId != null">
+        #{shippingAreaId,jdbcType=INTEGER},
+      </if>
+      <if test="shippingCityId != null">
+        #{shippingCityId,jdbcType=INTEGER},
+      </if>
+      <if test="shippingDistrictId != null">
+        #{shippingDistrictId,jdbcType=INTEGER},
+      </if>
+      <if test="shippingPrice != null">
+        #{shippingPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="shippingTime != null">
+        #{shippingTime,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceType != null">
+        #{invoiceType,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceNumber != null">
+        #{invoiceNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceTitle != null">
+        #{invoiceTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceItem != null">
+        #{invoiceItem,jdbcType=VARCHAR},
+      </if>
+      <if test="printInvoice != null">
+        #{printInvoice,jdbcType=BIT},
+      </if>
+      <if test="orderMemo != null">
+        #{orderMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="manageMemo != null">
+        #{manageMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=BIT},
+      </if>
+      <if test="refundOrderId != null">
+        #{refundOrderId,jdbcType=INTEGER},
+      </if>
+      <if test="parentOrderSn != null">
+        #{parentOrderSn,jdbcType=BIGINT},
+      </if>
+      <if test="cancelReason != null">
+        #{cancelReason,jdbcType=VARCHAR},
+      </if>
+      <if test="signOrderTime != null">
+        #{signOrderTime,jdbcType=INTEGER},
+      </if>
+      <if test="yiqifaFlag != null">
+        #{yiqifaFlag,jdbcType=BIT},
+      </if>
+      <if test="yiqifaCid != null">
+        #{yiqifaCid,jdbcType=VARCHAR},
+      </if>
+      <if test="yiqifaWi != null">
+        #{yiqifaWi,jdbcType=VARCHAR},
+      </if>
+      <if test="yiqifaNoteFlag != null">
+        #{yiqifaNoteFlag,jdbcType=BIT},
+      </if>
+      <if test="lastOpTime != null">
+        #{lastOpTime,jdbcType=INTEGER},
+      </if>
+      <if test="autoCheck != null">
+        #{autoCheck,jdbcType=TINYINT},
+      </if>
+      <if test="checkTime != null">
+        #{checkTime,jdbcType=INTEGER},
+      </if>
+      <if test="360Flag != null">
+        #{360Flag,jdbcType=BIT},
+      </if>
+      <if test="360Bid != null">
+        #{360Bid,jdbcType=VARCHAR},
+      </if>
+      <if test="360Qid != null">
+        #{360Qid,jdbcType=VARCHAR},
+      </if>
+      <if test="360QihooId != null">
+        #{360QihooId,jdbcType=VARCHAR},
+      </if>
+      <if test="360Ext != null">
+        #{360Ext,jdbcType=VARCHAR},
+      </if>
+      <if test="360NoteFlag != null">
+        #{360NoteFlag,jdbcType=TINYINT},
+      </if>
+      <if test="isSend != null">
+        #{isSend,jdbcType=TINYINT},
+      </if>
+      <if test="source != null">
+        #{source,jdbcType=BIT},
+      </if>
+      <if test="rejectionStatus != null">
+        #{rejectionStatus,jdbcType=BIT},
+      </if>
+      <if test="reserveOrder != null">
+        #{reserveOrder,jdbcType=BIT},
+      </if>
+      <if test="cancelReasonId != null">
+        #{cancelReasonId,jdbcType=INTEGER},
+      </if>
+      <if test="cancelType != null">
+        #{cancelType,jdbcType=TINYINT},
+      </if>
+      <if test="refundMoney != null">
+        #{refundMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="overseaExpressId != null">
+        #{overseaExpressId,jdbcType=BIT},
+      </if>
+      <if test="isThesea != null">
+        #{isThesea,jdbcType=BIT},
+      </if>
+      <if test="airwayBillnumber != null">
+        #{airwayBillnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="currency != null">
+        #{currency,jdbcType=VARCHAR},
+      </if>
+      <if test="foreignMoney != null">
+        #{foreignMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="fillReduceRule != null">
+        #{fillReduceRule,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="givePointRule != null">
+        #{givePointRule,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zpapi.other.model.GtOrdersExample" resultType="java.lang.Integer">
+    select count(*) from gt_orders
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update gt_orders
+    <set>
+      <if test="record.orderId != null">
+        order_id = #{record.orderId,jdbcType=INTEGER},
+      </if>
+      <if test="record.isHidden != null">
+        is_hidden = #{record.isHidden,jdbcType=BIT},
+      </if>
+      <if test="record.orderSn != null">
+        order_sn = #{record.orderSn,jdbcType=BIGINT},
+      </if>
+      <if test="record.belongTo != null">
+        belong_to = #{record.belongTo,jdbcType=INTEGER},
+      </if>
+      <if test="record.firstWarehouseId != null">
+        first_warehouse_id = #{record.firstWarehouseId,jdbcType=TINYINT},
+      </if>
+      <if test="record.warehouseId != null">
+        warehouse_id = #{record.warehouseId,jdbcType=INTEGER},
+      </if>
+      <if test="record.originalWarehouseId != null">
+        original_warehouse_id = #{record.originalWarehouseId,jdbcType=TINYINT},
+      </if>
+      <if test="record.finalWarehouseId != null">
+        final_warehouse_id = #{record.finalWarehouseId,jdbcType=TINYINT},
+      </if>
+      <if test="record.isOurSend != null">
+        is_our_send = #{record.isOurSend,jdbcType=TINYINT},
+      </if>
+      <if test="record.isAllSend != null">
+        is_all_send = #{record.isAllSend,jdbcType=TINYINT},
+      </if>
+      <if test="record.sinaOrderId != null">
+        sina_order_id = #{record.sinaOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.memberId != null">
+        member_id = #{record.memberId,jdbcType=BIGINT},
+      </if>
+      <if test="record.editStatus != null">
+        edit_status = #{record.editStatus,jdbcType=BIT},
+      </if>
+      <if test="record.sendhouseId != null">
+        sendhouse_id = #{record.sendhouseId,jdbcType=INTEGER},
+      </if>
+      <if test="record.sendhousePersonId != null">
+        sendhouse_person_id = #{record.sendhousePersonId,jdbcType=INTEGER},
+      </if>
+      <if test="record.advis != null">
+        advis = #{record.advis,jdbcType=VARCHAR},
+      </if>
+      <if test="record.expressId != null">
+        express_id = #{record.expressId,jdbcType=INTEGER},
+      </if>
+      <if test="record.secExpressId != null">
+        sec_express_id = #{record.secExpressId,jdbcType=INTEGER},
+      </if>
+      <if test="record.secExpressSn != null">
+        sec_express_sn = #{record.secExpressSn,jdbcType=VARCHAR},
+      </if>
+      <if test="record.expressSn != null">
+        express_sn = #{record.expressSn,jdbcType=VARCHAR},
+      </if>
+      <if test="record.changeHouseId != null">
+        change_house_id = #{record.changeHouseId,jdbcType=INTEGER},
+      </if>
+      <if test="record.packetNum != null">
+        packet_num = #{record.packetNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.status != null">
+        status = #{record.status,jdbcType=TINYINT},
+      </if>
+      <if test="record.subStatus != null">
+        sub_status = #{record.subStatus,jdbcType=TINYINT},
+      </if>
+      <if test="record.addStatus != null">
+        add_status = #{record.addStatus,jdbcType=TINYINT},
+      </if>
+      <if test="record.payStatus != null">
+        pay_status = #{record.payStatus,jdbcType=TINYINT},
+      </if>
+      <if test="record.payTypeId != null">
+        pay_type_id = #{record.payTypeId,jdbcType=TINYINT},
+      </if>
+      <if test="record.offlinePaymentName != null">
+        offline_payment_name = #{record.offlinePaymentName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.totalAmount != null">
+        total_amount = #{record.totalAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.discountCardNum != null">
+        discount_card_num = #{record.discountCardNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.discountCardCondition != null">
+        discount_card_condition = #{record.discountCardCondition,jdbcType=DECIMAL},
+      </if>
+      <if test="record.discountCardMoney != null">
+        discount_card_money = #{record.discountCardMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="record.categoryCardNum != null">
+        category_card_num = #{record.categoryCardNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.categoryCardMoney != null">
+        category_card_money = #{record.categoryCardMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="record.actId != null">
+        act_id = #{record.actId,jdbcType=INTEGER},
+      </if>
+      <if test="record.fillReduceMoney != null">
+        fill_reduce_money = #{record.fillReduceMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="record.realDiscountCardNum != null">
+        real_discount_card_num = #{record.realDiscountCardNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.realDiscountRate != null">
+        real_discount_rate = #{record.realDiscountRate,jdbcType=DECIMAL},
+      </if>
+      <if test="record.realDiscountMoney != null">
+        real_discount_money = #{record.realDiscountMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="record.giftMoney != null">
+        gift_money = #{record.giftMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="record.vipRate != null">
+        vip_rate = #{record.vipRate,jdbcType=DECIMAL},
+      </if>
+      <if test="record.vipReduced != null">
+        vip_reduced = #{record.vipReduced,jdbcType=DECIMAL},
+      </if>
+      <if test="record.isInstallment != null">
+        is_installment = #{record.isInstallment,jdbcType=BIT},
+      </if>
+      <if test="record.installmentPaycode != null">
+        installment_paycode = #{record.installmentPaycode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.voucherfee != null">
+        voucherFee = #{record.voucherfee,jdbcType=DECIMAL},
+      </if>
+      <if test="record.installmentPerMoney != null">
+        installment_per_money = #{record.installmentPerMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="record.installmentTimes != null">
+        installment_times = #{record.installmentTimes,jdbcType=INTEGER},
+      </if>
+      <if test="record.installmentFeeRate != null">
+        installment_fee_rate = #{record.installmentFeeRate,jdbcType=DECIMAL},
+      </if>
+      <if test="record.installmentFeeBySeller != null">
+        installment_fee_by_seller = #{record.installmentFeeBySeller,jdbcType=DECIMAL},
+      </if>
+      <if test="record.installmentFeeByCustomer != null">
+        installment_fee_by_customer = #{record.installmentFeeByCustomer,jdbcType=DECIMAL},
+      </if>
+      <if test="record.givePointOnlinePay != null">
+        give_point_online_pay = #{record.givePointOnlinePay,jdbcType=DECIMAL},
+      </if>
+      <if test="record.givePointRateOnlinePay != null">
+        give_point_rate_online_pay = #{record.givePointRateOnlinePay,jdbcType=REAL},
+      </if>
+      <if test="record.givePoint != null">
+        give_point = #{record.givePoint,jdbcType=DECIMAL},
+      </if>
+      <if test="record.givePointRate != null">
+        give_point_rate = #{record.givePointRate,jdbcType=REAL},
+      </if>
+      <if test="record.giveScore != null">
+        give_score = #{record.giveScore,jdbcType=INTEGER},
+      </if>
+      <if test="record.usedPoint != null">
+        used_point = #{record.usedPoint,jdbcType=DECIMAL},
+      </if>
+      <if test="record.useOnlinePayed != null">
+        use_online_payed = #{record.useOnlinePayed,jdbcType=DECIMAL},
+      </if>
+      <if test="record.useCashPayed != null">
+        use_cash_payed = #{record.useCashPayed,jdbcType=DECIMAL},
+      </if>
+      <if test="record.usePosPayed != null">
+        use_pos_payed = #{record.usePosPayed,jdbcType=DECIMAL},
+      </if>
+      <if test="record.usedBalance != null">
+        used_balance = #{record.usedBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="record.useOfflinePayed != null">
+        use_offline_payed = #{record.useOfflinePayed,jdbcType=DECIMAL},
+      </if>
+      <if test="record.useOfflineReduced != null">
+        use_offline_reduced = #{record.useOfflineReduced,jdbcType=DECIMAL},
+      </if>
+      <if test="record.needPay != null">
+        need_pay = #{record.needPay,jdbcType=DECIMAL},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.consignee != null">
+        consignee = #{record.consignee,jdbcType=VARCHAR},
+      </if>
+      <if test="record.consigneeMobile != null">
+        consignee_mobile = #{record.consigneeMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderPhone != null">
+        order_phone = #{record.orderPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.consigneeEmail != null">
+        consignee_email = #{record.consigneeEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.consigneeTel != null">
+        consignee_tel = #{record.consigneeTel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zipcode != null">
+        zipcode = #{record.zipcode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.address != null">
+        address = #{record.address,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shippingAreaId != null">
+        shipping_area_id = #{record.shippingAreaId,jdbcType=INTEGER},
+      </if>
+      <if test="record.shippingCityId != null">
+        shipping_city_id = #{record.shippingCityId,jdbcType=INTEGER},
+      </if>
+      <if test="record.shippingDistrictId != null">
+        shipping_district_id = #{record.shippingDistrictId,jdbcType=INTEGER},
+      </if>
+      <if test="record.shippingPrice != null">
+        shipping_price = #{record.shippingPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.shippingTime != null">
+        shipping_time = #{record.shippingTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.invoiceType != null">
+        invoice_type = #{record.invoiceType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.invoiceNumber != null">
+        invoice_number = #{record.invoiceNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.invoiceTitle != null">
+        invoice_title = #{record.invoiceTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.invoiceItem != null">
+        invoice_item = #{record.invoiceItem,jdbcType=VARCHAR},
+      </if>
+      <if test="record.printInvoice != null">
+        print_invoice = #{record.printInvoice,jdbcType=BIT},
+      </if>
+      <if test="record.orderMemo != null">
+        order_memo = #{record.orderMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.manageMemo != null">
+        manage_memo = #{record.manageMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.type != null">
+        type = #{record.type,jdbcType=BIT},
+      </if>
+      <if test="record.refundOrderId != null">
+        refund_order_id = #{record.refundOrderId,jdbcType=INTEGER},
+      </if>
+      <if test="record.parentOrderSn != null">
+        parent_order_sn = #{record.parentOrderSn,jdbcType=BIGINT},
+      </if>
+      <if test="record.cancelReason != null">
+        cancel_reason = #{record.cancelReason,jdbcType=VARCHAR},
+      </if>
+      <if test="record.signOrderTime != null">
+        sign_order_time = #{record.signOrderTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.yiqifaFlag != null">
+        yiqifa_flag = #{record.yiqifaFlag,jdbcType=BIT},
+      </if>
+      <if test="record.yiqifaCid != null">
+        yiqifa_cid = #{record.yiqifaCid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.yiqifaWi != null">
+        yiqifa_wi = #{record.yiqifaWi,jdbcType=VARCHAR},
+      </if>
+      <if test="record.yiqifaNoteFlag != null">
+        yiqifa_note_flag = #{record.yiqifaNoteFlag,jdbcType=BIT},
+      </if>
+      <if test="record.lastOpTime != null">
+        last_op_time = #{record.lastOpTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.autoCheck != null">
+        auto_check = #{record.autoCheck,jdbcType=TINYINT},
+      </if>
+      <if test="record.checkTime != null">
+        check_time = #{record.checkTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.360Flag != null">
+        360_flag = #{record.360Flag,jdbcType=BIT},
+      </if>
+      <if test="record.360Bid != null">
+        360_bid = #{record.360Bid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.360Qid != null">
+        360_qid = #{record.360Qid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.360QihooId != null">
+        360_qihoo_id = #{record.360QihooId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.360Ext != null">
+        360_ext = #{record.360Ext,jdbcType=VARCHAR},
+      </if>
+      <if test="record.360NoteFlag != null">
+        360_note_flag = #{record.360NoteFlag,jdbcType=TINYINT},
+      </if>
+      <if test="record.isSend != null">
+        is_send = #{record.isSend,jdbcType=TINYINT},
+      </if>
+      <if test="record.source != null">
+        source = #{record.source,jdbcType=BIT},
+      </if>
+      <if test="record.rejectionStatus != null">
+        rejection_status = #{record.rejectionStatus,jdbcType=BIT},
+      </if>
+      <if test="record.reserveOrder != null">
+        reserve_order = #{record.reserveOrder,jdbcType=BIT},
+      </if>
+      <if test="record.cancelReasonId != null">
+        cancel_reason_id = #{record.cancelReasonId,jdbcType=INTEGER},
+      </if>
+      <if test="record.cancelType != null">
+        cancel_type = #{record.cancelType,jdbcType=TINYINT},
+      </if>
+      <if test="record.refundMoney != null">
+        refund_money = #{record.refundMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="record.overseaExpressId != null">
+        oversea_express_id = #{record.overseaExpressId,jdbcType=BIT},
+      </if>
+      <if test="record.isThesea != null">
+        is_thesea = #{record.isThesea,jdbcType=BIT},
+      </if>
+      <if test="record.airwayBillnumber != null">
+        airway_billnumber = #{record.airwayBillnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.currency != null">
+        currency = #{record.currency,jdbcType=VARCHAR},
+      </if>
+      <if test="record.foreignMoney != null">
+        foreign_money = #{record.foreignMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="record.fillReduceRule != null">
+        fill_reduce_rule = #{record.fillReduceRule,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.givePointRule != null">
+        give_point_rule = #{record.givePointRule,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update gt_orders
+    set order_id = #{record.orderId,jdbcType=INTEGER},
+      is_hidden = #{record.isHidden,jdbcType=BIT},
+      order_sn = #{record.orderSn,jdbcType=BIGINT},
+      belong_to = #{record.belongTo,jdbcType=INTEGER},
+      first_warehouse_id = #{record.firstWarehouseId,jdbcType=TINYINT},
+      warehouse_id = #{record.warehouseId,jdbcType=INTEGER},
+      original_warehouse_id = #{record.originalWarehouseId,jdbcType=TINYINT},
+      final_warehouse_id = #{record.finalWarehouseId,jdbcType=TINYINT},
+      is_our_send = #{record.isOurSend,jdbcType=TINYINT},
+      is_all_send = #{record.isAllSend,jdbcType=TINYINT},
+      sina_order_id = #{record.sinaOrderId,jdbcType=VARCHAR},
+      member_id = #{record.memberId,jdbcType=BIGINT},
+      edit_status = #{record.editStatus,jdbcType=BIT},
+      sendhouse_id = #{record.sendhouseId,jdbcType=INTEGER},
+      sendhouse_person_id = #{record.sendhousePersonId,jdbcType=INTEGER},
+      advis = #{record.advis,jdbcType=VARCHAR},
+      express_id = #{record.expressId,jdbcType=INTEGER},
+      sec_express_id = #{record.secExpressId,jdbcType=INTEGER},
+      sec_express_sn = #{record.secExpressSn,jdbcType=VARCHAR},
+      express_sn = #{record.expressSn,jdbcType=VARCHAR},
+      change_house_id = #{record.changeHouseId,jdbcType=INTEGER},
+      packet_num = #{record.packetNum,jdbcType=INTEGER},
+      status = #{record.status,jdbcType=TINYINT},
+      sub_status = #{record.subStatus,jdbcType=TINYINT},
+      add_status = #{record.addStatus,jdbcType=TINYINT},
+      pay_status = #{record.payStatus,jdbcType=TINYINT},
+      pay_type_id = #{record.payTypeId,jdbcType=TINYINT},
+      offline_payment_name = #{record.offlinePaymentName,jdbcType=VARCHAR},
+      total_amount = #{record.totalAmount,jdbcType=DECIMAL},
+      discount_card_num = #{record.discountCardNum,jdbcType=VARCHAR},
+      discount_card_condition = #{record.discountCardCondition,jdbcType=DECIMAL},
+      discount_card_money = #{record.discountCardMoney,jdbcType=DECIMAL},
+      category_card_num = #{record.categoryCardNum,jdbcType=VARCHAR},
+      category_card_money = #{record.categoryCardMoney,jdbcType=DECIMAL},
+      act_id = #{record.actId,jdbcType=INTEGER},
+      fill_reduce_money = #{record.fillReduceMoney,jdbcType=DECIMAL},
+      real_discount_card_num = #{record.realDiscountCardNum,jdbcType=VARCHAR},
+      real_discount_rate = #{record.realDiscountRate,jdbcType=DECIMAL},
+      real_discount_money = #{record.realDiscountMoney,jdbcType=DECIMAL},
+      gift_money = #{record.giftMoney,jdbcType=DECIMAL},
+      vip_rate = #{record.vipRate,jdbcType=DECIMAL},
+      vip_reduced = #{record.vipReduced,jdbcType=DECIMAL},
+      is_installment = #{record.isInstallment,jdbcType=BIT},
+      installment_paycode = #{record.installmentPaycode,jdbcType=VARCHAR},
+      voucherFee = #{record.voucherfee,jdbcType=DECIMAL},
+      installment_per_money = #{record.installmentPerMoney,jdbcType=DECIMAL},
+      installment_times = #{record.installmentTimes,jdbcType=INTEGER},
+      installment_fee_rate = #{record.installmentFeeRate,jdbcType=DECIMAL},
+      installment_fee_by_seller = #{record.installmentFeeBySeller,jdbcType=DECIMAL},
+      installment_fee_by_customer = #{record.installmentFeeByCustomer,jdbcType=DECIMAL},
+      give_point_online_pay = #{record.givePointOnlinePay,jdbcType=DECIMAL},
+      give_point_rate_online_pay = #{record.givePointRateOnlinePay,jdbcType=REAL},
+      give_point = #{record.givePoint,jdbcType=DECIMAL},
+      give_point_rate = #{record.givePointRate,jdbcType=REAL},
+      give_score = #{record.giveScore,jdbcType=INTEGER},
+      used_point = #{record.usedPoint,jdbcType=DECIMAL},
+      use_online_payed = #{record.useOnlinePayed,jdbcType=DECIMAL},
+      use_cash_payed = #{record.useCashPayed,jdbcType=DECIMAL},
+      use_pos_payed = #{record.usePosPayed,jdbcType=DECIMAL},
+      used_balance = #{record.usedBalance,jdbcType=DECIMAL},
+      use_offline_payed = #{record.useOfflinePayed,jdbcType=DECIMAL},
+      use_offline_reduced = #{record.useOfflineReduced,jdbcType=DECIMAL},
+      need_pay = #{record.needPay,jdbcType=DECIMAL},
+      create_time = #{record.createTime,jdbcType=INTEGER},
+      consignee = #{record.consignee,jdbcType=VARCHAR},
+      consignee_mobile = #{record.consigneeMobile,jdbcType=VARCHAR},
+      order_phone = #{record.orderPhone,jdbcType=VARCHAR},
+      consignee_email = #{record.consigneeEmail,jdbcType=VARCHAR},
+      consignee_tel = #{record.consigneeTel,jdbcType=VARCHAR},
+      zipcode = #{record.zipcode,jdbcType=VARCHAR},
+      address = #{record.address,jdbcType=VARCHAR},
+      shipping_area_id = #{record.shippingAreaId,jdbcType=INTEGER},
+      shipping_city_id = #{record.shippingCityId,jdbcType=INTEGER},
+      shipping_district_id = #{record.shippingDistrictId,jdbcType=INTEGER},
+      shipping_price = #{record.shippingPrice,jdbcType=DECIMAL},
+      shipping_time = #{record.shippingTime,jdbcType=VARCHAR},
+      invoice_type = #{record.invoiceType,jdbcType=VARCHAR},
+      invoice_number = #{record.invoiceNumber,jdbcType=VARCHAR},
+      invoice_title = #{record.invoiceTitle,jdbcType=VARCHAR},
+      invoice_item = #{record.invoiceItem,jdbcType=VARCHAR},
+      print_invoice = #{record.printInvoice,jdbcType=BIT},
+      order_memo = #{record.orderMemo,jdbcType=VARCHAR},
+      manage_memo = #{record.manageMemo,jdbcType=VARCHAR},
+      type = #{record.type,jdbcType=BIT},
+      refund_order_id = #{record.refundOrderId,jdbcType=INTEGER},
+      parent_order_sn = #{record.parentOrderSn,jdbcType=BIGINT},
+      cancel_reason = #{record.cancelReason,jdbcType=VARCHAR},
+      sign_order_time = #{record.signOrderTime,jdbcType=INTEGER},
+      yiqifa_flag = #{record.yiqifaFlag,jdbcType=BIT},
+      yiqifa_cid = #{record.yiqifaCid,jdbcType=VARCHAR},
+      yiqifa_wi = #{record.yiqifaWi,jdbcType=VARCHAR},
+      yiqifa_note_flag = #{record.yiqifaNoteFlag,jdbcType=BIT},
+      last_op_time = #{record.lastOpTime,jdbcType=INTEGER},
+      auto_check = #{record.autoCheck,jdbcType=TINYINT},
+      check_time = #{record.checkTime,jdbcType=INTEGER},
+      360_flag = #{record.360Flag,jdbcType=BIT},
+      360_bid = #{record.360Bid,jdbcType=VARCHAR},
+      360_qid = #{record.360Qid,jdbcType=VARCHAR},
+      360_qihoo_id = #{record.360QihooId,jdbcType=VARCHAR},
+      360_ext = #{record.360Ext,jdbcType=VARCHAR},
+      360_note_flag = #{record.360NoteFlag,jdbcType=TINYINT},
+      is_send = #{record.isSend,jdbcType=TINYINT},
+      source = #{record.source,jdbcType=BIT},
+      rejection_status = #{record.rejectionStatus,jdbcType=BIT},
+      reserve_order = #{record.reserveOrder,jdbcType=BIT},
+      cancel_reason_id = #{record.cancelReasonId,jdbcType=INTEGER},
+      cancel_type = #{record.cancelType,jdbcType=TINYINT},
+      refund_money = #{record.refundMoney,jdbcType=DECIMAL},
+      oversea_express_id = #{record.overseaExpressId,jdbcType=BIT},
+      is_thesea = #{record.isThesea,jdbcType=BIT},
+      airway_billnumber = #{record.airwayBillnumber,jdbcType=VARCHAR},
+      currency = #{record.currency,jdbcType=VARCHAR},
+      foreign_money = #{record.foreignMoney,jdbcType=DECIMAL},
+      fill_reduce_rule = #{record.fillReduceRule,jdbcType=LONGVARCHAR},
+      give_point_rule = #{record.givePointRule,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update gt_orders
+    set order_id = #{record.orderId,jdbcType=INTEGER},
+      is_hidden = #{record.isHidden,jdbcType=BIT},
+      order_sn = #{record.orderSn,jdbcType=BIGINT},
+      belong_to = #{record.belongTo,jdbcType=INTEGER},
+      first_warehouse_id = #{record.firstWarehouseId,jdbcType=TINYINT},
+      warehouse_id = #{record.warehouseId,jdbcType=INTEGER},
+      original_warehouse_id = #{record.originalWarehouseId,jdbcType=TINYINT},
+      final_warehouse_id = #{record.finalWarehouseId,jdbcType=TINYINT},
+      is_our_send = #{record.isOurSend,jdbcType=TINYINT},
+      is_all_send = #{record.isAllSend,jdbcType=TINYINT},
+      sina_order_id = #{record.sinaOrderId,jdbcType=VARCHAR},
+      member_id = #{record.memberId,jdbcType=BIGINT},
+      edit_status = #{record.editStatus,jdbcType=BIT},
+      sendhouse_id = #{record.sendhouseId,jdbcType=INTEGER},
+      sendhouse_person_id = #{record.sendhousePersonId,jdbcType=INTEGER},
+      advis = #{record.advis,jdbcType=VARCHAR},
+      express_id = #{record.expressId,jdbcType=INTEGER},
+      sec_express_id = #{record.secExpressId,jdbcType=INTEGER},
+      sec_express_sn = #{record.secExpressSn,jdbcType=VARCHAR},
+      express_sn = #{record.expressSn,jdbcType=VARCHAR},
+      change_house_id = #{record.changeHouseId,jdbcType=INTEGER},
+      packet_num = #{record.packetNum,jdbcType=INTEGER},
+      status = #{record.status,jdbcType=TINYINT},
+      sub_status = #{record.subStatus,jdbcType=TINYINT},
+      add_status = #{record.addStatus,jdbcType=TINYINT},
+      pay_status = #{record.payStatus,jdbcType=TINYINT},
+      pay_type_id = #{record.payTypeId,jdbcType=TINYINT},
+      offline_payment_name = #{record.offlinePaymentName,jdbcType=VARCHAR},
+      total_amount = #{record.totalAmount,jdbcType=DECIMAL},
+      discount_card_num = #{record.discountCardNum,jdbcType=VARCHAR},
+      discount_card_condition = #{record.discountCardCondition,jdbcType=DECIMAL},
+      discount_card_money = #{record.discountCardMoney,jdbcType=DECIMAL},
+      category_card_num = #{record.categoryCardNum,jdbcType=VARCHAR},
+      category_card_money = #{record.categoryCardMoney,jdbcType=DECIMAL},
+      act_id = #{record.actId,jdbcType=INTEGER},
+      fill_reduce_money = #{record.fillReduceMoney,jdbcType=DECIMAL},
+      real_discount_card_num = #{record.realDiscountCardNum,jdbcType=VARCHAR},
+      real_discount_rate = #{record.realDiscountRate,jdbcType=DECIMAL},
+      real_discount_money = #{record.realDiscountMoney,jdbcType=DECIMAL},
+      gift_money = #{record.giftMoney,jdbcType=DECIMAL},
+      vip_rate = #{record.vipRate,jdbcType=DECIMAL},
+      vip_reduced = #{record.vipReduced,jdbcType=DECIMAL},
+      is_installment = #{record.isInstallment,jdbcType=BIT},
+      installment_paycode = #{record.installmentPaycode,jdbcType=VARCHAR},
+      voucherFee = #{record.voucherfee,jdbcType=DECIMAL},
+      installment_per_money = #{record.installmentPerMoney,jdbcType=DECIMAL},
+      installment_times = #{record.installmentTimes,jdbcType=INTEGER},
+      installment_fee_rate = #{record.installmentFeeRate,jdbcType=DECIMAL},
+      installment_fee_by_seller = #{record.installmentFeeBySeller,jdbcType=DECIMAL},
+      installment_fee_by_customer = #{record.installmentFeeByCustomer,jdbcType=DECIMAL},
+      give_point_online_pay = #{record.givePointOnlinePay,jdbcType=DECIMAL},
+      give_point_rate_online_pay = #{record.givePointRateOnlinePay,jdbcType=REAL},
+      give_point = #{record.givePoint,jdbcType=DECIMAL},
+      give_point_rate = #{record.givePointRate,jdbcType=REAL},
+      give_score = #{record.giveScore,jdbcType=INTEGER},
+      used_point = #{record.usedPoint,jdbcType=DECIMAL},
+      use_online_payed = #{record.useOnlinePayed,jdbcType=DECIMAL},
+      use_cash_payed = #{record.useCashPayed,jdbcType=DECIMAL},
+      use_pos_payed = #{record.usePosPayed,jdbcType=DECIMAL},
+      used_balance = #{record.usedBalance,jdbcType=DECIMAL},
+      use_offline_payed = #{record.useOfflinePayed,jdbcType=DECIMAL},
+      use_offline_reduced = #{record.useOfflineReduced,jdbcType=DECIMAL},
+      need_pay = #{record.needPay,jdbcType=DECIMAL},
+      create_time = #{record.createTime,jdbcType=INTEGER},
+      consignee = #{record.consignee,jdbcType=VARCHAR},
+      consignee_mobile = #{record.consigneeMobile,jdbcType=VARCHAR},
+      order_phone = #{record.orderPhone,jdbcType=VARCHAR},
+      consignee_email = #{record.consigneeEmail,jdbcType=VARCHAR},
+      consignee_tel = #{record.consigneeTel,jdbcType=VARCHAR},
+      zipcode = #{record.zipcode,jdbcType=VARCHAR},
+      address = #{record.address,jdbcType=VARCHAR},
+      shipping_area_id = #{record.shippingAreaId,jdbcType=INTEGER},
+      shipping_city_id = #{record.shippingCityId,jdbcType=INTEGER},
+      shipping_district_id = #{record.shippingDistrictId,jdbcType=INTEGER},
+      shipping_price = #{record.shippingPrice,jdbcType=DECIMAL},
+      shipping_time = #{record.shippingTime,jdbcType=VARCHAR},
+      invoice_type = #{record.invoiceType,jdbcType=VARCHAR},
+      invoice_number = #{record.invoiceNumber,jdbcType=VARCHAR},
+      invoice_title = #{record.invoiceTitle,jdbcType=VARCHAR},
+      invoice_item = #{record.invoiceItem,jdbcType=VARCHAR},
+      print_invoice = #{record.printInvoice,jdbcType=BIT},
+      order_memo = #{record.orderMemo,jdbcType=VARCHAR},
+      manage_memo = #{record.manageMemo,jdbcType=VARCHAR},
+      type = #{record.type,jdbcType=BIT},
+      refund_order_id = #{record.refundOrderId,jdbcType=INTEGER},
+      parent_order_sn = #{record.parentOrderSn,jdbcType=BIGINT},
+      cancel_reason = #{record.cancelReason,jdbcType=VARCHAR},
+      sign_order_time = #{record.signOrderTime,jdbcType=INTEGER},
+      yiqifa_flag = #{record.yiqifaFlag,jdbcType=BIT},
+      yiqifa_cid = #{record.yiqifaCid,jdbcType=VARCHAR},
+      yiqifa_wi = #{record.yiqifaWi,jdbcType=VARCHAR},
+      yiqifa_note_flag = #{record.yiqifaNoteFlag,jdbcType=BIT},
+      last_op_time = #{record.lastOpTime,jdbcType=INTEGER},
+      auto_check = #{record.autoCheck,jdbcType=TINYINT},
+      check_time = #{record.checkTime,jdbcType=INTEGER},
+      360_flag = #{record.360Flag,jdbcType=BIT},
+      360_bid = #{record.360Bid,jdbcType=VARCHAR},
+      360_qid = #{record.360Qid,jdbcType=VARCHAR},
+      360_qihoo_id = #{record.360QihooId,jdbcType=VARCHAR},
+      360_ext = #{record.360Ext,jdbcType=VARCHAR},
+      360_note_flag = #{record.360NoteFlag,jdbcType=TINYINT},
+      is_send = #{record.isSend,jdbcType=TINYINT},
+      source = #{record.source,jdbcType=BIT},
+      rejection_status = #{record.rejectionStatus,jdbcType=BIT},
+      reserve_order = #{record.reserveOrder,jdbcType=BIT},
+      cancel_reason_id = #{record.cancelReasonId,jdbcType=INTEGER},
+      cancel_type = #{record.cancelType,jdbcType=TINYINT},
+      refund_money = #{record.refundMoney,jdbcType=DECIMAL},
+      oversea_express_id = #{record.overseaExpressId,jdbcType=BIT},
+      is_thesea = #{record.isThesea,jdbcType=BIT},
+      airway_billnumber = #{record.airwayBillnumber,jdbcType=VARCHAR},
+      currency = #{record.currency,jdbcType=VARCHAR},
+      foreign_money = #{record.foreignMoney,jdbcType=DECIMAL}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zpapi.other.model.GtOrdersWithBLOBs">
+    update gt_orders
+    <set>
+      <if test="isHidden != null">
+        is_hidden = #{isHidden,jdbcType=BIT},
+      </if>
+      <if test="orderSn != null">
+        order_sn = #{orderSn,jdbcType=BIGINT},
+      </if>
+      <if test="belongTo != null">
+        belong_to = #{belongTo,jdbcType=INTEGER},
+      </if>
+      <if test="firstWarehouseId != null">
+        first_warehouse_id = #{firstWarehouseId,jdbcType=TINYINT},
+      </if>
+      <if test="warehouseId != null">
+        warehouse_id = #{warehouseId,jdbcType=INTEGER},
+      </if>
+      <if test="originalWarehouseId != null">
+        original_warehouse_id = #{originalWarehouseId,jdbcType=TINYINT},
+      </if>
+      <if test="finalWarehouseId != null">
+        final_warehouse_id = #{finalWarehouseId,jdbcType=TINYINT},
+      </if>
+      <if test="isOurSend != null">
+        is_our_send = #{isOurSend,jdbcType=TINYINT},
+      </if>
+      <if test="isAllSend != null">
+        is_all_send = #{isAllSend,jdbcType=TINYINT},
+      </if>
+      <if test="sinaOrderId != null">
+        sina_order_id = #{sinaOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="memberId != null">
+        member_id = #{memberId,jdbcType=BIGINT},
+      </if>
+      <if test="editStatus != null">
+        edit_status = #{editStatus,jdbcType=BIT},
+      </if>
+      <if test="sendhouseId != null">
+        sendhouse_id = #{sendhouseId,jdbcType=INTEGER},
+      </if>
+      <if test="sendhousePersonId != null">
+        sendhouse_person_id = #{sendhousePersonId,jdbcType=INTEGER},
+      </if>
+      <if test="advis != null">
+        advis = #{advis,jdbcType=VARCHAR},
+      </if>
+      <if test="expressId != null">
+        express_id = #{expressId,jdbcType=INTEGER},
+      </if>
+      <if test="secExpressId != null">
+        sec_express_id = #{secExpressId,jdbcType=INTEGER},
+      </if>
+      <if test="secExpressSn != null">
+        sec_express_sn = #{secExpressSn,jdbcType=VARCHAR},
+      </if>
+      <if test="expressSn != null">
+        express_sn = #{expressSn,jdbcType=VARCHAR},
+      </if>
+      <if test="changeHouseId != null">
+        change_house_id = #{changeHouseId,jdbcType=INTEGER},
+      </if>
+      <if test="packetNum != null">
+        packet_num = #{packetNum,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="subStatus != null">
+        sub_status = #{subStatus,jdbcType=TINYINT},
+      </if>
+      <if test="addStatus != null">
+        add_status = #{addStatus,jdbcType=TINYINT},
+      </if>
+      <if test="payStatus != null">
+        pay_status = #{payStatus,jdbcType=TINYINT},
+      </if>
+      <if test="payTypeId != null">
+        pay_type_id = #{payTypeId,jdbcType=TINYINT},
+      </if>
+      <if test="offlinePaymentName != null">
+        offline_payment_name = #{offlinePaymentName,jdbcType=VARCHAR},
+      </if>
+      <if test="totalAmount != null">
+        total_amount = #{totalAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="discountCardNum != null">
+        discount_card_num = #{discountCardNum,jdbcType=VARCHAR},
+      </if>
+      <if test="discountCardCondition != null">
+        discount_card_condition = #{discountCardCondition,jdbcType=DECIMAL},
+      </if>
+      <if test="discountCardMoney != null">
+        discount_card_money = #{discountCardMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="categoryCardNum != null">
+        category_card_num = #{categoryCardNum,jdbcType=VARCHAR},
+      </if>
+      <if test="categoryCardMoney != null">
+        category_card_money = #{categoryCardMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="actId != null">
+        act_id = #{actId,jdbcType=INTEGER},
+      </if>
+      <if test="fillReduceMoney != null">
+        fill_reduce_money = #{fillReduceMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="realDiscountCardNum != null">
+        real_discount_card_num = #{realDiscountCardNum,jdbcType=VARCHAR},
+      </if>
+      <if test="realDiscountRate != null">
+        real_discount_rate = #{realDiscountRate,jdbcType=DECIMAL},
+      </if>
+      <if test="realDiscountMoney != null">
+        real_discount_money = #{realDiscountMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="giftMoney != null">
+        gift_money = #{giftMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="vipRate != null">
+        vip_rate = #{vipRate,jdbcType=DECIMAL},
+      </if>
+      <if test="vipReduced != null">
+        vip_reduced = #{vipReduced,jdbcType=DECIMAL},
+      </if>
+      <if test="isInstallment != null">
+        is_installment = #{isInstallment,jdbcType=BIT},
+      </if>
+      <if test="installmentPaycode != null">
+        installment_paycode = #{installmentPaycode,jdbcType=VARCHAR},
+      </if>
+      <if test="voucherfee != null">
+        voucherFee = #{voucherfee,jdbcType=DECIMAL},
+      </if>
+      <if test="installmentPerMoney != null">
+        installment_per_money = #{installmentPerMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="installmentTimes != null">
+        installment_times = #{installmentTimes,jdbcType=INTEGER},
+      </if>
+      <if test="installmentFeeRate != null">
+        installment_fee_rate = #{installmentFeeRate,jdbcType=DECIMAL},
+      </if>
+      <if test="installmentFeeBySeller != null">
+        installment_fee_by_seller = #{installmentFeeBySeller,jdbcType=DECIMAL},
+      </if>
+      <if test="installmentFeeByCustomer != null">
+        installment_fee_by_customer = #{installmentFeeByCustomer,jdbcType=DECIMAL},
+      </if>
+      <if test="givePointOnlinePay != null">
+        give_point_online_pay = #{givePointOnlinePay,jdbcType=DECIMAL},
+      </if>
+      <if test="givePointRateOnlinePay != null">
+        give_point_rate_online_pay = #{givePointRateOnlinePay,jdbcType=REAL},
+      </if>
+      <if test="givePoint != null">
+        give_point = #{givePoint,jdbcType=DECIMAL},
+      </if>
+      <if test="givePointRate != null">
+        give_point_rate = #{givePointRate,jdbcType=REAL},
+      </if>
+      <if test="giveScore != null">
+        give_score = #{giveScore,jdbcType=INTEGER},
+      </if>
+      <if test="usedPoint != null">
+        used_point = #{usedPoint,jdbcType=DECIMAL},
+      </if>
+      <if test="useOnlinePayed != null">
+        use_online_payed = #{useOnlinePayed,jdbcType=DECIMAL},
+      </if>
+      <if test="useCashPayed != null">
+        use_cash_payed = #{useCashPayed,jdbcType=DECIMAL},
+      </if>
+      <if test="usePosPayed != null">
+        use_pos_payed = #{usePosPayed,jdbcType=DECIMAL},
+      </if>
+      <if test="usedBalance != null">
+        used_balance = #{usedBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="useOfflinePayed != null">
+        use_offline_payed = #{useOfflinePayed,jdbcType=DECIMAL},
+      </if>
+      <if test="useOfflineReduced != null">
+        use_offline_reduced = #{useOfflineReduced,jdbcType=DECIMAL},
+      </if>
+      <if test="needPay != null">
+        need_pay = #{needPay,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=INTEGER},
+      </if>
+      <if test="consignee != null">
+        consignee = #{consignee,jdbcType=VARCHAR},
+      </if>
+      <if test="consigneeMobile != null">
+        consignee_mobile = #{consigneeMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="orderPhone != null">
+        order_phone = #{orderPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="consigneeEmail != null">
+        consignee_email = #{consigneeEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="consigneeTel != null">
+        consignee_tel = #{consigneeTel,jdbcType=VARCHAR},
+      </if>
+      <if test="zipcode != null">
+        zipcode = #{zipcode,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="shippingAreaId != null">
+        shipping_area_id = #{shippingAreaId,jdbcType=INTEGER},
+      </if>
+      <if test="shippingCityId != null">
+        shipping_city_id = #{shippingCityId,jdbcType=INTEGER},
+      </if>
+      <if test="shippingDistrictId != null">
+        shipping_district_id = #{shippingDistrictId,jdbcType=INTEGER},
+      </if>
+      <if test="shippingPrice != null">
+        shipping_price = #{shippingPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="shippingTime != null">
+        shipping_time = #{shippingTime,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceType != null">
+        invoice_type = #{invoiceType,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceNumber != null">
+        invoice_number = #{invoiceNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceTitle != null">
+        invoice_title = #{invoiceTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceItem != null">
+        invoice_item = #{invoiceItem,jdbcType=VARCHAR},
+      </if>
+      <if test="printInvoice != null">
+        print_invoice = #{printInvoice,jdbcType=BIT},
+      </if>
+      <if test="orderMemo != null">
+        order_memo = #{orderMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="manageMemo != null">
+        manage_memo = #{manageMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=BIT},
+      </if>
+      <if test="refundOrderId != null">
+        refund_order_id = #{refundOrderId,jdbcType=INTEGER},
+      </if>
+      <if test="parentOrderSn != null">
+        parent_order_sn = #{parentOrderSn,jdbcType=BIGINT},
+      </if>
+      <if test="cancelReason != null">
+        cancel_reason = #{cancelReason,jdbcType=VARCHAR},
+      </if>
+      <if test="signOrderTime != null">
+        sign_order_time = #{signOrderTime,jdbcType=INTEGER},
+      </if>
+      <if test="yiqifaFlag != null">
+        yiqifa_flag = #{yiqifaFlag,jdbcType=BIT},
+      </if>
+      <if test="yiqifaCid != null">
+        yiqifa_cid = #{yiqifaCid,jdbcType=VARCHAR},
+      </if>
+      <if test="yiqifaWi != null">
+        yiqifa_wi = #{yiqifaWi,jdbcType=VARCHAR},
+      </if>
+      <if test="yiqifaNoteFlag != null">
+        yiqifa_note_flag = #{yiqifaNoteFlag,jdbcType=BIT},
+      </if>
+      <if test="lastOpTime != null">
+        last_op_time = #{lastOpTime,jdbcType=INTEGER},
+      </if>
+      <if test="autoCheck != null">
+        auto_check = #{autoCheck,jdbcType=TINYINT},
+      </if>
+      <if test="checkTime != null">
+        check_time = #{checkTime,jdbcType=INTEGER},
+      </if>
+      <if test="360Flag != null">
+        360_flag = #{360Flag,jdbcType=BIT},
+      </if>
+      <if test="360Bid != null">
+        360_bid = #{360Bid,jdbcType=VARCHAR},
+      </if>
+      <if test="360Qid != null">
+        360_qid = #{360Qid,jdbcType=VARCHAR},
+      </if>
+      <if test="360QihooId != null">
+        360_qihoo_id = #{360QihooId,jdbcType=VARCHAR},
+      </if>
+      <if test="360Ext != null">
+        360_ext = #{360Ext,jdbcType=VARCHAR},
+      </if>
+      <if test="360NoteFlag != null">
+        360_note_flag = #{360NoteFlag,jdbcType=TINYINT},
+      </if>
+      <if test="isSend != null">
+        is_send = #{isSend,jdbcType=TINYINT},
+      </if>
+      <if test="source != null">
+        source = #{source,jdbcType=BIT},
+      </if>
+      <if test="rejectionStatus != null">
+        rejection_status = #{rejectionStatus,jdbcType=BIT},
+      </if>
+      <if test="reserveOrder != null">
+        reserve_order = #{reserveOrder,jdbcType=BIT},
+      </if>
+      <if test="cancelReasonId != null">
+        cancel_reason_id = #{cancelReasonId,jdbcType=INTEGER},
+      </if>
+      <if test="cancelType != null">
+        cancel_type = #{cancelType,jdbcType=TINYINT},
+      </if>
+      <if test="refundMoney != null">
+        refund_money = #{refundMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="overseaExpressId != null">
+        oversea_express_id = #{overseaExpressId,jdbcType=BIT},
+      </if>
+      <if test="isThesea != null">
+        is_thesea = #{isThesea,jdbcType=BIT},
+      </if>
+      <if test="airwayBillnumber != null">
+        airway_billnumber = #{airwayBillnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="currency != null">
+        currency = #{currency,jdbcType=VARCHAR},
+      </if>
+      <if test="foreignMoney != null">
+        foreign_money = #{foreignMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="fillReduceRule != null">
+        fill_reduce_rule = #{fillReduceRule,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="givePointRule != null">
+        give_point_rule = #{givePointRule,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where order_id = #{orderId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.zpapi.other.model.GtOrdersWithBLOBs">
+    update gt_orders
+    set is_hidden = #{isHidden,jdbcType=BIT},
+      order_sn = #{orderSn,jdbcType=BIGINT},
+      belong_to = #{belongTo,jdbcType=INTEGER},
+      first_warehouse_id = #{firstWarehouseId,jdbcType=TINYINT},
+      warehouse_id = #{warehouseId,jdbcType=INTEGER},
+      original_warehouse_id = #{originalWarehouseId,jdbcType=TINYINT},
+      final_warehouse_id = #{finalWarehouseId,jdbcType=TINYINT},
+      is_our_send = #{isOurSend,jdbcType=TINYINT},
+      is_all_send = #{isAllSend,jdbcType=TINYINT},
+      sina_order_id = #{sinaOrderId,jdbcType=VARCHAR},
+      member_id = #{memberId,jdbcType=BIGINT},
+      edit_status = #{editStatus,jdbcType=BIT},
+      sendhouse_id = #{sendhouseId,jdbcType=INTEGER},
+      sendhouse_person_id = #{sendhousePersonId,jdbcType=INTEGER},
+      advis = #{advis,jdbcType=VARCHAR},
+      express_id = #{expressId,jdbcType=INTEGER},
+      sec_express_id = #{secExpressId,jdbcType=INTEGER},
+      sec_express_sn = #{secExpressSn,jdbcType=VARCHAR},
+      express_sn = #{expressSn,jdbcType=VARCHAR},
+      change_house_id = #{changeHouseId,jdbcType=INTEGER},
+      packet_num = #{packetNum,jdbcType=INTEGER},
+      status = #{status,jdbcType=TINYINT},
+      sub_status = #{subStatus,jdbcType=TINYINT},
+      add_status = #{addStatus,jdbcType=TINYINT},
+      pay_status = #{payStatus,jdbcType=TINYINT},
+      pay_type_id = #{payTypeId,jdbcType=TINYINT},
+      offline_payment_name = #{offlinePaymentName,jdbcType=VARCHAR},
+      total_amount = #{totalAmount,jdbcType=DECIMAL},
+      discount_card_num = #{discountCardNum,jdbcType=VARCHAR},
+      discount_card_condition = #{discountCardCondition,jdbcType=DECIMAL},
+      discount_card_money = #{discountCardMoney,jdbcType=DECIMAL},
+      category_card_num = #{categoryCardNum,jdbcType=VARCHAR},
+      category_card_money = #{categoryCardMoney,jdbcType=DECIMAL},
+      act_id = #{actId,jdbcType=INTEGER},
+      fill_reduce_money = #{fillReduceMoney,jdbcType=DECIMAL},
+      real_discount_card_num = #{realDiscountCardNum,jdbcType=VARCHAR},
+      real_discount_rate = #{realDiscountRate,jdbcType=DECIMAL},
+      real_discount_money = #{realDiscountMoney,jdbcType=DECIMAL},
+      gift_money = #{giftMoney,jdbcType=DECIMAL},
+      vip_rate = #{vipRate,jdbcType=DECIMAL},
+      vip_reduced = #{vipReduced,jdbcType=DECIMAL},
+      is_installment = #{isInstallment,jdbcType=BIT},
+      installment_paycode = #{installmentPaycode,jdbcType=VARCHAR},
+      voucherFee = #{voucherfee,jdbcType=DECIMAL},
+      installment_per_money = #{installmentPerMoney,jdbcType=DECIMAL},
+      installment_times = #{installmentTimes,jdbcType=INTEGER},
+      installment_fee_rate = #{installmentFeeRate,jdbcType=DECIMAL},
+      installment_fee_by_seller = #{installmentFeeBySeller,jdbcType=DECIMAL},
+      installment_fee_by_customer = #{installmentFeeByCustomer,jdbcType=DECIMAL},
+      give_point_online_pay = #{givePointOnlinePay,jdbcType=DECIMAL},
+      give_point_rate_online_pay = #{givePointRateOnlinePay,jdbcType=REAL},
+      give_point = #{givePoint,jdbcType=DECIMAL},
+      give_point_rate = #{givePointRate,jdbcType=REAL},
+      give_score = #{giveScore,jdbcType=INTEGER},
+      used_point = #{usedPoint,jdbcType=DECIMAL},
+      use_online_payed = #{useOnlinePayed,jdbcType=DECIMAL},
+      use_cash_payed = #{useCashPayed,jdbcType=DECIMAL},
+      use_pos_payed = #{usePosPayed,jdbcType=DECIMAL},
+      used_balance = #{usedBalance,jdbcType=DECIMAL},
+      use_offline_payed = #{useOfflinePayed,jdbcType=DECIMAL},
+      use_offline_reduced = #{useOfflineReduced,jdbcType=DECIMAL},
+      need_pay = #{needPay,jdbcType=DECIMAL},
+      create_time = #{createTime,jdbcType=INTEGER},
+      consignee = #{consignee,jdbcType=VARCHAR},
+      consignee_mobile = #{consigneeMobile,jdbcType=VARCHAR},
+      order_phone = #{orderPhone,jdbcType=VARCHAR},
+      consignee_email = #{consigneeEmail,jdbcType=VARCHAR},
+      consignee_tel = #{consigneeTel,jdbcType=VARCHAR},
+      zipcode = #{zipcode,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      shipping_area_id = #{shippingAreaId,jdbcType=INTEGER},
+      shipping_city_id = #{shippingCityId,jdbcType=INTEGER},
+      shipping_district_id = #{shippingDistrictId,jdbcType=INTEGER},
+      shipping_price = #{shippingPrice,jdbcType=DECIMAL},
+      shipping_time = #{shippingTime,jdbcType=VARCHAR},
+      invoice_type = #{invoiceType,jdbcType=VARCHAR},
+      invoice_number = #{invoiceNumber,jdbcType=VARCHAR},
+      invoice_title = #{invoiceTitle,jdbcType=VARCHAR},
+      invoice_item = #{invoiceItem,jdbcType=VARCHAR},
+      print_invoice = #{printInvoice,jdbcType=BIT},
+      order_memo = #{orderMemo,jdbcType=VARCHAR},
+      manage_memo = #{manageMemo,jdbcType=VARCHAR},
+      type = #{type,jdbcType=BIT},
+      refund_order_id = #{refundOrderId,jdbcType=INTEGER},
+      parent_order_sn = #{parentOrderSn,jdbcType=BIGINT},
+      cancel_reason = #{cancelReason,jdbcType=VARCHAR},
+      sign_order_time = #{signOrderTime,jdbcType=INTEGER},
+      yiqifa_flag = #{yiqifaFlag,jdbcType=BIT},
+      yiqifa_cid = #{yiqifaCid,jdbcType=VARCHAR},
+      yiqifa_wi = #{yiqifaWi,jdbcType=VARCHAR},
+      yiqifa_note_flag = #{yiqifaNoteFlag,jdbcType=BIT},
+      last_op_time = #{lastOpTime,jdbcType=INTEGER},
+      auto_check = #{autoCheck,jdbcType=TINYINT},
+      check_time = #{checkTime,jdbcType=INTEGER},
+      360_flag = #{360Flag,jdbcType=BIT},
+      360_bid = #{360Bid,jdbcType=VARCHAR},
+      360_qid = #{360Qid,jdbcType=VARCHAR},
+      360_qihoo_id = #{360QihooId,jdbcType=VARCHAR},
+      360_ext = #{360Ext,jdbcType=VARCHAR},
+      360_note_flag = #{360NoteFlag,jdbcType=TINYINT},
+      is_send = #{isSend,jdbcType=TINYINT},
+      source = #{source,jdbcType=BIT},
+      rejection_status = #{rejectionStatus,jdbcType=BIT},
+      reserve_order = #{reserveOrder,jdbcType=BIT},
+      cancel_reason_id = #{cancelReasonId,jdbcType=INTEGER},
+      cancel_type = #{cancelType,jdbcType=TINYINT},
+      refund_money = #{refundMoney,jdbcType=DECIMAL},
+      oversea_express_id = #{overseaExpressId,jdbcType=BIT},
+      is_thesea = #{isThesea,jdbcType=BIT},
+      airway_billnumber = #{airwayBillnumber,jdbcType=VARCHAR},
+      currency = #{currency,jdbcType=VARCHAR},
+      foreign_money = #{foreignMoney,jdbcType=DECIMAL},
+      fill_reduce_rule = #{fillReduceRule,jdbcType=LONGVARCHAR},
+      give_point_rule = #{givePointRule,jdbcType=LONGVARCHAR}
+    where order_id = #{orderId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zpapi.other.model.GtOrders">
+    update gt_orders
+    set is_hidden = #{isHidden,jdbcType=BIT},
+      order_sn = #{orderSn,jdbcType=BIGINT},
+      belong_to = #{belongTo,jdbcType=INTEGER},
+      first_warehouse_id = #{firstWarehouseId,jdbcType=TINYINT},
+      warehouse_id = #{warehouseId,jdbcType=INTEGER},
+      original_warehouse_id = #{originalWarehouseId,jdbcType=TINYINT},
+      final_warehouse_id = #{finalWarehouseId,jdbcType=TINYINT},
+      is_our_send = #{isOurSend,jdbcType=TINYINT},
+      is_all_send = #{isAllSend,jdbcType=TINYINT},
+      sina_order_id = #{sinaOrderId,jdbcType=VARCHAR},
+      member_id = #{memberId,jdbcType=BIGINT},
+      edit_status = #{editStatus,jdbcType=BIT},
+      sendhouse_id = #{sendhouseId,jdbcType=INTEGER},
+      sendhouse_person_id = #{sendhousePersonId,jdbcType=INTEGER},
+      advis = #{advis,jdbcType=VARCHAR},
+      express_id = #{expressId,jdbcType=INTEGER},
+      sec_express_id = #{secExpressId,jdbcType=INTEGER},
+      sec_express_sn = #{secExpressSn,jdbcType=VARCHAR},
+      express_sn = #{expressSn,jdbcType=VARCHAR},
+      change_house_id = #{changeHouseId,jdbcType=INTEGER},
+      packet_num = #{packetNum,jdbcType=INTEGER},
+      status = #{status,jdbcType=TINYINT},
+      sub_status = #{subStatus,jdbcType=TINYINT},
+      add_status = #{addStatus,jdbcType=TINYINT},
+      pay_status = #{payStatus,jdbcType=TINYINT},
+      pay_type_id = #{payTypeId,jdbcType=TINYINT},
+      offline_payment_name = #{offlinePaymentName,jdbcType=VARCHAR},
+      total_amount = #{totalAmount,jdbcType=DECIMAL},
+      discount_card_num = #{discountCardNum,jdbcType=VARCHAR},
+      discount_card_condition = #{discountCardCondition,jdbcType=DECIMAL},
+      discount_card_money = #{discountCardMoney,jdbcType=DECIMAL},
+      category_card_num = #{categoryCardNum,jdbcType=VARCHAR},
+      category_card_money = #{categoryCardMoney,jdbcType=DECIMAL},
+      act_id = #{actId,jdbcType=INTEGER},
+      fill_reduce_money = #{fillReduceMoney,jdbcType=DECIMAL},
+      real_discount_card_num = #{realDiscountCardNum,jdbcType=VARCHAR},
+      real_discount_rate = #{realDiscountRate,jdbcType=DECIMAL},
+      real_discount_money = #{realDiscountMoney,jdbcType=DECIMAL},
+      gift_money = #{giftMoney,jdbcType=DECIMAL},
+      vip_rate = #{vipRate,jdbcType=DECIMAL},
+      vip_reduced = #{vipReduced,jdbcType=DECIMAL},
+      is_installment = #{isInstallment,jdbcType=BIT},
+      installment_paycode = #{installmentPaycode,jdbcType=VARCHAR},
+      voucherFee = #{voucherfee,jdbcType=DECIMAL},
+      installment_per_money = #{installmentPerMoney,jdbcType=DECIMAL},
+      installment_times = #{installmentTimes,jdbcType=INTEGER},
+      installment_fee_rate = #{installmentFeeRate,jdbcType=DECIMAL},
+      installment_fee_by_seller = #{installmentFeeBySeller,jdbcType=DECIMAL},
+      installment_fee_by_customer = #{installmentFeeByCustomer,jdbcType=DECIMAL},
+      give_point_online_pay = #{givePointOnlinePay,jdbcType=DECIMAL},
+      give_point_rate_online_pay = #{givePointRateOnlinePay,jdbcType=REAL},
+      give_point = #{givePoint,jdbcType=DECIMAL},
+      give_point_rate = #{givePointRate,jdbcType=REAL},
+      give_score = #{giveScore,jdbcType=INTEGER},
+      used_point = #{usedPoint,jdbcType=DECIMAL},
+      use_online_payed = #{useOnlinePayed,jdbcType=DECIMAL},
+      use_cash_payed = #{useCashPayed,jdbcType=DECIMAL},
+      use_pos_payed = #{usePosPayed,jdbcType=DECIMAL},
+      used_balance = #{usedBalance,jdbcType=DECIMAL},
+      use_offline_payed = #{useOfflinePayed,jdbcType=DECIMAL},
+      use_offline_reduced = #{useOfflineReduced,jdbcType=DECIMAL},
+      need_pay = #{needPay,jdbcType=DECIMAL},
+      create_time = #{createTime,jdbcType=INTEGER},
+      consignee = #{consignee,jdbcType=VARCHAR},
+      consignee_mobile = #{consigneeMobile,jdbcType=VARCHAR},
+      order_phone = #{orderPhone,jdbcType=VARCHAR},
+      consignee_email = #{consigneeEmail,jdbcType=VARCHAR},
+      consignee_tel = #{consigneeTel,jdbcType=VARCHAR},
+      zipcode = #{zipcode,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      shipping_area_id = #{shippingAreaId,jdbcType=INTEGER},
+      shipping_city_id = #{shippingCityId,jdbcType=INTEGER},
+      shipping_district_id = #{shippingDistrictId,jdbcType=INTEGER},
+      shipping_price = #{shippingPrice,jdbcType=DECIMAL},
+      shipping_time = #{shippingTime,jdbcType=VARCHAR},
+      invoice_type = #{invoiceType,jdbcType=VARCHAR},
+      invoice_number = #{invoiceNumber,jdbcType=VARCHAR},
+      invoice_title = #{invoiceTitle,jdbcType=VARCHAR},
+      invoice_item = #{invoiceItem,jdbcType=VARCHAR},
+      print_invoice = #{printInvoice,jdbcType=BIT},
+      order_memo = #{orderMemo,jdbcType=VARCHAR},
+      manage_memo = #{manageMemo,jdbcType=VARCHAR},
+      type = #{type,jdbcType=BIT},
+      refund_order_id = #{refundOrderId,jdbcType=INTEGER},
+      parent_order_sn = #{parentOrderSn,jdbcType=BIGINT},
+      cancel_reason = #{cancelReason,jdbcType=VARCHAR},
+      sign_order_time = #{signOrderTime,jdbcType=INTEGER},
+      yiqifa_flag = #{yiqifaFlag,jdbcType=BIT},
+      yiqifa_cid = #{yiqifaCid,jdbcType=VARCHAR},
+      yiqifa_wi = #{yiqifaWi,jdbcType=VARCHAR},
+      yiqifa_note_flag = #{yiqifaNoteFlag,jdbcType=BIT},
+      last_op_time = #{lastOpTime,jdbcType=INTEGER},
+      auto_check = #{autoCheck,jdbcType=TINYINT},
+      check_time = #{checkTime,jdbcType=INTEGER},
+      360_flag = #{360Flag,jdbcType=BIT},
+      360_bid = #{360Bid,jdbcType=VARCHAR},
+      360_qid = #{360Qid,jdbcType=VARCHAR},
+      360_qihoo_id = #{360QihooId,jdbcType=VARCHAR},
+      360_ext = #{360Ext,jdbcType=VARCHAR},
+      360_note_flag = #{360NoteFlag,jdbcType=TINYINT},
+      is_send = #{isSend,jdbcType=TINYINT},
+      source = #{source,jdbcType=BIT},
+      rejection_status = #{rejectionStatus,jdbcType=BIT},
+      reserve_order = #{reserveOrder,jdbcType=BIT},
+      cancel_reason_id = #{cancelReasonId,jdbcType=INTEGER},
+      cancel_type = #{cancelType,jdbcType=TINYINT},
+      refund_money = #{refundMoney,jdbcType=DECIMAL},
+      oversea_express_id = #{overseaExpressId,jdbcType=BIT},
+      is_thesea = #{isThesea,jdbcType=BIT},
+      airway_billnumber = #{airwayBillnumber,jdbcType=VARCHAR},
+      currency = #{currency,jdbcType=VARCHAR},
+      foreign_money = #{foreignMoney,jdbcType=DECIMAL}
+    where order_id = #{orderId,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zpapi.other.dao.UcScoreMapper" >
+  <resultMap id="BaseResultMap" type="com.zpapi.other.model.UcScore" >
+    <id column="uid" property="uid" jdbcType="BIGINT" />
+    <result column="shop_score" property="shopScore" jdbcType="INTEGER" />
+    <result column="sns_score" property="snsScore" jdbcType="INTEGER" />
+    <result column="cms_score" property="cmsScore" jdbcType="INTEGER" />
+    <result column="total_score" property="totalScore" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    uid, shop_score, sns_score, cms_score, total_score
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zpapi.other.model.UcScoreExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from uc_score
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from uc_score
+    where uid = #{uid,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from uc_score
+    where uid = #{uid,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.zpapi.other.model.UcScoreExample" >
+    delete from uc_score
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zpapi.other.model.UcScore" >
+    insert into uc_score (uid, shop_score, sns_score, 
+      cms_score, total_score)
+    values (#{uid,jdbcType=BIGINT}, #{shopScore,jdbcType=INTEGER}, #{snsScore,jdbcType=INTEGER}, 
+      #{cmsScore,jdbcType=INTEGER}, #{totalScore,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zpapi.other.model.UcScore" >
+    insert into uc_score
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="uid != null" >
+        uid,
+      </if>
+      <if test="shopScore != null" >
+        shop_score,
+      </if>
+      <if test="snsScore != null" >
+        sns_score,
+      </if>
+      <if test="cmsScore != null" >
+        cms_score,
+      </if>
+      <if test="totalScore != null" >
+        total_score,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="uid != null" >
+        #{uid,jdbcType=BIGINT},
+      </if>
+      <if test="shopScore != null" >
+        #{shopScore,jdbcType=INTEGER},
+      </if>
+      <if test="snsScore != null" >
+        #{snsScore,jdbcType=INTEGER},
+      </if>
+      <if test="cmsScore != null" >
+        #{cmsScore,jdbcType=INTEGER},
+      </if>
+      <if test="totalScore != null" >
+        #{totalScore,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zpapi.other.model.UcScoreExample" resultType="java.lang.Integer" >
+    select count(*) from uc_score
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update uc_score
+    <set >
+      <if test="record.uid != null" >
+        uid = #{record.uid,jdbcType=BIGINT},
+      </if>
+      <if test="record.shopScore != null" >
+        shop_score = #{record.shopScore,jdbcType=INTEGER},
+      </if>
+      <if test="record.snsScore != null" >
+        sns_score = #{record.snsScore,jdbcType=INTEGER},
+      </if>
+      <if test="record.cmsScore != null" >
+        cms_score = #{record.cmsScore,jdbcType=INTEGER},
+      </if>
+      <if test="record.totalScore != null" >
+        total_score = #{record.totalScore,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update uc_score
+    set uid = #{record.uid,jdbcType=BIGINT},
+      shop_score = #{record.shopScore,jdbcType=INTEGER},
+      sns_score = #{record.snsScore,jdbcType=INTEGER},
+      cms_score = #{record.cmsScore,jdbcType=INTEGER},
+      total_score = #{record.totalScore,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zpapi.other.model.UcScore" >
+    update uc_score
+    <set >
+      <if test="shopScore != null" >
+        shop_score = #{shopScore,jdbcType=INTEGER},
+      </if>
+      <if test="snsScore != null" >
+        sns_score = #{snsScore,jdbcType=INTEGER},
+      </if>
+      <if test="cmsScore != null" >
+        cms_score = #{cmsScore,jdbcType=INTEGER},
+      </if>
+      <if test="totalScore != null" >
+        total_score = #{totalScore,jdbcType=INTEGER},
+      </if>
+    </set>
+    where uid = #{uid,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zpapi.other.model.UcScore" >
+    update uc_score
+    set shop_score = #{shopScore,jdbcType=INTEGER},
+      sns_score = #{snsScore,jdbcType=INTEGER},
+      cms_score = #{cmsScore,jdbcType=INTEGER},
+      total_score = #{totalScore,jdbcType=INTEGER}
+    where uid = #{uid,jdbcType=BIGINT}
+  </update>
+</mapper>

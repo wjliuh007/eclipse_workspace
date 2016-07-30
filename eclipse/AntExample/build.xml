@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="AntExample" default="deletefile" basedir=".">
+	<property name="clspth" location="E:\Ant"/>
+
+	<property name="build" value="build"/>
+	
+	<path id="library">
+		<fileset dir=".\lib">
+			<include name="*.jar" />
+		</fileset>
+	</path>
+	
+	<path id="class">
+		<fileset dir="${clspth}\${build}">
+			<include name="*.class" />
+		</fileset>
+	</path>
+	
+	<target name="create">
+		<description>创建编译路径文件夹</description>
+		<mkdir dir="${clspth}\${build}" description="创建编译路径文件夹"/>	
+	</target>
+
+	<target name="compiletest" depends="create" description="Compilation target">
+		<javac srcdir="test" destdir="${clspth}\${build}" encoding="GBK" includeantruntime="true" fork="true"/>
+	</target>
+		
+	<target name="compile" depends="create,compiletest" description="Compilation target">
+		<javac srcdir="java" destdir="${clspth}\${build}" encoding="GBK" includeantruntime="true" fork="true">
+			<classpath refid="library" />
+			<classpath refid="class" />
+		</javac>
+	</target>
+	<target name="compress" depends="compile" description="Compression target">
+		<echo message="begin to get jar at target" />  
+		<jar jarfile="${clspth}\Teat.jar" basedir="${clspth}\${build}">
+			<manifest>
+				<attribute name="Created-By" value="${user.name}"/>
+				<attribute name="Main-class" value="com.wjliuh.ant.AntClass"/>
+			</manifest>
+		</jar>
+	</target>
+	<target name="deletefile" depends="compress" description="Compression target">
+		<delete dir="${clspth}\${build}"/>
+		<delete file="${clspth}\Teat.jar"/>
+	</target>
+	
+	<target name="deletepub" depends="compress" description="Compression target">
+		<delete dir="${clspth}\${build}"/>
+		<delete file="${clspth}\Teat.jar"/>
+	</target>
+</project>

@@ -1,0 +1,16 @@
+axis.jar
+commons-discovery-0.2.jar
+commons-logging-1.2.jar
+commons-logging.jar
+jaxrpc.jar
+saaj.jar
+servlet-api.jar
+spring-aop-3.2.4.RELEASE.jar
+spring-beans-3.2.4.RELEASE.jar
+spring-context-3.2.4.RELEASE.jar
+spring-core-3.2.4.RELEASE.jar
+spring-expression-3.2.4.RELEASE.jar
+spring-web-3.2.4.RELEASE.jar
+spring-webmvc-3.2.4.RELEASE.jar
+standard.jar
+wsdl4j.jar

@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zpapi.other.dao.GtQuanCardLogMapper" >
+  <resultMap id="BaseResultMap" type="com.zpapi.other.model.GtQuanCardLog" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="user_card_id" property="userCardId" jdbcType="INTEGER" />
+    <result column="card_type" property="cardType" jdbcType="BIT" />
+    <result column="member_id" property="memberId" jdbcType="BIGINT" />
+    <result column="trade_type" property="tradeType" jdbcType="BIT" />
+    <result column="money" property="money" jdbcType="DECIMAL" />
+    <result column="history_total_money" property="historyTotalMoney" jdbcType="DECIMAL" />
+    <result column="trade_remark" property="tradeRemark" jdbcType="VARCHAR" />
+    <result column="order_sn" property="orderSn" jdbcType="BIGINT" />
+    <result column="trade_time" property="tradeTime" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, user_card_id, card_type, member_id, trade_type, money, history_total_money, trade_remark, 
+    order_sn, trade_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zpapi.other.model.GtQuanCardLogExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from gt_quan_card_log
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from gt_quan_card_log
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from gt_quan_card_log
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.zpapi.other.model.GtQuanCardLogExample" >
+    delete from gt_quan_card_log
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zpapi.other.model.GtQuanCardLog" >
+    insert into gt_quan_card_log (id, user_card_id, card_type, 
+      member_id, trade_type, money, 
+      history_total_money, trade_remark, order_sn, 
+      trade_time)
+    values (#{id,jdbcType=INTEGER}, #{userCardId,jdbcType=INTEGER}, #{cardType,jdbcType=BIT}, 
+      #{memberId,jdbcType=BIGINT}, #{tradeType,jdbcType=BIT}, #{money,jdbcType=DECIMAL}, 
+      #{historyTotalMoney,jdbcType=DECIMAL}, #{tradeRemark,jdbcType=VARCHAR}, #{orderSn,jdbcType=BIGINT}, 
+      #{tradeTime,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zpapi.other.model.GtQuanCardLog" >
+    insert into gt_quan_card_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userCardId != null" >
+        user_card_id,
+      </if>
+      <if test="cardType != null" >
+        card_type,
+      </if>
+      <if test="memberId != null" >
+        member_id,
+      </if>
+      <if test="tradeType != null" >
+        trade_type,
+      </if>
+      <if test="money != null" >
+        money,
+      </if>
+      <if test="historyTotalMoney != null" >
+        history_total_money,
+      </if>
+      <if test="tradeRemark != null" >
+        trade_remark,
+      </if>
+      <if test="orderSn != null" >
+        order_sn,
+      </if>
+      <if test="tradeTime != null" >
+        trade_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userCardId != null" >
+        #{userCardId,jdbcType=INTEGER},
+      </if>
+      <if test="cardType != null" >
+        #{cardType,jdbcType=BIT},
+      </if>
+      <if test="memberId != null" >
+        #{memberId,jdbcType=BIGINT},
+      </if>
+      <if test="tradeType != null" >
+        #{tradeType,jdbcType=BIT},
+      </if>
+      <if test="money != null" >
+        #{money,jdbcType=DECIMAL},
+      </if>
+      <if test="historyTotalMoney != null" >
+        #{historyTotalMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="tradeRemark != null" >
+        #{tradeRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="orderSn != null" >
+        #{orderSn,jdbcType=BIGINT},
+      </if>
+      <if test="tradeTime != null" >
+        #{tradeTime,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zpapi.other.model.GtQuanCardLogExample" resultType="java.lang.Integer" >
+    select count(*) from gt_quan_card_log
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update gt_quan_card_log
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.userCardId != null" >
+        user_card_id = #{record.userCardId,jdbcType=INTEGER},
+      </if>
+      <if test="record.cardType != null" >
+        card_type = #{record.cardType,jdbcType=BIT},
+      </if>
+      <if test="record.memberId != null" >
+        member_id = #{record.memberId,jdbcType=BIGINT},
+      </if>
+      <if test="record.tradeType != null" >
+        trade_type = #{record.tradeType,jdbcType=BIT},
+      </if>
+      <if test="record.money != null" >
+        money = #{record.money,jdbcType=DECIMAL},
+      </if>
+      <if test="record.historyTotalMoney != null" >
+        history_total_money = #{record.historyTotalMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="record.tradeRemark != null" >
+        trade_remark = #{record.tradeRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderSn != null" >
+        order_sn = #{record.orderSn,jdbcType=BIGINT},
+      </if>
+      <if test="record.tradeTime != null" >
+        trade_time = #{record.tradeTime,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update gt_quan_card_log
+    set id = #{record.id,jdbcType=INTEGER},
+      user_card_id = #{record.userCardId,jdbcType=INTEGER},
+      card_type = #{record.cardType,jdbcType=BIT},
+      member_id = #{record.memberId,jdbcType=BIGINT},
+      trade_type = #{record.tradeType,jdbcType=BIT},
+      money = #{record.money,jdbcType=DECIMAL},
+      history_total_money = #{record.historyTotalMoney,jdbcType=DECIMAL},
+      trade_remark = #{record.tradeRemark,jdbcType=VARCHAR},
+      order_sn = #{record.orderSn,jdbcType=BIGINT},
+      trade_time = #{record.tradeTime,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zpapi.other.model.GtQuanCardLog" >
+    update gt_quan_card_log
+    <set >
+      <if test="userCardId != null" >
+        user_card_id = #{userCardId,jdbcType=INTEGER},
+      </if>
+      <if test="cardType != null" >
+        card_type = #{cardType,jdbcType=BIT},
+      </if>
+      <if test="memberId != null" >
+        member_id = #{memberId,jdbcType=BIGINT},
+      </if>
+      <if test="tradeType != null" >
+        trade_type = #{tradeType,jdbcType=BIT},
+      </if>
+      <if test="money != null" >
+        money = #{money,jdbcType=DECIMAL},
+      </if>
+      <if test="historyTotalMoney != null" >
+        history_total_money = #{historyTotalMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="tradeRemark != null" >
+        trade_remark = #{tradeRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="orderSn != null" >
+        order_sn = #{orderSn,jdbcType=BIGINT},
+      </if>
+      <if test="tradeTime != null" >
+        trade_time = #{tradeTime,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zpapi.other.model.GtQuanCardLog" >
+    update gt_quan_card_log
+    set user_card_id = #{userCardId,jdbcType=INTEGER},
+      card_type = #{cardType,jdbcType=BIT},
+      member_id = #{memberId,jdbcType=BIGINT},
+      trade_type = #{tradeType,jdbcType=BIT},
+      money = #{money,jdbcType=DECIMAL},
+      history_total_money = #{historyTotalMoney,jdbcType=DECIMAL},
+      trade_remark = #{tradeRemark,jdbcType=VARCHAR},
+      order_sn = #{orderSn,jdbcType=BIGINT},
+      trade_time = #{tradeTime,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

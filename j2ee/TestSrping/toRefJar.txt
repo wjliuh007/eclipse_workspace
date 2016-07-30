@@ -1,0 +1,11 @@
+commons-logging-1.2.jar
+spring-beans-3.2.4.RELEASE-sources.jar
+spring-beans-3.2.4.RELEASE.jar
+spring-context-3.2.4.RELEASE-sources.jar
+spring-context-3.2.4.RELEASE.jar
+spring-context-support-3.2.4.RELEASE-sources.jar
+spring-context-support-3.2.4.RELEASE.jar
+spring-core-3.2.4.RELEASE-sources.jar
+spring-core-3.2.4.RELEASE.jar
+spring-struts-3.2.4.RELEASE-sources.jar
+spring-struts-3.2.4.RELEASE.jar

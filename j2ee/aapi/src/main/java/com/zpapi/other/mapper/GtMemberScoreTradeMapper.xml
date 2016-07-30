@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zpapi.other.dao.GtMemberScoreTradeMapper" >
+  <resultMap id="BaseResultMap" type="com.zpapi.other.model.GtMemberScoreTrade" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="member_id" property="memberId" jdbcType="BIGINT" />
+    <result column="trade_type" property="tradeType" jdbcType="BIT" />
+    <result column="score_type" property="scoreType" jdbcType="VARCHAR" />
+    <result column="trade_score" property="tradeScore" jdbcType="DECIMAL" />
+    <result column="history_total_score" property="historyTotalScore" jdbcType="DECIMAL" />
+    <result column="trade_method" property="tradeMethod" jdbcType="VARCHAR" />
+    <result column="order_sn" property="orderSn" jdbcType="BIGINT" />
+    <result column="trade_time" property="tradeTime" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, member_id, trade_type, score_type, trade_score, history_total_score, trade_method, 
+    order_sn, trade_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zpapi.other.model.GtMemberScoreTradeExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from gt_member_score_trade
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from gt_member_score_trade
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from gt_member_score_trade
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.zpapi.other.model.GtMemberScoreTradeExample" >
+    delete from gt_member_score_trade
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zpapi.other.model.GtMemberScoreTrade" >
+    insert into gt_member_score_trade (id, member_id, trade_type, 
+      score_type, trade_score, history_total_score, 
+      trade_method, order_sn, trade_time
+      )
+    values (#{id,jdbcType=INTEGER}, #{memberId,jdbcType=BIGINT}, #{tradeType,jdbcType=BIT}, 
+      #{scoreType,jdbcType=VARCHAR}, #{tradeScore,jdbcType=DECIMAL}, #{historyTotalScore,jdbcType=DECIMAL}, 
+      #{tradeMethod,jdbcType=VARCHAR}, #{orderSn,jdbcType=BIGINT}, #{tradeTime,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zpapi.other.model.GtMemberScoreTrade" >
+    insert into gt_member_score_trade
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="memberId != null" >
+        member_id,
+      </if>
+      <if test="tradeType != null" >
+        trade_type,
+      </if>
+      <if test="scoreType != null" >
+        score_type,
+      </if>
+      <if test="tradeScore != null" >
+        trade_score,
+      </if>
+      <if test="historyTotalScore != null" >
+        history_total_score,
+      </if>
+      <if test="tradeMethod != null" >
+        trade_method,
+      </if>
+      <if test="orderSn != null" >
+        order_sn,
+      </if>
+      <if test="tradeTime != null" >
+        trade_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="memberId != null" >
+        #{memberId,jdbcType=BIGINT},
+      </if>
+      <if test="tradeType != null" >
+        #{tradeType,jdbcType=BIT},
+      </if>
+      <if test="scoreType != null" >
+        #{scoreType,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeScore != null" >
+        #{tradeScore,jdbcType=DECIMAL},
+      </if>
+      <if test="historyTotalScore != null" >
+        #{historyTotalScore,jdbcType=DECIMAL},
+      </if>
+      <if test="tradeMethod != null" >
+        #{tradeMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="orderSn != null" >
+        #{orderSn,jdbcType=BIGINT},
+      </if>
+      <if test="tradeTime != null" >
+        #{tradeTime,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zpapi.other.model.GtMemberScoreTradeExample" resultType="java.lang.Integer" >
+    select count(*) from gt_member_score_trade
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update gt_member_score_trade
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.memberId != null" >
+        member_id = #{record.memberId,jdbcType=BIGINT},
+      </if>
+      <if test="record.tradeType != null" >
+        trade_type = #{record.tradeType,jdbcType=BIT},
+      </if>
+      <if test="record.scoreType != null" >
+        score_type = #{record.scoreType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tradeScore != null" >
+        trade_score = #{record.tradeScore,jdbcType=DECIMAL},
+      </if>
+      <if test="record.historyTotalScore != null" >
+        history_total_score = #{record.historyTotalScore,jdbcType=DECIMAL},
+      </if>
+      <if test="record.tradeMethod != null" >
+        trade_method = #{record.tradeMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderSn != null" >
+        order_sn = #{record.orderSn,jdbcType=BIGINT},
+      </if>
+      <if test="record.tradeTime != null" >
+        trade_time = #{record.tradeTime,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update gt_member_score_trade
+    set id = #{record.id,jdbcType=INTEGER},
+      member_id = #{record.memberId,jdbcType=BIGINT},
+      trade_type = #{record.tradeType,jdbcType=BIT},
+      score_type = #{record.scoreType,jdbcType=VARCHAR},
+      trade_score = #{record.tradeScore,jdbcType=DECIMAL},
+      history_total_score = #{record.historyTotalScore,jdbcType=DECIMAL},
+      trade_method = #{record.tradeMethod,jdbcType=VARCHAR},
+      order_sn = #{record.orderSn,jdbcType=BIGINT},
+      trade_time = #{record.tradeTime,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zpapi.other.model.GtMemberScoreTrade" >
+    update gt_member_score_trade
+    <set >
+      <if test="memberId != null" >
+        member_id = #{memberId,jdbcType=BIGINT},
+      </if>
+      <if test="tradeType != null" >
+        trade_type = #{tradeType,jdbcType=BIT},
+      </if>
+      <if test="scoreType != null" >
+        score_type = #{scoreType,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeScore != null" >
+        trade_score = #{tradeScore,jdbcType=DECIMAL},
+      </if>
+      <if test="historyTotalScore != null" >
+        history_total_score = #{historyTotalScore,jdbcType=DECIMAL},
+      </if>
+      <if test="tradeMethod != null" >
+        trade_method = #{tradeMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="orderSn != null" >
+        order_sn = #{orderSn,jdbcType=BIGINT},
+      </if>
+      <if test="tradeTime != null" >
+        trade_time = #{tradeTime,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zpapi.other.model.GtMemberScoreTrade" >
+    update gt_member_score_trade
+    set member_id = #{memberId,jdbcType=BIGINT},
+      trade_type = #{tradeType,jdbcType=BIT},
+      score_type = #{scoreType,jdbcType=VARCHAR},
+      trade_score = #{tradeScore,jdbcType=DECIMAL},
+      history_total_score = #{historyTotalScore,jdbcType=DECIMAL},
+      trade_method = #{tradeMethod,jdbcType=VARCHAR},
+      order_sn = #{orderSn,jdbcType=BIGINT},
+      trade_time = #{tradeTime,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,8 @@
+Manifest-Version: 1.0
+Implementation-Title: oauth2 Maven Webapp
+Implementation-Version: 0.0.1-SNAPSHOT
+Build-Jdk: 1.7.0_65
+Built-By: jie
+Created-By: Maven Integration for Eclipse
+Implementation-BuildNumber: 0.0.1-SNAPSHOT
+

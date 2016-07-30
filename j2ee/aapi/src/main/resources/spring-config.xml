@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans 	xmlns="http://www.springframework.org/schema/beans"
+       	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       	xmlns:aop="http://www.springframework.org/schema/aop"
+       	xmlns:tx="http://www.springframework.org/schema/tx"
+       	xmlns:context="http://www.springframework.org/schema/context"
+       	xsi:schemaLocation="
+       		http://www.springframework.org/schema/beans 
+       		http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+       		http://www.springframework.org/schema/aop 
+       		http://www.springframework.org/schema/aop/spring-aop-3.1.xsd
+       		http://www.springframework.org/schema/tx 
+       		http://www.springframework.org/schema/tx/spring-tx-3.1.xsd
+       		http://www.springframework.org/schema/context 
+       		http://www.springframework.org/schema/context/spring-context-3.1.xsd">
+
+
+    <!-- 扫描注解Bean -->
+    <context:component-scan base-package="com.zpapi.**.service">
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Service"/>
+    </context:component-scan>
+    
+<!--     <context:property-placeholder location="jdbc.properties"/> -->
+<!-- 	
+  	<bean id="masterDataSource" class="org.logicalcobwebs.proxool.ProxoolDataSource">
+		<property name="alias" value="masterDataSource"/>
+		<property name="driver" value="com.mysql.jdbc.Driver" />
+		<property name="driverUrl" value="jdbc:mysql://192.168.1.30:3306/shop_zp?useUnicode=true&amp;characterEncoding=UTF-8" />
+		<property name="user" value="apidev" />
+		<property name="password" value="apidev" />
+		<property name="maximumConnectionCount" value="40"/>
+		<property name="minimumConnectionCount" value="5" />
+		<property name="statistics" value="1m,15m,1h,1d" />
+		<property name="simultaneousBuildThrottle" value="30"/>
+	</bean>
+    
+    <bean id="slave1DataSource" class="org.logicalcobwebs.proxool.ProxoolDataSource">
+        <property name="alias" value="slave1DataSource"/>
+        <property name="driver" value="com.mysql.jdbc.Driver" />
+		<property name="driverUrl" value="jdbc:mysql://192.168.1.30:3306/shop_zp?useUnicode=true&amp;characterEncoding=UTF-8" />
+		<property name="user" value="apidev" />
+		<property name="password" value="apidev" />
+		<property name="maximumConnectionCount" value="40"/>
+		<property name="minimumConnectionCount" value="5" />
+		<property name="statistics" value="1m,15m,1h,1d" />
+		<property name="simultaneousBuildThrottle" value="30"/>
+    </bean>
+    
+    <bean id="slave2DataSource" class="org.logicalcobwebs.proxool.ProxoolDataSource">
+        <property name="alias" value="slave2DataSource"/>
+        <property name="driver" value="com.mysql.jdbc.Driver" />
+		<property name="driverUrl" value="jdbc:mysql://192.168.1.30:3306/shop_zp?useUnicode=true&amp;characterEncoding=UTF-8" />
+		<property name="user" value="apidev" />
+		<property name="password" value="apidev" />
+		<property name="maximumConnectionCount" value="40"/>
+		<property name="minimumConnectionCount" value="5" />
+		<property name="statistics" value="1m,15m,1h,1d" />
+		<property name="simultaneousBuildThrottle" value="30"/>
+    </bean>
+
+ 	<bean id="readWriteDataSource" class="com.zpapi.pub.ZPDataSource">
+        <property name="masterDataSource" ref="masterDataSource"/>
+        <property name="slaveDataSourceMap">
+           <map>
+              <entry key="slave1DataSource" value-ref="slave1DataSource"/>
+              <entry key="slave2DataSource" value-ref="slave2DataSource"/>
+           </map>
+        </property>
+    </bean>
+    <bean id="dataSourceTransactionProcessor" class="com.zpapi.pub.ZPDataSourceProcessor">
+       <property name="forceChoiceReadWhenWrite" value="false"/>
+    </bean>
+        
+    <aop:config expose-proxy="true">
+        只对业务逻辑层实施事务
+        <aop:pointcut id="txPointcut" expression="execution(* com.zp.api.service.provider..*.*(..))" />
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="txPointcut"/>
+        
+        通过AOP切面实现读/写库选择
+        <aop:aspect order="-2147483648" ref="dataSourceTransactionProcessor">
+           <aop:around pointcut-ref="txPointcut" method="selectDataSource"/>
+        </aop:aspect>
+    </aop:config>
+    
+    <bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="readWriteDataSource"/>
+    </bean>
+    
+    <tx:advice id="txAdvice" transaction-manager="txManager">
+        <tx:attributes>
+            <tx:method name="save*" propagation="REQUIRED" />
+            <tx:method name="add*" propagation="REQUIRED" />
+            <tx:method name="create*" propagation="REQUIRED" />
+            <tx:method name="insert*" propagation="REQUIRED" />
+            <tx:method name="update*" propagation="REQUIRED" />
+            <tx:method name="merge*" propagation="REQUIRED" />
+            <tx:method name="del*" propagation="REQUIRED" />
+            <tx:method name="remove*" propagation="REQUIRED" />
+            
+            <tx:method name="put*" read-only="true"/>
+            <tx:method name="query*" read-only="true"/>
+            <tx:method name="use*" read-only="true"/>
+            <tx:method name="get*" read-only="true" />
+            <tx:method name="count*" read-only="true" />
+            <tx:method name="find*" read-only="true" />
+            <tx:method name="list*" read-only="true" />
+            
+            <tx:method name="*" propagation="REQUIRED"/>
+        </tx:attributes>
+    </tx:advice> -->
+    
+</beans>

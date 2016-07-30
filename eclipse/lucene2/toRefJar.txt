@@ -1,0 +1,2 @@
+junit-4.7.jar
+lucene-core-3.5.0.jar

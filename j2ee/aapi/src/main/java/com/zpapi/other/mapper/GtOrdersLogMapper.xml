@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zpapi.other.dao.GtOrdersLogMapper" >
+  <resultMap id="BaseResultMap" type="com.zpapi.other.model.GtOrdersLog" >
+    <id column="log_id" property="logId" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="BIT" />
+    <result column="order_id" property="orderId" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="TINYINT" />
+    <result column="sub_status" property="subStatus" jdbcType="TINYINT" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="express_id" property="expressId" jdbcType="INTEGER" />
+    <result column="op_type" property="opType" jdbcType="INTEGER" />
+    <result column="memo" property="memo" jdbcType="VARCHAR" />
+    <result column="formerly" property="formerly" jdbcType="VARCHAR" />
+    <result column="op_time" property="opTime" jdbcType="INTEGER" />
+    <result column="ip" property="ip" jdbcType="VARCHAR" />
+    <result column="show_type" property="showType" jdbcType="BIT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    log_id, type, order_id, status, sub_status, user_id, express_id, op_type, memo, formerly, 
+    op_time, ip, show_type
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zpapi.other.model.GtOrdersLogExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from gt_orders_log
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from gt_orders_log
+    where log_id = #{logId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from gt_orders_log
+    where log_id = #{logId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.zpapi.other.model.GtOrdersLogExample" >
+    delete from gt_orders_log
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zpapi.other.model.GtOrdersLog" >
+    insert into gt_orders_log (log_id, type, order_id, 
+      status, sub_status, user_id, 
+      express_id, op_type, memo, 
+      formerly, op_time, ip, 
+      show_type)
+    values (#{logId,jdbcType=INTEGER}, #{type,jdbcType=BIT}, #{orderId,jdbcType=INTEGER}, 
+      #{status,jdbcType=TINYINT}, #{subStatus,jdbcType=TINYINT}, #{userId,jdbcType=INTEGER}, 
+      #{expressId,jdbcType=INTEGER}, #{opType,jdbcType=INTEGER}, #{memo,jdbcType=VARCHAR}, 
+      #{formerly,jdbcType=VARCHAR}, #{opTime,jdbcType=INTEGER}, #{ip,jdbcType=VARCHAR}, 
+      #{showType,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zpapi.other.model.GtOrdersLog" >
+    insert into gt_orders_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="logId != null" >
+        log_id,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="subStatus != null" >
+        sub_status,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="expressId != null" >
+        express_id,
+      </if>
+      <if test="opType != null" >
+        op_type,
+      </if>
+      <if test="memo != null" >
+        memo,
+      </if>
+      <if test="formerly != null" >
+        formerly,
+      </if>
+      <if test="opTime != null" >
+        op_time,
+      </if>
+      <if test="ip != null" >
+        ip,
+      </if>
+      <if test="showType != null" >
+        show_type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="logId != null" >
+        #{logId,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=BIT},
+      </if>
+      <if test="orderId != null" >
+        #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="subStatus != null" >
+        #{subStatus,jdbcType=TINYINT},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="expressId != null" >
+        #{expressId,jdbcType=INTEGER},
+      </if>
+      <if test="opType != null" >
+        #{opType,jdbcType=INTEGER},
+      </if>
+      <if test="memo != null" >
+        #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="formerly != null" >
+        #{formerly,jdbcType=VARCHAR},
+      </if>
+      <if test="opTime != null" >
+        #{opTime,jdbcType=INTEGER},
+      </if>
+      <if test="ip != null" >
+        #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="showType != null" >
+        #{showType,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zpapi.other.model.GtOrdersLogExample" resultType="java.lang.Integer" >
+    select count(*) from gt_orders_log
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update gt_orders_log
+    <set >
+      <if test="record.logId != null" >
+        log_id = #{record.logId,jdbcType=INTEGER},
+      </if>
+      <if test="record.type != null" >
+        type = #{record.type,jdbcType=BIT},
+      </if>
+      <if test="record.orderId != null" >
+        order_id = #{record.orderId,jdbcType=INTEGER},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=TINYINT},
+      </if>
+      <if test="record.subStatus != null" >
+        sub_status = #{record.subStatus,jdbcType=TINYINT},
+      </if>
+      <if test="record.userId != null" >
+        user_id = #{record.userId,jdbcType=INTEGER},
+      </if>
+      <if test="record.expressId != null" >
+        express_id = #{record.expressId,jdbcType=INTEGER},
+      </if>
+      <if test="record.opType != null" >
+        op_type = #{record.opType,jdbcType=INTEGER},
+      </if>
+      <if test="record.memo != null" >
+        memo = #{record.memo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.formerly != null" >
+        formerly = #{record.formerly,jdbcType=VARCHAR},
+      </if>
+      <if test="record.opTime != null" >
+        op_time = #{record.opTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.ip != null" >
+        ip = #{record.ip,jdbcType=VARCHAR},
+      </if>
+      <if test="record.showType != null" >
+        show_type = #{record.showType,jdbcType=BIT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update gt_orders_log
+    set log_id = #{record.logId,jdbcType=INTEGER},
+      type = #{record.type,jdbcType=BIT},
+      order_id = #{record.orderId,jdbcType=INTEGER},
+      status = #{record.status,jdbcType=TINYINT},
+      sub_status = #{record.subStatus,jdbcType=TINYINT},
+      user_id = #{record.userId,jdbcType=INTEGER},
+      express_id = #{record.expressId,jdbcType=INTEGER},
+      op_type = #{record.opType,jdbcType=INTEGER},
+      memo = #{record.memo,jdbcType=VARCHAR},
+      formerly = #{record.formerly,jdbcType=VARCHAR},
+      op_time = #{record.opTime,jdbcType=INTEGER},
+      ip = #{record.ip,jdbcType=VARCHAR},
+      show_type = #{record.showType,jdbcType=BIT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zpapi.other.model.GtOrdersLog" >
+    update gt_orders_log
+    <set >
+      <if test="type != null" >
+        type = #{type,jdbcType=BIT},
+      </if>
+      <if test="orderId != null" >
+        order_id = #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="subStatus != null" >
+        sub_status = #{subStatus,jdbcType=TINYINT},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="expressId != null" >
+        express_id = #{expressId,jdbcType=INTEGER},
+      </if>
+      <if test="opType != null" >
+        op_type = #{opType,jdbcType=INTEGER},
+      </if>
+      <if test="memo != null" >
+        memo = #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="formerly != null" >
+        formerly = #{formerly,jdbcType=VARCHAR},
+      </if>
+      <if test="opTime != null" >
+        op_time = #{opTime,jdbcType=INTEGER},
+      </if>
+      <if test="ip != null" >
+        ip = #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="showType != null" >
+        show_type = #{showType,jdbcType=BIT},
+      </if>
+    </set>
+    where log_id = #{logId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zpapi.other.model.GtOrdersLog" >
+    update gt_orders_log
+    set type = #{type,jdbcType=BIT},
+      order_id = #{orderId,jdbcType=INTEGER},
+      status = #{status,jdbcType=TINYINT},
+      sub_status = #{subStatus,jdbcType=TINYINT},
+      user_id = #{userId,jdbcType=INTEGER},
+      express_id = #{expressId,jdbcType=INTEGER},
+      op_type = #{opType,jdbcType=INTEGER},
+      memo = #{memo,jdbcType=VARCHAR},
+      formerly = #{formerly,jdbcType=VARCHAR},
+      op_time = #{opTime,jdbcType=INTEGER},
+      ip = #{ip,jdbcType=VARCHAR},
+      show_type = #{showType,jdbcType=BIT}
+    where log_id = #{logId,jdbcType=INTEGER}
+  </update>
+</mapper>

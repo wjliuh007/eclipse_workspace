@@ -1,0 +1,807 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zpapi.other.dao.GtGoodsBrandMapper" >
+  <resultMap id="BaseResultMap" type="com.zpapi.other.model.GtGoodsBrand" >
+    <id column="brand_id" property="brandId" jdbcType="INTEGER" />
+    <result column="is_top" property="isTop" jdbcType="BIT" />
+    <result column="brand_name" property="brandName" jdbcType="VARCHAR" />
+    <result column="brand_name_second" property="brandNameSecond" jdbcType="VARCHAR" />
+    <result column="brand_pinyin" property="brandPinyin" jdbcType="VARCHAR" />
+    <result column="brand_logo" property="brandLogo" jdbcType="VARCHAR" />
+    <result column="thumb_brand_img" property="thumbBrandImg" jdbcType="VARCHAR" />
+    <result column="brand_img" property="brandImg" jdbcType="VARCHAR" />
+    <result column="brand_css_path" property="brandCssPath" jdbcType="VARCHAR" />
+    <result column="brand_simple_intro" property="brandSimpleIntro" jdbcType="VARCHAR" />
+    <result column="nature" property="nature" jdbcType="VARCHAR" />
+    <result column="chinese_nature" property="chineseNature" jdbcType="VARCHAR" />
+    <result column="sort" property="sort" jdbcType="INTEGER" />
+    <result column="cms_brand_id" property="cmsBrandId" jdbcType="INTEGER" />
+    <result column="cms_brand_path" property="cmsBrandPath" jdbcType="VARCHAR" />
+    <result column="url_path" property="urlPath" jdbcType="VARCHAR" />
+    <result column="seo_info" property="seoInfo" jdbcType="VARCHAR" />
+    <result column="male_seo_info" property="maleSeoInfo" jdbcType="VARCHAR" />
+    <result column="female_seo_info" property="femaleSeoInfo" jdbcType="VARCHAR" />
+    <result column="banner_img_path" property="bannerImgPath" jdbcType="VARCHAR" />
+    <result column="banner_link" property="bannerLink" jdbcType="VARCHAR" />
+    <result column="add_time" property="addTime" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="edit_time" property="editTime" jdbcType="TIMESTAMP" />
+    <result column="edit_user_id" property="editUserId" jdbcType="INTEGER" />
+    <result column="amazon_name" property="amazonName" jdbcType="VARCHAR" />
+    <result column="coo8_brand_id" property="coo8BrandId" jdbcType="INTEGER" />
+    <result column="recom_label" property="recomLabel" jdbcType="TINYINT" />
+    <result column="app_img" property="appImg" jdbcType="VARCHAR" />
+    <result column="app_brand_name" property="appBrandName" jdbcType="VARCHAR" />
+    <result column="app_sort" property="appSort" jdbcType="INTEGER" />
+    <result column="app_show" property="appShow" jdbcType="BIT" />
+    <result column="app_status" property="appStatus" jdbcType="BIT" />
+    <result column="app_small_img" property="appSmallImg" jdbcType="VARCHAR" />
+    <result column="origin" property="origin" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.zpapi.other.model.GtGoodsBrand" extends="BaseResultMap" >
+    <result column="brand_intro" property="brandIntro" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    brand_id, is_top, brand_name, brand_name_second, brand_pinyin, brand_logo, thumb_brand_img, 
+    brand_img, brand_css_path, brand_simple_intro, nature, chinese_nature, sort, cms_brand_id, 
+    cms_brand_path, url_path, seo_info, male_seo_info, female_seo_info, banner_img_path, 
+    banner_link, add_time, user_id, edit_time, edit_user_id, amazon_name, coo8_brand_id, 
+    recom_label, app_img, app_brand_name, app_sort, app_show, app_status, app_small_img, 
+    origin
+  </sql>
+  <sql id="Blob_Column_List" >
+    brand_intro
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.zpapi.other.model.GtGoodsBrandExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from gt_goods_brand
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zpapi.other.model.GtGoodsBrandExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from gt_goods_brand
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from gt_goods_brand
+    where brand_id = #{brandId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from gt_goods_brand
+    where brand_id = #{brandId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.zpapi.other.model.GtGoodsBrandExample" >
+    delete from gt_goods_brand
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zpapi.other.model.GtGoodsBrand" >
+    insert into gt_goods_brand (brand_id, is_top, brand_name, 
+      brand_name_second, brand_pinyin, brand_logo, 
+      thumb_brand_img, brand_img, brand_css_path, 
+      brand_simple_intro, nature, chinese_nature, 
+      sort, cms_brand_id, cms_brand_path, 
+      url_path, seo_info, male_seo_info, 
+      female_seo_info, banner_img_path, banner_link, 
+      add_time, user_id, edit_time, 
+      edit_user_id, amazon_name, coo8_brand_id, 
+      recom_label, app_img, app_brand_name, 
+      app_sort, app_show, app_status, 
+      app_small_img, origin, brand_intro
+      )
+    values (#{brandId,jdbcType=INTEGER}, #{isTop,jdbcType=BIT}, #{brandName,jdbcType=VARCHAR}, 
+      #{brandNameSecond,jdbcType=VARCHAR}, #{brandPinyin,jdbcType=VARCHAR}, #{brandLogo,jdbcType=VARCHAR}, 
+      #{thumbBrandImg,jdbcType=VARCHAR}, #{brandImg,jdbcType=VARCHAR}, #{brandCssPath,jdbcType=VARCHAR}, 
+      #{brandSimpleIntro,jdbcType=VARCHAR}, #{nature,jdbcType=VARCHAR}, #{chineseNature,jdbcType=VARCHAR}, 
+      #{sort,jdbcType=INTEGER}, #{cmsBrandId,jdbcType=INTEGER}, #{cmsBrandPath,jdbcType=VARCHAR}, 
+      #{urlPath,jdbcType=VARCHAR}, #{seoInfo,jdbcType=VARCHAR}, #{maleSeoInfo,jdbcType=VARCHAR}, 
+      #{femaleSeoInfo,jdbcType=VARCHAR}, #{bannerImgPath,jdbcType=VARCHAR}, #{bannerLink,jdbcType=VARCHAR}, 
+      #{addTime,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{editTime,jdbcType=TIMESTAMP}, 
+      #{editUserId,jdbcType=INTEGER}, #{amazonName,jdbcType=VARCHAR}, #{coo8BrandId,jdbcType=INTEGER}, 
+      #{recomLabel,jdbcType=TINYINT}, #{appImg,jdbcType=VARCHAR}, #{appBrandName,jdbcType=VARCHAR}, 
+      #{appSort,jdbcType=INTEGER}, #{appShow,jdbcType=BIT}, #{appStatus,jdbcType=BIT}, 
+      #{appSmallImg,jdbcType=VARCHAR}, #{origin,jdbcType=VARCHAR}, #{brandIntro,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zpapi.other.model.GtGoodsBrand" >
+    insert into gt_goods_brand
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="brandId != null" >
+        brand_id,
+      </if>
+      <if test="isTop != null" >
+        is_top,
+      </if>
+      <if test="brandName != null" >
+        brand_name,
+      </if>
+      <if test="brandNameSecond != null" >
+        brand_name_second,
+      </if>
+      <if test="brandPinyin != null" >
+        brand_pinyin,
+      </if>
+      <if test="brandLogo != null" >
+        brand_logo,
+      </if>
+      <if test="thumbBrandImg != null" >
+        thumb_brand_img,
+      </if>
+      <if test="brandImg != null" >
+        brand_img,
+      </if>
+      <if test="brandCssPath != null" >
+        brand_css_path,
+      </if>
+      <if test="brandSimpleIntro != null" >
+        brand_simple_intro,
+      </if>
+      <if test="nature != null" >
+        nature,
+      </if>
+      <if test="chineseNature != null" >
+        chinese_nature,
+      </if>
+      <if test="sort != null" >
+        sort,
+      </if>
+      <if test="cmsBrandId != null" >
+        cms_brand_id,
+      </if>
+      <if test="cmsBrandPath != null" >
+        cms_brand_path,
+      </if>
+      <if test="urlPath != null" >
+        url_path,
+      </if>
+      <if test="seoInfo != null" >
+        seo_info,
+      </if>
+      <if test="maleSeoInfo != null" >
+        male_seo_info,
+      </if>
+      <if test="femaleSeoInfo != null" >
+        female_seo_info,
+      </if>
+      <if test="bannerImgPath != null" >
+        banner_img_path,
+      </if>
+      <if test="bannerLink != null" >
+        banner_link,
+      </if>
+      <if test="addTime != null" >
+        add_time,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="editTime != null" >
+        edit_time,
+      </if>
+      <if test="editUserId != null" >
+        edit_user_id,
+      </if>
+      <if test="amazonName != null" >
+        amazon_name,
+      </if>
+      <if test="coo8BrandId != null" >
+        coo8_brand_id,
+      </if>
+      <if test="recomLabel != null" >
+        recom_label,
+      </if>
+      <if test="appImg != null" >
+        app_img,
+      </if>
+      <if test="appBrandName != null" >
+        app_brand_name,
+      </if>
+      <if test="appSort != null" >
+        app_sort,
+      </if>
+      <if test="appShow != null" >
+        app_show,
+      </if>
+      <if test="appStatus != null" >
+        app_status,
+      </if>
+      <if test="appSmallImg != null" >
+        app_small_img,
+      </if>
+      <if test="origin != null" >
+        origin,
+      </if>
+      <if test="brandIntro != null" >
+        brand_intro,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="brandId != null" >
+        #{brandId,jdbcType=INTEGER},
+      </if>
+      <if test="isTop != null" >
+        #{isTop,jdbcType=BIT},
+      </if>
+      <if test="brandName != null" >
+        #{brandName,jdbcType=VARCHAR},
+      </if>
+      <if test="brandNameSecond != null" >
+        #{brandNameSecond,jdbcType=VARCHAR},
+      </if>
+      <if test="brandPinyin != null" >
+        #{brandPinyin,jdbcType=VARCHAR},
+      </if>
+      <if test="brandLogo != null" >
+        #{brandLogo,jdbcType=VARCHAR},
+      </if>
+      <if test="thumbBrandImg != null" >
+        #{thumbBrandImg,jdbcType=VARCHAR},
+      </if>
+      <if test="brandImg != null" >
+        #{brandImg,jdbcType=VARCHAR},
+      </if>
+      <if test="brandCssPath != null" >
+        #{brandCssPath,jdbcType=VARCHAR},
+      </if>
+      <if test="brandSimpleIntro != null" >
+        #{brandSimpleIntro,jdbcType=VARCHAR},
+      </if>
+      <if test="nature != null" >
+        #{nature,jdbcType=VARCHAR},
+      </if>
+      <if test="chineseNature != null" >
+        #{chineseNature,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null" >
+        #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="cmsBrandId != null" >
+        #{cmsBrandId,jdbcType=INTEGER},
+      </if>
+      <if test="cmsBrandPath != null" >
+        #{cmsBrandPath,jdbcType=VARCHAR},
+      </if>
+      <if test="urlPath != null" >
+        #{urlPath,jdbcType=VARCHAR},
+      </if>
+      <if test="seoInfo != null" >
+        #{seoInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="maleSeoInfo != null" >
+        #{maleSeoInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="femaleSeoInfo != null" >
+        #{femaleSeoInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="bannerImgPath != null" >
+        #{bannerImgPath,jdbcType=VARCHAR},
+      </if>
+      <if test="bannerLink != null" >
+        #{bannerLink,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null" >
+        #{addTime,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="editTime != null" >
+        #{editTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="editUserId != null" >
+        #{editUserId,jdbcType=INTEGER},
+      </if>
+      <if test="amazonName != null" >
+        #{amazonName,jdbcType=VARCHAR},
+      </if>
+      <if test="coo8BrandId != null" >
+        #{coo8BrandId,jdbcType=INTEGER},
+      </if>
+      <if test="recomLabel != null" >
+        #{recomLabel,jdbcType=TINYINT},
+      </if>
+      <if test="appImg != null" >
+        #{appImg,jdbcType=VARCHAR},
+      </if>
+      <if test="appBrandName != null" >
+        #{appBrandName,jdbcType=VARCHAR},
+      </if>
+      <if test="appSort != null" >
+        #{appSort,jdbcType=INTEGER},
+      </if>
+      <if test="appShow != null" >
+        #{appShow,jdbcType=BIT},
+      </if>
+      <if test="appStatus != null" >
+        #{appStatus,jdbcType=BIT},
+      </if>
+      <if test="appSmallImg != null" >
+        #{appSmallImg,jdbcType=VARCHAR},
+      </if>
+      <if test="origin != null" >
+        #{origin,jdbcType=VARCHAR},
+      </if>
+      <if test="brandIntro != null" >
+        #{brandIntro,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zpapi.other.model.GtGoodsBrandExample" resultType="java.lang.Integer" >
+    select count(*) from gt_goods_brand
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update gt_goods_brand
+    <set >
+      <if test="record.brandId != null" >
+        brand_id = #{record.brandId,jdbcType=INTEGER},
+      </if>
+      <if test="record.isTop != null" >
+        is_top = #{record.isTop,jdbcType=BIT},
+      </if>
+      <if test="record.brandName != null" >
+        brand_name = #{record.brandName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.brandNameSecond != null" >
+        brand_name_second = #{record.brandNameSecond,jdbcType=VARCHAR},
+      </if>
+      <if test="record.brandPinyin != null" >
+        brand_pinyin = #{record.brandPinyin,jdbcType=VARCHAR},
+      </if>
+      <if test="record.brandLogo != null" >
+        brand_logo = #{record.brandLogo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.thumbBrandImg != null" >
+        thumb_brand_img = #{record.thumbBrandImg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.brandImg != null" >
+        brand_img = #{record.brandImg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.brandCssPath != null" >
+        brand_css_path = #{record.brandCssPath,jdbcType=VARCHAR},
+      </if>
+      <if test="record.brandSimpleIntro != null" >
+        brand_simple_intro = #{record.brandSimpleIntro,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nature != null" >
+        nature = #{record.nature,jdbcType=VARCHAR},
+      </if>
+      <if test="record.chineseNature != null" >
+        chinese_nature = #{record.chineseNature,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sort != null" >
+        sort = #{record.sort,jdbcType=INTEGER},
+      </if>
+      <if test="record.cmsBrandId != null" >
+        cms_brand_id = #{record.cmsBrandId,jdbcType=INTEGER},
+      </if>
+      <if test="record.cmsBrandPath != null" >
+        cms_brand_path = #{record.cmsBrandPath,jdbcType=VARCHAR},
+      </if>
+      <if test="record.urlPath != null" >
+        url_path = #{record.urlPath,jdbcType=VARCHAR},
+      </if>
+      <if test="record.seoInfo != null" >
+        seo_info = #{record.seoInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.maleSeoInfo != null" >
+        male_seo_info = #{record.maleSeoInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.femaleSeoInfo != null" >
+        female_seo_info = #{record.femaleSeoInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bannerImgPath != null" >
+        banner_img_path = #{record.bannerImgPath,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bannerLink != null" >
+        banner_link = #{record.bannerLink,jdbcType=VARCHAR},
+      </if>
+      <if test="record.addTime != null" >
+        add_time = #{record.addTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.userId != null" >
+        user_id = #{record.userId,jdbcType=INTEGER},
+      </if>
+      <if test="record.editTime != null" >
+        edit_time = #{record.editTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.editUserId != null" >
+        edit_user_id = #{record.editUserId,jdbcType=INTEGER},
+      </if>
+      <if test="record.amazonName != null" >
+        amazon_name = #{record.amazonName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.coo8BrandId != null" >
+        coo8_brand_id = #{record.coo8BrandId,jdbcType=INTEGER},
+      </if>
+      <if test="record.recomLabel != null" >
+        recom_label = #{record.recomLabel,jdbcType=TINYINT},
+      </if>
+      <if test="record.appImg != null" >
+        app_img = #{record.appImg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.appBrandName != null" >
+        app_brand_name = #{record.appBrandName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.appSort != null" >
+        app_sort = #{record.appSort,jdbcType=INTEGER},
+      </if>
+      <if test="record.appShow != null" >
+        app_show = #{record.appShow,jdbcType=BIT},
+      </if>
+      <if test="record.appStatus != null" >
+        app_status = #{record.appStatus,jdbcType=BIT},
+      </if>
+      <if test="record.appSmallImg != null" >
+        app_small_img = #{record.appSmallImg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.origin != null" >
+        origin = #{record.origin,jdbcType=VARCHAR},
+      </if>
+      <if test="record.brandIntro != null" >
+        brand_intro = #{record.brandIntro,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update gt_goods_brand
+    set brand_id = #{record.brandId,jdbcType=INTEGER},
+      is_top = #{record.isTop,jdbcType=BIT},
+      brand_name = #{record.brandName,jdbcType=VARCHAR},
+      brand_name_second = #{record.brandNameSecond,jdbcType=VARCHAR},
+      brand_pinyin = #{record.brandPinyin,jdbcType=VARCHAR},
+      brand_logo = #{record.brandLogo,jdbcType=VARCHAR},
+      thumb_brand_img = #{record.thumbBrandImg,jdbcType=VARCHAR},
+      brand_img = #{record.brandImg,jdbcType=VARCHAR},
+      brand_css_path = #{record.brandCssPath,jdbcType=VARCHAR},
+      brand_simple_intro = #{record.brandSimpleIntro,jdbcType=VARCHAR},
+      nature = #{record.nature,jdbcType=VARCHAR},
+      chinese_nature = #{record.chineseNature,jdbcType=VARCHAR},
+      sort = #{record.sort,jdbcType=INTEGER},
+      cms_brand_id = #{record.cmsBrandId,jdbcType=INTEGER},
+      cms_brand_path = #{record.cmsBrandPath,jdbcType=VARCHAR},
+      url_path = #{record.urlPath,jdbcType=VARCHAR},
+      seo_info = #{record.seoInfo,jdbcType=VARCHAR},
+      male_seo_info = #{record.maleSeoInfo,jdbcType=VARCHAR},
+      female_seo_info = #{record.femaleSeoInfo,jdbcType=VARCHAR},
+      banner_img_path = #{record.bannerImgPath,jdbcType=VARCHAR},
+      banner_link = #{record.bannerLink,jdbcType=VARCHAR},
+      add_time = #{record.addTime,jdbcType=INTEGER},
+      user_id = #{record.userId,jdbcType=INTEGER},
+      edit_time = #{record.editTime,jdbcType=TIMESTAMP},
+      edit_user_id = #{record.editUserId,jdbcType=INTEGER},
+      amazon_name = #{record.amazonName,jdbcType=VARCHAR},
+      coo8_brand_id = #{record.coo8BrandId,jdbcType=INTEGER},
+      recom_label = #{record.recomLabel,jdbcType=TINYINT},
+      app_img = #{record.appImg,jdbcType=VARCHAR},
+      app_brand_name = #{record.appBrandName,jdbcType=VARCHAR},
+      app_sort = #{record.appSort,jdbcType=INTEGER},
+      app_show = #{record.appShow,jdbcType=BIT},
+      app_status = #{record.appStatus,jdbcType=BIT},
+      app_small_img = #{record.appSmallImg,jdbcType=VARCHAR},
+      origin = #{record.origin,jdbcType=VARCHAR},
+      brand_intro = #{record.brandIntro,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update gt_goods_brand
+    set brand_id = #{record.brandId,jdbcType=INTEGER},
+      is_top = #{record.isTop,jdbcType=BIT},
+      brand_name = #{record.brandName,jdbcType=VARCHAR},
+      brand_name_second = #{record.brandNameSecond,jdbcType=VARCHAR},
+      brand_pinyin = #{record.brandPinyin,jdbcType=VARCHAR},
+      brand_logo = #{record.brandLogo,jdbcType=VARCHAR},
+      thumb_brand_img = #{record.thumbBrandImg,jdbcType=VARCHAR},
+      brand_img = #{record.brandImg,jdbcType=VARCHAR},
+      brand_css_path = #{record.brandCssPath,jdbcType=VARCHAR},
+      brand_simple_intro = #{record.brandSimpleIntro,jdbcType=VARCHAR},
+      nature = #{record.nature,jdbcType=VARCHAR},
+      chinese_nature = #{record.chineseNature,jdbcType=VARCHAR},
+      sort = #{record.sort,jdbcType=INTEGER},
+      cms_brand_id = #{record.cmsBrandId,jdbcType=INTEGER},
+      cms_brand_path = #{record.cmsBrandPath,jdbcType=VARCHAR},
+      url_path = #{record.urlPath,jdbcType=VARCHAR},
+      seo_info = #{record.seoInfo,jdbcType=VARCHAR},
+      male_seo_info = #{record.maleSeoInfo,jdbcType=VARCHAR},
+      female_seo_info = #{record.femaleSeoInfo,jdbcType=VARCHAR},
+      banner_img_path = #{record.bannerImgPath,jdbcType=VARCHAR},
+      banner_link = #{record.bannerLink,jdbcType=VARCHAR},
+      add_time = #{record.addTime,jdbcType=INTEGER},
+      user_id = #{record.userId,jdbcType=INTEGER},
+      edit_time = #{record.editTime,jdbcType=TIMESTAMP},
+      edit_user_id = #{record.editUserId,jdbcType=INTEGER},
+      amazon_name = #{record.amazonName,jdbcType=VARCHAR},
+      coo8_brand_id = #{record.coo8BrandId,jdbcType=INTEGER},
+      recom_label = #{record.recomLabel,jdbcType=TINYINT},
+      app_img = #{record.appImg,jdbcType=VARCHAR},
+      app_brand_name = #{record.appBrandName,jdbcType=VARCHAR},
+      app_sort = #{record.appSort,jdbcType=INTEGER},
+      app_show = #{record.appShow,jdbcType=BIT},
+      app_status = #{record.appStatus,jdbcType=BIT},
+      app_small_img = #{record.appSmallImg,jdbcType=VARCHAR},
+      origin = #{record.origin,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zpapi.other.model.GtGoodsBrand" >
+    update gt_goods_brand
+    <set >
+      <if test="isTop != null" >
+        is_top = #{isTop,jdbcType=BIT},
+      </if>
+      <if test="brandName != null" >
+        brand_name = #{brandName,jdbcType=VARCHAR},
+      </if>
+      <if test="brandNameSecond != null" >
+        brand_name_second = #{brandNameSecond,jdbcType=VARCHAR},
+      </if>
+      <if test="brandPinyin != null" >
+        brand_pinyin = #{brandPinyin,jdbcType=VARCHAR},
+      </if>
+      <if test="brandLogo != null" >
+        brand_logo = #{brandLogo,jdbcType=VARCHAR},
+      </if>
+      <if test="thumbBrandImg != null" >
+        thumb_brand_img = #{thumbBrandImg,jdbcType=VARCHAR},
+      </if>
+      <if test="brandImg != null" >
+        brand_img = #{brandImg,jdbcType=VARCHAR},
+      </if>
+      <if test="brandCssPath != null" >
+        brand_css_path = #{brandCssPath,jdbcType=VARCHAR},
+      </if>
+      <if test="brandSimpleIntro != null" >
+        brand_simple_intro = #{brandSimpleIntro,jdbcType=VARCHAR},
+      </if>
+      <if test="nature != null" >
+        nature = #{nature,jdbcType=VARCHAR},
+      </if>
+      <if test="chineseNature != null" >
+        chinese_nature = #{chineseNature,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null" >
+        sort = #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="cmsBrandId != null" >
+        cms_brand_id = #{cmsBrandId,jdbcType=INTEGER},
+      </if>
+      <if test="cmsBrandPath != null" >
+        cms_brand_path = #{cmsBrandPath,jdbcType=VARCHAR},
+      </if>
+      <if test="urlPath != null" >
+        url_path = #{urlPath,jdbcType=VARCHAR},
+      </if>
+      <if test="seoInfo != null" >
+        seo_info = #{seoInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="maleSeoInfo != null" >
+        male_seo_info = #{maleSeoInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="femaleSeoInfo != null" >
+        female_seo_info = #{femaleSeoInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="bannerImgPath != null" >
+        banner_img_path = #{bannerImgPath,jdbcType=VARCHAR},
+      </if>
+      <if test="bannerLink != null" >
+        banner_link = #{bannerLink,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null" >
+        add_time = #{addTime,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="editTime != null" >
+        edit_time = #{editTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="editUserId != null" >
+        edit_user_id = #{editUserId,jdbcType=INTEGER},
+      </if>
+      <if test="amazonName != null" >
+        amazon_name = #{amazonName,jdbcType=VARCHAR},
+      </if>
+      <if test="coo8BrandId != null" >
+        coo8_brand_id = #{coo8BrandId,jdbcType=INTEGER},
+      </if>
+      <if test="recomLabel != null" >
+        recom_label = #{recomLabel,jdbcType=TINYINT},
+      </if>
+      <if test="appImg != null" >
+        app_img = #{appImg,jdbcType=VARCHAR},
+      </if>
+      <if test="appBrandName != null" >
+        app_brand_name = #{appBrandName,jdbcType=VARCHAR},
+      </if>
+      <if test="appSort != null" >
+        app_sort = #{appSort,jdbcType=INTEGER},
+      </if>
+      <if test="appShow != null" >
+        app_show = #{appShow,jdbcType=BIT},
+      </if>
+      <if test="appStatus != null" >
+        app_status = #{appStatus,jdbcType=BIT},
+      </if>
+      <if test="appSmallImg != null" >
+        app_small_img = #{appSmallImg,jdbcType=VARCHAR},
+      </if>
+      <if test="origin != null" >
+        origin = #{origin,jdbcType=VARCHAR},
+      </if>
+      <if test="brandIntro != null" >
+        brand_intro = #{brandIntro,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where brand_id = #{brandId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.zpapi.other.model.GtGoodsBrand" >
+    update gt_goods_brand
+    set is_top = #{isTop,jdbcType=BIT},
+      brand_name = #{brandName,jdbcType=VARCHAR},
+      brand_name_second = #{brandNameSecond,jdbcType=VARCHAR},
+      brand_pinyin = #{brandPinyin,jdbcType=VARCHAR},
+      brand_logo = #{brandLogo,jdbcType=VARCHAR},
+      thumb_brand_img = #{thumbBrandImg,jdbcType=VARCHAR},
+      brand_img = #{brandImg,jdbcType=VARCHAR},
+      brand_css_path = #{brandCssPath,jdbcType=VARCHAR},
+      brand_simple_intro = #{brandSimpleIntro,jdbcType=VARCHAR},
+      nature = #{nature,jdbcType=VARCHAR},
+      chinese_nature = #{chineseNature,jdbcType=VARCHAR},
+      sort = #{sort,jdbcType=INTEGER},
+      cms_brand_id = #{cmsBrandId,jdbcType=INTEGER},
+      cms_brand_path = #{cmsBrandPath,jdbcType=VARCHAR},
+      url_path = #{urlPath,jdbcType=VARCHAR},
+      seo_info = #{seoInfo,jdbcType=VARCHAR},
+      male_seo_info = #{maleSeoInfo,jdbcType=VARCHAR},
+      female_seo_info = #{femaleSeoInfo,jdbcType=VARCHAR},
+      banner_img_path = #{bannerImgPath,jdbcType=VARCHAR},
+      banner_link = #{bannerLink,jdbcType=VARCHAR},
+      add_time = #{addTime,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=INTEGER},
+      edit_time = #{editTime,jdbcType=TIMESTAMP},
+      edit_user_id = #{editUserId,jdbcType=INTEGER},
+      amazon_name = #{amazonName,jdbcType=VARCHAR},
+      coo8_brand_id = #{coo8BrandId,jdbcType=INTEGER},
+      recom_label = #{recomLabel,jdbcType=TINYINT},
+      app_img = #{appImg,jdbcType=VARCHAR},
+      app_brand_name = #{appBrandName,jdbcType=VARCHAR},
+      app_sort = #{appSort,jdbcType=INTEGER},
+      app_show = #{appShow,jdbcType=BIT},
+      app_status = #{appStatus,jdbcType=BIT},
+      app_small_img = #{appSmallImg,jdbcType=VARCHAR},
+      origin = #{origin,jdbcType=VARCHAR},
+      brand_intro = #{brandIntro,jdbcType=LONGVARCHAR}
+    where brand_id = #{brandId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zpapi.other.model.GtGoodsBrand" >
+    update gt_goods_brand
+    set is_top = #{isTop,jdbcType=BIT},
+      brand_name = #{brandName,jdbcType=VARCHAR},
+      brand_name_second = #{brandNameSecond,jdbcType=VARCHAR},
+      brand_pinyin = #{brandPinyin,jdbcType=VARCHAR},
+      brand_logo = #{brandLogo,jdbcType=VARCHAR},
+      thumb_brand_img = #{thumbBrandImg,jdbcType=VARCHAR},
+      brand_img = #{brandImg,jdbcType=VARCHAR},
+      brand_css_path = #{brandCssPath,jdbcType=VARCHAR},
+      brand_simple_intro = #{brandSimpleIntro,jdbcType=VARCHAR},
+      nature = #{nature,jdbcType=VARCHAR},
+      chinese_nature = #{chineseNature,jdbcType=VARCHAR},
+      sort = #{sort,jdbcType=INTEGER},
+      cms_brand_id = #{cmsBrandId,jdbcType=INTEGER},
+      cms_brand_path = #{cmsBrandPath,jdbcType=VARCHAR},
+      url_path = #{urlPath,jdbcType=VARCHAR},
+      seo_info = #{seoInfo,jdbcType=VARCHAR},
+      male_seo_info = #{maleSeoInfo,jdbcType=VARCHAR},
+      female_seo_info = #{femaleSeoInfo,jdbcType=VARCHAR},
+      banner_img_path = #{bannerImgPath,jdbcType=VARCHAR},
+      banner_link = #{bannerLink,jdbcType=VARCHAR},
+      add_time = #{addTime,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=INTEGER},
+      edit_time = #{editTime,jdbcType=TIMESTAMP},
+      edit_user_id = #{editUserId,jdbcType=INTEGER},
+      amazon_name = #{amazonName,jdbcType=VARCHAR},
+      coo8_brand_id = #{coo8BrandId,jdbcType=INTEGER},
+      recom_label = #{recomLabel,jdbcType=TINYINT},
+      app_img = #{appImg,jdbcType=VARCHAR},
+      app_brand_name = #{appBrandName,jdbcType=VARCHAR},
+      app_sort = #{appSort,jdbcType=INTEGER},
+      app_show = #{appShow,jdbcType=BIT},
+      app_status = #{appStatus,jdbcType=BIT},
+      app_small_img = #{appSmallImg,jdbcType=VARCHAR},
+      origin = #{origin,jdbcType=VARCHAR}
+    where brand_id = #{brandId,jdbcType=INTEGER}
+  </update>
+</mapper>

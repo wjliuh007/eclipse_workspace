@@ -1,0 +1,576 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta content="text/html; charset=UTF-8" http-equiv="Content-Type"><meta content="text/javascript" http-equiv="Content-Script-Type"><meta content="text/css" http-equiv="Content-Style-Type"><meta id="MetaCopyright" name="COPYRIGHT" content="Copyright 2010 by GST Corporation"><meta id="MetaAuthor" name="AUTHOR" content="北京市环境保护监测中心"><meta name="RESOURCE-TYPE" content="DOCUMENT"><meta name="DISTRIBUTION" content="GLOBAL"><meta id="MetaRobots" name="ROBOTS" content="INDEX, FOLLOW"><meta http-equiv="PAGE-ENTER" content="RevealTrans(Duration=0,Transition=1)"><meta http-equiv="X-UA-Compatible" content="IE=8">
+    <style id="StylePlaceholder" type="text/css">
+        .style1
+        {
+            height: 21px;
+        }
+    </style>
+    <link href="t_css/bjmemc-index.css" rel="stylesheet" type="text/css"><link href="t_css/default.css" rel="stylesheet" type="text/css"><link href="t_css/NAVSHARP.css" rel="stylesheet" type="text/css"><link href="t_css/portal.css" rel="stylesheet" type="text/css"><link href="t_css/style.css" rel="stylesheet" type="text/css">
+
+    <script src="t_js/jquery-1.4.2.js" type="text/javascript"></script>
+
+    <script src="t_css/NAVSHARP.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+        $(function() {
+            var IsShow = false;
+            try {
+                $.get("VisitsCount.aspx");
+            } catch (e) {
+            }
+            var IAQIfontcolor = "";
+            function GetStyleByIAQIValue(val) {
+                var strStyle = "color-s color-1";
+                if (val >= 0 && val <= 50) {
+                    strStyle = "color-s color-1";
+                }
+                else if (val >= 51 && val <= 100) {
+                    strStyle = "color-s color-2";
+                }
+                else if (val >= 101 && val <= 150) {
+                    strStyle = "color-s color-3";
+                }
+                else if (val >= 151 && val <= 200) {
+                    strStyle = "color-s color-4";
+                }
+                else if (val >= 201 && val <= 300) {
+                    strStyle = "color-s color-5";
+                }
+                else if (val > 300) {
+                    strStyle = "color-s color-6";
+                }
+                return strStyle;
+            }
+            function GetIAQIFontColor(val) {
+                var color = "#00e400";
+                if (val >= 0 && val <= 50) {
+                    IAQIfontcolor = "#00e400";
+                }
+                else if (val >= 51 && val <= 100) {
+                    IAQIfontcolor = "#ffff00";
+                }
+                else if (val >= 101 && val <= 150) {
+                    IAQIfontcolor = "#ff7e00";
+                }
+                else if (val >= 151 && val <= 200) {
+                    IAQIfontcolor = "#ff0000";
+                }
+                else if (val >= 201 && val <= 300) {
+                    IAQIfontcolor = "#99004c";
+                }
+                else if (val > 300) {
+                    IAQIfontcolor = "#7e0023";
+                }
+                return IAQIfontcolor;
+            }
+            $.ajax({
+                type: "GET",
+                url: "Service.ashx?" + new Date(), //
+                dataType: "text",
+                success: function(data) {
+                    dataObj = data.replace(/\\/g, "");
+                    var strJson = eval("(" + dataObj + ")");
+                    $.each(strJson.Table, function(idex, item) {
+
+                        if (idex == 0) {
+                            priPollutant = item.PriPollutant;
+                            var htmlText = "";
+                            switch (priPollutant) {
+                                case "PM2.5":
+                                    {
+                                        htmlText = IsShow ? "PM" + "<sub>2.5</sub>" : "PM2.5";
+                                        break;
+                                    }
+                                case "SO2":
+                                    {
+                                        htmlText = IsShow ? "SO" + "<sub>2</sub>" : "SO2";
+                                        break;
+                                    }
+                                case "NO2":
+                                    {
+                                        htmlText = IsShow ? "NO" + "<sub>2</sub>" : "NO2";
+                                        break;
+                                    }
+                                case "O3":
+                                    {
+                                        htmlText = IsShow ? "O" + "<sub>3</sub>" : "O3";
+                                        break;
+                                    }
+                                case "PM10":
+                                    {
+                                        htmlText = IsShow ? "PM" + "<sub>10</sub>" : "PM10";
+                                        break;
+                                    }
+                                case "CO":
+                                    {
+                                        htmlText = IsShow ? "CO" : "CO";
+                                        break;
+                                    }
+                            }
+                            $("#PriPollutant").html(htmlText);
+                            var date = item.Date_Time;
+                            var timeArray = date.substring(0, date.indexOf(':')).split(" ");
+                            var dateArray = timeArray[0].split("-");
+                            if (dateArray.length == 1) {
+                                dateArray = timeArray[0].split('/');
+                            }
+                            var time = dateArray[0] + "年" + dateArray[1] + "月" + dateArray[2] + "日" + timeArray[1] + "时";
+                            $("#datetime").html(time);
+
+                        }
+                        if (item.Pollutant == priPollutant) {
+                            $("#IAQI").html(item.IAQI);
+                            var leftnum = 0;
+                            leftnum = item.IAQI / 500 * 100
+                            leftnum = leftnum + "%";
+                            $(".cur").css("left", leftnum);
+                            if (item.Quality == "-9999") {
+                                $("#Quality").html("");
+                            } else {
+                                $("#Quality").html(item.Quality);
+                            }
+                            $("#IAQI").css("color", GetIAQIFontColor(item.IAQI));
+
+                        }
+                        var index = idex + 1;
+                        var IAQI = item.IAQI;
+                        if (IAQI == "-9999") {
+                            IAQI = "";
+                        }
+                        var pjcolor = GetStyleByIAQIValue(IAQI);
+                        switch (item.Pollutant) {
+                            case "PM2.5":
+                                {
+                                    $("#pdata tr:eq(1) td").eq(0).html(IsShow ? "PM<sub>2.5</sub>" : "PM2.5");
+                                    $("#pdata tr:eq(1) td").eq(1).html(IsShow ? "细颗粒物" : "");
+                                    $("#pdata tr:eq(1) td").eq(2).html(IAQI);
+                                    $("#pdata tr:eq(1) td:eq(3) span:first").addClass(pjcolor);
+                                    break;
+                                }
+                            case "SO2":
+                                {
+                                    $("#pdata tr:eq(2) td").eq(0).html(IsShow ? "SO<sub>2</sub>" : "SO2");
+                                    $("#pdata tr:eq(2) td").eq(1).html(IsShow ? "二氧化硫" : "");
+                                    $("#pdata tr:eq(2) td").eq(2).html(IAQI);
+                                    $("#pdata tr:eq(2) td:eq(3) span:first").addClass(pjcolor);
+                                    break;
+                                }
+                            case "NO2":
+                                {
+                                    $("#pdata tr:eq(3) td").eq(0).html(IsShow ? "NO<sub>2</sub>" : "NO2");
+                                    $("#pdata tr:eq(3) td").eq(1).html(IsShow ? "二氧化氮" : "");
+                                    $("#pdata tr:eq(3) td").eq(2).html(IAQI);
+                                    $("#pdata tr:eq(3) td:eq(3) span:first").addClass(pjcolor);
+                                    break;
+                                }
+                            case "O3":
+                                {
+                                    $("#pdata tr:eq(4) td").eq(0).html(IsShow ? "O<sub>3</sub>" : "O3");
+                                    $("#pdata tr:eq(4) td").eq(1).html(IsShow ? "臭氧" : "");
+                                    $("#pdata tr:eq(4) td").eq(2).html(IAQI);
+                                    $("#pdata tr:eq(4) td:eq(3) span:first").addClass(pjcolor);
+                                    break;
+                                }
+                            case "CO":
+                                {
+                                    $("#pdata tr:eq(5) td").eq(0).html(IsShow ? "CO" : "CO");
+                                    $("#pdata tr:eq(5) td").eq(1).html(IsShow ? "一氧化碳" : "");
+                                    $("#pdata tr:eq(5) td").eq(2).html(IAQI);
+                                    $("#pdata tr:eq(5) td:eq(3) span:first").addClass(pjcolor);
+                                    break;
+                                }
+                            case "PM10":
+                                {
+                                    $("#pdata tr:eq(6) td").eq(0).html(IsShow ? "PM<sub>10</sub>" : "PM10");
+                                    $("#pdata tr:eq(6) td").eq(1).html(IsShow ? "可吸入颗粒物" : "");
+                                    $("#pdata tr:eq(6) td").eq(2).html(IAQI);
+                                    $("#pdata tr:eq(6) td:eq(3) span:first").addClass(pjcolor);
+                                    break;
+                                }
+                        }
+
+                        //$("#pdata tr:eq(" + index + ") td").eq(0).html(item.Pollutant);
+                        //$("#pdata tr:eq(" + index + ") td").eq(1).html(item.IAQI);
+
+                        //$("#pdata tr:eq(" + index + ") td:eq(2) span:first").addClass(pjcolor);
+                        //$("#pdata tr:eq(" + index + ") td:eq(2) span:last").text(item.Quality);
+                    })
+
+                },
+                error: function(XMLHttpRequest, textStatus, errorThrown) {
+                    alert(textStatus + errorThrown);
+                }
+            });
+        })
+        
+        
+    
+
+    </script>
+
+    <title>
+	北京市实时空气质量 
+</title></head>
+<body>
+    <form name="Form" method="post" action="/default.aspx" id="Form" enctype="multipart/form-data">
+
+    <script type="text/javascript">
+        //<![CDATA[
+        var theForm = document.forms['Form'];
+        if (!theForm) {
+            theForm = document.Form;
+        }
+        function __doPostBack(eventTarget, eventArgument) {
+            if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+                theForm.__EVENTTARGET.value = eventTarget;
+                theForm.__EVENTARGUMENT.value = eventArgument;
+                theForm.submit();
+            }
+        }
+        //]]>
+    </script>
+
+    <script src="/js/dnncore.js" type="text/javascript"></script>
+
+    <script src="/Portals/0/Skins/bjmemc-index/NAVSHARP.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+        //<![CDATA[
+        var __cultureInfo = '{"name":"zh-CN","numberFormat":{"CurrencyDecimalDigits":2,"CurrencyDecimalSeparator":".","IsReadOnly":false,"CurrencyGroupSizes":[3],"NumberGroupSizes":[3],"PercentGroupSizes":[3],"CurrencyGroupSeparator":",","CurrencySymbol":"¥","NaNSymbol":"非数字","CurrencyNegativePattern":2,"NumberNegativePattern":1,"PercentPositivePattern":1,"PercentNegativePattern":1,"NegativeInfinitySymbol":"负无穷大","NegativeSign":"-","NumberDecimalDigits":2,"NumberDecimalSeparator":".","NumberGroupSeparator":",","CurrencyPositivePattern":0,"PositiveInfinitySymbol":"正无穷大","PositiveSign":"+","PercentDecimalDigits":2,"PercentDecimalSeparator":".","PercentGroupSeparator":",","PercentSymbol":"%","PerMilleSymbol":"‰","NativeDigits":["0","1","2","3","4","5","6","7","8","9"],"DigitSubstitution":1},"dateTimeFormat":{"AMDesignator":"上午","Calendar":{"MinSupportedDateTime":"\/Date(-62135596800000)\/","MaxSupportedDateTime":"\/Date(253402271999999)\/","AlgorithmType":1,"CalendarType":1,"Eras":[1],"TwoDigitYearMax":2029,"IsReadOnly":false},"DateSeparator":"-","FirstDayOfWeek":0,"CalendarWeekRule":0,"FullDateTimePattern":"yyyy\u0027年\u0027M\u0027月\u0027d\u0027日\u0027 H:mm:ss","LongDatePattern":"yyyy\u0027年\u0027M\u0027月\u0027d\u0027日\u0027","LongTimePattern":"H:mm:ss","MonthDayPattern":"M\u0027月\u0027d\u0027日\u0027","PMDesignator":"下午","RFC1123Pattern":"ddd, dd MMM yyyy HH\u0027:\u0027mm\u0027:\u0027ss \u0027GMT\u0027","ShortDatePattern":"yyyy-M-d","ShortTimePattern":"H:mm","SortableDateTimePattern":"yyyy\u0027-\u0027MM\u0027-\u0027dd\u0027T\u0027HH\u0027:\u0027mm\u0027:\u0027ss","TimeSeparator":":","UniversalSortableDateTimePattern":"yyyy\u0027-\u0027MM\u0027-\u0027dd HH\u0027:\u0027mm\u0027:\u0027ss\u0027Z\u0027","YearMonthPattern":"yyyy\u0027年\u0027M\u0027月\u0027","AbbreviatedDayNames":["日","一","二","三","四","五","六"],"ShortestDayNames":["日","一","二","三","四","五","六"],"DayNames":["星期日","星期一","星期二","星期三","星期四","星期五","星期六"],"AbbreviatedMonthNames":["一月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月","十二月",""],"MonthNames":["一月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月","十二月",""],"IsReadOnly":false,"NativeCalendarName":"公历","AbbreviatedMonthGenitiveNames":["一月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月","十二月",""],"MonthGenitiveNames":["一月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月","十二月",""]}}'; //]]>
+    </script>
+
+    <div>
+        <input type="hidden" name="__VIEWSTATEENCRYPTED" id="__VIEWSTATEENCRYPTED" value="">
+    </div>
+    <div id="dnn_HeadPane" class="bjmemc-header i-pane i-pane-layout" paneid="HeadPane">
+        <div class="DnnModule DnnModule-DNN_HTML DnnModule-919 i-module-container" moduleid="919">
+            <a name="919"></a>
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tbody><tr>
+                    <td id="dnn_ctr919_contentpane" class="DNNAlignleft">
+                        <!-- Start_Module_919 -->
+                        <div id="dnn_ctr919_ModuleContent">
+                            <div id="dnn_ctr919_HtmlModule_lblContent" class="Normal">
+                                <div style="margin-top: 10px; float: right; color: #fff; margin-right: 10px">
+
+                                    <script language="JavaScript">  
+<!--- 
+today=new Date(); 
+function initArray(){ 
+this.length=initArray.arguments.length 
+for(var i=0;i<this.length;i++) 
+this[i+1]=initArray.arguments[i]  } 
+var d=new initArray(" 星期日"," 星期一"," 星期二"," 星期三"," 星期四"," 星期五"," 星期六"); document.write(today.getFullYear(),"年","",today.getMonth()+1,"月",today.getDate(),"日",d[today.getDay()+1]);  //--> 
+                                    </script>2015年12月12日 星期六
+
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End_Module_919 -->
+                    </td>
+                </tr>
+            </tbody></table>
+        </div>
+    </div>
+    <div class="bjmemc-nav">
+        <div class="bjmemc-nav-left">
+            <div class="navmenu-container">
+                <ul class="navmenu">
+                    <li active="1" level="0" current="1" class="active current level-0"><a href="http://www.bjmemc.com.cn/g68.aspx" target="_blank">
+                        <span>首页</span></a></li><li active="0" level="0" current="0" class="level-0"><a href="http://www.bjmemc.com.cn/g316.aspx" target="_blank">
+                            <span class="fly">中心概况</span></a><div class="sub level-0 sub-hide" style="left: 0px; top: 35px; display: none;">
+                                <ul class="sub">
+                                    <li active="0" level="1" current="0" class="level-1"><a href="http://www.bjmemc.com.cn/g316.aspx" target="_blank">
+                                        <span>中心简介</span></a></li><li active="0" level="1" current="0" class="level-1"><a href="http://www.bjmemc.com.cn/g315.aspx" target="_blank"><span>领导组成</span></a></li><li active="0" level="1" current="0" class="level-1"><a href="http://www.bjmemc.com.cn/g319.aspx" target="_blank"><span>
+                                                    组织机构</span></a></li><li active="0" level="1" current="0" class="level-1"><a href="http://www.bjmemc.com.cn/g336.aspx" target="_blank">
+                                                        <span>环境质量监测</span></a></li><li active="0" level="1" current="0" class="level-1"><a href="http://www.bjmemc.com.cn/g337.aspx" target="_blank"><span>污染源监测</span></a></li><li active="0" level="1" current="0" class="level-1"><a href="http://www.bjmemc.com.cn/g338.aspx" target="_blank"><span>
+                                                                    环境应急监测</span></a></li><li active="0" level="1" current="0" class="level-1"><a href="http://www.bjmemc.com.cn/g339.aspx" target="_blank">
+                                                                        <span>研究性监测</span></a></li></ul>
+                            </div>
+                        </li>
+                    <li active="0" level="0" current="0" class="level-0"><a href="http://www.bjmemc.com.cn/g356.aspx" target="_blank">
+                        <span class="fly">在线服务</span></a><div class="sub level-0 sub-hide" style="left: 0px; top: 35px; display: none;">
+                            <ul class="sub">
+                                <li active="0" level="1" current="0" class="level-1"><a href="http://zx.bjmemc.com.cn/" target="_blank"><span>空气质量实时发布</span></a></li><li active="0" level="1" current="0" class="level-1"><a href="http://www.bjmemc.com.cn/g363.aspx" target="_blank"><span>水环境质量</span></a></li><li active="0" level="1" current="0" class="level-1"><a href="http://www.bjmemc.com.cn/g362.aspx" target="_blank">
+                                                <span>声环境质量</span></a></li><li active="0" level="1" current="0" class="level-1"><a href="http://www.bjmemc.com.cn/g352.aspx" target="_blank"><span class="fly">公众参观</span></a><div class="sub level-1">
+                                                        <ul class="sub">
+                                                            <li active="0" level="2" current="0" class="level-2"><a href="http://www.bjmemc.com.cn/g352.aspx" target="_blank">
+                                                                <span>参观手册</span></a></li><li active="0" level="2" current="0" class="level-2"><a href="http://www.bjmemc.com.cn/g350.aspx" target="_blank"><span>接待办法</span></a></li></ul>
+                                                    </div>
+                                                </li>
+                                <li active="0" level="1" current="0" class="level-1"><a href="http://www.bjmemc.com.cn/g342.aspx" target="_blank">
+                                    <span>资料下载</span></a></li><li active="0" level="1" current="0" class="level-1"><a href="http://www.bjmemc.com.cn/g377.aspx" target="_blank"><span>手机版下载</span></a></li></ul>
+                        </div>
+                    </li>
+                    <li active="0" level="0" current="0" class="level-0"><a href="http://www.bjmemc.com.cn/g328.aspx" target="_blank">
+                        <span class="fly">综合资讯</span></a><div class="sub level-0 sub-hide" style="left: 0px; top: 35px; display: none;">
+                            <ul class="sub">
+                                <li active="0" level="1" current="0" class="level-1"><a href="http://www.bjmemc.com.cn/g328.aspx" target="_blank">
+                                    <span>图片新闻</span></a></li><li active="0" level="1" current="0" class="level-1"><a href="http://www.bjmemc.com.cn/g329.aspx" target="_blank"><span>环保新闻</span></a></li><li active="0" level="1" current="0" class="level-1"><a href="http://www.bjmemc.com.cn/g331.aspx" target="_blank"><span>
+                                                工作动态</span></a></li><li active="0" level="1" current="0" class="level-1"><a href="http://www.bjmemc.com.cn/g335.aspx" target="_blank">
+                                                    <span>环保科普</span></a></li></ul>
+                        </div>
+                    </li>
+                    <li active="0" level="0" current="0" class="level-0"><a href="http://www.bjmemc.com.cn/g383.aspx" target="_blank">
+                        <span>验收指南</span></a></li><li active="0" level="0" current="0" class="level-0"><a href="http://www.bjmemc.com.cn/g326.aspx" target="_blank"><span>联系我们</span></a></li></ul>
+            </div>
+        </div>
+        <div id="dnn_SearchPane" class="bjmemc-nav-right i-pane i-pane-layout" paneid="SearchPane">
+            <div class="DnnModule DnnModule-DNN_HTML DnnModule-991 i-module-container" moduleid="991">
+                <a name="991"></a>
+                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                    <tbody><tr>
+                        <td id="dnn_ctr991_contentpane" class="DNNAlignleft">
+                            <!-- Start_Module_991 -->
+                            <div id="dnn_ctr991_ModuleContent">
+                                <div id="dnn_ctr991_HtmlModule_lblContent" class="Normal">
+                                    <div style="float: left; margin-right: 5px">
+                                        <a target="_blank" href="http://e.weibo.com/u/2516831703?ref=http%3A%2F%2Fgov.weibo.com%2Fprofile.php%3Fuid%3Dbjepb%26ref%3Dhttp%253A%252F%252Fwww.bjepb.gov.cn%252Fportal0%252Ftab280%252F">
+                                            <img border="0" alt="" src="t_images/weibo.jpg"></a></div>
+                                    <!--<div class="index_search" style="float: left">
+                                        <div class="index_search_left">
+                                            <input id="txtSearch" name="" onblur="this.value=(this.value=='')?'站内搜索':(this.value)"
+                                                onfocus="this.value=''" value="站内搜索" type="text" /></div>
+                                        <div class="index_search_right">
+                                            <input id="btnSearch" type="button" complete="complete" onclick="window.open('/g354.aspx?q=' + encodeURIComponent(document.getElementById('txtSearch').value))" /></div>
+                                    </div>-->
+                                </div>
+                            </div>
+                            <!-- End_Module_991 -->
+                        </td>
+                    </tr>
+                </tbody></table>
+            </div>
+        </div>
+    </div>
+    <div id="dnn_FlashPane" class="bjmemc-flash i-pane i-pane-layout DNNEmptyPane" paneid="FlashPane">
+    </div>
+    <div class="bjmemc-content">
+        <div class="content">
+            <div class="c-title">
+                <div class="logo">
+                    北京市实时空气质量</div>
+            </div>
+            <div class="c-right">
+                
+                <div class="l-table" style="padding-top: 155px;">
+                    <table id="pdata" width="100%" border="0">
+                        <tbody><tr class="line">
+                            <th scope="col" colspan="2" style="border-left: none; width: 40%" class="style1">
+                                污染物
+                            </th>
+                            <th scope="col" style="width: 30%" class="style1">
+                                分指数(IAQI)
+                            </th>
+                            <th scope="col" style="width: 30%" class="style1">
+                                级别
+                            </th>
+                        </tr>
+                        <tr class="line">
+                            <td>PM2.5</td>
+                            <td></td>
+                            <td>78</td>
+                            <td align="center">
+                                <span class="color-s color-2"></span>
+                            </td>
+                        </tr>
+                        <tr class="line">
+                            <td>SO2</td>
+                            <td></td>
+                            <td>7</td>
+                            <td>
+                                <span class="color-s color-1"></span>
+                            </td>
+                        </tr>
+                        <tr class="line">
+                            <td>NO2</td>
+                            <td></td>
+                            <td>30</td>
+                            <td>
+                                <span class="color-s color-1"></span>
+                            </td>
+                        </tr>
+                        <tr class="line">
+                            <td>O3</td>
+                            <td></td>
+                            <td>3</td>
+                            <td>
+                                <span style="text-align: center" class="color-s color-1"></span>
+                            </td>
+                        </tr>
+                        <tr class="line">
+                            <td>CO</td>
+                            <td></td>
+                            <td>16</td>
+                            <td>
+                                <span class="color-s color-1"></span>
+                            </td>
+                        </tr>
+                        <tr class="line">
+                            <td>PM10</td>
+                            <td></td>
+                            <td>62</td>
+                            <td align="center">
+                                <span class="color-s color-2"></span>
+                            </td>
+                        </tr>
+                    </tbody></table>
+                </div>
+            </div>
+            <div class="c-left">
+                <div class="r-content">
+                    <div class="r-c-line time">
+                        <span id="datetime" style="padding-right: 20px">2015年12月12日11时</span>&nbsp;&nbsp;实时发布</div>
+                    <div class="r-c-line pm">
+                        <table width="100%" border="0">
+                            <tbody><tr>
+                                <td scope="col" width="55%" style="font-size: 15px;">
+                                    首要污染物：
+                                </td>
+                                <td scope="col" class="pm-right">
+                                    <span class="s-bg" id="PriPollutant">PM2.5</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="55%">
+                                    空气质量指数(AQI):
+                                </td>
+                                <td class="pm-right num">
+                                    <span id="IAQI" style="color: rgb(255, 255, 0);">78</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="55%">
+                                    空气质量状况:
+                                </td>
+                                <td class="pm-right">
+                                    <span id="Quality">良</span>
+                                </td>
+                            </tr>
+                        </tbody></table>
+                    </div>
+                    
+                    <a href="http://zx.bjmemc.com.cn/" target="_blank">
+                        <div class="r-c-line links" onclick="">
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="dnn_BottomPane" class="bjmemc-bottom i-pane i-pane-layout" paneid="BottomPane">
+        <div class="DnnModule DnnModule-DNN_HTML DnnModule-932 i-module-container" moduleid="932">
+            <a name="932"></a>
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tbody><tr>
+                    <td id="dnn_ctr932_contentpane" class="DNNAlignleft">
+                        <!-- Start_Module_932 -->
+                        <div id="dnn_ctr932_ModuleContent">
+                            <div id="dnn_ctr932_HtmlModule_lblContent" class="Normal">
+                                <div class="index-yqlj">
+                                    <div class="index-yqlj-left">
+                                        环境保护常用网站&nbsp;
+                                        <select onchange="if(this.selectedIndex &amp;&amp; this.selectedIndex!=0){window.open(this.value);}this.selectedIndex=0;" style="border-bottom: 0px; border-left: 0px; width: 196px; background: url(images/input-bj.jpg) no-repeat;
+                                            height: 21px; color: #036; border-top: 0px; border-right: 0px" name="tselect">
+                                            <option value="index.aspx" selected="selected">环境保护常用网站</option>
+                                            <option value="http://www.zhb.gov.cn/">国家环境保护部</option>
+                                            <option value="http://www.bjepb.gov.cn/">北京市环境保护局</option>
+                                            <option value="http://www.cnemc.cn/">中国环境监测总站</option>
+                                            <option value="http://www.craes.cn/cn/index.html">中国环境科学研究院</option>
+                                            <option value="http://www.unep.org/">联合国环境规划署</option>
+                                        </select></div>
+                                    <div class="index-yqlj-right">
+                                        其他省市级环境监测站&nbsp;
+                                        <select onchange="if(this.selectedIndex &amp;&amp; this.selectedIndex!=0){window.open(this.value);}this.selectedIndex=0;" style="border-bottom: 0px; border-left: 0px; width: 196px; background: url(images/input-bj.jpg) no-repeat;
+                                            height: 21px; color: #036; border-top: 0px; border-right: 0px" name="tselect2">
+                                            <option value="index.aspx" selected="selected">其他省市级环境监测站</option>
+                                            <option value="http://www.tjemc.org.cn">天津</option>
+                                            <option value="http://www.hb12369.net/">河北</option>
+                                            <option value="http://www.sxhb.gov.cn/">山西</option>
+                                            <option value="http://www.nmgepb.gov.cn/">内蒙古</option>
+                                            <option value="http://www.lnemc.cn">辽宁</option>
+                                            <option value="http://hbj.jl.gov.cn/">吉林</option>
+                                            <option value="http://www.hljemc.com">黑龙江</option>
+                                            <option value="http://www.semc.gov.cn">上海</option>
+                                            <option value="http://www.zjemc.org.cn/">浙江</option>
+                                            <option value="http://www.ahemc.gov.cn/">安徽</option>
+                                            <option value="http://www.fjepb.gov.cn/">福建</option>
+                                            <option value="http://www.jxepb.gov.cn/Index.shtml">江西</option>
+                                            <option value="http://www.sdein.gov.cn/">山东</option>
+                                            <option value="http://www.hnep.gov.cn/">河南</option>
+                                            <option value="http://www.hbepb.gov.cn/">湖北</option>
+                                            <option value="http://www.hbj.hunan.gov.cn/">湖南</option>
+                                            <option value="http://www.gdemc.gov.cn">广东</option>
+                                            <option value="http://www.gxepb.gov.cn/">广西</option>
+                                            <option value="http://www.hnraes.cn">海南</option>
+                                            <option value="http://www.cqemc.cn">重庆</option>
+                                            <option value="http://www.scemc.cn">四川</option>
+                                            <option value="http://www.gzemc.cn">贵州</option>
+                                            <option value="http://www.ynem.com.cn">云南</option>
+                                            <option value="http://www.jshb.gov.cn:8080/pub/xzhb/index.html">西藏</option>
+                                            <option value="http://www.snemc.com">陕西</option>
+                                            <option value="http://www.ghjczxz.cn">甘肃</option>
+                                            <option value="http://www.qhemc.com">青海</option>
+                                            <option value="http://www.nxep.gov.cn/">宁夏</option>
+                                            <option value="http://www.xjemc.com">新疆</option>
+                                            <option value="http://www.epa.gov.tw/">台湾</option>
+                                        </select></div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End_Module_932 -->
+                    </td>
+                </tr>
+            </tbody></table>
+        </div>
+    </div>
+    <div id="dnn_FootPane" class="bjmemc-footer i-pane i-pane-layout" paneid="FootPane">
+        <div class="DnnModule DnnModule-DNN_HTML DnnModule-933 i-module-container" moduleid="933">
+            <a name="933"></a>
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tbody><tr>
+                    <td id="dnn_ctr933_contentpane" class="DNNAlignleft">
+                        <!-- Start_Module_933 -->
+                        <div id="dnn_ctr933_ModuleContent">
+                            <div id="dnn_ctr933_HtmlModule_lblContent" class="Normal">
+                                <div style="text-align: center">
+                                    主 办：北京市环境保护监测中心</div>
+                                <div style="text-align: center">
+                                    通讯地址:北京市海淀区车公庄西路14号 邮编:100048</div>
+                                <div style="text-align: center">
+                                    京ICP备 05083586 号</div>
+                            </div>
+                        </div>
+                        <!-- End_Module_933 -->
+                    </td>
+                </tr>
+            </tbody></table>
+        </div>
+        <div class="DnnModule DnnModule-DNN_HTML DnnModule-935 i-module-container" moduleid="935">
+            <a name="935"></a>
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tbody><tr>
+                    <td id="dnn_ctr935_contentpane" class="DNNAlignleft">
+                        <!-- Start_Module_935 -->
+                        <div id="dnn_ctr935_ModuleContent">
+                            <div id="dnn_ctr935_HtmlModule_lblContent" class="Normal">
+                                <div>
+                                    <iframe height="35" src="http://jc.bjmemc.com.cn/webcounts.aspx" frameborder="0" width="100%" scrolling="no" style="text-align: center"></iframe>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End_Module_935 -->
+                    </td>
+                </tr>
+            </tbody></table>
+        </div>
+    </div>
+    <input name="ScrollTop" type="hidden" id="ScrollTop">
+    <input name="__dnnVariable" type="hidden" id="__dnnVariable">
+    <input name="hidJson" type="hidden" id="hidJson">
+    <div>
+    </div>
+    </form>
+
+
+</body></html>

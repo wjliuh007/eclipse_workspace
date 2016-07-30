@@ -1,0 +1,16 @@
+<pretty-config xmlns="http://ocpsoft.com/prettyfaces-xsd"
+	             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	             xsi:schemaLocation="http://ocpsoft.com/prettyfaces-xsd 
+	             http://ocpsoft.com/xml/ns/prettyfaces/pretty-1.0.xsd">
+	<url-mapping id="login">
+		<pattern> /search </pattern>
+		<view-id> /pages/docFetcher.iface </view-id>
+		<query-param name="searchString">#{searchRequest.searchString}</query-param>
+	</url-mapping>
+	
+	<url-mapping id="empty">
+		<pattern> /search </pattern>
+		<view-id> / </view-id>
+	</url-mapping>
+	
+</pretty-config>

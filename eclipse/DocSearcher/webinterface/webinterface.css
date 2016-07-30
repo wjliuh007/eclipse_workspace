@@ -1,0 +1,230 @@
+body {
+	background-color: #FFFFFF;
+}
+
+.borderFreeElement {
+	border:none;
+}
+
+.borderedElement {	
+	border-color: #BDBDFF;
+	border-style: solid;
+	border-width: 1px;
+}
+
+.btnStartSearch {
+	float:left;
+	margin-left:5px;
+	position:relative;  
+}
+
+.fontCaption {
+	font-family:"Verdana",Geneva,sans-serif;
+	font-size:10pt;	
+	color: #000050;
+}
+
+.fontSmallInputField {
+	font-family:"Verdana",Geneva,sans-serif;
+	font-size:10pt;
+	color: #000050;	
+}
+
+.fontResultEntry {
+	color: #000050;
+	font-family:"Verdana",Geneva,sans-serif;
+	font-size:10pt;
+	text-decoration: none;
+}
+
+.fontResultEntry:link {
+	color: #000050;
+	font-family:"Verdana",Geneva,sans-serif;
+	font-size:10pt;
+	text-decoration: none;
+}
+
+.fontResultEntry:visited {
+	color: #000050;
+	font-family:"Verdana",Geneva,sans-serif;
+	font-size:10pt;
+	text-decoration: none;
+}
+
+.fontResultEntry:hover {
+	color: #000050;
+	font-family:"Verdana",Geneva,sans-serif;
+	font-size:10pt;	
+}
+
+.fontResultEntry:active {
+	color: #000050;
+	font-family:"Verdana",Geneva,sans-serif;
+	font-size:10pt;
+}
+
+.groupElement {
+	background-color: #FFFFFF;
+	overflow: auto;
+}
+
+.iceCmdLnk-dis {
+	opacity: 0.3;
+}
+
+.iceCmdSrtHdrAsc {
+	text-align: center;
+}
+
+.iceCmdSrtHdrDes {
+	text-align: center;
+}
+
+.iceDatPgrScrCol {
+	background-color: #cdcdc1;
+	opacity: 0.5;
+}
+
+.iceDatTblColHdr1,.iceDatTblColHdr2 {	
+	border-left: 2px solid #CCCCCC;
+	text-align: center;
+}
+
+.iceDatTblCol1,.iceDatTblCol2 {
+	border-left: 2px solid #CCCCCC;
+	text-align: center;
+}
+
+.imgBranding {
+	height:100%;
+	position: relative; 
+}
+
+.paginator {
+	position:relative; 
+	top:5px;
+}
+
+.pnlBranding {
+	text-align:right; 
+	width:100%;
+}
+
+.pnlFilter {
+	position:relative; 
+	top:0%; 
+	width:100%;
+}
+
+.pnlFilterCaption {
+	height:48%;
+	position:relative;
+	text-align:center; 
+	top:2px; 
+}
+
+.pnlFilterSelection {
+	position:relative;
+	text-align:center; 
+	top:2px; 
+}
+
+.pnlLeft {
+	height: 98%;
+	left:0%;
+	margin: 5px;
+	position: absolute;
+	top:0%;
+	width: 20%;
+}
+
+.pnlMain {	
+	height:98%;
+	left:22%;
+	margin: 5px;	
+	position:absolute;
+	top:0%; 
+	width:78%;    
+}
+
+.pnlResultPreview {	
+	height: 45%;
+	position: relative;
+	top: 2%;				
+	width: 98%;
+}
+
+.pnlSearchBar {
+	position: relative;
+	top: 0%;
+	width: 98%;	
+}
+
+.pnlSearchResults {
+	background-color: #FFFFFF;
+	height:42%;	
+	position: relative;
+	top: 5px;
+	width: 98%;
+}
+
+.pnlSearchScope {
+	height: 35%;
+	margin: 2px;
+	position: relative; 
+	top: 5px; 
+	width:100%;		
+}
+
+.pnlTypes {
+	height: 40%;
+	margin: 2px;
+	position: relative; 
+	top: 5px; 
+	width: 100%;	
+}
+
+.preview {
+	height: 100%;
+	width: 100%;
+}
+
+.searchTerm {
+	position: relative;
+	width: 100%;
+}
+
+.tableSearchResultEntry {
+	text-align:left; 
+	white-space:nowrap;
+}
+
+.tableSearchResults {
+	position: relative;		
+}
+
+.tableSearchResultsCol1 {
+	text-align:left;	
+}
+
+.tableSearchResultsCol2 {
+	text-align:left;	
+}
+
+.tableRowSelected {
+	background-color: #ADD8E6;
+}
+
+.tableRowMouseOver {
+	background-color: #E0FFFF
+}
+
+.tableSearchResultsHdr {
+	padding:2px;
+	text-align:left;
+}
+
+.tableRowUnselected {
+	background-color: #FFFFFF
+}
+

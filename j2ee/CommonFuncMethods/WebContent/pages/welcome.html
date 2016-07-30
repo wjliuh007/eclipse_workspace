@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>欢迎</title>
+<style type="text/css">
+.addform {
+	background:#F0F8FF;
+	box-shadow:1px 1px 10px #616161;
+	width: 976px;
+	height: 306px;
+	
+	margin: 50px auto;
+}
+
+.addform .mName {
+	height: 50px;
+	
+}
+.addform .mName .name{
+	width:350px;
+	float:left;
+	
+	margin: 10px 0 0 8px;
+}
+.addform .mName .enable{
+	float:right;
+	
+	margin: 10px 410px 0 8px;
+}
+.addform .description {
+	height: 150px;
+	
+}
+
+.addform .description label{
+	
+	margin:0 0 0 8px;
+}
+.addform .description textarea{
+	resize:none;
+}
+.addform .description .descontent{
+	height:120px;
+	margin: 5px 200px 0 8px;
+	
+}
+.addform .appendix {
+	height: 70px;
+	border:1px solid red;
+}
+.addform .btn{
+	width:350px;
+	float:left;
+	margin: 2px 0 0 660px;
+}
+.addform .appendix .time{
+	width:475px;
+	height: 30px;
+	margin: 5px 0 0 8px;
+	
+}
+.addform .appendix .upload{
+	width:475px;
+	height: 30px;
+	margin: 5px 0 0 8px;
+	
+}
+.ui-timepicker-div .ui-widget-header { margin-bottom: 8px; }  
+.ui-timepicker-div dl { text-align: left; }  
+.ui-timepicker-div dl dt { height: 25px; margin-bottom: -25px; }  
+.ui-timepicker-div dl dd { margin: 0 10px 10px 65px; }  
+.ui-timepicker-div td { font-size: 90%; }  
+.ui-tpicker-grid-label { background: none; border: none; margin: 0; padding: 0; }  
+</style>
+<link type="text/css" href="../css/jquery-ui.css" rel="stylesheet" />
+<link type="text/css" href="../css/jquery-ui-timepicker-addon.min.css" rel="stylesheet" />
+	<script type="text/javascript" src="../js/jquery-2.1.1.min.js"></script>
+	<script type="text/javascript" src="../js/jquery-ui.js"></script>
+	<script type="text/javascript" src="../js/jquery.ui.datepicker-zh-CN.js"></script>
+	<script type="text/javascript" src="../js/jquery-ui-timepicker-addon.js"></script>
+	<script type="text/javascript">
+	$(function(){
+		$("#createtime").click(function(){
+			$(this).datetimepicker({
+				showSecond: true
+			});
+		})
+	});
+	</script>
+</head>
+<body>
+
+	<form class="addform" method="POST" action="/commonMethodController/addMethods.do">
+		<div class="mName">
+			<div class="name">
+			<label>名称:</label>
+			<input id="" type="text" maxlength="50"/>
+			</div>
+			<div class="enable">
+			<label>可用否:</label>
+			<input id="" type="checkbox"/>
+			</div>
+		</div>
+		<div class="description">
+			<label>描述:</label>
+			<div class="descontent">
+				<textarea rows="7" cols="105" ></textarea>
+			</div>
+		</div>
+		<div class="appendix">
+			<div class="time">
+				<label>创建时间:</label><input id="createtime" type="text">
+				<label>更新时间:</label><input type="datetime">
+			</div>
+			<div class="upload">
+				<label>附件:</label><input type="file">
+			</div>
+		</div>
+		<div class="btn">
+			<input type="submit" value="保存"/>
+		</div>
+	</form>
+</body>
+</html>

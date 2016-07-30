@@ -1,0 +1,7 @@
+commons-pool-1.5.4.jar
+jedis-2.1.0.jar
+jedis-2.8.0.jar
+redis-java-0.0.16-jar-with-dependencies.jar
+redis-java-0.0.16-javadoc.jar
+redis-java-0.0.16-sources.jar
+redis-java-0.0.16.jar

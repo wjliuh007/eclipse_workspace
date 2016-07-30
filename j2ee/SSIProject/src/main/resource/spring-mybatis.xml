@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<beans xmlns="http://www.springframework.org/schema/beans"  
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"  
+    xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"  
+    xmlns:context="http://www.springframework.org/schema/context"  
+    xsi:schemaLocation="  
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd  
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd  
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.1.xsd  
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd  
+       ">  
+         
+ 	<bean id="placeholderConfig"  
+        class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">  
+        <property name="location">  
+            <value>classpath:jdbc.oracle.properties</value>  
+        </property>  
+    </bean>  
+  
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"  
+        destroy-method="close">  
+        <property name="jdbcUrl" value="${ibatis.connection.url}" />  
+        <property name="driverClass" value="${ibatis.connection.driver_class}" />  
+        <property name="user" value="${ibatis.connection.username}" />  
+        <property name="password" value="${ibatis.connection.password}" />  
+        <property name="acquireIncrement" value="${c3p0.acquireIncrement}" />  
+        <property name="initialPoolSize" value="${c3p0.initialPoolSize}" />  
+        <property name="minPoolSize" value="${c3p0.minPoolSize}" />  
+        <property name="maxPoolSize" value="${c3p0.maxPoolSize}" />  
+        <property name="maxStatements" value="${c3p0.maxStatements}" />  
+        <property name="numHelperThreads" value="${c3p0.numHelperThreads}" />  
+        <property name="maxIdleTime" value="${c3p0.maxIdleTime}" />  
+    </bean>  
+  
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">  
+        <property name="configLocation" value="classpath:sqlMapConfigMybatis.xml" />  
+        <property name="dataSource" ref="dataSource" />  
+    </bean>  
+  
+    <bean id="abstractDao" abstract="true">  
+        <property name="sqlSessionFactory" ref="sqlSessionFactory" />  
+    </bean>  
+      
+  	<!--  不喜欢注解
+    <context:component-scan base-package="com.hsinghsu.testSSI">  
+        <context:exclude-filter type="annotation"  
+            expression="org.springframework.stereotype.Controller" />  
+    </context:component-scan> -->
+       
+</beans>

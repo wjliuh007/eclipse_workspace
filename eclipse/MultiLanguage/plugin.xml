@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            name="Sample XML Editor"
+            extensions="xml"
+            icon="icons/sample.gif"
+            contributorClass="org.eclipse.ui.texteditor.BasicTextEditorActionContributor"
+            class="multilanguage.editors.XMLEditor"
+            id="multilanguage.editors.XMLEditor">
+      </editor>
+   </extension>
+   <extension
+         point="org.eclipse.ui.perspectives">
+      <perspective
+            name="Release Engineering"
+            icon="icons/releng_gears.gif"
+            class="multilanguage.perspectives.RelEngPerspective"
+            id="multilanguage.perspectives.RelEngPerspective">
+      </perspective>
+   </extension>
+   <extension
+         point="org.eclipse.ui.popupMenus">
+      <objectContribution
+            objectClass="org.eclipse.core.resources.IFile"
+            id="MultiLanguage.contribution1">
+         <menu
+               label="New Submenu"
+               path="additions"
+               id="MultiLanguage.menu1">
+            <separator
+                  name="group1">
+            </separator>
+         </menu>
+         <action
+               label="New Action"
+               class="multilanguage.popup.actions.NewAction"
+               menubarPath="MultiLanguage.menu1/group1"
+               enablesFor="1"
+               id="MultiLanguage.newAction">
+         </action>
+      </objectContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.propertyPages">
+      <page
+            name="Sample Page"
+            nameFilter="*.*"
+            class="multilanguage.properties.SamplePropertyPage"
+            id="multilanguage.properties.samplePropertyPage">
+         <enabledWhen>
+            <instanceof
+                  value="org.eclipse.core.resources.IFile">
+            </instanceof>
+         </enabledWhen>
+      </page>
+   </extension>
+
+</plugin>

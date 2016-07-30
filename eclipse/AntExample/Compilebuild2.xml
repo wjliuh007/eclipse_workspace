@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project default="init" basedir=".">
+	<property name="src" location="java" />
+	<property name="test" location="test" />
+	<property name="javahome" location="C:\Program Files\Java\jdk1.7.0_65" />
+	<property name="antlibhome" location="F:\Java_jar\commons-logging-1.2" />
+	<property name="javacpath" location="${javahome}/bin/javac" />
+	<property name="buildpath" location="build" />
+	<property name="jarpath" location="G:\webapps\ant" />
+	<property name="otherFilepath" location="PLM_PM_APPCOM" />
+	
+	<property name="jarname" value="testant" description="测试学习ant"/>
+	<property name="testname" value="test" description="引用"/>
+	
+	<fileset id="src.path" dir="java">
+   	 	<include name="**/*.java"/>
+	</fileset>
+	
+	<fileset id="jar.path" dir="${buildpath}/dist">
+   	 	<include name="**/*.jar"/>
+		<exclude name="**/*.java"/>
+	</fileset>
+	
+	<!-- 其他配置文件-->
+	<fileset id="other.path" dir="${otherFilepath}">
+   	 	<include name="**/*.*"/>
+	</fileset>
+   	 		
+	<path id="Library">
+		<fileset dir="${antlibhome}">
+			<include name="*.jar" />
+		</fileset>
+	</path>
+	<path id="testclasspath">
+		<fileset dir="${buildpath}/test">
+			<include name="**/*.jar" />
+		</fileset>
+	</path>
+	
+	<target name="init">
+		<delete dir="${buildpath}"></delete>
+		<mkdir dir="${buildpath}"/>
+		<mkdir dir="${buildpath}/src"/>
+		<mkdir dir="${buildpath}/classes"/>
+	    <mkdir dir="${buildpath}/dist"/>
+		<mkdir dir="${buildpath}/test"/>
+			
+	</target>
+	
+	<!-- 拷贝源代码-->
+	<target name="copySrc" depends="init" >
+		<copy todir="${buildpath}/src">
+			<fileset refid="src.path"></fileset>
+		</copy>
+	</target>
+	
+	<!-- 编译 -->
+	<target name="compilerefclass">
+		<javac target="1.7" fork="true" executable="${javacpath}" includeantruntime="false" nowarn="yes" 
+			destdir="${buildpath}/test" debug="on">
+			<src path="${test}" />
+			<classpath refid="Library" />
+		</javac>
+	</target>
+	<target name="compile">
+		<javac target="1.7" fork="true" executable="${javacpath}" includeantruntime="false" nowarn="yes" 
+			destdir="${buildpath}/classes" debug="on">
+			<src path="${src}" />
+			<classpath refid="Library" />
+			<classpath refid="testclasspath" />
+		</javac>
+	</target>
+	
+	<!-- 打包 -->
+	<target name="jarrefjar" depends="compilerefclass">
+		<jar jarfile="${buildpath}/test/${testname}.jar" basedir="${buildpath}/test">
+
+		</jar>
+	</target>
+	<target name="jar" depends="compile">
+		<jar jarfile="${buildpath}/dist/${jarname}.jar" basedir="${buildpath}/classes">
+			<manifest>
+				<attribute name="Main-Class" value="com.wjliuh.ant.AntClass"/>
+				<attribute name="Build-By" value="Liuwenjie"/>
+			</manifest>
+		</jar>
+	</target>
+			
+	<!-- 拷贝jar文件 -->
+	<target name="copyJar" depends="jar" >
+		<copy todir="${jarpath}" overwrite="true">
+			<fileset refid="jar.path"></fileset>
+		</copy>
+	</target>
+	
+	<!-- 拷贝其他文件 -->
+	<target name="copyConfigFile">
+		<copy todir="${jarpath}/MEATA-INF" overwrite="true">
+			<fileset refid="other.path" ></fileset>
+		</copy>
+	</target>
+</project>

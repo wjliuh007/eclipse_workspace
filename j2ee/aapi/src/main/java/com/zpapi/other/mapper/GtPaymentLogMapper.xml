@@ -1,0 +1,503 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zpapi.other.dao.GtPaymentLogMapper" >
+  <resultMap id="BaseResultMap" type="com.zpapi.other.model.GtPaymentLog" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="order_sn" property="orderSn" jdbcType="BIGINT" />
+    <result column="member_id" property="memberId" jdbcType="BIGINT" />
+    <result column="pay_type_id" property="payTypeId" jdbcType="TINYINT" />
+    <result column="payment_id" property="paymentId" jdbcType="INTEGER" />
+    <result column="paycode" property="paycode" jdbcType="VARCHAR" />
+    <result column="bank_code" property="bankCode" jdbcType="VARCHAR" />
+    <result column="money" property="money" jdbcType="DECIMAL" />
+    <result column="history_needpay" property="historyNeedpay" jdbcType="DECIMAL" />
+    <result column="begin_time" property="beginTime" jdbcType="INTEGER" />
+    <result column="end_time" property="endTime" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="TINYINT" />
+    <result column="pay_sn" property="paySn" jdbcType="BIGINT" />
+    <result column="token" property="token" jdbcType="VARCHAR" />
+    <result column="pay_return_value" property="payReturnValue" jdbcType="VARCHAR" />
+    <result column="channel" property="channel" jdbcType="BIT" />
+    <result column="pay_serial_number" property="paySerialNumber" jdbcType="VARCHAR" />
+    <result column="crd_bll_ref" property="crdBllRef" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.zpapi.other.model.GtPaymentLog" extends="BaseResultMap" >
+    <result column="memo" property="memo" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, order_sn, member_id, pay_type_id, payment_id, paycode, bank_code, money, history_needpay, 
+    begin_time, end_time, status, pay_sn, token, pay_return_value, channel, pay_serial_number, 
+    crd_bll_ref
+  </sql>
+  <sql id="Blob_Column_List" >
+    memo
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.zpapi.other.model.GtPaymentLogExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from gt_payment_log
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zpapi.other.model.GtPaymentLogExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from gt_payment_log
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from gt_payment_log
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from gt_payment_log
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.zpapi.other.model.GtPaymentLogExample" >
+    delete from gt_payment_log
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zpapi.other.model.GtPaymentLog" >
+    insert into gt_payment_log (id, order_sn, member_id, 
+      pay_type_id, payment_id, paycode, 
+      bank_code, money, history_needpay, 
+      begin_time, end_time, status, 
+      pay_sn, token, pay_return_value, 
+      channel, pay_serial_number, crd_bll_ref, 
+      memo)
+    values (#{id,jdbcType=INTEGER}, #{orderSn,jdbcType=BIGINT}, #{memberId,jdbcType=BIGINT}, 
+      #{payTypeId,jdbcType=TINYINT}, #{paymentId,jdbcType=INTEGER}, #{paycode,jdbcType=VARCHAR}, 
+      #{bankCode,jdbcType=VARCHAR}, #{money,jdbcType=DECIMAL}, #{historyNeedpay,jdbcType=DECIMAL}, 
+      #{beginTime,jdbcType=INTEGER}, #{endTime,jdbcType=INTEGER}, #{status,jdbcType=TINYINT}, 
+      #{paySn,jdbcType=BIGINT}, #{token,jdbcType=VARCHAR}, #{payReturnValue,jdbcType=VARCHAR}, 
+      #{channel,jdbcType=BIT}, #{paySerialNumber,jdbcType=VARCHAR}, #{crdBllRef,jdbcType=VARCHAR}, 
+      #{memo,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zpapi.other.model.GtPaymentLog" >
+    insert into gt_payment_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="orderSn != null" >
+        order_sn,
+      </if>
+      <if test="memberId != null" >
+        member_id,
+      </if>
+      <if test="payTypeId != null" >
+        pay_type_id,
+      </if>
+      <if test="paymentId != null" >
+        payment_id,
+      </if>
+      <if test="paycode != null" >
+        paycode,
+      </if>
+      <if test="bankCode != null" >
+        bank_code,
+      </if>
+      <if test="money != null" >
+        money,
+      </if>
+      <if test="historyNeedpay != null" >
+        history_needpay,
+      </if>
+      <if test="beginTime != null" >
+        begin_time,
+      </if>
+      <if test="endTime != null" >
+        end_time,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="paySn != null" >
+        pay_sn,
+      </if>
+      <if test="token != null" >
+        token,
+      </if>
+      <if test="payReturnValue != null" >
+        pay_return_value,
+      </if>
+      <if test="channel != null" >
+        channel,
+      </if>
+      <if test="paySerialNumber != null" >
+        pay_serial_number,
+      </if>
+      <if test="crdBllRef != null" >
+        crd_bll_ref,
+      </if>
+      <if test="memo != null" >
+        memo,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="orderSn != null" >
+        #{orderSn,jdbcType=BIGINT},
+      </if>
+      <if test="memberId != null" >
+        #{memberId,jdbcType=BIGINT},
+      </if>
+      <if test="payTypeId != null" >
+        #{payTypeId,jdbcType=TINYINT},
+      </if>
+      <if test="paymentId != null" >
+        #{paymentId,jdbcType=INTEGER},
+      </if>
+      <if test="paycode != null" >
+        #{paycode,jdbcType=VARCHAR},
+      </if>
+      <if test="bankCode != null" >
+        #{bankCode,jdbcType=VARCHAR},
+      </if>
+      <if test="money != null" >
+        #{money,jdbcType=DECIMAL},
+      </if>
+      <if test="historyNeedpay != null" >
+        #{historyNeedpay,jdbcType=DECIMAL},
+      </if>
+      <if test="beginTime != null" >
+        #{beginTime,jdbcType=INTEGER},
+      </if>
+      <if test="endTime != null" >
+        #{endTime,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="paySn != null" >
+        #{paySn,jdbcType=BIGINT},
+      </if>
+      <if test="token != null" >
+        #{token,jdbcType=VARCHAR},
+      </if>
+      <if test="payReturnValue != null" >
+        #{payReturnValue,jdbcType=VARCHAR},
+      </if>
+      <if test="channel != null" >
+        #{channel,jdbcType=BIT},
+      </if>
+      <if test="paySerialNumber != null" >
+        #{paySerialNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="crdBllRef != null" >
+        #{crdBllRef,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null" >
+        #{memo,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zpapi.other.model.GtPaymentLogExample" resultType="java.lang.Integer" >
+    select count(*) from gt_payment_log
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update gt_payment_log
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.orderSn != null" >
+        order_sn = #{record.orderSn,jdbcType=BIGINT},
+      </if>
+      <if test="record.memberId != null" >
+        member_id = #{record.memberId,jdbcType=BIGINT},
+      </if>
+      <if test="record.payTypeId != null" >
+        pay_type_id = #{record.payTypeId,jdbcType=TINYINT},
+      </if>
+      <if test="record.paymentId != null" >
+        payment_id = #{record.paymentId,jdbcType=INTEGER},
+      </if>
+      <if test="record.paycode != null" >
+        paycode = #{record.paycode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bankCode != null" >
+        bank_code = #{record.bankCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.money != null" >
+        money = #{record.money,jdbcType=DECIMAL},
+      </if>
+      <if test="record.historyNeedpay != null" >
+        history_needpay = #{record.historyNeedpay,jdbcType=DECIMAL},
+      </if>
+      <if test="record.beginTime != null" >
+        begin_time = #{record.beginTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.endTime != null" >
+        end_time = #{record.endTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=TINYINT},
+      </if>
+      <if test="record.paySn != null" >
+        pay_sn = #{record.paySn,jdbcType=BIGINT},
+      </if>
+      <if test="record.token != null" >
+        token = #{record.token,jdbcType=VARCHAR},
+      </if>
+      <if test="record.payReturnValue != null" >
+        pay_return_value = #{record.payReturnValue,jdbcType=VARCHAR},
+      </if>
+      <if test="record.channel != null" >
+        channel = #{record.channel,jdbcType=BIT},
+      </if>
+      <if test="record.paySerialNumber != null" >
+        pay_serial_number = #{record.paySerialNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.crdBllRef != null" >
+        crd_bll_ref = #{record.crdBllRef,jdbcType=VARCHAR},
+      </if>
+      <if test="record.memo != null" >
+        memo = #{record.memo,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update gt_payment_log
+    set id = #{record.id,jdbcType=INTEGER},
+      order_sn = #{record.orderSn,jdbcType=BIGINT},
+      member_id = #{record.memberId,jdbcType=BIGINT},
+      pay_type_id = #{record.payTypeId,jdbcType=TINYINT},
+      payment_id = #{record.paymentId,jdbcType=INTEGER},
+      paycode = #{record.paycode,jdbcType=VARCHAR},
+      bank_code = #{record.bankCode,jdbcType=VARCHAR},
+      money = #{record.money,jdbcType=DECIMAL},
+      history_needpay = #{record.historyNeedpay,jdbcType=DECIMAL},
+      begin_time = #{record.beginTime,jdbcType=INTEGER},
+      end_time = #{record.endTime,jdbcType=INTEGER},
+      status = #{record.status,jdbcType=TINYINT},
+      pay_sn = #{record.paySn,jdbcType=BIGINT},
+      token = #{record.token,jdbcType=VARCHAR},
+      pay_return_value = #{record.payReturnValue,jdbcType=VARCHAR},
+      channel = #{record.channel,jdbcType=BIT},
+      pay_serial_number = #{record.paySerialNumber,jdbcType=VARCHAR},
+      crd_bll_ref = #{record.crdBllRef,jdbcType=VARCHAR},
+      memo = #{record.memo,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update gt_payment_log
+    set id = #{record.id,jdbcType=INTEGER},
+      order_sn = #{record.orderSn,jdbcType=BIGINT},
+      member_id = #{record.memberId,jdbcType=BIGINT},
+      pay_type_id = #{record.payTypeId,jdbcType=TINYINT},
+      payment_id = #{record.paymentId,jdbcType=INTEGER},
+      paycode = #{record.paycode,jdbcType=VARCHAR},
+      bank_code = #{record.bankCode,jdbcType=VARCHAR},
+      money = #{record.money,jdbcType=DECIMAL},
+      history_needpay = #{record.historyNeedpay,jdbcType=DECIMAL},
+      begin_time = #{record.beginTime,jdbcType=INTEGER},
+      end_time = #{record.endTime,jdbcType=INTEGER},
+      status = #{record.status,jdbcType=TINYINT},
+      pay_sn = #{record.paySn,jdbcType=BIGINT},
+      token = #{record.token,jdbcType=VARCHAR},
+      pay_return_value = #{record.payReturnValue,jdbcType=VARCHAR},
+      channel = #{record.channel,jdbcType=BIT},
+      pay_serial_number = #{record.paySerialNumber,jdbcType=VARCHAR},
+      crd_bll_ref = #{record.crdBllRef,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zpapi.other.model.GtPaymentLog" >
+    update gt_payment_log
+    <set >
+      <if test="orderSn != null" >
+        order_sn = #{orderSn,jdbcType=BIGINT},
+      </if>
+      <if test="memberId != null" >
+        member_id = #{memberId,jdbcType=BIGINT},
+      </if>
+      <if test="payTypeId != null" >
+        pay_type_id = #{payTypeId,jdbcType=TINYINT},
+      </if>
+      <if test="paymentId != null" >
+        payment_id = #{paymentId,jdbcType=INTEGER},
+      </if>
+      <if test="paycode != null" >
+        paycode = #{paycode,jdbcType=VARCHAR},
+      </if>
+      <if test="bankCode != null" >
+        bank_code = #{bankCode,jdbcType=VARCHAR},
+      </if>
+      <if test="money != null" >
+        money = #{money,jdbcType=DECIMAL},
+      </if>
+      <if test="historyNeedpay != null" >
+        history_needpay = #{historyNeedpay,jdbcType=DECIMAL},
+      </if>
+      <if test="beginTime != null" >
+        begin_time = #{beginTime,jdbcType=INTEGER},
+      </if>
+      <if test="endTime != null" >
+        end_time = #{endTime,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="paySn != null" >
+        pay_sn = #{paySn,jdbcType=BIGINT},
+      </if>
+      <if test="token != null" >
+        token = #{token,jdbcType=VARCHAR},
+      </if>
+      <if test="payReturnValue != null" >
+        pay_return_value = #{payReturnValue,jdbcType=VARCHAR},
+      </if>
+      <if test="channel != null" >
+        channel = #{channel,jdbcType=BIT},
+      </if>
+      <if test="paySerialNumber != null" >
+        pay_serial_number = #{paySerialNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="crdBllRef != null" >
+        crd_bll_ref = #{crdBllRef,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null" >
+        memo = #{memo,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.zpapi.other.model.GtPaymentLog" >
+    update gt_payment_log
+    set order_sn = #{orderSn,jdbcType=BIGINT},
+      member_id = #{memberId,jdbcType=BIGINT},
+      pay_type_id = #{payTypeId,jdbcType=TINYINT},
+      payment_id = #{paymentId,jdbcType=INTEGER},
+      paycode = #{paycode,jdbcType=VARCHAR},
+      bank_code = #{bankCode,jdbcType=VARCHAR},
+      money = #{money,jdbcType=DECIMAL},
+      history_needpay = #{historyNeedpay,jdbcType=DECIMAL},
+      begin_time = #{beginTime,jdbcType=INTEGER},
+      end_time = #{endTime,jdbcType=INTEGER},
+      status = #{status,jdbcType=TINYINT},
+      pay_sn = #{paySn,jdbcType=BIGINT},
+      token = #{token,jdbcType=VARCHAR},
+      pay_return_value = #{payReturnValue,jdbcType=VARCHAR},
+      channel = #{channel,jdbcType=BIT},
+      pay_serial_number = #{paySerialNumber,jdbcType=VARCHAR},
+      crd_bll_ref = #{crdBllRef,jdbcType=VARCHAR},
+      memo = #{memo,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zpapi.other.model.GtPaymentLog" >
+    update gt_payment_log
+    set order_sn = #{orderSn,jdbcType=BIGINT},
+      member_id = #{memberId,jdbcType=BIGINT},
+      pay_type_id = #{payTypeId,jdbcType=TINYINT},
+      payment_id = #{paymentId,jdbcType=INTEGER},
+      paycode = #{paycode,jdbcType=VARCHAR},
+      bank_code = #{bankCode,jdbcType=VARCHAR},
+      money = #{money,jdbcType=DECIMAL},
+      history_needpay = #{historyNeedpay,jdbcType=DECIMAL},
+      begin_time = #{beginTime,jdbcType=INTEGER},
+      end_time = #{endTime,jdbcType=INTEGER},
+      status = #{status,jdbcType=TINYINT},
+      pay_sn = #{paySn,jdbcType=BIGINT},
+      token = #{token,jdbcType=VARCHAR},
+      pay_return_value = #{payReturnValue,jdbcType=VARCHAR},
+      channel = #{channel,jdbcType=BIT},
+      pay_serial_number = #{paySerialNumber,jdbcType=VARCHAR},
+      crd_bll_ref = #{crdBllRef,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

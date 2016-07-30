@@ -1,0 +1,11 @@
+basic.jar
+commons-logging-1.2.jar
+dom4j-2.0.0-ALPHA1.jar
+install.jar
+ojdbc14.jar
+ojdbc6.jar
+oracle-driver-ojdbc6-12.1.0.1.jar
+pubuapbs_businstallLevel-1.jar
+pubuapfw_jdbcframeworkLevel-1.jar
+sax-2.0.1.jar
+uapbs_businstallLevel-1.jar

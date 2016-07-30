@@ -1,0 +1,988 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zpapi.other.dao.GtQuanCardMapper">
+  <resultMap id="BaseResultMap" type="com.zpapi.other.model.GtQuanCard">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="member_id" jdbcType="BIGINT" property="memberId" />
+    <result column="card_batch_id" jdbcType="INTEGER" property="cardBatchId" />
+    <result column="card_num" jdbcType="VARCHAR" property="cardNum" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="card_type" jdbcType="INTEGER" property="cardType" />
+    <result column="status" jdbcType="BIT" property="status" />
+    <result column="validity_period_type" jdbcType="BIT" property="validityPeriodType" />
+    <result column="starttime" jdbcType="INTEGER" property="starttime" />
+    <result column="endtime" jdbcType="INTEGER" property="endtime" />
+    <result column="valid_time" jdbcType="INTEGER" property="validTime" />
+    <result column="price" jdbcType="INTEGER" property="price" />
+    <result column="balance" jdbcType="DECIMAL" property="balance" />
+    <result column="leastamount" jdbcType="INTEGER" property="leastamount" />
+    <result column="order_sn" jdbcType="BIGINT" property="orderSn" />
+    <result column="source_order_sn" jdbcType="BIGINT" property="sourceOrderSn" />
+    <result column="create_time" jdbcType="INTEGER" property="createTime" />
+    <result column="use_time" jdbcType="INTEGER" property="useTime" />
+    <result column="use_range" jdbcType="VARCHAR" property="useRange" />
+    <result column="is_active" jdbcType="INTEGER" property="isActive" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="use_range_detail" jdbcType="VARCHAR" property="useRangeDetail" />
+    <result column="use_condition_detail" jdbcType="VARCHAR" property="useConditionDetail" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, member_id, card_batch_id, card_num, type, card_type, status, validity_period_type, 
+    starttime, endtime, valid_time, price, balance, leastamount, order_sn, source_order_sn, 
+    create_time, use_time, use_range, is_active, title, use_range_detail, use_condition_detail
+  </sql>
+  <select id="selectByExample" parameterType="com.zpapi.other.model.GtQuanCardExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from gt_quan_card
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from gt_quan_card
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from gt_quan_card
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.zpapi.other.model.GtQuanCardExample">
+    delete from gt_quan_card
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zpapi.other.model.GtQuanCard">
+    insert into gt_quan_card (id, member_id, card_batch_id, 
+      card_num, type, card_type, 
+      status, validity_period_type, starttime, 
+      endtime, valid_time, price, 
+      balance, leastamount, order_sn, 
+      source_order_sn, create_time, use_time, 
+      use_range, is_active, title, 
+      use_range_detail, use_condition_detail)
+    values (#{id,jdbcType=BIGINT}, #{memberId,jdbcType=BIGINT}, #{cardBatchId,jdbcType=INTEGER}, 
+      #{cardNum,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, #{cardType,jdbcType=INTEGER}, 
+      #{status,jdbcType=BIT}, #{validityPeriodType,jdbcType=BIT}, #{starttime,jdbcType=INTEGER}, 
+      #{endtime,jdbcType=INTEGER}, #{validTime,jdbcType=INTEGER}, #{price,jdbcType=INTEGER}, 
+      #{balance,jdbcType=DECIMAL}, #{leastamount,jdbcType=INTEGER}, #{orderSn,jdbcType=BIGINT}, 
+      #{sourceOrderSn,jdbcType=BIGINT}, #{createTime,jdbcType=INTEGER}, #{useTime,jdbcType=INTEGER}, 
+      #{useRange,jdbcType=VARCHAR}, #{isActive,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, 
+      #{useRangeDetail,jdbcType=VARCHAR}, #{useConditionDetail,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zpapi.other.model.GtQuanCard">
+    insert into gt_quan_card
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="memberId != null">
+        member_id,
+      </if>
+      <if test="cardBatchId != null">
+        card_batch_id,
+      </if>
+      <if test="cardNum != null">
+        card_num,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="cardType != null">
+        card_type,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="validityPeriodType != null">
+        validity_period_type,
+      </if>
+      <if test="starttime != null">
+        starttime,
+      </if>
+      <if test="endtime != null">
+        endtime,
+      </if>
+      <if test="validTime != null">
+        valid_time,
+      </if>
+      <if test="price != null">
+        price,
+      </if>
+      <if test="balance != null">
+        balance,
+      </if>
+      <if test="leastamount != null">
+        leastamount,
+      </if>
+      <if test="orderSn != null">
+        order_sn,
+      </if>
+      <if test="sourceOrderSn != null">
+        source_order_sn,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="useTime != null">
+        use_time,
+      </if>
+      <if test="useRange != null">
+        use_range,
+      </if>
+      <if test="isActive != null">
+        is_active,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="useRangeDetail != null">
+        use_range_detail,
+      </if>
+      <if test="useConditionDetail != null">
+        use_condition_detail,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="memberId != null">
+        #{memberId,jdbcType=BIGINT},
+      </if>
+      <if test="cardBatchId != null">
+        #{cardBatchId,jdbcType=INTEGER},
+      </if>
+      <if test="cardNum != null">
+        #{cardNum,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="cardType != null">
+        #{cardType,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=BIT},
+      </if>
+      <if test="validityPeriodType != null">
+        #{validityPeriodType,jdbcType=BIT},
+      </if>
+      <if test="starttime != null">
+        #{starttime,jdbcType=INTEGER},
+      </if>
+      <if test="endtime != null">
+        #{endtime,jdbcType=INTEGER},
+      </if>
+      <if test="validTime != null">
+        #{validTime,jdbcType=INTEGER},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=INTEGER},
+      </if>
+      <if test="balance != null">
+        #{balance,jdbcType=DECIMAL},
+      </if>
+      <if test="leastamount != null">
+        #{leastamount,jdbcType=INTEGER},
+      </if>
+      <if test="orderSn != null">
+        #{orderSn,jdbcType=BIGINT},
+      </if>
+      <if test="sourceOrderSn != null">
+        #{sourceOrderSn,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=INTEGER},
+      </if>
+      <if test="useTime != null">
+        #{useTime,jdbcType=INTEGER},
+      </if>
+      <if test="useRange != null">
+        #{useRange,jdbcType=VARCHAR},
+      </if>
+      <if test="isActive != null">
+        #{isActive,jdbcType=INTEGER},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="useRangeDetail != null">
+        #{useRangeDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="useConditionDetail != null">
+        #{useConditionDetail,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zpapi.other.model.GtQuanCardExample" resultType="java.lang.Integer">
+    select count(*) from gt_quan_card
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update gt_quan_card
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.memberId != null">
+        member_id = #{record.memberId,jdbcType=BIGINT},
+      </if>
+      <if test="record.cardBatchId != null">
+        card_batch_id = #{record.cardBatchId,jdbcType=INTEGER},
+      </if>
+      <if test="record.cardNum != null">
+        card_num = #{record.cardNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.type != null">
+        type = #{record.type,jdbcType=INTEGER},
+      </if>
+      <if test="record.cardType != null">
+        card_type = #{record.cardType,jdbcType=INTEGER},
+      </if>
+      <if test="record.status != null">
+        status = #{record.status,jdbcType=BIT},
+      </if>
+      <if test="record.validityPeriodType != null">
+        validity_period_type = #{record.validityPeriodType,jdbcType=BIT},
+      </if>
+      <if test="record.starttime != null">
+        starttime = #{record.starttime,jdbcType=INTEGER},
+      </if>
+      <if test="record.endtime != null">
+        endtime = #{record.endtime,jdbcType=INTEGER},
+      </if>
+      <if test="record.validTime != null">
+        valid_time = #{record.validTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.price != null">
+        price = #{record.price,jdbcType=INTEGER},
+      </if>
+      <if test="record.balance != null">
+        balance = #{record.balance,jdbcType=DECIMAL},
+      </if>
+      <if test="record.leastamount != null">
+        leastamount = #{record.leastamount,jdbcType=INTEGER},
+      </if>
+      <if test="record.orderSn != null">
+        order_sn = #{record.orderSn,jdbcType=BIGINT},
+      </if>
+      <if test="record.sourceOrderSn != null">
+        source_order_sn = #{record.sourceOrderSn,jdbcType=BIGINT},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.useTime != null">
+        use_time = #{record.useTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.useRange != null">
+        use_range = #{record.useRange,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isActive != null">
+        is_active = #{record.isActive,jdbcType=INTEGER},
+      </if>
+      <if test="record.title != null">
+        title = #{record.title,jdbcType=VARCHAR},
+      </if>
+      <if test="record.useRangeDetail != null">
+        use_range_detail = #{record.useRangeDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.useConditionDetail != null">
+        use_condition_detail = #{record.useConditionDetail,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update gt_quan_card
+    set id = #{record.id,jdbcType=BIGINT},
+      member_id = #{record.memberId,jdbcType=BIGINT},
+      card_batch_id = #{record.cardBatchId,jdbcType=INTEGER},
+      card_num = #{record.cardNum,jdbcType=VARCHAR},
+      type = #{record.type,jdbcType=INTEGER},
+      card_type = #{record.cardType,jdbcType=INTEGER},
+      status = #{record.status,jdbcType=BIT},
+      validity_period_type = #{record.validityPeriodType,jdbcType=BIT},
+      starttime = #{record.starttime,jdbcType=INTEGER},
+      endtime = #{record.endtime,jdbcType=INTEGER},
+      valid_time = #{record.validTime,jdbcType=INTEGER},
+      price = #{record.price,jdbcType=INTEGER},
+      balance = #{record.balance,jdbcType=DECIMAL},
+      leastamount = #{record.leastamount,jdbcType=INTEGER},
+      order_sn = #{record.orderSn,jdbcType=BIGINT},
+      source_order_sn = #{record.sourceOrderSn,jdbcType=BIGINT},
+      create_time = #{record.createTime,jdbcType=INTEGER},
+      use_time = #{record.useTime,jdbcType=INTEGER},
+      use_range = #{record.useRange,jdbcType=VARCHAR},
+      is_active = #{record.isActive,jdbcType=INTEGER},
+      title = #{record.title,jdbcType=VARCHAR},
+      use_range_detail = #{record.useRangeDetail,jdbcType=VARCHAR},
+      use_condition_detail = #{record.useConditionDetail,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zpapi.other.model.GtQuanCard">
+    update gt_quan_card
+    <set>
+      <if test="memberId != null">
+        member_id = #{memberId,jdbcType=BIGINT},
+      </if>
+      <if test="cardBatchId != null">
+        card_batch_id = #{cardBatchId,jdbcType=INTEGER},
+      </if>
+      <if test="cardNum != null">
+        card_num = #{cardNum,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="cardType != null">
+        card_type = #{cardType,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=BIT},
+      </if>
+      <if test="validityPeriodType != null">
+        validity_period_type = #{validityPeriodType,jdbcType=BIT},
+      </if>
+      <if test="starttime != null">
+        starttime = #{starttime,jdbcType=INTEGER},
+      </if>
+      <if test="endtime != null">
+        endtime = #{endtime,jdbcType=INTEGER},
+      </if>
+      <if test="validTime != null">
+        valid_time = #{validTime,jdbcType=INTEGER},
+      </if>
+      <if test="price != null">
+        price = #{price,jdbcType=INTEGER},
+      </if>
+      <if test="balance != null">
+        balance = #{balance,jdbcType=DECIMAL},
+      </if>
+      <if test="leastamount != null">
+        leastamount = #{leastamount,jdbcType=INTEGER},
+      </if>
+      <if test="orderSn != null">
+        order_sn = #{orderSn,jdbcType=BIGINT},
+      </if>
+      <if test="sourceOrderSn != null">
+        source_order_sn = #{sourceOrderSn,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=INTEGER},
+      </if>
+      <if test="useTime != null">
+        use_time = #{useTime,jdbcType=INTEGER},
+      </if>
+      <if test="useRange != null">
+        use_range = #{useRange,jdbcType=VARCHAR},
+      </if>
+      <if test="isActive != null">
+        is_active = #{isActive,jdbcType=INTEGER},
+      </if>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="useRangeDetail != null">
+        use_range_detail = #{useRangeDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="useConditionDetail != null">
+        use_condition_detail = #{useConditionDetail,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zpapi.other.model.GtQuanCard">
+    update gt_quan_card
+    set member_id = #{memberId,jdbcType=BIGINT},
+      card_batch_id = #{cardBatchId,jdbcType=INTEGER},
+      card_num = #{cardNum,jdbcType=VARCHAR},
+      type = #{type,jdbcType=INTEGER},
+      card_type = #{cardType,jdbcType=INTEGER},
+      status = #{status,jdbcType=BIT},
+      validity_period_type = #{validityPeriodType,jdbcType=BIT},
+      starttime = #{starttime,jdbcType=INTEGER},
+      endtime = #{endtime,jdbcType=INTEGER},
+      valid_time = #{validTime,jdbcType=INTEGER},
+      price = #{price,jdbcType=INTEGER},
+      balance = #{balance,jdbcType=DECIMAL},
+      leastamount = #{leastamount,jdbcType=INTEGER},
+      order_sn = #{orderSn,jdbcType=BIGINT},
+      source_order_sn = #{sourceOrderSn,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=INTEGER},
+      use_time = #{useTime,jdbcType=INTEGER},
+      use_range = #{useRange,jdbcType=VARCHAR},
+      is_active = #{isActive,jdbcType=INTEGER},
+      title = #{title,jdbcType=VARCHAR},
+      use_range_detail = #{useRangeDetail,jdbcType=VARCHAR},
+      use_condition_detail = #{useConditionDetail,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <resultMap id="BaseResultMap" type="com.zpapi.other.model.GtQuanCard">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="member_id" jdbcType="BIGINT" property="memberId" />
+    <result column="card_batch_id" jdbcType="INTEGER" property="cardBatchId" />
+    <result column="card_num" jdbcType="VARCHAR" property="cardNum" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="card_type" jdbcType="INTEGER" property="cardType" />
+    <result column="status" jdbcType="BIT" property="status" />
+    <result column="validity_period_type" jdbcType="BIT" property="validityPeriodType" />
+    <result column="starttime" jdbcType="INTEGER" property="starttime" />
+    <result column="endtime" jdbcType="INTEGER" property="endtime" />
+    <result column="valid_time" jdbcType="INTEGER" property="validTime" />
+    <result column="price" jdbcType="INTEGER" property="price" />
+    <result column="balance" jdbcType="DECIMAL" property="balance" />
+    <result column="leastamount" jdbcType="INTEGER" property="leastamount" />
+    <result column="order_sn" jdbcType="BIGINT" property="orderSn" />
+    <result column="source_order_sn" jdbcType="BIGINT" property="sourceOrderSn" />
+    <result column="create_time" jdbcType="INTEGER" property="createTime" />
+    <result column="use_time" jdbcType="INTEGER" property="useTime" />
+    <result column="use_range" jdbcType="VARCHAR" property="useRange" />
+    <result column="is_active" jdbcType="INTEGER" property="isActive" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="use_range_detail" jdbcType="VARCHAR" property="useRangeDetail" />
+    <result column="use_condition_detail" jdbcType="VARCHAR" property="useConditionDetail" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, member_id, card_batch_id, card_num, type, card_type, status, validity_period_type, 
+    starttime, endtime, valid_time, price, balance, leastamount, order_sn, source_order_sn, 
+    create_time, use_time, use_range, is_active, title, use_range_detail, use_condition_detail
+  </sql>
+  <select id="selectByExample" parameterType="com.zpapi.other.model.GtQuanCardExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from gt_quan_card
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from gt_quan_card
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from gt_quan_card
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.zpapi.other.model.GtQuanCardExample">
+    delete from gt_quan_card
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zpapi.other.model.GtQuanCard">
+    insert into gt_quan_card (id, member_id, card_batch_id, 
+      card_num, type, card_type, 
+      status, validity_period_type, starttime, 
+      endtime, valid_time, price, 
+      balance, leastamount, order_sn, 
+      source_order_sn, create_time, use_time, 
+      use_range, is_active, title, 
+      use_range_detail, use_condition_detail)
+    values (#{id,jdbcType=BIGINT}, #{memberId,jdbcType=BIGINT}, #{cardBatchId,jdbcType=INTEGER}, 
+      #{cardNum,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, #{cardType,jdbcType=INTEGER}, 
+      #{status,jdbcType=BIT}, #{validityPeriodType,jdbcType=BIT}, #{starttime,jdbcType=INTEGER}, 
+      #{endtime,jdbcType=INTEGER}, #{validTime,jdbcType=INTEGER}, #{price,jdbcType=INTEGER}, 
+      #{balance,jdbcType=DECIMAL}, #{leastamount,jdbcType=INTEGER}, #{orderSn,jdbcType=BIGINT}, 
+      #{sourceOrderSn,jdbcType=BIGINT}, #{createTime,jdbcType=INTEGER}, #{useTime,jdbcType=INTEGER}, 
+      #{useRange,jdbcType=VARCHAR}, #{isActive,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, 
+      #{useRangeDetail,jdbcType=VARCHAR}, #{useConditionDetail,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zpapi.other.model.GtQuanCard">
+    insert into gt_quan_card
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="memberId != null">
+        member_id,
+      </if>
+      <if test="cardBatchId != null">
+        card_batch_id,
+      </if>
+      <if test="cardNum != null">
+        card_num,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="cardType != null">
+        card_type,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="validityPeriodType != null">
+        validity_period_type,
+      </if>
+      <if test="starttime != null">
+        starttime,
+      </if>
+      <if test="endtime != null">
+        endtime,
+      </if>
+      <if test="validTime != null">
+        valid_time,
+      </if>
+      <if test="price != null">
+        price,
+      </if>
+      <if test="balance != null">
+        balance,
+      </if>
+      <if test="leastamount != null">
+        leastamount,
+      </if>
+      <if test="orderSn != null">
+        order_sn,
+      </if>
+      <if test="sourceOrderSn != null">
+        source_order_sn,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="useTime != null">
+        use_time,
+      </if>
+      <if test="useRange != null">
+        use_range,
+      </if>
+      <if test="isActive != null">
+        is_active,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="useRangeDetail != null">
+        use_range_detail,
+      </if>
+      <if test="useConditionDetail != null">
+        use_condition_detail,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="memberId != null">
+        #{memberId,jdbcType=BIGINT},
+      </if>
+      <if test="cardBatchId != null">
+        #{cardBatchId,jdbcType=INTEGER},
+      </if>
+      <if test="cardNum != null">
+        #{cardNum,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="cardType != null">
+        #{cardType,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=BIT},
+      </if>
+      <if test="validityPeriodType != null">
+        #{validityPeriodType,jdbcType=BIT},
+      </if>
+      <if test="starttime != null">
+        #{starttime,jdbcType=INTEGER},
+      </if>
+      <if test="endtime != null">
+        #{endtime,jdbcType=INTEGER},
+      </if>
+      <if test="validTime != null">
+        #{validTime,jdbcType=INTEGER},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=INTEGER},
+      </if>
+      <if test="balance != null">
+        #{balance,jdbcType=DECIMAL},
+      </if>
+      <if test="leastamount != null">
+        #{leastamount,jdbcType=INTEGER},
+      </if>
+      <if test="orderSn != null">
+        #{orderSn,jdbcType=BIGINT},
+      </if>
+      <if test="sourceOrderSn != null">
+        #{sourceOrderSn,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=INTEGER},
+      </if>
+      <if test="useTime != null">
+        #{useTime,jdbcType=INTEGER},
+      </if>
+      <if test="useRange != null">
+        #{useRange,jdbcType=VARCHAR},
+      </if>
+      <if test="isActive != null">
+        #{isActive,jdbcType=INTEGER},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="useRangeDetail != null">
+        #{useRangeDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="useConditionDetail != null">
+        #{useConditionDetail,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zpapi.other.model.GtQuanCardExample" resultType="java.lang.Integer">
+    select count(*) from gt_quan_card
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update gt_quan_card
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.memberId != null">
+        member_id = #{record.memberId,jdbcType=BIGINT},
+      </if>
+      <if test="record.cardBatchId != null">
+        card_batch_id = #{record.cardBatchId,jdbcType=INTEGER},
+      </if>
+      <if test="record.cardNum != null">
+        card_num = #{record.cardNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.type != null">
+        type = #{record.type,jdbcType=INTEGER},
+      </if>
+      <if test="record.cardType != null">
+        card_type = #{record.cardType,jdbcType=INTEGER},
+      </if>
+      <if test="record.status != null">
+        status = #{record.status,jdbcType=BIT},
+      </if>
+      <if test="record.validityPeriodType != null">
+        validity_period_type = #{record.validityPeriodType,jdbcType=BIT},
+      </if>
+      <if test="record.starttime != null">
+        starttime = #{record.starttime,jdbcType=INTEGER},
+      </if>
+      <if test="record.endtime != null">
+        endtime = #{record.endtime,jdbcType=INTEGER},
+      </if>
+      <if test="record.validTime != null">
+        valid_time = #{record.validTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.price != null">
+        price = #{record.price,jdbcType=INTEGER},
+      </if>
+      <if test="record.balance != null">
+        balance = #{record.balance,jdbcType=DECIMAL},
+      </if>
+      <if test="record.leastamount != null">
+        leastamount = #{record.leastamount,jdbcType=INTEGER},
+      </if>
+      <if test="record.orderSn != null">
+        order_sn = #{record.orderSn,jdbcType=BIGINT},
+      </if>
+      <if test="record.sourceOrderSn != null">
+        source_order_sn = #{record.sourceOrderSn,jdbcType=BIGINT},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.useTime != null">
+        use_time = #{record.useTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.useRange != null">
+        use_range = #{record.useRange,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isActive != null">
+        is_active = #{record.isActive,jdbcType=INTEGER},
+      </if>
+      <if test="record.title != null">
+        title = #{record.title,jdbcType=VARCHAR},
+      </if>
+      <if test="record.useRangeDetail != null">
+        use_range_detail = #{record.useRangeDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.useConditionDetail != null">
+        use_condition_detail = #{record.useConditionDetail,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update gt_quan_card
+    set id = #{record.id,jdbcType=BIGINT},
+      member_id = #{record.memberId,jdbcType=BIGINT},
+      card_batch_id = #{record.cardBatchId,jdbcType=INTEGER},
+      card_num = #{record.cardNum,jdbcType=VARCHAR},
+      type = #{record.type,jdbcType=INTEGER},
+      card_type = #{record.cardType,jdbcType=INTEGER},
+      status = #{record.status,jdbcType=BIT},
+      validity_period_type = #{record.validityPeriodType,jdbcType=BIT},
+      starttime = #{record.starttime,jdbcType=INTEGER},
+      endtime = #{record.endtime,jdbcType=INTEGER},
+      valid_time = #{record.validTime,jdbcType=INTEGER},
+      price = #{record.price,jdbcType=INTEGER},
+      balance = #{record.balance,jdbcType=DECIMAL},
+      leastamount = #{record.leastamount,jdbcType=INTEGER},
+      order_sn = #{record.orderSn,jdbcType=BIGINT},
+      source_order_sn = #{record.sourceOrderSn,jdbcType=BIGINT},
+      create_time = #{record.createTime,jdbcType=INTEGER},
+      use_time = #{record.useTime,jdbcType=INTEGER},
+      use_range = #{record.useRange,jdbcType=VARCHAR},
+      is_active = #{record.isActive,jdbcType=INTEGER},
+      title = #{record.title,jdbcType=VARCHAR},
+      use_range_detail = #{record.useRangeDetail,jdbcType=VARCHAR},
+      use_condition_detail = #{record.useConditionDetail,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zpapi.other.model.GtQuanCard">
+    update gt_quan_card
+    <set>
+      <if test="memberId != null">
+        member_id = #{memberId,jdbcType=BIGINT},
+      </if>
+      <if test="cardBatchId != null">
+        card_batch_id = #{cardBatchId,jdbcType=INTEGER},
+      </if>
+      <if test="cardNum != null">
+        card_num = #{cardNum,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="cardType != null">
+        card_type = #{cardType,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=BIT},
+      </if>
+      <if test="validityPeriodType != null">
+        validity_period_type = #{validityPeriodType,jdbcType=BIT},
+      </if>
+      <if test="starttime != null">
+        starttime = #{starttime,jdbcType=INTEGER},
+      </if>
+      <if test="endtime != null">
+        endtime = #{endtime,jdbcType=INTEGER},
+      </if>
+      <if test="validTime != null">
+        valid_time = #{validTime,jdbcType=INTEGER},
+      </if>
+      <if test="price != null">
+        price = #{price,jdbcType=INTEGER},
+      </if>
+      <if test="balance != null">
+        balance = #{balance,jdbcType=DECIMAL},
+      </if>
+      <if test="leastamount != null">
+        leastamount = #{leastamount,jdbcType=INTEGER},
+      </if>
+      <if test="orderSn != null">
+        order_sn = #{orderSn,jdbcType=BIGINT},
+      </if>
+      <if test="sourceOrderSn != null">
+        source_order_sn = #{sourceOrderSn,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=INTEGER},
+      </if>
+      <if test="useTime != null">
+        use_time = #{useTime,jdbcType=INTEGER},
+      </if>
+      <if test="useRange != null">
+        use_range = #{useRange,jdbcType=VARCHAR},
+      </if>
+      <if test="isActive != null">
+        is_active = #{isActive,jdbcType=INTEGER},
+      </if>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="useRangeDetail != null">
+        use_range_detail = #{useRangeDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="useConditionDetail != null">
+        use_condition_detail = #{useConditionDetail,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zpapi.other.model.GtQuanCard">
+    update gt_quan_card
+    set member_id = #{memberId,jdbcType=BIGINT},
+      card_batch_id = #{cardBatchId,jdbcType=INTEGER},
+      card_num = #{cardNum,jdbcType=VARCHAR},
+      type = #{type,jdbcType=INTEGER},
+      card_type = #{cardType,jdbcType=INTEGER},
+      status = #{status,jdbcType=BIT},
+      validity_period_type = #{validityPeriodType,jdbcType=BIT},
+      starttime = #{starttime,jdbcType=INTEGER},
+      endtime = #{endtime,jdbcType=INTEGER},
+      valid_time = #{validTime,jdbcType=INTEGER},
+      price = #{price,jdbcType=INTEGER},
+      balance = #{balance,jdbcType=DECIMAL},
+      leastamount = #{leastamount,jdbcType=INTEGER},
+      order_sn = #{orderSn,jdbcType=BIGINT},
+      source_order_sn = #{sourceOrderSn,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=INTEGER},
+      use_time = #{useTime,jdbcType=INTEGER},
+      use_range = #{useRange,jdbcType=VARCHAR},
+      is_active = #{isActive,jdbcType=INTEGER},
+      title = #{title,jdbcType=VARCHAR},
+      use_range_detail = #{useRangeDetail,jdbcType=VARCHAR},
+      use_condition_detail = #{useConditionDetail,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

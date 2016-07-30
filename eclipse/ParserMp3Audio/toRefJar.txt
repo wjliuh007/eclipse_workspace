@@ -1,0 +1,2 @@
+jaudiotagger-2.0.4-SNAPSHOT-sources.jar
+jaudiotagger-2.0.4-SNAPSHOT.jar

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
+	http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd 
+	http://www.springframework.org/schema/aop 
+	http://www.springframework.org/schema/aop/spring-aop-3.2.xsd" default-autowire="byName">
+	<import resource="spring-redis.xml" />
+	
+	<!-- 注解方式，自动扫描包内类 -->
+	<context:component-scan base-package="com.wjliuh.ssi.**"/>
+	
+	<!-- 非注解方式，配置文件 -->
+<!-- 	<bean id="userDao" class="com.wjliuh.ssi.dao.UserDaoImpl" parent="abstractDao" />
+	<bean id="ssiService" class="com.wjliuh.ssi.service.SsiService"/>
+	<bean id="loginAction" class="com.wjliuh.ssi.action.LoginAction">
+		<property name="ssiService" ref="ssiService" />
+	</bean>  -->
+</beans>

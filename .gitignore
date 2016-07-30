@@ -1,0 +1,8 @@
+*.class
+*.jar
+**/\.metadata/
+**/\.settings/
+bin/*
+lib/*
+**/\.svn/
+**/classes/

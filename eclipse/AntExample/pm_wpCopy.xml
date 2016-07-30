@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="copy" default="copy" basedir=".">
+	<property name="sourcepath" value="D:\ant\plmpm\bin" />
+	<property name="targetpath" value="D:\nclk\modules\plmpm" />
+	<target name="copy">
+		<copy todir="${targetpath}/lib" overwrite="true" flatten="true">
+			<fileset dir="${sourcepath}/public">
+				<include name="**/*.jar" />
+			</fileset>
+		</copy>
+		<copy todir="${targetpath}/META-INF/lib" overwrite="true" flatten="true">
+			<fileset dir="${sourcepath}/private">
+				<include name="**/*.jar" />
+			</fileset>
+		</copy>
+		<copy todir="${targetpath}/client/lib" overwrite="true" flatten="true">
+			<fileset dir="${sourcepath}/client">
+				<include name="**/*.jar" />
+			</fileset>
+		</copy>
+	</target>
+</project>
+

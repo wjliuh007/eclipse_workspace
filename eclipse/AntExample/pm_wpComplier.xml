@@ -1,0 +1,1135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="" default="build" basedir=".">
+	<property name="plmpm" value="PLMUAP1.0" description="项目管理" />
+	<property name="product" value="*" description="PLMAPP" />
+	<property name="modulepath" value="D:\ant\plmpm" description="项目管理" />
+
+	<property name="javahome" location="C:\Program Files\Java\jdk1.6.0_31" />
+	<property name="ncHome" value="D:\nclk" />
+
+	<property name="module" value="plmpm" description="项目管理" />
+
+	<property name="plmpmcommon" value="plmpmcommon" description="项目公共" />
+	<property name="plmproject" value="plmproject" description="项目" />
+	<property name="plmtask" value="plmtask" description="项目任务" />
+	<property name="plmcalendar" value="plmcalendar" description="项目日历" />
+	<property name="plmgantt" value="plmgantt" description="甘特图" />
+	<property name="plmmember" value="plmmember" description="项目成员" />
+	<property name="plmtemplate" value="plmtemplate" description="项目成员" /> 
+	<!-- plmpmcommon -->
+	<property name="module.plmpmcommon.src.public" value="./${plmpmcommon}/src/public" description="公共接口" />
+	<property name="module.plmpmcommon.src.private" value="./${plmpmcommon}/src/private" description="实现类" />
+	<property name="module.plmpmcommon.src.client" value="./${plmpmcommon}/src/client" description="客户端" />
+	<!-- plmpmcommon -->
+
+	<!-- plmproject -->
+	<property name="module.plmproject.src.public" value="./${plmproject}/src/public" description="公共接口" />
+	<property name="module.plmproject.src.private" value="./${plmproject}/src/private" description="实现类" />
+	<property name="module.plmproject.src.client" value="./${plmproject}/src/client" description="客户端" />
+	<!-- plmproject -->
+
+	<!-- plmtask -->
+	<property name="module.plmtask.src.public" value="./${plmtask}/src/public" description="公共接口" />
+	<property name="module.plmtask.src.private" value="./${plmtask}/src/private" description="实现类" />
+	<property name="module.plmtask.src.client" value="./${plmtask}/src/client" description="客户端" />
+	<!-- plmtask -->
+
+	<!-- plmcalendar -->
+	<property name="module.plmcalendar.src.public" value="./${plmcalendar}/src/public" description="公共接口" />
+	<property name="module.plmcalendar.src.private" value="./${plmcalendar}/src/private" description="实现类" />
+	<property name="module.plmcalendar.src.client" value="./${plmcalendar}/src/client" description="客户端" />
+	<!-- plmcalendar -->
+
+	<!-- plmgantt -->
+	<!--<property name="module.plmgantt.src.public" value="./${plmgantt}/src/public" description="公共接口" />
+	<property name="module.plmgantt.src.private" value="./${plmgantt}/src/private" description="实现类" />
+	<property name="module.plmgantt.src.client" value="./${plmgantt}/src/client" description="客户端" />-->
+	<!-- plmgantt -->
+
+	<!-- plmmember -->
+	<property name="module.plmmember.src.public" value="./${plmmember}/src/public" description="公共接口" />
+	<property name="module.plmmember.src.private" value="./${plmmember}/src/private" description="实现类" />
+	<property name="module.plmmember.src.client" value="./${plmmember}/src/client" description="客户端" />
+	<!-- plmmember -->
+
+	<!-- plmtemplate -->
+	<property name="module.plmtemplate.src.public" value="./${plmtemplate}/src/public" description="公共接口" />
+	<property name="module.plmtemplate.src.private" value="./${plmtemplate}/src/private" description="实现类" />
+	<property name="module.plmtemplate.src.client" value="./${plmtemplate}/src/client" description="客户端" />
+	<!-- plmtemplate -->
+		
+	<property name="classes" value="${modulepath}\classes" description="类文件" />
+	<property name="bin_lib" value="${modulepath}\bin" description="类文件" />
+	<property name="javacpath" location="${javahome}/bin/javac" />
+	<property name="debug.flag" value="on" />
+
+	<property name="i" value="1" />
+	<property environment="env" />
+
+	<path id="Product_Common_Library">
+		<fileset dir="${ncHome}\lib">
+			<include name="*.jar" />
+		</fileset>
+		<fileset dir="${ncHome}\external\lib">
+			<include name="*.jar" />
+		</fileset>
+	</path>
+
+
+	<path id="classpath_public">
+		<fileset dir="${bin_lib}/public">
+			<include name="**/*.jar" />
+		</fileset>
+	</path>
+
+	<path id="classpath_private">
+		<fileset dir="${bin_lib}/private">
+			<include name="**/*.jar" />
+		</fileset>
+	</path>
+
+	<path id="classpath_client">
+		<fileset dir="${bin_lib}/client">
+			<include name="**/*.jar" />
+		</fileset>
+	</path>
+
+
+
+	<path id="Module_Public_Library">
+		<fileset dir="${ncHome}\modules\ncaam\lib">
+			<include name="*.jar" />
+		</fileset>
+		<fileset dir="${ncHome}\modules\pubapp\lib">
+			<include name="*.jar" />
+		</fileset>
+		<fileset dir="${ncHome}\modules\uap\lib">
+			<include name="*.jar" />
+		</fileset>
+		<fileset dir="${ncHome}\modules\uapadp\lib">
+			<include name="*.jar" />
+		</fileset>
+		<fileset dir="${ncHome}\modules\uapbd\lib">
+			<include name="*.jar" />
+		</fileset>
+		<fileset dir="${ncHome}\modules\uapbdsearch\lib">
+			<include name="*.jar" />
+		</fileset>
+		<fileset dir="${ncHome}\modules\uapeai\lib">
+			<include name="*.jar" />
+		</fileset>
+		<fileset dir="${ncHome}\modules\uapws\lib">
+			<include name="*.jar" />
+		</fileset>
+		<fileset dir="${ncHome}\modules\plmuif\lib">
+			<include name="*.jar" />
+		</fileset>
+		<fileset dir="${ncHome}\modules\plmomd\lib">
+			<include name="*.jar" />
+		</fileset>
+		<fileset dir="${ncHome}\modules\plmbom\lib">
+			<include name="*.jar" />
+		</fileset>
+		<fileset dir="${ncHome}\modules\uap\client\lib">
+			<include name="*.jar" />
+		</fileset>
+
+		<fileset dir="${ncHome}\modules\plmacm\lib">
+			<include name="*.jar" />
+		</fileset>
+
+		<fileset dir="${ncHome}\modules\plmwf\lib">
+			<include name="*.jar" />
+		</fileset>
+
+		<fileset dir="${ncHome}\modules\uap\lib">
+			<include name="*.jar" />
+		</fileset>
+
+
+		<fileset dir="${ncHome}\modules\plmpsm\lib">
+			<include name="*.jar" />
+		</fileset>
+
+		<fileset dir="${ncHome}\modules\plmcode\lib">
+			<include name="*.jar" />
+		</fileset>
+		<fileset dir="${ncHome}\modules\plmbo\lib">
+			<include name="*.jar" />
+		</fileset>
+
+		<fileset dir="${ncHome}\modules\plmhp\lib">
+			<include name="*.jar" />
+		</fileset>
+
+		<fileset dir="${ncHome}\modules\plmappcom\lib">
+			<include name="*.jar" />
+		</fileset>
+
+		<fileset dir="${ncHome}\modules\plmfm\lib">
+			<include name="*.jar" />
+		</fileset>
+
+		<fileset dir="${ncHome}\modules\bapub\lib">
+			<include name="*.jar" />
+		</fileset>
+
+		<fileset dir="${ncHome}\modules\plmorg\lib">
+			<include name="*.jar" />
+		</fileset>
+
+		<fileset dir="${ncHome}\modules\plmbom\lib">
+			<include name="*.jar" />
+		</fileset>
+		<fileset dir="${ncHome}\modules\plmcad\lib">
+			<include name="*.jar" />
+		</fileset>
+		<fileset dir="${ncHome}\modules\plmfs\lib">
+			<include name="*.jar" />
+		</fileset>
+		<fileset dir="${ncHome}\modules\tbb\lib">
+			<include name="*.jar" />
+		</fileset>
+	</path>
+
+	<path id="Module_Private_Library">
+		<fileset dir="${ncHome}\modules\ncaam\META-INF\lib">
+			<include name="*.jar" />
+		</fileset>
+
+		<fileset dir="${ncHome}\modules\uap\META-INF\lib">
+			<include name="*.jar" />
+		</fileset>
+
+		<fileset dir="${ncHome}\modules\uapadp\META-INF\lib">
+			<include name="*.jar" />
+		</fileset>
+
+		<fileset dir="${ncHome}\modules\uapbd\META-INF\lib">
+			<include name="*.jar" />
+		</fileset>
+
+		<fileset dir="${ncHome}\modules\uapbdsearch\META-INF\lib">
+			<include name="*.jar" />
+		</fileset>
+
+		<fileset dir="${ncHome}\modules\uapeai\META-INF\lib">
+			<include name="*.jar" />
+		</fileset>
+
+		<fileset dir="${ncHome}\modules\uapws\META-INF\lib">
+			<include name="*.jar" />
+		</fileset>
+
+
+		<fileset dir="${ncHome}\modules\plmacm\META-INF\lib">
+			<include name="*.jar" />
+		</fileset>
+		<fileset dir="${ncHome}\modules\plmacm\META-INF\lib">
+			<include name="*.jar" />
+		</fileset>
+
+		<fileset dir="${ncHome}\modules\plmwf\META-INF\lib">
+			<include name="*.jar" />
+		</fileset>
+
+		<fileset dir="${ncHome}\modules\uap\META-INF\lib">
+			<include name="*.jar" />
+		</fileset>
+
+		<fileset dir="${ncHome}\modules\plmpsm\META-INF\lib">
+			<include name="*.jar" />
+		</fileset>
+
+		<fileset dir="${ncHome}\modules\plmcode\META-INF\lib">
+			<include name="*.jar" />
+		</fileset>
+		<fileset dir="${ncHome}\modules\plmbo\META-INF\lib">
+			<include name="*.jar" />
+		</fileset>
+
+		<fileset dir="${ncHome}\modules\plmhp\META-INF\lib">
+			<include name="*.jar" />
+		</fileset>
+
+		<fileset dir="${ncHome}\modules\plmappcom\META-INF\lib">
+			<include name="*.jar" />
+		</fileset>
+
+		<fileset dir="${ncHome}\modules\plmfm\META-INF\lib">
+			<include name="*.jar" />
+		</fileset>
+
+		<fileset dir="${ncHome}\modules\plmbom\META-INF\lib">
+			<include name="*.jar" />
+		</fileset>
+
+
+	</path>
+
+	<path id="Module_Client_Library">
+		<fileset dir="${ncHome}\modules\ncaam\client\lib">
+			<include name="*.jar" />
+		</fileset>
+		<fileset dir="${ncHome}\modules\pubapp\client\lib">
+			<include name="*.jar" />
+		</fileset>
+		<fileset dir="${ncHome}\modules\uap\client\lib">
+			<include name="*.jar" />
+		</fileset>
+		<fileset dir="${ncHome}\modules\uapadp\client\lib">
+			<include name="*.jar" />
+		</fileset>
+		<fileset dir="${ncHome}\modules\uapbd\client\lib">
+			<include name="*.jar" />
+		</fileset>
+
+		<fileset dir="${ncHome}\modules\uapeai\client\lib">
+			<include name="*.jar" />
+		</fileset>
+		<fileset dir="${ncHome}\modules\uapws\client\lib">
+			<include name="*.jar" />
+		</fileset>
+		<fileset dir="${ncHome}\modules\plmuif\client\lib">
+			<include name="*.jar" />
+		</fileset>
+		<fileset dir="${ncHome}\modules\plmappcom\client\lib">
+			<include name="*.jar" />
+		</fileset>
+		<fileset dir="${ncHome}\modules\plmuif\client\lib">
+			<include name="*.jar" />
+		</fileset>
+		<fileset dir="${ncHome}\modules\plmpsm\client\lib">
+			<include name="*.jar" />
+		</fileset>
+
+		<fileset dir="${ncHome}\modules\plmhp\client\lib">
+			<include name="*.jar" />
+		</fileset>
+
+		<fileset dir="${ncHome}\modules\uap\client\lib">
+			<include name="*.jar" />
+		</fileset>
+
+		<fileset dir="${ncHome}\modules\plmwf\client\lib">
+			<include name="*.jar" />
+		</fileset>
+
+		<fileset dir="${ncHome}\modules\plmpsm\client\lib">
+			<include name="*.jar" />
+		</fileset>
+
+		<fileset dir="${ncHome}\modules\plmbom\client\lib">
+			<include name="*.jar" />
+		</fileset>
+
+		<fileset dir="${ncHome}\modules\plmbo\client\lib">
+			<include name="*.jar" />
+		</fileset>
+
+		<fileset dir="${ncHome}\modules\plmcode\client\lib">
+			<include name="*.jar" />
+		</fileset>
+
+		<fileset dir="${ncHome}\modules\plmhp\client\lib">
+			<include name="*.jar" />
+		</fileset>
+
+		<fileset dir="${ncHome}\modules\plmappcom\client\lib">
+			<include name="*.jar" />
+		</fileset>
+
+		<fileset dir="${ncHome}\modules\plmfm\client\lib">
+			<include name="*.jar" />
+		</fileset>
+
+		<fileset dir="${ncHome}\modules\bapub\client\lib">
+			<include name="*.jar" />
+		</fileset>
+
+		<fileset dir="${ncHome}\modules\plmcm\client\lib">
+			<include name="*.jar" />
+		</fileset>
+
+		<fileset dir="${ncHome}\modules\plmacm\client\lib">
+			<include name="*.jar" />
+		</fileset>
+
+		<fileset dir="${ncHome}\modules\plmorg\client\lib">
+			<include name="*.jar" />
+		</fileset>
+
+		<fileset dir="${ncHome}\modules\plmomd\client\lib">
+			<include name="*.jar" />
+		</fileset>
+
+		<fileset dir="${ncHome}\modules\plmbom\client\lib">
+			<include name="*.jar" />
+		</fileset>
+
+		<fileset dir="${ncHome}\modules\plmappcom\client\lib">
+			<include name="*.jar" />
+		</fileset>
+		<fileset dir="${ncHome}\modules\plmpm\client\lib">
+			<include name="*.jar" />
+		</fileset>
+	</path>
+
+
+
+	<target name="build" depends="clean,public,client,private" />
+
+	<target name="clean">
+	</target>
+
+	<target name="public">
+		<record name="d:\public.txt" action="start" />
+
+		<delete dir="${bin_lib}/${module}/lib/" />
+		<mkdir dir="${bin_lib}/${module}/lib/" />
+
+		<!-- plmpmcommon -->
+		<delete dir="${classes}/${plmpmcommon}/public" />
+		<mkdir dir="${classes}/${plmpmcommon}/public" />
+		<javac target="1.6" fork="true" executable="${javacpath}" memoryInitialSize="256m" memoryMaximumSize="512m" nowarn="yes" destdir="${classes}/${plmpmcommon}/public">
+			<src path="${module.plmpmcommon.src.public}" />
+			<classpath refid="Product_Common_Library" />
+			<classpath refid="Module_Public_Library" />
+		</javac>
+		<copy todir="${classes}/${plmpmcommon}/public" overwrite="true">
+			<fileset dir="${module.plmpmcommon.src.public}">
+				<include name="**" />
+				<exclude name="**/*.java" />
+			</fileset>
+		</copy>
+
+		<delete dir="${bin_lib}/public/${plmpmcommon}" />
+		<mkdir dir="${bin_lib}/public/${plmpmcommon}" />
+		<delete file="${bin_lib}/public/${plmpmcommon}/pub${plmpmcommon}.jar" />
+		<jar jarfile="${bin_lib}/public/${plmpmcommon}/pub${plmpmcommon}.jar" basedir="${classes}/${plmpmcommon}/public" update="true" />
+
+		<copy todir="${bin_lib}/${module}/lib" overwrite="true">
+			<fileset dir="${bin_lib}/public/${plmpmcommon}">
+				<include name="*.jar" />
+				<exclude name="*src.jar" />
+			</fileset>
+		</copy>
+
+		<delete file="${bin_lib}/public/${plmpmcommon}/pub${plmpmcommon}_src.jar" />
+		<jar jarfile="${bin_lib}/public/${plmpmcommon}/pub${plmpmcommon}_src.jar" basedir="${module.plmpmcommon.src.public}" update="true" />
+		<!-- plmpmcommon public End -->
+
+
+
+		<!-- plmtask -->
+		<delete dir="${classes}/${plmtask}/public" />
+		<mkdir dir="${classes}/${plmtask}/public" />
+		<javac target="1.6" fork="true" executable="${javacpath}" memoryInitialSize="256m" memoryMaximumSize="512m" nowarn="yes" destdir="${classes}/${plmtask}/public">
+			<src path="${module.plmtask.src.public}" />
+			<classpath refid="Product_Common_Library" />
+			<classpath refid="Module_Public_Library" />
+		</javac>
+		<copy todir="${classes}/${plmtask}/public" overwrite="true">
+			<fileset dir="${module.plmtask.src.public}">
+				<include name="**" />
+				<exclude name="**/*.java" />
+			</fileset>
+		</copy>
+
+		<delete dir="${bin_lib}/public/${plmtask}" />
+		<mkdir dir="${bin_lib}/public/${plmtask}" />
+		<delete file="${bin_lib}/public/${plmtask}/pub${plmtask}.jar" />
+		<jar jarfile="${bin_lib}/public/${plmtask}/pub${plmtask}.jar" basedir="${classes}/${plmtask}/public" update="true" />
+
+		<copy todir="${bin_lib}/${module}/lib" overwrite="true">
+			<fileset dir="${bin_lib}/public/${plmtask}">
+				<include name="*.jar" />
+				<exclude name="*src.jar" />
+			</fileset>
+		</copy>
+
+		<delete file="${bin_lib}/public/${plmtask}/pub${plmtask}_src.jar" />
+		<jar jarfile="${bin_lib}/public/${plmtask}/pub${plmtask}_src.jar" basedir="${module.plmtask.src.public}" update="true" />
+		<!-- plmtask public End -->
+
+		<!-- plmproject -->
+		<delete dir="${classes}/${plmproject}/public" />
+		<mkdir dir="${classes}/${plmproject}/public" />
+		<javac target="1.6" fork="true" executable="${javacpath}" memoryInitialSize="256m" memoryMaximumSize="512m" nowarn="yes" destdir="${classes}/${plmproject}/public">
+			<src path="${module.plmproject.src.public}" />
+			<classpath refid="Product_Common_Library" />
+			<classpath refid="Module_Public_Library" />
+		</javac>
+		<copy todir="${classes}/${plmproject}/public" overwrite="true">
+			<fileset dir="${module.plmproject.src.public}">
+				<include name="**" />
+				<exclude name="**/*.java" />
+			</fileset>
+		</copy>
+
+		<delete dir="${bin_lib}/public/${plmproject}" />
+		<mkdir dir="${bin_lib}/public/${plmproject}" />
+		<delete file="${bin_lib}/public/${plmproject}/pub${plmproject}.jar" />
+		<jar jarfile="${bin_lib}/public/${plmproject}/pub${plmproject}.jar" basedir="${classes}/${plmproject}/public" update="true" />
+
+		<copy todir="${bin_lib}/${module}/lib" overwrite="true">
+			<fileset dir="${bin_lib}/public/${plmproject}">
+				<include name="*.jar" />
+				<exclude name="*src.jar" />
+			</fileset>
+		</copy>
+
+		<delete file="${bin_lib}/public/${plmproject}/pub${plmproject}_src.jar" />
+		<jar jarfile="${bin_lib}/public/${plmproject}/pub${plmproject}_src.jar" basedir="${module.plmproject.src.public}" update="true" />
+		<!-- plmproject public End -->
+
+
+		<!-- plmcalendar -->
+		<delete dir="${classes}/${plmcalendar}/public" />
+		<mkdir dir="${classes}/${plmcalendar}/public" />
+		<javac target="1.6" fork="true" executable="${javacpath}" memoryInitialSize="256m" memoryMaximumSize="512m" nowarn="yes" destdir="${classes}/${plmcalendar}/public">
+			<src path="${module.plmcalendar.src.public}" />
+			<classpath refid="Product_Common_Library" />
+			<classpath refid="Module_Public_Library" />
+		</javac>
+		<copy todir="${classes}/${plmcalendar}/public" overwrite="true">
+			<fileset dir="${module.plmcalendar.src.public}">
+				<include name="**" />
+				<exclude name="**/*.java" />
+			</fileset>
+		</copy>
+
+		<delete dir="${bin_lib}/public/${plmcalendar}" />
+		<mkdir dir="${bin_lib}/public/${plmcalendar}" />
+		<delete file="${bin_lib}/public/${plmcalendar}/pub${plmcalendar}.jar" />
+		<jar jarfile="${bin_lib}/public/${plmcalendar}/pub${plmcalendar}.jar" basedir="${classes}/${plmcalendar}/public" update="true" />
+
+		<copy todir="${bin_lib}/${module}/lib" overwrite="true">
+			<fileset dir="${bin_lib}/public/${plmcalendar}">
+				<include name="*.jar" />
+				<exclude name="*src.jar" />
+			</fileset>
+		</copy>
+
+		<delete file="${bin_lib}/public/${plmcalendar}/pub${plmcalendar}_src.jar" />
+		<jar jarfile="${bin_lib}/public/${plmcalendar}/pub${plmcalendar}_src.jar" basedir="${module.plmcalendar.src.public}" update="true" />
+		<!-- plmcalendar public End -->
+
+
+		<!-- plmgantt -->
+		<delete dir="${classes}/${plmgantt}/public" />
+		<mkdir dir="${classes}/${plmgantt}/public" />
+		<javac target="1.6" fork="true" executable="${javacpath}" memoryInitialSize="256m" memoryMaximumSize="512m" nowarn="yes" destdir="${classes}/${plmgantt}/public">
+			<src path="${module.plmgantt.src.public}" />
+			<classpath refid="Product_Common_Library" />
+			<classpath refid="Module_Public_Library" />
+		</javac>
+		<copy todir="${classes}/${plmgantt}/public" overwrite="true">
+			<fileset dir="${module.plmgantt.src.public}">
+				<include name="**" />
+				<exclude name="**/*.java" />
+			</fileset>
+		</copy>
+
+		<delete dir="${bin_lib}/public/${plmgantt}" />
+		<mkdir dir="${bin_lib}/public/${plmgantt}" />
+		<delete file="${bin_lib}/public/${plmgantt}/pub${plmgantt}.jar" />
+		<jar jarfile="${bin_lib}/public/${plmgantt}/pub${plmgantt}.jar" basedir="${classes}/${plmgantt}/public" update="true" />
+
+		<copy todir="${bin_lib}/${module}/lib" overwrite="true">
+			<fileset dir="${bin_lib}/public/${plmgantt}">
+				<include name="*.jar" />
+				<exclude name="*src.jar" />
+			</fileset>
+		</copy>
+
+		<delete file="${bin_lib}/public/${plmgantt}/pub${plmgantt}_src.jar" />
+		<jar jarfile="${bin_lib}/public/${plmgantt}/pub${plmgantt}_src.jar" basedir="${module.plmgantt.src.public}" update="true" />
+		
+		<!-- plmgantt public End -->
+
+
+		<!-- plmmember -->
+		<delete dir="${classes}/${plmmember}/public" />
+		<mkdir dir="${classes}/${plmmember}/public" />
+		<javac target="1.6" fork="true" executable="${javacpath}" memoryInitialSize="256m" memoryMaximumSize="512m" nowarn="yes" destdir="${classes}/${plmmember}/public">
+			<src path="${module.plmmember.src.public}" />
+			<classpath refid="Product_Common_Library" />
+			<classpath refid="Module_Public_Library" />
+		</javac>
+		<copy todir="${classes}/${plmmember}/public" overwrite="true">
+			<fileset dir="${module.plmmember.src.public}">
+				<include name="**" />
+				<exclude name="**/*.java" />
+			</fileset>
+		</copy>
+
+		<delete dir="${bin_lib}/public/${plmmember}" />
+		<mkdir dir="${bin_lib}/public/${plmmember}" />
+		<delete file="${bin_lib}/public/${plmmember}/pub${plmmember}.jar" />
+		<jar jarfile="${bin_lib}/public/${plmmember}/pub${plmmember}.jar" basedir="${classes}/${plmmember}/public" update="true" />
+
+		<copy todir="${bin_lib}/${module}/lib" overwrite="true">
+			<fileset dir="${bin_lib}/public/${plmmember}">
+				<include name="*.jar" />
+				<exclude name="*src.jar" />
+			</fileset>
+		</copy>
+
+		<delete file="${bin_lib}/public/${plmmember}/pub${plmmember}_src.jar" />
+		<jar jarfile="${bin_lib}/public/${plmmember}/pub${plmmember}_src.jar" basedir="${module.plmmember.src.public}" update="true" />
+		<!-- plmmember public End -->
+
+		
+		<!-- plmtemplate -->
+						<delete dir="${classes}/${plmtemplate}/public" />
+						<mkdir dir="${classes}/${plmtemplate}/public" />
+						<javac target="1.6" fork="true" executable="${javacpath}" memoryInitialSize="256m" memoryMaximumSize="512m" nowarn="yes" destdir="${classes}/${plmtemplate}/public">
+							<src path="${module.plmtemplate.src.public}" />
+							<classpath refid="Product_Common_Library" />
+							<classpath refid="Module_Public_Library" />
+						</javac>
+						<copy todir="${classes}/${plmtemplate}/public" overwrite="true">
+							<fileset dir="${module.plmtemplate.src.public}">
+								<include name="**" />
+								<exclude name="**/*.java" />
+							</fileset>
+						</copy>
+
+						<delete dir="${bin_lib}/public/${plmtemplate}" />
+						<mkdir dir="${bin_lib}/public/${plmtemplate}" />
+						<delete file="${bin_lib}/public/${plmtemplate}/pub${plmtemplate}.jar" />
+						<jar jarfile="${bin_lib}/public/${plmtemplate}/pub${plmtemplate}.jar" basedir="${classes}/${plmtemplate}/public" update="true" />
+
+						<copy todir="${bin_lib}/${module}/lib" overwrite="true">
+							<fileset dir="${bin_lib}/public/${plmtemplate}">
+								<include name="*.jar" />
+								<exclude name="*src.jar" />
+							</fileset>
+						</copy>
+
+						<delete file="${bin_lib}/public/${plmtemplate}/pub${plmtemplate}_src.jar" />
+						<jar jarfile="${bin_lib}/public/${plmtemplate}/pub${plmtemplate}_src.jar" basedir="${module.plmtemplate.src.public}" update="true" />
+						<!-- plmtemplate public End -->
+		
+		
+	</target>
+
+	<target name="private">
+		<delete dir="${bin_lib}/${module}/META-INF/lib" />
+		<mkdir dir="${bin_lib}/${module}/META-INF/lib" />
+
+		<!-- plmpmcommon private start -->
+		<delete dir="${classes}/${plmpmcommon}/private" />
+		<mkdir dir="${classes}/${plmpmcommon}/private" />
+		<record name="d:\private.txt" action="start" />
+		<javac target="1.6" fork="true" executable="${javacpath}" memoryInitialSize="256m" memoryMaximumSize="512m" nowarn="yes" destdir="${classes}/${plmpmcommon}/private">
+			<src path="${module.plmpmcommon.src.private}" />
+			<classpath refid="Product_Common_Library" />
+			<classpath refid="Module_Public_Library" />
+			<classpath refid="classpath_public" />
+		</javac>
+
+		<copy todir="${classes}/${plmpmcommon}/private" overwrite="true">
+			<fileset dir="${module.plmpmcommon.src.private}">
+				<include name="**" />
+				<exclude name="**/*.java" />
+			</fileset>
+		</copy>
+
+		<delete dir="${bin_lib}/private/${plmpmcommon}" />
+		<mkdir dir="${bin_lib}/private/${plmpmcommon}" />
+		<delete file="${bin_lib}/private/${plmpmcommon}/${plmpmcommon}.jar" />
+		<jar jarfile="${bin_lib}/private/${plmpmcommon}/${plmpmcommon}.jar" basedir="${classes}/${plmpmcommon}/private" update="true" />
+
+		<copy todir="${bin_lib}/${module}/META-INF/lib" overwrite="true">
+			<fileset dir="${bin_lib}/private/${plmpmcommon}">
+				<include name="*.jar" />
+				<exclude name="*src.jar" />
+			</fileset>
+		</copy>
+
+		<delete file="${bin_lib}/private/${plmpmcommon}/${plmpmcommon}_src.jar" />
+		<jar jarfile="${bin_lib}/private/${plmpmcommon}/${plmpmcommon}_src.jar" basedir="${module.plmpmcommon.src.private}" update="true" />
+		<!-- plmpmcommon private End  -->
+
+
+
+		<!-- plmtask start -->
+		<delete dir="${classes}/${plmtask}/private" />
+		<mkdir dir="${classes}/${plmtask}/private" />
+		<record name="d:\private.txt" action="start" />
+		<javac target="1.6" fork="true" executable="${javacpath}" memoryInitialSize="256m" memoryMaximumSize="512m" nowarn="yes" destdir="${classes}/${plmtask}/private">
+			<src path="${module.plmtask.src.private}" />
+			<classpath refid="Product_Common_Library" />
+			<classpath refid="Module_Public_Library" />
+			<classpath refid="classpath_public" />
+		</javac>
+
+		<copy todir="${classes}/${plmtask}/private" overwrite="true">
+			<fileset dir="${module.plmtask.src.private}">
+				<include name="**" />
+				<exclude name="**/*.java" />
+			</fileset>
+		</copy>
+
+		<delete dir="${bin_lib}/private/${plmtask}" />
+		<mkdir dir="${bin_lib}/private/${plmtask}" />
+		<delete file="${bin_lib}/private/${plmtask}/${plmtask}.jar" />
+		<jar jarfile="${bin_lib}/private/${plmtask}/${plmtask}.jar" basedir="${classes}/${plmtask}/private" update="true" />
+
+		<copy todir="${bin_lib}/${module}/META-INF/lib" overwrite="true">
+			<fileset dir="${bin_lib}/private/${plmtask}">
+				<include name="*.jar" />
+				<exclude name="*src.jar" />
+			</fileset>
+		</copy>
+
+		<delete file="${bin_lib}/private/${plmtask}/${plmtask}_src.jar" />
+		<jar jarfile="${bin_lib}/private/${plmtask}/${plmtask}_src.jar" basedir="${module.plmtask.src.private}" update="true" />
+		<!-- plmtask End  -->
+
+
+		<!-- plmproject private start -->
+		<delete dir="${classes}/${plmproject}/private" />
+		<mkdir dir="${classes}/${plmproject}/private" />
+		<record name="d:\private.txt" action="start" />
+		<javac target="1.6" fork="true" executable="${javacpath}" memoryInitialSize="256m" memoryMaximumSize="512m" nowarn="yes" destdir="${classes}/${plmproject}/private">
+			<src path="${module.plmproject.src.private}" />
+			<classpath refid="Product_Common_Library" />
+			<classpath refid="Module_Public_Library" />
+			<classpath refid="classpath_public" />
+		</javac>
+
+		<copy todir="${classes}/${plmproject}/private" overwrite="true">
+			<fileset dir="${module.plmproject.src.private}">
+				<include name="**" />
+				<exclude name="**/*.java" />
+			</fileset>
+		</copy>
+
+		<delete dir="${bin_lib}/private/${plmproject}" />
+		<mkdir dir="${bin_lib}/private/${plmproject}" />
+		<delete file="${bin_lib}/private/${plmproject}/${plmproject}.jar" />
+		<jar jarfile="${bin_lib}/private/${plmproject}/${plmproject}.jar" basedir="${classes}/${plmproject}/private" update="true" />
+
+		<copy todir="${bin_lib}/${module}/META-INF/lib" overwrite="true">
+			<fileset dir="${bin_lib}/private/${plmproject}">
+				<include name="*.jar" />
+				<exclude name="*src.jar" />
+			</fileset>
+		</copy>
+
+		<delete file="${bin_lib}/private/${plmproject}/${plmproject}_src.jar" />
+		<jar jarfile="${bin_lib}/private/${plmproject}/${plmproject}_src.jar" basedir="${module.plmproject.src.private}" update="true" />
+		<!-- plmproject private End  -->
+
+
+		<!-- plmcalendar private start -->
+		<delete dir="${classes}/${plmcalendar}/private" />
+		<mkdir dir="${classes}/${plmcalendar}/private" />
+		<record name="d:\private.txt" action="start" />
+		<javac target="1.6" fork="true" executable="${javacpath}" memoryInitialSize="256m" memoryMaximumSize="512m" nowarn="yes" destdir="${classes}/${plmcalendar}/private">
+			<src path="${module.plmcalendar.src.private}" />
+			<classpath refid="Product_Common_Library" />
+			<classpath refid="Module_Public_Library" />
+			<classpath refid="classpath_public" />
+		</javac>
+
+		<copy todir="${classes}/${plmcalendar}/private" overwrite="true">
+			<fileset dir="${module.plmcalendar.src.private}">
+				<include name="**" />
+				<exclude name="**/*.java" />
+			</fileset>
+		</copy>
+
+		<delete dir="${bin_lib}/private/${plmcalendar}" />
+		<mkdir dir="${bin_lib}/private/${plmcalendar}" />
+		<delete file="${bin_lib}/private/${plmcalendar}/${plmcalendar}.jar" />
+		<jar jarfile="${bin_lib}/private/${plmcalendar}/${plmcalendar}.jar" basedir="${classes}/${plmcalendar}/private" update="true" />
+
+		<copy todir="${bin_lib}/${module}/META-INF/lib" overwrite="true">
+			<fileset dir="${bin_lib}/private/${plmcalendar}">
+				<include name="*.jar" />
+				<exclude name="*src.jar" />
+			</fileset>
+		</copy>
+
+		<delete file="${bin_lib}/private/${plmcalendar}/${plmcalendar}_src.jar" />
+		<jar jarfile="${bin_lib}/private/${plmcalendar}/${plmcalendar}_src.jar" basedir="${module.plmcalendar.src.private}" update="true" />
+		<!-- plmcalendar private End  -->
+
+
+		<!-- plmgantt private start -->
+		<!--<delete dir="${classes}/${plmgantt}/private" />
+		<mkdir dir="${classes}/${plmgantt}/private" />
+		<record name="d:\private.txt" action="start" />
+		<javac target="1.6" fork="true" executable="${javacpath}" memoryInitialSize="256m" memoryMaximumSize="512m" nowarn="yes" destdir="${classes}/${plmgantt}/private">
+			<src path="${module.plmgantt.src.private}" />
+			<classpath refid="Product_Common_Library" />
+			<classpath refid="Module_Public_Library" />
+			<classpath refid="classpath_public" />
+		</javac>
+
+		<copy todir="${classes}/${plmgantt}/private" overwrite="true">
+			<fileset dir="${module.plmgantt.src.private}">
+				<include name="**" />
+				<exclude name="**/*.java" />
+			</fileset>
+		</copy>
+
+		<delete dir="${bin_lib}/private/${plmgantt}" />
+		<mkdir dir="${bin_lib}/private/${plmgantt}" />
+		<delete file="${bin_lib}/private/${plmgantt}/${plmgantt}.jar" />
+		<jar jarfile="${bin_lib}/private/${plmgantt}/${plmgantt}.jar" basedir="${classes}/${plmgantt}/private" update="true" />
+
+		<copy todir="${bin_lib}/${module}/META-INF/lib" overwrite="true">
+			<fileset dir="${bin_lib}/private/${plmgantt}">
+				<include name="*.jar" />
+				<exclude name="*src.jar" />
+			</fileset>
+		</copy>
+
+		<delete file="${bin_lib}/private/${plmgantt}/${plmgantt}_src.jar" />
+		<jar jarfile="${bin_lib}/private/${plmgantt}/${plmgantt}_src.jar" basedir="${module.plmgantt.src.private}" update="true" />
+		-->
+		<!-- plmgantt private End  -->
+
+
+		<!-- plmmember private start -->
+		<delete dir="${classes}/${plmmember}/private" />
+		<mkdir dir="${classes}/${plmmember}/private" />
+		<record name="d:\private.txt" action="start" />
+		<javac target="1.6" fork="true" executable="${javacpath}" memoryInitialSize="256m" memoryMaximumSize="512m" nowarn="yes" destdir="${classes}/${plmmember}/private">
+			<src path="${module.plmmember.src.private}" />
+			<classpath refid="Product_Common_Library" />
+			<classpath refid="Module_Public_Library" />
+			<classpath refid="classpath_public" />
+		</javac>
+
+		<copy todir="${classes}/${plmmember}/private" overwrite="true">
+			<fileset dir="${module.plmmember.src.private}">
+				<include name="**" />
+				<exclude name="**/*.java" />
+			</fileset>
+		</copy>
+
+		<delete dir="${bin_lib}/private/${plmmember}" />
+		<mkdir dir="${bin_lib}/private/${plmmember}" />
+		<delete file="${bin_lib}/private/${plmmember}/${plmmember}.jar" />
+		<jar jarfile="${bin_lib}/private/${plmmember}/${plmmember}.jar" basedir="${classes}/${plmmember}/private" update="true" />
+
+		<copy todir="${bin_lib}/${module}/META-INF/lib" overwrite="true">
+			<fileset dir="${bin_lib}/private/${plmmember}">
+				<include name="*.jar" />
+				<exclude name="*src.jar" />
+			</fileset>
+		</copy>
+
+		<delete file="${bin_lib}/private/${plmmember}/${plmmember}_src.jar" />
+		<jar jarfile="${bin_lib}/private/${plmmember}/${plmmember}_src.jar" basedir="${module.plmmember.src.private}" update="true" />
+		<!-- plmmember private End  -->
+
+		<!-- plmtemplate private start -->
+				<delete dir="${classes}/${plmtemplate}/private" />
+				<mkdir dir="${classes}/${plmtemplate}/private" />
+				<record name="d:\private.txt" action="start" />
+				<javac target="1.6" fork="true" executable="${javacpath}" memoryInitialSize="256m" memoryMaximumSize="512m" nowarn="yes" destdir="${classes}/${plmtemplate}/private">
+					<src path="${module.plmtemplate.src.private}" />
+					<classpath refid="Product_Common_Library" />
+					<classpath refid="Module_Public_Library" />
+					<classpath refid="classpath_public" />
+				</javac>
+
+				<copy todir="${classes}/${plmtemplate}/private" overwrite="true">
+					<fileset dir="${module.plmtemplate.src.private}">
+						<include name="**" />
+						<exclude name="**/*.java" />
+					</fileset>
+				</copy>
+
+				<delete dir="${bin_lib}/private/${plmtemplate}" />
+				<mkdir dir="${bin_lib}/private/${plmtemplate}" />
+				<delete file="${bin_lib}/private/${plmtemplate}/${plmtemplate}.jar" />
+				<jar jarfile="${bin_lib}/private/${plmtemplate}/${plmtemplate}.jar" basedir="${classes}/${plmtemplate}/private" update="true" />
+
+				<copy todir="${bin_lib}/${module}/META-INF/lib" overwrite="true">
+					<fileset dir="${bin_lib}/private/${plmtemplate}">
+						<include name="*.jar" />
+						<exclude name="*src.jar" />
+					</fileset>
+				</copy>
+
+				<delete file="${bin_lib}/private/${plmtemplate}/${plmtemplate}_src.jar" />
+				<jar jarfile="${bin_lib}/private/${plmtemplate}/${plmtemplate}_src.jar" basedir="${module.plmtemplate.src.private}" update="true" />
+				<!-- plmtemplate private End  -->
+		
+	</target>
+
+	<target name="client">
+		<delete dir="${bin_lib}/${module}/client/lib" />
+		<mkdir dir="${bin_lib}/${module}/client/lib" />
+		<record name="d:\client.txt" action="start" />
+
+
+		<!-- plmpmcommon client start -->
+		<delete dir="${classes}/${plmpmcommon}/client" />
+		<mkdir dir="${classes}/${plmpmcommon}/client" />
+
+		<javac target="1.6" fork="true" executable="${javacpath}" memoryInitialSize="256m" memoryMaximumSize="512m" nowarn="yes" destdir="${classes}/${plmpmcommon}/client">
+			<src path="${module.plmpmcommon.src.client}" />
+			<classpath refid="Product_Common_Library" />
+			<classpath refid="Module_Public_Library" />
+			<classpath refid="Module_Client_Library" />
+			<classpath refid="classpath_public" />
+			<classpath refid="classpath_client" />
+		</javac>
+
+		<copy todir="${classes}/${plmpmcommon}/client" overwrite="true">
+			<fileset dir="${module.plmpmcommon.src.client}">
+				<include name="**" />
+				<exclude name="**/*.java" />
+			</fileset>
+		</copy>
+
+		<delete dir="${bin_lib}/client/${plmpmcommon}" />
+		<mkdir dir="${bin_lib}/client/${plmpmcommon}" />
+		<delete file="${bin_lib}/client/${plmpmcommon}/ui${plmpmcommon}.jar" />
+		<jar jarfile="${bin_lib}/client/${plmpmcommon}/ui${plmpmcommon}.jar" basedir="${classes}/${plmpmcommon}/client" update="true" />
+
+		<copy todir="${bin_lib}/${module}/client/lib" overwrite="true">
+			<fileset dir="${bin_lib}/client/${plmpmcommon}">
+				<include name="*.jar" />
+				<exclude name="*src.jar" />
+			</fileset>
+		</copy>
+
+		<delete file="${bin_lib}/client/${plmpmcommon}/ui${plmpmcommon}_src.jar" />
+		<jar jarfile="${bin_lib}/client/${plmpmcommon}/ui${plmpmcommon}_src.jar" basedir="${module.plmpmcommon.src.client}" update="true" />
+		<!-- plmpmcommon client  End-->
+
+
+		<!-- plmproject client start -->
+		<delete dir="${classes}/${plmproject}/client" />
+		<mkdir dir="${classes}/${plmproject}/client" />
+
+		<javac target="1.6" fork="true" executable="${javacpath}" memoryInitialSize="256m" memoryMaximumSize="512m" nowarn="yes" destdir="${classes}/${plmproject}/client">
+			<src path="${module.plmproject.src.client}" />
+			<classpath refid="Product_Common_Library" />
+			<classpath refid="Module_Public_Library" />
+			<classpath refid="Module_Client_Library" />
+			<classpath refid="classpath_public" />
+			<classpath refid="classpath_client" />
+		</javac>
+
+		<copy todir="${classes}/${plmproject}/client" overwrite="true">
+			<fileset dir="${module.plmproject.src.client}">
+				<include name="**" />
+				<exclude name="**/*.java" />
+			</fileset>
+		</copy>
+
+		<delete dir="${bin_lib}/client/${plmproject}" />
+		<mkdir dir="${bin_lib}/client/${plmproject}" />
+		<delete file="${bin_lib}/client/${plmproject}/ui${plmproject}.jar" />
+		<jar jarfile="${bin_lib}/client/${plmproject}/ui${plmproject}.jar" basedir="${classes}/${plmproject}/client" update="true" />
+
+		<copy todir="${bin_lib}/${module}/client/lib" overwrite="true">
+			<fileset dir="${bin_lib}/client/${plmproject}">
+				<include name="*.jar" />
+				<exclude name="*src.jar" />
+			</fileset>
+		</copy>
+
+		<delete file="${bin_lib}/client/${plmproject}/ui${plmproject}_src.jar" />
+		<jar jarfile="${bin_lib}/client/${plmproject}/ui${plmproject}_src.jar" basedir="${module.plmproject.src.client}" update="true" />
+		<!-- plmproject client  End-->
+
+		<!-- plmtask start -->
+		<delete dir="${classes}/${plmtask}/client" />
+		<mkdir dir="${classes}/${plmtask}/client" />
+
+		<javac target="1.6" fork="true" executable="${javacpath}" memoryInitialSize="256m" memoryMaximumSize="512m" nowarn="yes" destdir="${classes}/${plmtask}/client">
+			<src path="${module.plmtask.src.client}" />
+			<classpath refid="Product_Common_Library" />
+			<classpath refid="Module_Public_Library" />
+			<classpath refid="Module_Client_Library" />
+			<classpath refid="classpath_public" />
+			<classpath refid="classpath_client" />
+		</javac>
+
+		<copy todir="${classes}/${plmtask}/client" overwrite="true">
+			<fileset dir="${module.plmtask.src.client}">
+				<include name="**" />
+				<exclude name="**/*.java" />
+			</fileset>
+		</copy>
+
+		<delete dir="${bin_lib}/client/${plmtask}" />
+		<mkdir dir="${bin_lib}/client/${plmtask}" />
+		<delete file="${bin_lib}/client/${plmtask}/ui${plmtask}.jar" />
+		<jar jarfile="${bin_lib}/client/${plmtask}/ui${plmtask}.jar" basedir="${classes}/${plmtask}/client" update="true" />
+
+		<copy todir="${bin_lib}/${module}/client/lib" overwrite="true">
+			<fileset dir="${bin_lib}/client/${plmtask}">
+				<include name="*.jar" />
+				<exclude name="*src.jar" />
+			</fileset>
+		</copy>
+
+		<delete file="${bin_lib}/client/${plmtask}/ui${plmtask}_src.jar" />
+		<jar jarfile="${bin_lib}/client/${plmtask}/ui${plmtask}_src.jar" basedir="${module.plmtask.src.client}" update="true" />
+		<!-- plmtask End-->
+
+
+
+
+
+		<!-- plmcalendar client start -->
+		<delete dir="${classes}/${plmcalendar}/client" />
+		<mkdir dir="${classes}/${plmcalendar}/client" />
+
+		<javac target="1.6" fork="true" executable="${javacpath}" memoryInitialSize="256m" memoryMaximumSize="512m" nowarn="yes" destdir="${classes}/${plmcalendar}/client">
+			<src path="${module.plmcalendar.src.client}" />
+			<classpath refid="Product_Common_Library" />
+			<classpath refid="Module_Public_Library" />
+			<classpath refid="Module_Client_Library" />
+			<classpath refid="classpath_public" />
+			<classpath refid="classpath_client" />
+		</javac>
+
+		<copy todir="${classes}/${plmcalendar}/client" overwrite="true">
+			<fileset dir="${module.plmcalendar.src.client}">
+				<include name="**" />
+				<exclude name="**/*.java" />
+			</fileset>
+		</copy>
+
+		<delete dir="${bin_lib}/client/${plmcalendar}" />
+		<mkdir dir="${bin_lib}/client/${plmcalendar}" />
+		<delete file="${bin_lib}/client/${plmcalendar}/ui${plmcalendar}.jar" />
+		<jar jarfile="${bin_lib}/client/${plmcalendar}/ui${plmcalendar}.jar" basedir="${classes}/${plmcalendar}/client" update="true" />
+
+		<copy todir="${bin_lib}/${module}/client/lib" overwrite="true">
+			<fileset dir="${bin_lib}/client/${plmcalendar}">
+				<include name="*.jar" />
+				<exclude name="*src.jar" />
+			</fileset>
+		</copy>
+
+		<delete file="${bin_lib}/client/${plmcalendar}/ui${plmcalendar}_src.jar" />
+		<jar jarfile="${bin_lib}/client/${plmcalendar}/ui${plmcalendar}_src.jar" basedir="${module.plmcalendar.src.client}" update="true" />
+		<!-- plmcalendar client  End-->
+
+		<!-- plmgantt client start -->
+		<!-- <delete dir="${classes}/${plmgantt}/client" />
+		<mkdir dir="${classes}/${plmgantt}/client" />
+
+		<javac target="1.6" fork="true" executable="${javacpath}" memoryInitialSize="256m" memoryMaximumSize="512m" nowarn="yes" destdir="${classes}/${plmgantt}/client">
+			<src path="${module.plmgantt.src.client}" />
+			<classpath refid="Product_Common_Library" />
+			<classpath refid="Module_Public_Library" />
+			<classpath refid="Module_Client_Library" />
+			<classpath refid="classpath_public" />
+			<classpath refid="classpath_client" />
+		</javac>
+
+		<copy todir="${classes}/${plmgantt}/client" overwrite="true">
+			<fileset dir="${module.plmgantt.src.client}">
+				<include name="**" />
+				<exclude name="**/*.java" />
+			</fileset>
+		</copy>
+
+		<delete dir="${bin_lib}/client/${plmgantt}" />
+		<mkdir dir="${bin_lib}/client/${plmgantt}" />
+		<delete file="${bin_lib}/client/${plmgantt}/ui${plmgantt}.jar" />
+		<jar jarfile="${bin_lib}/client/${plmgantt}/ui${plmgantt}.jar" basedir="${classes}/${plmgantt}/client" update="true" />
+
+		<copy todir="${bin_lib}/${module}/client/lib" overwrite="true">
+			<fileset dir="${bin_lib}/client/${plmgantt}">
+				<include name="*.jar" />
+				<exclude name="*src.jar" />
+			</fileset>
+		</copy>
+
+		<delete file="${bin_lib}/client/${plmgantt}/ui${plmgantt}_src.jar" />
+		<jar jarfile="${bin_lib}/client/${plmgantt}/ui${plmgantt}_src.jar" basedir="${module.plmgantt.src.client}" update="true" />
+		-->
+		<!-- plmgantt client  End-->
+
+		<!-- plmmember client start -->
+		<delete dir="${classes}/${plmmember}/client" />
+		<mkdir dir="${classes}/${plmmember}/client" />
+
+		<javac target="1.6" fork="true" executable="${javacpath}" memoryInitialSize="256m" memoryMaximumSize="512m" nowarn="yes" destdir="${classes}/${plmmember}/client">
+			<src path="${module.plmmember.src.client}" />
+			<classpath refid="Product_Common_Library" />
+			<classpath refid="Module_Public_Library" />
+			<classpath refid="Module_Client_Library" />
+			<classpath refid="classpath_public" />
+			<classpath refid="classpath_client" />
+		</javac>
+
+		<copy todir="${classes}/${plmmember}/client" overwrite="true">
+			<fileset dir="${module.plmmember.src.client}">
+				<include name="**" />
+				<exclude name="**/*.java" />
+			</fileset>
+		</copy>
+
+		<delete dir="${bin_lib}/client/${plmmember}" />
+		<mkdir dir="${bin_lib}/client/${plmmember}" />
+		<delete file="${bin_lib}/client/${plmmember}/ui${plmmember}.jar" />
+		<jar jarfile="${bin_lib}/client/${plmmember}/ui${plmmember}.jar" basedir="${classes}/${plmmember}/client" update="true" />
+
+		<copy todir="${bin_lib}/${module}/client/lib" overwrite="true">
+			<fileset dir="${bin_lib}/client/${plmmember}">
+				<include name="*.jar" />
+				<exclude name="*src.jar" />
+			</fileset>
+		</copy>
+
+		<delete file="${bin_lib}/client/${plmmember}/ui${plmmember}_src.jar" />
+		<jar jarfile="${bin_lib}/client/${plmmember}/ui${plmmember}_src.jar" basedir="${module.plmmember.src.client}" update="true" />
+		<!-- plmmember client  End-->
+
+
+		<!-- plmtemplate client start -->
+				<delete dir="${classes}/${plmtemplate}/client" />
+				<mkdir dir="${classes}/${plmtemplate}/client" />
+
+				<javac target="1.6" fork="true" executable="${javacpath}" memoryInitialSize="256m" memoryMaximumSize="512m" nowarn="yes" destdir="${classes}/${plmtemplate}/client">
+					<src path="${module.plmtemplate.src.client}" />
+					<classpath refid="Product_Common_Library" />
+					<classpath refid="Module_Public_Library" />
+					<classpath refid="Module_Client_Library" />
+					<classpath refid="classpath_public" />
+					<classpath refid="classpath_client" />
+				</javac>
+
+				<copy todir="${classes}/${plmtemplate}/client" overwrite="true">
+					<fileset dir="${module.plmtemplate.src.client}">
+						<include name="**" />
+						<exclude name="**/*.java" />
+					</fileset>
+				</copy>
+
+				<delete dir="${bin_lib}/client/${plmtemplate}" />
+				<mkdir dir="${bin_lib}/client/${plmtemplate}" />
+				<delete file="${bin_lib}/client/${plmtemplate}/ui${plmtemplate}.jar" />
+				<jar jarfile="${bin_lib}/client/${plmtemplate}/ui${plmtemplate}.jar" basedir="${classes}/${plmtemplate}/client" update="true" />
+
+				<copy todir="${bin_lib}/${module}/client/lib" overwrite="true">
+					<fileset dir="${bin_lib}/client/${plmtemplate}">
+						<include name="*.jar" />
+						<exclude name="*src.jar" />
+					</fileset>
+				</copy>
+
+				<delete file="${bin_lib}/client/${plmtemplate}/ui${plmtemplate}_src.jar" />
+				<jar jarfile="${bin_lib}/client/${plmtemplate}/ui${plmtemplate}_src.jar" basedir="${module.plmtemplate.src.client}" update="true" />
+				<!-- plmtemplate client  End-->
+		
+	</target>
+</project>
